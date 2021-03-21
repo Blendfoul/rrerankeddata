@@ -1,29 +1,27 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {
-  ActivityIndicator,
-  ScrollView,
-  View,
   StyleSheet,
   Dimensions,
   StatusBar,
+  RefreshControl,
+  FlatList,
 } from 'react-native';
 import {useRaceStore} from './RaceContext';
 import axios, {CancelTokenSource} from 'axios';
 import Race from './Race';
 import type {Server} from './Server';
-import {Observer} from 'mobx-react-lite';
 import {autorun} from 'mobx';
+import {Observer} from 'mobx-react-lite';
 
 const RaceContainer: props => Node = props => {
   const raceStore = useRaceStore();
-  const [isLoading, setLoading] = useState(true);
   const [region, setRegion] = useState([]);
+
   useEffect(() => {
     const source: CancelTokenSource = axios.CancelToken.source();
 
     const getRaces = async () => {
       try {
-        setLoading(true);
         const response = await axios(
           'https://game.raceroom.com/multiplayer-rating/servers/',
           {cancelToken: source.token},
@@ -31,10 +29,10 @@ const RaceContainer: props => Node = props => {
 
         if (response.status === 200) {
           raceStore.setRaces(response.data.result);
-          setLoading(false);
+          raceStore.setRefresh(false);
         }
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     };
 
@@ -55,18 +53,47 @@ const RaceContainer: props => Node = props => {
     );
   }, [raceStore, raceStore.Region]);
 
-  return isLoading ? (
-    <View style={styles.activity}>
-      <ActivityIndicator size="large" color={'#fff'} />
-    </View>
-  ) : (
+  const onRefresh = useCallback(async () => {
+    raceStore.setRefresh(true);
+
+    const source: CancelTokenSource = axios.CancelToken.source();
+
+    try {
+      const response = await axios(
+        'https://game.raceroom.com/multiplayer-rating/servers/',
+        {cancelToken: source.token},
+      );
+
+      if (response.status === 200) {
+        raceStore.setRaces(response.data.result);
+        raceStore.setRefresh(false);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+
+    return () => {
+      source.cancel();
+    };
+  }, [raceStore]);
+
+  return (
     <Observer>
       {() => (
-        <ScrollView style={styles.container}>
-          {region.map((server: Server, index: Number) => (
-            <Race data={server} key={index} navigation={props.navigation} />
-          ))}
-        </ScrollView>
+        <FlatList
+          data={region}
+          renderItem={server => (
+            <Race data={server} navigation={props.navigation} />
+          )}
+          keyExtractor={(server: Server) => server.Server.Settings.ServerName}
+          refreshControl={
+            <RefreshControl
+              refreshing={raceStore.Refresh}
+              onRefresh={onRefresh}
+            />
+          }
+          contentContainerStyle={styles.list}
+        />
       )}
     </Observer>
   );

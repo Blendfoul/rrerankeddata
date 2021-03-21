@@ -7,6 +7,8 @@ export interface RaceStore {
   AvailableRegions: String[];
   Races: Server[];
   Ratings: Driver[];
+  Refresh: Boolean;
+  setRefresh(isRefreshing: boolean): (isRefreshing: boolean) => void;
   setRatings(ratings: Driver[]): (ratings: Driver[]) => void;
   setRegion(region: String): (region: String) => void;
   setAvailableRegions(region: String[]): (region: String[]) => void;
@@ -21,12 +23,18 @@ export const createRaceStore = (): RaceStore => {
     Region: '',
     AvailableRegions: [],
     Ratings: [],
+    Refresh: true,
+    setRefresh(isRefreshing: boolean) {
+      this.Refresh = isRefreshing;
+      if (isRefreshing) {
+        this.Races = [];
+      }
+    },
     setRatings(ratings: Driver[]) {
       this.Ratings = ratings;
     },
     setRegion(region: String) {
       this.Region = region;
-      console.log(region);
     },
     setRaces(races: Server[]) {
       this.Races = races;

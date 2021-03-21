@@ -1,11 +1,12 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View, Pressable} from 'react-native';
 import CarClass from './CarClass';
+import type {Server} from './Server';
 
-const Race: props => Node = (props: props) => {
+const Race: props => Node = props => {
+  const serverData: Server.Server = props.data.item.Server;
   const onRacePress = () => {
-    props.navigation.navigate('Race Details', props.data);
-    console.log(props.data.Server.Settings.ServerName + ' pressed!');
+    props.navigation.navigate('Race Details', props.data.item);
   };
 
   return (
@@ -14,14 +15,12 @@ const Race: props => Node = (props: props) => {
         <Image
           style={raceStyle.logo}
           source={{
-            uri: props.data.Server.Settings.Thumbnail,
+            uri: serverData.Settings.Thumbnail,
           }}
         />
         <View style={raceStyle.content}>
-          <Text style={raceStyle.text}>
-            {props.data.Server.Settings.ServerName}
-          </Text>
-          <CarClass liveries={props.data.Server.Settings.LiveryId} size={25} />
+          <Text style={raceStyle.text}>{serverData.Settings.ServerName}</Text>
+          <CarClass liveries={serverData.Settings.LiveryId} size={25} />
         </View>
       </View>
     </Pressable>
