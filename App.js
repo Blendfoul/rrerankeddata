@@ -5,6 +5,7 @@ import axios from 'axios';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import ServerNavigator from './ServerNavigator';
+import SearchNavigator from './SearchNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -87,7 +88,7 @@ const App: () => Node = () => {
           }}
         />
         <Tab.Screen name="User" component={UserNavigator} />
-        <Tab.Screen name="Search" component={UserNavigator} />
+        <Tab.Screen name="Search" component={SearchNavigator} />
         <Tab.Screen name="About" component={UserNavigator} />
       </Tab.Navigator>
     </NavigationContainer>
