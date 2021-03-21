@@ -6,6 +6,7 @@ import HomeScreen from './HomeScreen';
 import RaceDetailsScreen from './RaceDetailsScreen';
 import axios from 'axios';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import AntIcon from 'react-native-vector-icons/AntDesign';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -69,11 +70,34 @@ const App: () => Node = () => {
     <NavigationContainer>
       <Tab.Navigator
         tabBarOptions={{
-          activeTintColor: 'gray',
+          activeTintColor: 'white',
           inactiveTintColor: 'tomato',
-          activeBackgroundColor: '#2f2f2f',
+          activeBackgroundColor: '#6f6f6f',
           inactiveBackgroundColor: '#2f2f2f',
-        }}>
+        }}
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused, color, size}) => {
+            let iconName;
+
+            switch (route.name) {
+              case 'Servers':
+                iconName = 'car';
+                break;
+              case 'User':
+                iconName = 'user';
+                break;
+              case 'Search':
+                iconName = 'search';
+                break;
+              case 'About':
+                iconName = 'team';
+                break;
+            }
+
+            // You can return any component that you like here!
+            return <AntIcon name={iconName} color={focused ? 'white' : 'gray'} size={25} />;
+          },
+        })}>
         <Tab.Screen
           name="Servers"
           component={ServerNavigator}
@@ -85,6 +109,8 @@ const App: () => Node = () => {
           }}
         />
         <Tab.Screen name="User" component={UserNavigator} />
+        <Tab.Screen name="Search" component={UserNavigator} />
+        <Tab.Screen name="About" component={UserNavigator} />
       </Tab.Navigator>
     </NavigationContainer>
   );
