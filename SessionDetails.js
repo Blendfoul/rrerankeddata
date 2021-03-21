@@ -3,6 +3,7 @@ import {View, StyleSheet, Text} from 'react-native';
 import type {Server} from './Server';
 import CarClass from './CarClass';
 import RankedDetails from './RankedDetails';
+import CountDown from 'react-native-countdown-component';
 
 const SessionDetails = props => {
   const [session, setSession] = useState('');
@@ -25,6 +26,8 @@ const SessionDetails = props => {
     }
   }, [sessionData.CurrentSession]);
 
+  console.log(sessionData.TimeLeft, sessionData.TimeLeft);
+
   return (
     <>
       <View style={styles.container}>
@@ -36,7 +39,11 @@ const SessionDetails = props => {
       </View>
       <View style={styles.container}>
         <Text style={styles.text}>{session}</Text>
-        <Text style={styles.text}>{sessionData.TimeLeft}</Text>
+        <CountDown
+          until={sessionData.TimeLeft / 1000}
+          timeToShow={['H', 'M', 'S']}
+          size={15}
+        />
       </View>
       <View style={styles.container}>
         <Text style={styles.heading}>P</Text>
@@ -62,7 +69,7 @@ const SessionDetails = props => {
         <Text style={styles.text}>{sessionData.Settings.TireWear}x</Text>
         <Text style={styles.text}>{sessionData.Settings.FuelUsage}x</Text>
       </View>
-      <RankedDetails data={sessionData} />
+      <RankedDetails data={sessionData} navigation={props.navigation} />
     </>
   );
 };
@@ -73,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
   },
   heading: {
     color: '#fff',

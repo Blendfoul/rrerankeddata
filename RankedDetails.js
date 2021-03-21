@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useRaceStore} from './RaceContext';
+import DriverList from './DriverList';
 
 const RankedDetails = props => {
   const raceStore = useRaceStore();
@@ -49,6 +50,9 @@ const RankedDetails = props => {
         <Text style={styles.text}>{props.data.PlayersOnServer}</Text>
         <Text style={styles.text}>{details.sof.toFixed(3)}</Text>
         <Text style={styles.text}>{details.rep.toFixed(3)}</Text>
+      </View>
+      <View style={styles.container}>
+        <DriverList drivers={details.drivers} navigation={props.navigation} />
       </View>
     </>
   );

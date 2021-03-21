@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View, Pressable} from 'react-native';
-import CarClass from "./CarClass";
+import CarClass from './CarClass';
 
 const Race: props => Node = (props: props) => {
   const onRacePress = () => {
@@ -39,11 +39,11 @@ const raceStyle = StyleSheet.create({
   },
   content: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
-    paddingVertical: 20,
+    paddingVertical: 10,
   },
   text: {
     color: '#fff',

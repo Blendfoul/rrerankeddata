@@ -70,7 +70,7 @@ const TrackImage = props => {
   return isLoading ? (
     <ActivityIndicator size="large" style={details.image} color={'#fff'} />
   ) : (
-    <View style={details.container}>
+    <View>
       <ImageBackground
         style={details.backgroundContainer}
         source={{

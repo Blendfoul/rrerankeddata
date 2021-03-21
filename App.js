@@ -1,39 +1,12 @@
 import React, {useEffect} from 'react';
 import {useRaceStore} from './RaceContext';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import HomeScreen from './HomeScreen';
-import RaceDetailsScreen from './RaceDetailsScreen';
 import axios from 'axios';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+import ServerNavigator from './ServerNavigator';
 
-const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
-function ServerNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name={'Raceroom Ranked'}
-        component={HomeScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name={'Race Details'}
-        component={RaceDetailsScreen}
-        options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
 
 function UserNavigator() {
   return null;
@@ -87,15 +60,20 @@ const App: () => Node = () => {
                 iconName = 'user';
                 break;
               case 'Search':
-                iconName = 'search';
+                iconName = 'info';
                 break;
               case 'About':
                 iconName = 'team';
                 break;
             }
 
-            // You can return any component that you like here!
-            return <AntIcon name={iconName} color={focused ? 'white' : 'gray'} size={25} />;
+            return (
+              <AntIcon
+                name={iconName}
+                color={focused ? 'white' : 'gray'}
+                size={25}
+              />
+            );
           },
         })}>
         <Tab.Screen
