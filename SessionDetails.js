@@ -26,8 +26,6 @@ const SessionDetails = props => {
     }
   }, [sessionData.CurrentSession]);
 
-  console.log(sessionData.TimeLeft, sessionData.TimeLeft);
-
   return (
     <>
       <View style={styles.container}>
@@ -38,12 +36,17 @@ const SessionDetails = props => {
         <Text style={styles.heading}>Time Left</Text>
       </View>
       <View style={styles.container}>
-        <Text style={styles.text}>{session}</Text>
-        <CountDown
-          until={sessionData.TimeLeft / 1000}
-          timeToShow={['H', 'M', 'S']}
-          size={15}
-        />
+        <View style={styles.session}>
+          <Text style={styles.text}>{session}</Text>
+        </View>
+        <View style={styles.countdown}>
+          <CountDown
+            until={sessionData.TimeLeft / 1000}
+            timeToShow={['H', 'M', 'S']}
+            timeLabels={{m: null, s: null}}
+            size={15}
+          />
+        </View>
       </View>
       <View style={styles.container}>
         <Text style={styles.heading}>P</Text>
@@ -89,6 +92,16 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
+  },
+  countdown: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  session: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
