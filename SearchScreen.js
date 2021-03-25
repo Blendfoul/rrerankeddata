@@ -1,39 +1,52 @@
 import React, {useState} from 'react';
 import {
   SafeAreaView,
-  TextInput,
   StyleSheet,
-  Button,
+  TextInput,
   ToastAndroid,
   View,
 } from 'react-native';
 import axios from 'axios';
+import {useRaceStore} from './RaceContext';
+import {Button} from 'react-native-elements';
+import AntIcon from 'react-native-vector-icons/AntDesign';
 
 const SearchScreen = ({route, navigation}) => {
   const [text, setText] = useState('');
+  const [isEnabled, setEnabled] = useState(false);
+  const raceStore = useRaceStore();
 
   const onChangeText = (text: String) => {
+    if (text.length === 0) {
+      setEnabled(false);
+    } else if (!isEnabled) {
+      setEnabled(true);
+    }
+
     setText(text);
+    raceStore.setSearchDriver(text);
   };
 
   const searchUser = async () => {
-    const source = axios.CancelToken.source();
+    if (text.length > 0) {
+      const source = axios.CancelToken.source();
+      setEnabled(false);
+      try {
+        await axios(`https://game.raceroom.com/users/${text}/?json`, {
+          method: 'HEAD',
+          cancelToken: source.token,
+        });
 
-    try {
-      await axios(`https://game.raceroom.com/users/${text}/?json`, {
-        method: 'HEAD',
-        cancelToken: source.token,
-      });
+        navigation.navigate('Details', text);
+      } catch (e) {
+        ToastAndroid.show(`User ${text} not found!`, ToastAndroid.SHORT);
+      }
 
-      //TODO: Navigate to profile component
-      ToastAndroid.show('will navigate', ToastAndroid.SHORT);
-    } catch (e) {
-      ToastAndroid.show(`User ${text} not found!`, ToastAndroid.SHORT);
+      setEnabled(true);
+      return () => {
+        source.cancel();
+      };
     }
-
-    return () => {
-      source.cancel();
-    };
   };
 
   return (
@@ -42,10 +55,17 @@ const SearchScreen = ({route, navigation}) => {
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
-        placeholder={'Username'}
+        placeholder={'Driver Username'}
       />
       <View style={styles.buttonWidth}>
-        <Button onPress={searchUser} title="Search" color="green" />
+        <Button
+          onPress={searchUser}
+          title="Search "
+          iconRight
+          icon={<AntIcon name={'user'} color={'#fff'} size={25} />}
+          buttonStyle={{backgroundColor: 'green'}}
+          disabled={!isEnabled}
+        />
       </View>
     </SafeAreaView>
   );

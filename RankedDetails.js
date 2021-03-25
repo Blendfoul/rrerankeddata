@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useRaceStore} from './RaceContext';
 import DriverList from './DriverList';
+import axios from 'axios';
 
 const RankedDetails = props => {
   const raceStore = useRaceStore();
@@ -15,28 +16,45 @@ const RankedDetails = props => {
       rep: 0,
     };
 
-    drivers.forEach(driver => {
-      const newData = raceStore.Ratings.find(value => value.UserId === driver);
-      if (newData !== undefined) {
-        data.drivers.push(newData);
+    const promise = new Promise(async resolve => {
+      for (const driver of drivers) {
+        const newData = raceStore.Ratings.find(
+          value => value.UserId === driver,
+        );
+        if (newData !== undefined) {
+          data.drivers.push(newData);
+        } else {
+          const user = await axios(
+            'https://game.raceroom.com/utils/user-info/' + driver,
+          );
+          data.drivers.push({
+            Fullname: user.data.name,
+            Username: user.data.username,
+            Rating: 1700,
+            Reputation: 70,
+          });
+        }
       }
+      resolve(data);
     });
 
-    if (data.drivers.length > 0) {
-      data.drivers.forEach(driver => {
-        if (driver !== undefined) {
-          data.sof += driver.Rating;
-          data.rep += driver.Reputation;
-        }
-      });
+    promise.then(driverData => {
+      if (driverData.drivers.length > 0) {
+        driverData.drivers.forEach(driver => {
+          if (driver !== undefined) {
+            data.sof += driver.Rating;
+            data.rep += driver.Reputation;
+          }
+        });
 
-      data.sof /= data.drivers.length;
-      data.rep /= data.drivers.length;
+        data.sof /= data.drivers.length;
+        data.rep /= data.drivers.length;
 
-      data.drivers.sort((a, b) => b.Rating - a.Rating);
-    }
+        data.drivers.sort((a, b) => b.Rating - a.Rating);
+      }
 
-    setDetails(data);
+      setDetails(data);
+    });
   }, [drivers, raceStore.Ratings]);
 
   return (
@@ -57,7 +75,6 @@ const RankedDetails = props => {
     </>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     paddingTop: 15,

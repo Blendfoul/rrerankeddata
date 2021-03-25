@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import type {Server} from './Server';
 import CarClass from './CarClass';
 import RankedDetails from './RankedDetails';
 import CountDown from 'react-native-countdown-component';
+import {layouts} from './assets/r3e-data.json';
 
 const SessionDetails = props => {
   const [session, setSession] = useState('');
@@ -29,7 +30,11 @@ const SessionDetails = props => {
   return (
     <>
       <View style={styles.container}>
-        <CarClass liveries={sessionData.Settings.LiveryId} size={45} />
+        <CarClass
+          liveries={sessionData.Settings.LiveryId}
+          size={45}
+          imgSize={'small'}
+        />
       </View>
       <View style={styles.container}>
         <Text style={styles.heading}>Session</Text>
@@ -47,6 +52,14 @@ const SessionDetails = props => {
             size={15}
           />
         </View>
+      </View>
+      <View style={styles.container}>
+        <Text style={styles.heading}>Track Layout</Text>
+      </View>
+      <View style={styles.container}>
+        <Text style={styles.text}>
+          {layouts[sessionData.Settings.TrackLayoutId].Name}
+        </Text>
       </View>
       <View style={styles.container}>
         <Text style={styles.heading}>P</Text>

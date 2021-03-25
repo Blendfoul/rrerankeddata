@@ -2,24 +2,34 @@ import React from 'react';
 import {DataTable} from 'react-native-paper';
 import {Pressable, StyleSheet} from 'react-native';
 import type {Driver} from './Driver';
+import {useRaceStore} from './RaceContext';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const DriverList = props => {
-  const onDriverPress = (id: Number) => {
-    props.navigation.navigate('Driver Details', id);
+  const raceStore = useRaceStore();
+  const onDriverPress = (userId: Number) => {
+    raceStore.setSearchDriver(userId);
+    props.navigation.navigate('Driver Details', userId);
   };
   return (
     <DataTable style={style.container}>
       <DataTable.Header>
-        <DataTable.Title>Name</DataTable.Title>
-        <DataTable.Title numeric>Rating</DataTable.Title>
-        <DataTable.Title numeric>Reputation</DataTable.Title>
+        <DataTable.Title>
+          <AntDesign name={'user'} color={'white'} size={25} />
+        </DataTable.Title>
+        <DataTable.Title numeric>
+          <AntDesign name={'exception1'} color={'white'} size={25} />
+        </DataTable.Title>
+        <DataTable.Title numeric>
+          <AntDesign name={'solution1'} color={'white'} size={25} />
+        </DataTable.Title>
       </DataTable.Header>
       {props.drivers.map((driver: Driver, index: Number) => (
-        <Pressable onPress={() => onDriverPress(driver.UserId)} key={index}>
+        <Pressable onPress={() => onDriverPress(driver.Username)} key={index}>
           <DataTable.Row>
             <DataTable.Cell>{driver.Fullname}</DataTable.Cell>
-            <DataTable.Cell numeric>{driver.Rating}</DataTable.Cell>
             <DataTable.Cell numeric>{driver.Reputation}</DataTable.Cell>
+            <DataTable.Cell numeric>{driver.Rating}</DataTable.Cell>
           </DataTable.Row>
         </Pressable>
       ))}

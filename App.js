@@ -6,12 +6,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import ServerNavigator from './ServerNavigator';
 import SearchNavigator from './SearchNavigator';
+import AboutComponent from './AboutComponent';
+import UserNavigator from './UserNavigator';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import SplashScreen from 'react-native-splash-screen';
 
 const Tab = createBottomTabNavigator();
-
-function UserNavigator() {
-  return null;
-}
 
 const App: () => Node = () => {
   const raceStore = useRaceStore();
@@ -33,8 +33,26 @@ const App: () => Node = () => {
         console.log(e);
       }
     };
-    getRatings();
 
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem('defaultDriver');
+        if (value !== null) {
+          raceStore.setDefaultDriver(value);
+        }
+
+        const region = await AsyncStorage.getItem('selectedRegion');
+        if (region !== null) {
+          raceStore.setRegion(region);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    getRatings();
+    getData();
+    SplashScreen.hide();
     return () => {
       source.cancel();
     };
@@ -61,7 +79,7 @@ const App: () => Node = () => {
                 iconName = 'user';
                 break;
               case 'Search':
-                iconName = 'info';
+                iconName = 'search1';
                 break;
               case 'About':
                 iconName = 'team';
@@ -89,7 +107,7 @@ const App: () => Node = () => {
         />
         <Tab.Screen name="User" component={UserNavigator} />
         <Tab.Screen name="Search" component={SearchNavigator} />
-        <Tab.Screen name="About" component={UserNavigator} />
+        <Tab.Screen name="About" component={AboutComponent} />
       </Tab.Navigator>
     </NavigationContainer>
   );

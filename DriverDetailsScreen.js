@@ -1,47 +1,55 @@
-import React from 'react';
-import {
-  Dimensions,
-  Image,
-  ImageBackground,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import axios from 'axios';
+import DriverComponent from './DriverComponent';
+import {useRaceStore} from './RaceContext';
 
 const DriverDetailsScreen = ({route, navigation}) => {
-  return (
-    <ScrollView>
-      <ImageBackground
-        style={details.backgroundContainer}
-        source={{
-          uri: '',
-        }}>
-        <Image
-          style={details.logo}
-          source={{
-            uri: '',
-          }}
-        />
-      </ImageBackground>
-    </ScrollView>
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  const raceStore = useRaceStore();
+
+  useEffect(() => {
+    const source = axios.CancelToken.source();
+
+    const getDriverData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios(
+          `https://game.raceroom.com/users/${route.params}/career?json`,
+          {cancelToken: source.token},
+        );
+
+        setData(response.data.context.c);
+      } catch (e) {
+        console.log(e);
+      }
+
+      setLoading(false);
+      raceStore.setRefresh(false);
+    };
+
+    getDriverData();
+
+    return () => source.cancel();
+  }, [route.params, raceStore.Refresh]);
+
+  return isLoading ? (
+    <View style={details.backgroundContainer}>
+      <ActivityIndicator size={'large'} color={'#fff'} />
+    </View>
+  ) : (
+    <DriverComponent data={data} navigation={navigation} />
   );
 };
 
 const details = StyleSheet.create({
-  image: {
-    height: 125,
-    resizeMode: 'contain',
-    backgroundColor: '#2f2f2f',
-  },
   backgroundContainer: {
-    width: Dimensions.get('window').width,
-    height: 125,
-  },
-  logo: {
-    marginTop: 25,
-    marginStart: 25,
-    backgroundColor: 'rgba(0,0,0,0)',
-    width: 75,
-    height: 75,
+    flex: 1,
+    height: '100%',
+    backgroundColor: '#2f2f2f',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
