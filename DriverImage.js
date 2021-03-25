@@ -17,13 +17,13 @@ function DriverImage(props: {data: Profile}) {
           props.data.header === undefined
             ? require('./assets/r3e.jpg')
             : {
-                uri: props.data.header,
+                uri: props.data?.header,
               }
         }>
         <Image
           style={details.logo}
           source={{
-            uri: props.data.avatar,
+            uri: props.data?.avatar,
           }}
         />
       </ImageBackground>

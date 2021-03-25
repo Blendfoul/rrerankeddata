@@ -105,7 +105,7 @@ const Race: props => Node = props => {
             <AntDesign name={'clockcircleo'} color={'#fff'} size={25} />
             <Text style={raceStyle.text}>{session}</Text>
           </View>
-          <View style={raceStyle.data}>
+          <View style={[raceStyle.data, {flex: 2}]}>
             <AntDesign name={'hourglass'} color={'#fff'} size={25} />
             <CountDown
               until={serverData.TimeLeft / 1000}
