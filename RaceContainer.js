@@ -6,10 +6,10 @@ import {
   RefreshControl,
   FlatList,
 } from 'react-native';
-import {useRaceStore} from './RaceContext';
+import {useRaceStore} from './store/RaceContext';
 import axios, {CancelTokenSource} from 'axios';
 import Race from './Race';
-import type {Server} from './Server';
+import type {Server} from './interfaces/Server';
 import {autorun} from 'mobx';
 import {Observer} from 'mobx-react-lite';
 

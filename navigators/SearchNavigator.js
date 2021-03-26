@@ -1,41 +1,29 @@
 import React from 'react';
-import HomeScreen from './HomeScreen';
-import RaceDetailsScreen from './RaceDetailsScreen';
 import {createStackNavigator} from '@react-navigation/stack';
-import DriverDetailsScreen from './DriverDetailsScreen';
-import {Button} from 'react-native-elements';
+import SearchScreen from '../SearchScreen';
+import DriverDetailsScreen from '../DriverDetailsScreen';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {Button} from 'react-native-elements';
+import {useRaceStore} from '../store/RaceContext';
 import {ToastAndroid} from 'react-native';
-import {useRaceStore} from './RaceContext';
-import SessionDetailsScreen from './SessionDetailsScreen';
+import SessionDetailsScreen from '../SessionDetailsScreen';
 import {Observer} from 'mobx-react-lite';
 
 const Stack = createStackNavigator();
 
-const ServerNavigator = () => {
+const SearchNavigator = ({route, navigation}) => {
   const raceStore = useRaceStore();
-
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={'Raceroom Ranked'}
-        component={HomeScreen}
+        name={'Search'}
+        component={SearchScreen}
         options={{
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name={'Race Details'}
-        component={RaceDetailsScreen}
-        options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
-        }}
-      />
-      <Stack.Screen
-        name={'Driver Details'}
+        name={'Details'}
         component={DriverDetailsScreen}
         options={{
           headerStyle: {
@@ -77,4 +65,4 @@ const ServerNavigator = () => {
   );
 };
 
-export default ServerNavigator;
+export default SearchNavigator;

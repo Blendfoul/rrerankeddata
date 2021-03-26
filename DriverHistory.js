@@ -1,6 +1,6 @@
 import React from 'react';
 import {DataTable} from 'react-native-paper';
-import type {Profile, Race} from './Profile';
+import type {Profile, Race} from './interfaces/Profile';
 import CarClass from './CarClass';
 import {Pressable} from 'react-native';
 import AntIcon from 'react-native-vector-icons/AntDesign';

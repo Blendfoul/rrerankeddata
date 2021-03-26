@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import axios from 'axios';
 import DriverComponent from './DriverComponent';
-import {useRaceStore} from './RaceContext';
+import {useRaceStore} from './store/RaceContext';
 
 const DriverDetailsScreen = ({route, navigation}) => {
   const [isLoading, setLoading] = useState(true);

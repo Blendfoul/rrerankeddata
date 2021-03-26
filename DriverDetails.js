@@ -1,36 +1,17 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import type {Profile} from './Profile';
-import {SvgUri} from 'react-native-svg';
-import {useRaceStore} from './RaceContext';
-import type {Driver} from './Driver';
+import type {Profile} from './interfaces/Profile';
+import {useRaceStore} from './store/RaceContext';
+import type {Driver} from './interfaces/Driver';
+import Developer from './assets/developer.svg';
+import Vip from './assets/vip.svg';
+import AntIcon from 'react-native-vector-icons/AntDesign';
 
 function PinContainer(props: {data: any}) {
   return (
     <View style={styles.logoContainer}>
-      {props.data?.simbiner ? (
-        <SvgUri
-          scaleX={0.25}
-          scaleY={0.25}
-          uri="https://prod.r3eassets.com/static/img/icons/developer_white.svg"
-        />
-      ) : null}
-      {props.data?.isBroadcaster ? (
-        <SvgUri
-          scaleX={0.25}
-          scaleY={0.25}
-          style={styles.svg}
-          uri="https://prod.r3eassets.com/static/img/icons/broadcaster_white.svg"
-        />
-      ) : null}
-      {props.data?.vip ? (
-        <SvgUri
-          scaleX={0.15}
-          scaleY={0.15}
-          style={styles.svg}
-          uri="https://prod.r3eassets.com/static/img/icons/vip_white.svg"
-        />
-      ) : null}
+      {props.data?.simbiner ? <Developer /> : null}
+      {props.data?.vip ? <Vip /> : null}
     </View>
   );
 }
@@ -47,7 +28,9 @@ const DriverDetails = props => {
     <>
       <View style={styles.data}>
         <View style={styles.container}>
-          <Text style={styles.heading}>Name</Text>
+          <Text style={styles.heading}>
+            Name <AntIcon name={'user'} color={'#fff'} size={15} />
+          </Text>
           <Text style={styles.text}>{data?.name}</Text>
         </View>
         <PinContainer data={data} />
@@ -61,14 +44,18 @@ const DriverDetails = props => {
       <View style={styles.data}>
         <View style={styles.container}>
           <Text style={styles.heading}>Races</Text>
-          <Text style={styles.text}>{driver?.RacesCompleted || 70}</Text>
+          <Text style={styles.text}>{driver?.RacesCompleted || 0}</Text>
         </View>
         <View style={styles.container}>
-          <Text style={styles.heading}>Rating</Text>
+          <Text style={styles.heading}>
+            Rating <AntIcon name={'solution1'} color={'#fff'} size={15} />
+          </Text>
           <Text style={styles.text}>{driver?.Rating || 1700}</Text>
         </View>
         <View style={styles.container}>
-          <Text style={styles.heading}>Reputation</Text>
+          <Text style={styles.heading}>
+            Reputation <AntIcon name={'exception1'} color={'#fff'} size={15} />
+          </Text>
           <Text style={styles.text}>{driver?.Reputation || 70}</Text>
         </View>
       </View>
@@ -86,16 +73,17 @@ const styles = StyleSheet.create({
   data: {
     flex: 1,
     flexWrap: 'wrap',
+    alignItems: 'center',
     flexDirection: 'row',
   },
   logoContainer: {
-    flex: 1,
+    flex: 0.5,
     flexDirection: 'row',
     justifyContent: 'center',
-    flexWrap: 'wrap',
+    alignItems: 'center',
   },
   heading: {
-    fontSize: 18,
+    fontSize: 15,
     color: '#fff',
     fontWeight: 'bold',
   },

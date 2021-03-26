@@ -1,4 +1,4 @@
-import type {Profile} from './Profile';
+import type {Profile} from './interfaces/Profile';
 import {ScrollView, StyleSheet} from 'react-native';
 import DriverImage from './DriverImage';
 import DriverDetails from './DriverDetails';

@@ -1,12 +1,12 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useRaceStore} from './RaceContext';
+import {useRaceStore} from './store/RaceContext';
 import axios from 'axios';
 import DriverComponent from './DriverComponent';
 import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import {useIsFocused} from '@react-navigation/core';
-import type {Profile} from './Profile';
+import type {Profile} from './interfaces/Profile';
 
 const DefaultUser = ({route, navigation}) => {
   const raceStore = useRaceStore();

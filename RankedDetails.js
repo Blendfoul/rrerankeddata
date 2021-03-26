@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {useRaceStore} from './RaceContext';
+import {useRaceStore} from './store/RaceContext';
 import DriverList from './DriverList';
 import axios from 'axios';
 

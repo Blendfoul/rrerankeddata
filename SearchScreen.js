@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import axios from 'axios';
-import {useRaceStore} from './RaceContext';
+import {useRaceStore} from './store/RaceContext';
 import {Button} from 'react-native-elements';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 

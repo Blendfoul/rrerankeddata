@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import type {Profile} from './Profile';
+import type {Profile} from './interfaces/Profile';
 
 function DriverImage(props: {data: Profile}) {
   return (

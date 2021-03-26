@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import type {Server} from './Server';
+import type {Server} from './interfaces/Server';
 import CarClass from './CarClass';
 import RankedDetails from './RankedDetails';
 import CountDown from 'react-native-countdown-component';

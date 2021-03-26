@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ActivityIndicator,
   Linking,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -10,12 +11,12 @@ import {
 import {Button, Image} from 'react-native-elements';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {disclaimer, license, mvp} from './assets/license.json';
+import {disclaimer, license, mvp} from '../assets/license.json';
 const AboutComponent = () => {
   return (
     <ScrollView style={style.background}>
       <Image
-        source={require('./assets/haribo.webp')}
+        source={require('../assets/haribo.webp')}
         style={style.hariboTrain}
         PlaceholderContent={<ActivityIndicator />}
       />
@@ -64,12 +65,15 @@ const AboutComponent = () => {
       </View>
       <View style={style.container}>
         <Text style={style.disclaimerText}>{mvp}</Text>
+        <Pressable onPress={() => Linking.openURL('https://raceroom.dhsh.tk/')}>
+          <Text style={style.donationText}>Raceroom Advanced Statistics</Text>
+        </Pressable>
       </View>
       <View style={style.container}>
         <Text style={style.disclaimerText}>{license}</Text>
       </View>
       <View style={style.container}>
-        <Text style={style.disclaimerText}>2021 - ImagineStats</Text>
+        <Text style={style.disclaimerText}>2021 - João Castanheira</Text>
       </View>
     </ScrollView>
   );
@@ -95,7 +99,7 @@ const style = StyleSheet.create({
     textAlign: 'center',
     width: '90%',
     color: '#fff',
-    marginVertical: 25,
+    marginVertical: 20,
     fontSize: 16,
   },
   hariboTrain: {

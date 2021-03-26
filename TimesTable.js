@@ -12,7 +12,7 @@ import {
 import {DataTable} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import AntIcon from 'react-native-vector-icons/AntDesign';
-import type {QualiData, Race} from './RaceData';
+import type {QualiData, Race} from './interfaces/RaceData';
 import {Image} from 'react-native-elements';
 
 const QualiRoute = props => (
@@ -33,7 +33,7 @@ const QualiRoute = props => (
           <AntDesign name={'car'} size={25} color={'#fff'} />
         </DataTable.Cell>
         <DataTable.Cell style={[data.cell, {justifyContent: 'center'}]} numeric>
-          <AntDesign name={'exception1'} size={25} color={'#fff'} />
+          <AntDesign name={'close'} size={25} color={'#fff'} />
         </DataTable.Cell>
         <DataTable.Cell style={[data.time, {justifyContent: 'center'}]} numeric>
           <AntDesign name={'clockcircle'} size={25} color={'#fff'} />

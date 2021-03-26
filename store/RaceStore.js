@@ -1,5 +1,5 @@
-import type {Server} from './Server';
-import type {Driver} from './Driver';
+import type {Server} from '../interfaces/Server';
+import type {Driver} from '../interfaces/Driver';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface RaceStore {

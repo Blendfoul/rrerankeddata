@@ -1,8 +1,8 @@
 import React from 'react';
 import {DataTable} from 'react-native-paper';
 import {Pressable, StyleSheet} from 'react-native';
-import type {Driver} from './Driver';
-import {useRaceStore} from './RaceContext';
+import type {Driver} from './interfaces/Driver';
+import {useRaceStore} from './store/RaceContext';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const DriverList = props => {

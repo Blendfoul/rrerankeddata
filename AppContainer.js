@@ -1,4 +1,4 @@
-import {RaceProvider} from './RaceContext';
+import {RaceProvider} from './store/RaceContext';
 import React from 'react';
 import App from './App';
 

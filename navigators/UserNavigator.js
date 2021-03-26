@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import DefaultUser from './DefaultUser';
-import SessionDetailsScreen from './SessionDetailsScreen';
+import DefaultUser from '../DefaultUser';
+import SessionDetailsScreen from '../SessionDetailsScreen';
 
 const Stack = createStackNavigator();
 

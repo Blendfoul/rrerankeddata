@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import CarClass from './CarClass';
-import type {Server} from './Server';
+import type {Server} from './interfaces/Server';
 import {tracks} from './assets/r3e-data.json';
 import axios, {CancelTokenSource} from 'axios';
 import {fetchTrackImage} from './TrackImage';

@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
-import {useRaceStore} from './RaceContext';
+import {useRaceStore} from './store/RaceContext';
 import {NavigationContainer} from '@react-navigation/native';
 import axios from 'axios';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AntIcon from 'react-native-vector-icons/AntDesign';
-import ServerNavigator from './ServerNavigator';
-import SearchNavigator from './SearchNavigator';
-import AboutComponent from './AboutComponent';
-import UserNavigator from './UserNavigator';
+import ServerNavigator from './navigators/ServerNavigator';
+import SearchNavigator from './navigators/SearchNavigator';
+import AboutComponent from './navigators/AboutComponent';
+import UserNavigator from './navigators/UserNavigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SplashScreen from 'react-native-splash-screen';
 
