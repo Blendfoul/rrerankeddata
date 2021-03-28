@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Picker} from '@react-native-picker/picker';
-import {useRaceStore} from './RaceContext';
+import {useRaceStore} from './store/RaceContext';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Observer} from 'mobx-react-lite';
 import {regions} from './assets/regions.json';

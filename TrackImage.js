@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
-  ImageBackground,
+  Dimensions,
   Image,
+  ImageBackground,
   StyleSheet,
   View,
-  Dimensions,
 } from 'react-native';
 import axios, {CancelTokenSource} from 'axios';
 import {tracks} from './assets/r3e-data.json';
@@ -17,13 +17,32 @@ interface Layout {
   Track: Number;
 }
 
+export async function fetchTrackImage(trackData, source, setImage, setLoading) {
+  try {
+    const response = await axios(
+      'https://game.raceroom.com/store/tracks/all/' +
+        tracks[trackData.Track].Name.replace(/ /g, '-')
+          .replace(/ü/g, 'u')
+          .toLowerCase() +
+        '?json',
+      {cancelToken: source.token},
+    );
+
+    if (response.status === 200) {
+      setImage(response.data.context.c.item.image);
+      setLoading(false);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 const TrackImage = props => {
   const [isLoading, setLoading] = useState(true);
   const [image, setImage] = useState(null);
 
   useEffect(() => {
     const source: CancelTokenSource = axios.CancelToken.source();
-
     const getTrackImage = async () => {
       setLoading(true);
       let trackData: Layout;
@@ -41,23 +60,7 @@ const TrackImage = props => {
         }
       }
 
-      try {
-        const response = await axios(
-          'https://game.raceroom.com/store/tracks/all/' +
-            tracks[trackData.Track].Name.replace(/ /g, '-')
-              .replace(/ü/g, 'u')
-              .toLowerCase() +
-            '?json',
-          {cancelToken: source.token},
-        );
-
-        if (response.status === 200) {
-          setImage(response.data.context.c.item.image);
-          setLoading(false);
-        }
-      } catch (e) {
-        console.log(e);
-      }
+      await fetchTrackImage(trackData, source, setImage, setLoading);
     };
 
     getTrackImage();
