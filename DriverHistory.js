@@ -2,8 +2,12 @@ import React from 'react';
 import {DataTable} from 'react-native-paper';
 import type {Profile, Race} from './interfaces/Profile';
 import CarClass from './CarClass';
-import {Pressable} from 'react-native';
+import {Pressable, StyleSheet} from 'react-native';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+
+function TableCell(props) {
+  return <DataTable.Cell style={props.style}>{props.text}</DataTable.Cell>;
+}
 
 const DriverHistory = (props: {data: Profile}) => {
   const races = props.data.raceList.GetUserMpRatingProgressResult.Entries.reverse();
@@ -18,18 +22,22 @@ const DriverHistory = (props: {data: Profile}) => {
   return (
     <DataTable style={{backgroundColor: 'gray', marginTop: 10}}>
       <DataTable.Header>
-        <DataTable.Cell style={{flex: 3}}>
-          <AntIcon name={'car'} size={25} color={'white'} />
-        </DataTable.Cell>
-        <DataTable.Cell numeric style={{flex: 1}}>
-          <AntIcon name={'user'} size={25} color={'white'} />
-        </DataTable.Cell>
-        <DataTable.Cell numeric style={{flex: 1}}>
-          <AntIcon name={'team'} size={25} color={'white'} />
-        </DataTable.Cell>
-        <DataTable.Cell numeric style={{flex: 1}}>
-          <AntIcon name={'exception1'} size={25} color={'white'} />
-        </DataTable.Cell>
+        <TableCell
+          text={<AntIcon name={'car'} size={25} color={'white'} />}
+          style={componentStyle.flex_3}
+        />
+        <TableCell
+          text={<AntIcon name={'user'} size={25} color={'white'} />}
+          style={componentStyle.flex_1}
+        />
+        <TableCell
+          text={<AntIcon name={'team'} size={25} color={'white'} />}
+          style={componentStyle.flex_1}
+        />
+        <TableCell
+          text={<AntIcon name={'exception1'} size={25} color={'white'} />}
+          style={componentStyle.flex_1}
+        />
       </DataTable.Header>
       {races.map((race: Race, index: Number) => {
         const carClass = [];
@@ -39,18 +47,24 @@ const DriverHistory = (props: {data: Profile}) => {
             onPress={onPress.bind(this, race.RaceHash, race.TrackLayoutId.Id)}
             key={index}>
             <DataTable.Row>
-              <DataTable.Cell style={{flex: 3}}>
-                <CarClass classes={carClass} size={20} imgSize={'thumb'} />
-              </DataTable.Cell>
-              <DataTable.Cell numeric style={{flex: 1}}>
-                {race.FinishPosition}
-              </DataTable.Cell>
-              <DataTable.Cell numeric style={{flex: 1}}>
-                {race.PlayersCount}
-              </DataTable.Cell>
-              <DataTable.Cell numeric style={{flex: 1}}>
-                {race.IncidentPoints}
-              </DataTable.Cell>
+              <TableCell
+                text={
+                  <CarClass classes={carClass} size={20} imgSize={'small'} />
+                }
+                style={componentStyle.flex_3}
+              />
+              <TableCell
+                text={race.FinishPosition}
+                style={componentStyle.flex_1}
+              />
+              <TableCell
+                text={race.PlayersCount}
+                style={componentStyle.flex_1}
+              />
+              <TableCell
+                text={race.IncidentPoints}
+                style={componentStyle.flex_1}
+              />
             </DataTable.Row>
           </Pressable>
         );
@@ -58,5 +72,14 @@ const DriverHistory = (props: {data: Profile}) => {
     </DataTable>
   );
 };
+
+const componentStyle = StyleSheet.create({
+  flex_3: {
+    flex: 3,
+  },
+  flex_1: {
+    flex: 1,
+  },
+});
 
 export default DriverHistory;

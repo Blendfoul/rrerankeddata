@@ -14,6 +14,7 @@ import axios, {CancelTokenSource} from 'axios';
 import {fetchTrackImage} from './TrackImage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import CountDown from 'react-native-countdown-component';
+import {styles} from './Theme';
 
 interface Layout {
   Id: Number;
@@ -75,10 +76,29 @@ const Race: props => Node = props => {
 
   return (
     <Pressable onPress={onRacePress}>
-      <View style={raceStyle.race}>
-        <View style={raceStyle.data}>
-          <View style={raceStyle.content}>
-            <Text style={raceStyle.text}>{serverData.Settings.ServerName}</Text>
+      <View
+        style={[
+          styles.column,
+          styles.alignCenter,
+          styles.backgroundColor,
+          componentStyle.card,
+        ]}>
+        <View
+          style={[
+            styles.row,
+            styles.alignCenter,
+            styles.justifyCenter,
+            styles.backgroundColor,
+          ]}>
+          <View
+            style={[
+              styles.column,
+              styles.justifySpaceBetween,
+              styles.alignCenter,
+              styles.padding10,
+              {flex: 3},
+            ]}>
+            <Text style={styles.text}>{serverData.Settings.ServerName}</Text>
             <CarClass
               liveries={serverData.Settings.LiveryId}
               size={25}
@@ -86,26 +106,49 @@ const Race: props => Node = props => {
             />
           </View>
           {isLoading ? (
-            <ActivityIndicator color={'#fff'} style={raceStyle.logo} />
+            <ActivityIndicator
+              color={'#fff'}
+              style={[
+                styles.column,
+                styles.alignCenter,
+                styles.justifyCenter,
+                componentStyle.logo,
+              ]}
+            />
           ) : (
             <Image
-              style={raceStyle.logo}
+              style={[
+                styles.column,
+                styles.alignCenter,
+                styles.justifyCenter,
+                componentStyle.logo,
+              ]}
               source={{
                 uri: image.logo,
               }}
             />
           )}
         </View>
-        <View style={raceStyle.data}>
-          <View style={raceStyle.data}>
+        <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
+          <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
             <AntDesign name={'team'} color={'#fff'} size={25} />
-            <Text style={raceStyle.text}>{serverData.PlayersOnServer}</Text>
+            <Text style={[styles.text, styles.paddingHorizontal5]}>
+              {serverData.PlayersOnServer}
+            </Text>
           </View>
-          <View style={raceStyle.data}>
+          <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
             <AntDesign name={'clockcircleo'} color={'#fff'} size={25} />
-            <Text style={raceStyle.text}>{session}</Text>
+            <Text style={[styles.text, styles.paddingHorizontal5]}>
+              {session}
+            </Text>
           </View>
-          <View style={[raceStyle.data, {flex: 2}]}>
+          <View
+            style={[
+              styles.row,
+              styles.alignCenter,
+              styles.justifyCenter,
+              {flex: 2},
+            ]}>
             <AntDesign name={'hourglass'} color={'#fff'} size={25} />
             <CountDown
               until={serverData.TimeLeft / 1000}
@@ -120,39 +163,14 @@ const Race: props => Node = props => {
   );
 };
 
-const raceStyle = StyleSheet.create({
-  race: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#2f2f2f',
+const componentStyle = StyleSheet.create({
+  card: {
     marginTop: 4,
     marginHorizontal: 8,
     borderRadius: 2,
-  },
-  data: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#2f2f2f',
     paddingVertical: 5,
   },
-  content: {
-    flex: 3,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-  },
-  text: {
-    color: '#fff',
-    paddingHorizontal: 5,
-  },
   logo: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     width: 50,
     height: 50,
     resizeMode: 'contain',

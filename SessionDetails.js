@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {View} from 'react-native';
 import type {Server} from './interfaces/Server';
 import CarClass from './CarClass';
 import RankedDetails from './RankedDetails';
 import CountDown from 'react-native-countdown-component';
 import {layouts} from './assets/r3e-data.json';
+import TextContainer from './TextContainer';
+import {styles} from './Theme';
 
 const SessionDetails = props => {
   const [session, setSession] = useState('');
@@ -29,93 +31,94 @@ const SessionDetails = props => {
 
   return (
     <>
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.row,
+          styles.alignStart,
+          styles.justifyAround,
+          styles.paddingTop15,
+        ]}>
         <CarClass
           liveries={sessionData.Settings.LiveryId}
           size={45}
           imgSize={'small'}
         />
       </View>
-      <View style={styles.container}>
-        <Text style={styles.heading}>Session</Text>
-        <Text style={styles.heading}>Time Left</Text>
+      <View
+        style={[
+          styles.row,
+          styles.alignStart,
+          styles.justifyAround,
+          styles.paddingTop15,
+        ]}>
+        <TextContainer title={'Session'} text={session} />
+        <TextContainer
+          title={'Time Left'}
+          text={
+            <CountDown
+              until={sessionData.TimeLeft / 1000}
+              timeToShow={['H', 'M', 'S']}
+              timeLabels={{m: null, s: null}}
+              size={15}
+            />
+          }
+        />
       </View>
-      <View style={styles.container}>
-        <View style={styles.session}>
-          <Text style={styles.text}>{session}</Text>
-        </View>
-        <View style={styles.countdown}>
-          <CountDown
-            until={sessionData.TimeLeft / 1000}
-            timeToShow={['H', 'M', 'S']}
-            timeLabels={{m: null, s: null}}
-            size={15}
-          />
-        </View>
+      <View
+        style={[
+          styles.row,
+          styles.alignStart,
+          styles.justifyAround,
+          styles.paddingTop15,
+        ]}>
+        <TextContainer
+          title={'Track Layout'}
+          text={layouts[sessionData.Settings.TrackLayoutId].Name}
+        />
       </View>
-      <View style={styles.container}>
-        <Text style={styles.heading}>Track Layout</Text>
+      <View
+        style={[
+          styles.row,
+          styles.alignStart,
+          styles.justifyAround,
+          styles.paddingTop15,
+        ]}>
+        <TextContainer
+          title={'P'}
+          text={sessionData.Settings.PracticeDuration + ' min'}
+        />
+        <TextContainer
+          title={'Q'}
+          text={sessionData.Settings.QualifyDuration + ' min'}
+        />
+        <TextContainer
+          title={'R'}
+          text={sessionData.Settings.Race1Duration + ' min'}
+        />
       </View>
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          {layouts[sessionData.Settings.TrackLayoutId].Name}
-        </Text>
+      <View
+        style={[
+          styles.row,
+          styles.alignStart,
+          styles.justifyAround,
+          styles.paddingTop15,
+        ]}>
+        <TextContainer
+          title={'Tire Wear'}
+          text={sessionData.Settings.TireWear + 'x'}
+        />
+        <TextContainer
+          title={'Fuel Usage'}
+          text={sessionData.Settings.FuelUsage + 'x'}
+        />
       </View>
-      <View style={styles.container}>
-        <Text style={styles.heading}>P</Text>
-        <Text style={styles.heading}>Q</Text>
-        <Text style={styles.heading}>R</Text>
-      </View>
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          {sessionData.Settings.PracticeDuration} min
-        </Text>
-        <Text style={styles.text}>
-          {sessionData.Settings.QualifyDuration} min
-        </Text>
-        <Text style={styles.text}>
-          {sessionData.Settings.Race1Duration} min
-        </Text>
-      </View>
-      <View style={styles.container}>
-        <Text style={styles.heading}>Tyre Wear</Text>
-        <Text style={styles.heading}>Fuel Usage</Text>
-      </View>
-      <View style={styles.container}>
-        <Text style={styles.text}>{sessionData.Settings.TireWear}x</Text>
-        <Text style={styles.text}>{sessionData.Settings.FuelUsage}x</Text>
-      </View>
-      <RankedDetails data={sessionData} navigation={props.navigation} />
+      <RankedDetails
+        data={sessionData}
+        navigation={props.navigation}
+        loading={props.loading}
+      />
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 15,
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-around',
-  },
-  heading: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  text: {
-    color: '#fff',
-  },
-  countdown: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  session: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default SessionDetails;

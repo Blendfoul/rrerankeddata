@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {cars} from './assets/r3e-data.json';
 import {Image, StyleSheet, View} from 'react-native';
+import {styles} from './Theme';
 
 const CarClass = props => {
   const [classes, setClasses] = useState([]);
@@ -25,13 +26,7 @@ const CarClass = props => {
     }
   }, [props.classes, props.liveries]);
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
+  const componentStyle = StyleSheet.create({
     image: {
       width: props.size,
       height: props.size,
@@ -39,13 +34,13 @@ const CarClass = props => {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.row, styles.justifyCenter]}>
       {classes.map((id: Number, index: Number) => (
         <Image
           source={{
             uri: `https://game.raceroom.com/store/image_redirect?id=${id}&amp;size=${props.imgSize}`,
           }}
-          style={styles.image}
+          style={componentStyle.image}
           key={index}
         />
       ))}

@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import TrackImage from './TrackImage';
 import RaceDataInfo from './RaceDataInfo';
 import axios from 'axios';
 import TimesTable from './TimesTable';
+import {styles} from './Theme';
 
 const SessionDetailsScreen = ({route, navigation}) => {
   const [info, setInfo] = useState(null);
@@ -33,9 +34,9 @@ const SessionDetailsScreen = ({route, navigation}) => {
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={[styles.column, styles.backgroundColor]}>
         <TrackImage trackId={route.params.track} />
-        <View style={styles.containerView}>
+        <View style={styles.column}>
           {loading ? null : (
             <>
               <RaceDataInfo info={info.RaceInfos} />
@@ -47,15 +48,5 @@ const SessionDetailsScreen = ({route, navigation}) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#2f2f2f',
-  },
-  containerView: {
-    flex: 1,
-  },
-});
 
 export default SessionDetailsScreen;

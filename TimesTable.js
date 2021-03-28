@@ -14,6 +14,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import type {QualiData, Race} from './interfaces/RaceData';
 import {Image} from 'react-native-elements';
+import TextContainer from './TextContainer';
 
 const QualiRoute = props => (
   <ScrollView style={style.tab}>
@@ -173,58 +174,80 @@ function ModalData(props: {onPress: () => void, modalData: Race}) {
           on
         />
         <View style={style.data}>
-          <View style={style.modalContainer}>
-            <Text style={style.heading}>Name</Text>
-            <Text style={style.text}>{props.modalData?.FullName}</Text>
-          </View>
-          <View style={style.modalContainer}>
-            <Text style={style.heading}>Team</Text>
-            <Text style={style.text}>{props.modalData?.Team}</Text>
-          </View>
+          <TextContainer
+            title={'Name'}
+            text={props.modalData?.FullName}
+            headerSize={14}
+            textSize={10}
+          />
+          <TextContainer
+            title={'Team'}
+            text={props.modalData?.Team}
+            headerSize={14}
+            textSize={10}
+          />
         </View>
         <View style={style.data}>
-          <View style={style.modalContainer}>
-            <Text style={style.heading}>Best Time</Text>
-            <Text style={style.text}>{props.modalData?.BestTime}</Text>
-          </View>
-          <View style={style.modalContainer}>
-            <Text style={style.heading}>Worst Time</Text>
-            <Text style={style.text}>{props.modalData?.WorstTime}</Text>
-          </View>
+          <TextContainer
+            title={'Best time'}
+            text={props.modalData?.BestTime}
+            headerSize={14}
+            textSize={10}
+          />
+          <TextContainer
+            title={'Worst time'}
+            text={props.modalData?.WorstTime}
+            headerSize={14}
+            textSize={10}
+          />
         </View>
         <View style={style.data}>
-          <View style={style.modalContainer}>
-            <Text style={style.heading}>Average Time</Text>
-            <Text style={style.text}>{props.modalData?.AvgTime}</Text>
-          </View>
-          <View style={style.modalContainer}>
-            <Text style={style.heading}>Diff. Time</Text>
-            <Text style={style.text}>{props.modalData?.DiffTime}</Text>
-          </View>
+          <TextContainer
+            title={'Average Time'}
+            text={props.modalData?.AvgTime}
+            headerSize={14}
+            textSize={10}
+          />
+          <TextContainer
+            title={'Diff. Time'}
+            text={props.modalData?.DiffTime}
+            headerSize={14}
+            textSize={10}
+          />
         </View>
         <View style={style.data}>
-          <View style={style.modalContainer}>
-            <Text style={style.heading}>Rating Change</Text>
-            <Text style={style.text}>{props.modalData?.RatingChange}</Text>
-          </View>
-          <View style={style.modalContainer}>
-            <Text style={style.heading}>Reputation Change</Text>
-            <Text style={style.text}>{props.modalData?.ReputationChange}</Text>
-          </View>
+          <TextContainer
+            title={'Rating Change'}
+            text={props.modalData?.RatingChange}
+            headerSize={14}
+            textSize={10}
+          />
+          <TextContainer
+            title={'Reputation Change'}
+            text={props.modalData?.ReputationChange}
+            headerSize={14}
+            textSize={10}
+          />
         </View>
         <View style={style.data}>
-          <View style={style.modalContainer}>
-            <Text style={style.heading}>Start Pos.</Text>
-            <Text style={style.text}>{props.modalData?.StartPosition}</Text>
-          </View>
-          <View style={style.modalContainer}>
-            <Text style={style.heading}>Finish Pos.</Text>
-            <Text style={style.text}>{props.modalData?.FinishPosition}</Text>
-          </View>
-          <View style={style.modalContainer}>
-            <Text style={style.heading}>Diff Pos.</Text>
-            <Text style={style.text}>{props.modalData?.DiffPosition}</Text>
-          </View>
+          <TextContainer
+            title={'Start Pos.'}
+            text={props.modalData?.StartPosition}
+            headerSize={14}
+            textSize={10}
+          />
+          <TextContainer
+            title={'Finish Pos.'}
+            text={props.modalData?.FinishPosition}
+            headerSize={14}
+            textSize={10}
+          />
+          <TextContainer
+            title={'Diff Pos.'}
+            text={props.modalData?.DiffPosition}
+            headerSize={14}
+            textSize={10}
+          />
         </View>
       </View>
     </View>
@@ -343,7 +366,11 @@ const style = StyleSheet.create({
   container: {
     backgroundColor: '#2f2f2f',
   },
-  tab: {flex: 2, backgroundColor: 'gray', marginTop: 10},
+  tab: {
+    flex: 2,
+    backgroundColor: 'gray',
+    marginTop: 10,
+  },
   centeredView: {
     flex: 1,
     justifyContent: 'center',

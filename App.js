@@ -10,6 +10,7 @@ import AboutComponent from './navigators/AboutComponent';
 import UserNavigator from './navigators/UserNavigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SplashScreen from 'react-native-splash-screen';
+import RaceTheme from './Theme';
 
 const Tab = createBottomTabNavigator();
 
@@ -95,16 +96,7 @@ const App: () => Node = () => {
             );
           },
         })}>
-        <Tab.Screen
-          name="Servers"
-          component={ServerNavigator}
-          options={{
-            headerStyle: {
-              backgroundColor: '#2f2f2f',
-            },
-            headerTintColor: '#fff',
-          }}
-        />
+        <Tab.Screen name="Servers" component={ServerNavigator} />
         <Tab.Screen name="User" component={UserNavigator} />
         <Tab.Screen name="Search" component={SearchNavigator} />
         <Tab.Screen name="About" component={AboutComponent} />

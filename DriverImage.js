@@ -10,9 +10,9 @@ import type {Profile} from './interfaces/Profile';
 
 function DriverImage(props: {data: Profile}) {
   return (
-    <View style={details.view}>
+    <View style={componentStyle.view}>
       <ImageBackground
-        style={details.backgroundContainer}
+        style={componentStyle.backgroundContainer}
         source={
           props.data.header === undefined
             ? require('./assets/r3e.jpg')
@@ -21,7 +21,7 @@ function DriverImage(props: {data: Profile}) {
               }
         }>
         <Image
-          style={details.logo}
+          style={componentStyle.logo}
           source={{
             uri: props.data?.avatar,
           }}
@@ -31,7 +31,7 @@ function DriverImage(props: {data: Profile}) {
   );
 }
 
-const details = StyleSheet.create({
+const componentStyle = StyleSheet.create({
   image: {
     height: 125,
     resizeMode: 'contain',

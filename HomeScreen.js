@@ -1,38 +1,25 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  useColorScheme,
-  StyleSheet,
-  ImageBackground,
-} from 'react-native';
+import {StatusBar, StyleSheet, ImageBackground, View} from 'react-native';
 import AreaPicker from './AreaPicker';
 import RaceContainer from './RaceContainer';
-import Colors from 'react-native/Libraries/NewAppScreen/components/Colors';
+import {styles} from './Theme';
 
 const HomeScreen = ({navigation}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    flex: 1,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    <View style={styles.column}>
+      <StatusBar />
       <AreaPicker />
       <ImageBackground
         source={require('./assets/bg_home.png')}
-        style={styles.image}
+        style={componentStyle.image}
         imageStyle={{opacity: 0.5}}>
         <RaceContainer navigation={navigation} />
       </ImageBackground>
-    </SafeAreaView>
+    </View>
   );
 };
 
-const styles = StyleSheet.create({
+const componentStyle = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: 'cover',

@@ -64,7 +64,13 @@ const RaceContainer: props => Node = props => {
         {cancelToken: source.token},
       );
 
-      if (response.status === 200) {
+      const rating = await axios(
+        'https://game.raceroom.com/multiplayer-rating/ratings.json',
+        {cancelToken: source.token},
+      );
+
+      if (response.status === 200 && rating.status === 200) {
+        raceStore.setRatings(rating.data);
         raceStore.setRaces(response.data.result);
         raceStore.setRefresh(false);
       }
@@ -92,23 +98,10 @@ const RaceContainer: props => Node = props => {
               onRefresh={onRefresh}
             />
           }
-          contentContainerStyle={styles.list}
         />
       )}
     </Observer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  activity: {
-    height: Dimensions.get('window').height - StatusBar.currentHeight,
-    backgroundColor: '#2f2f2f',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default RaceContainer;

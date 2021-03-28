@@ -7,6 +7,7 @@ import {Button} from 'react-native-elements';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import {useIsFocused} from '@react-navigation/core';
 import type {Profile} from './interfaces/Profile';
+import {RaceTheme, styles} from './Theme';
 
 const DefaultUser = ({route, navigation}) => {
   const raceStore = useRaceStore();
@@ -46,18 +47,24 @@ const DefaultUser = ({route, navigation}) => {
 
   return hasDefault ? (
     isLoading ? (
-      <View style={style.container}>
+      <View style={styles.loadingContainer}>
         <ActivityIndicator size={'large'} color={'#fff'} />
       </View>
     ) : (
       <DriverComponent data={data} navigation={navigation} />
     )
   ) : (
-    <View style={style.container}>
-      <Text style={style.heading}>Bummer</Text>
-      <Text style={style.text}>No driver set!</Text>
+    <View
+      style={[
+        styles.column,
+        styles.alignCenter,
+        styles.justifyCenter,
+        styles.backgroundColor,
+      ]}>
+      <Text style={styles.title}>Bummer</Text>
+      <Text style={[styles.text, styles.paddingVertical5]}>No driver set!</Text>
       <Button
-        buttonStyle={style.setButton}
+        buttonStyle={componentStyle.setButton}
         onPress={redirectSearch}
         title={'Search '}
         iconRight
@@ -67,24 +74,7 @@ const DefaultUser = ({route, navigation}) => {
   );
 };
 
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#2f2f2f',
-    height: '100%',
-  },
-  heading: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: '#fff',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 14,
-    marginBottom: 10,
-  },
+const componentStyle = StyleSheet.create({
   setButton: {
     alignItems: 'center',
     justifyContent: 'center',

@@ -12,17 +12,19 @@ import {Button, Image} from 'react-native-elements';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {disclaimer, license, mvp} from '../assets/license.json';
+import {styles} from '../Theme';
+
 const AboutComponent = () => {
   return (
-    <ScrollView style={style.background}>
+    <ScrollView style={[styles.column, styles.backgroundColor]}>
       <Image
         source={require('../assets/haribo.webp')}
-        style={style.hariboTrain}
+        style={componentStyle.hariboTrain}
         PlaceholderContent={<ActivityIndicator />}
       />
-      <View style={style.container}>
-        <Text style={style.donationText}>Found something wrong?</Text>
-        <View style={style.donationButton}>
+      <View style={styles.alignCenter}>
+        <Text style={componentStyle.donationText}>Found something wrong?</Text>
+        <View style={componentStyle.donationButton}>
           <Button
             title={'Mail'}
             icon={
@@ -38,11 +40,11 @@ const AboutComponent = () => {
           />
         </View>
       </View>
-      <View style={style.container}>
-        <Text style={style.donationText}>
+      <View style={styles.alignCenter}>
+        <Text style={componentStyle.donationText}>
           Like the app, maybe consider donating?
         </Text>
-        <View style={style.donationButton}>
+        <View style={componentStyle.donationButton}>
           <Button
             title={'Donate'}
             icon={
@@ -60,33 +62,30 @@ const AboutComponent = () => {
           />
         </View>
       </View>
-      <View style={style.container}>
-        <Text style={style.disclaimerText}>{disclaimer}</Text>
+      <View style={styles.alignCenter}>
+        <Text style={componentStyle.disclaimerText}>{disclaimer}</Text>
       </View>
-      <View style={style.container}>
-        <Text style={style.disclaimerText}>{mvp}</Text>
+      <View style={styles.alignCenter}>
+        <Text style={componentStyle.disclaimerText}>{mvp}</Text>
         <Pressable onPress={() => Linking.openURL('https://raceroom.dhsh.tk/')}>
-          <Text style={style.donationText}>Raceroom Advanced Statistics</Text>
+          <Text style={componentStyle.donationText}>
+            Raceroom Advanced Statistics
+          </Text>
         </Pressable>
       </View>
-      <View style={style.container}>
-        <Text style={style.disclaimerText}>{license}</Text>
+      <View style={styles.alignCenter}>
+        <Text style={componentStyle.disclaimerText}>{license}</Text>
       </View>
-      <View style={style.container}>
-        <Text style={style.disclaimerText}>2021 - João Castanheira</Text>
+      <View style={styles.alignCenter}>
+        <Text style={componentStyle.disclaimerText}>
+          2021 - João Castanheira
+        </Text>
       </View>
     </ScrollView>
   );
 };
 
-const style = StyleSheet.create({
-  background: {
-    flex: 1,
-    backgroundColor: '#2f2f2f',
-  },
-  container: {
-    alignItems: 'center',
-  },
+const componentStyle = StyleSheet.create({
   donationText: {
     color: '#fff',
     marginVertical: 10,

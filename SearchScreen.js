@@ -1,20 +1,20 @@
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-  ToastAndroid,
-  View,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, TextInput, View} from 'react-native';
 import axios from 'axios';
 import {useRaceStore} from './store/RaceContext';
 import {Button} from 'react-native-elements';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+import {Snackbar} from 'react-native-paper';
+import {styles} from './Theme';
 
 const SearchScreen = ({route, navigation}) => {
   const [text, setText] = useState('');
   const [isEnabled, setEnabled] = useState(false);
+  const [isSearching, setSearching] = useState(false);
   const raceStore = useRaceStore();
+
+  const [visible, setVisible] = React.useState(false);
+  const onDismissSnackBar = () => setVisible(false);
 
   const onChangeText = (text: String) => {
     if (text.length === 0) {
@@ -31,15 +31,24 @@ const SearchScreen = ({route, navigation}) => {
     if (text.length > 0) {
       const source = axios.CancelToken.source();
       setEnabled(false);
+      setSearching(true);
       try {
-        await axios(`https://game.raceroom.com/users/${text}/?json`, {
-          method: 'HEAD',
-          cancelToken: source.token,
-        });
+        const response = await axios(
+          `https://game.raceroom.com/users/${text}/career?json`,
+          {
+            cancelToken: source.token,
+          },
+        );
 
-        navigation.navigate('Details', text);
+        if (response.status === 200) {
+          setSearching(false);
+          navigation.navigate('Details', response.data.context.c);
+        } else {
+          throw new Error();
+        }
       } catch (e) {
-        ToastAndroid.show(`User ${text} not found!`, ToastAndroid.SHORT);
+        setSearching(false);
+        setVisible(true);
       }
 
       setEnabled(true);
@@ -50,35 +59,43 @@ const SearchScreen = ({route, navigation}) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.column,
+        styles.alignCenter,
+        styles.justifyCenter,
+        styles.backgroundColor,
+      ]}>
       <TextInput
-        style={styles.input}
+        style={componentStyle.input}
         onChangeText={onChangeText}
         value={text}
         placeholder={'Driver Username'}
       />
-      <View style={styles.buttonWidth}>
+      <View style={componentStyle.buttonWidth}>
         <Button
           onPress={searchUser}
           title="Search "
           iconRight
           icon={<AntIcon name={'user'} color={'#fff'} size={25} />}
           buttonStyle={{backgroundColor: 'green'}}
-          disabled={!isEnabled}
+          loading={isSearching}
         />
       </View>
+      <Snackbar
+        visible={visible}
+        onDismiss={onDismissSnackBar}
+        action={{
+          label: 'Ok',
+          onPress: onDismissSnackBar,
+        }}>
+        Driver with username {text} not found!
+      </Snackbar>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#2f2f2f',
-  },
+const componentStyle = StyleSheet.create({
   input: {
     width: '90%',
     textAlign: 'center',
