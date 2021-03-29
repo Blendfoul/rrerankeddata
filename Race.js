@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
-  Image,
   Pressable,
   StyleSheet,
   Text,
@@ -15,6 +14,7 @@ import {fetchTrackImage} from './TrackImage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import CountDown from 'react-native-countdown-component';
 import {styles} from './Theme';
+import FastImage from 'react-native-fast-image';
 
 interface Layout {
   Id: Number;
@@ -118,7 +118,7 @@ const Race: props => Node = props => {
               ]}
             />
           ) : (
-            <Image
+            <FastImage
               style={[
                 styles.column,
                 styles.alignCenter,
@@ -127,7 +127,9 @@ const Race: props => Node = props => {
               ]}
               source={{
                 uri: image.logo,
+                priority: FastImage.priority.high,
               }}
+              resizeMode={FastImage.resizeMode.contain}
             />
           )}
         </View>

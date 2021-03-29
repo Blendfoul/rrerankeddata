@@ -10,12 +10,32 @@ const RaceDataInfo = (props: {info: RaceInfo}) => {
 
   return (
     <View style={[styles.column]}>
+      <DriversOverall data={data} />
       <DataAverage data={data} />
       <DataOverall data={data} />
       <LaptimeData data={data} />
     </View>
   );
 };
+
+function DriversOverall(props: {data: any}) {
+  return (
+    <View style={styles.row}>
+      <TextContainer
+        title={'Drivers'}
+        icon={<AntIcon name={'team'} color={'#fff'} size={15} />}
+        text={props.data.Drivers}
+      />
+      <TextContainer
+        title={
+          'Positions ' +
+          (props.data.PositionsGainedOverall >= 0 ? 'gained' : 'lost')
+        }
+        text={props.data.PositionsGainedOverall}
+      />
+    </View>
+  );
+}
 
 function DataOverall(props: {data: any}) {
   return (
@@ -33,7 +53,7 @@ function DataOverall(props: {data: any}) {
       />
       <TextContainer
         title={'overall'}
-        icon={<AntIcon name={'exception1'} color={'#fff'} size={15} />}
+        icon={<AntIcon name={'close'} color={'#fff'} size={15} />}
         text={props.data.IncidentsOverall}
       />
       <TextContainer
@@ -67,7 +87,7 @@ function DataAverage(props) {
       />
       <TextContainer
         title={'average'}
-        icon={<AntIcon name={'exception1'} color={'#fff'} size={15} />}
+        icon={<AntIcon name={'close'} color={'#fff'} size={15} />}
         text={props.data.IncidentsAverage}
       />
       <TextContainer

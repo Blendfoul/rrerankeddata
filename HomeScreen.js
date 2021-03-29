@@ -12,7 +12,7 @@ const HomeScreen = ({navigation}) => {
       <ImageBackground
         source={require('./assets/bg_home.png')}
         style={componentStyle.image}
-        imageStyle={{opacity: 0.5}}>
+        imageStyle={{opacity: 0.8}}>
         <RaceContainer navigation={navigation} />
       </ImageBackground>
     </View>

@@ -16,6 +16,7 @@ import type {QualiData, Race} from './interfaces/RaceData';
 import {Image} from 'react-native-elements';
 import TextContainer from './TextContainer';
 import Clipboard from '@react-native-clipboard/clipboard';
+import RaceDataInfo from './RaceDataInfo';
 
 const QualiRoute = props => (
   <ScrollView style={style.tab}>
@@ -170,8 +171,7 @@ function ModalData(props: {onPress: () => void, modalData: Race}) {
     <View style={style.centeredView}>
       <View style={style.modalView}>
         <View style={style.header}>
-          <Pressable
-            onPress={onCopyText}>
+          <Pressable onPress={onCopyText}>
             <Text style={style.headerText}>{props.modalData?.Username}</Text>
           </Pressable>
           <Pressable onPress={props.onPress} style={style.closeButton}>
@@ -356,12 +356,15 @@ const renderTabBar = props => (
 const TimesTable = props => {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
+    {key: 'data', title: 'General'},
     {key: 'quali', title: 'Qualify'},
     {key: 'race', title: 'Race'},
   ]);
 
   const renderScene = ({route}) => {
     switch (route.key) {
+      case 'data':
+        return <RaceDataInfo info={props.info.RaceInfos} />;
       case 'quali':
         return <QualiRoute data={props.info.Quali} />;
       case 'race':

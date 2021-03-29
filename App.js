@@ -10,6 +10,7 @@ import AboutComponent from './navigators/AboutComponent';
 import UserNavigator from './navigators/UserNavigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SplashScreen from 'react-native-splash-screen';
+import RankingNavigator from "./navigators/RankingNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -81,6 +82,9 @@ const App: () => Node = () => {
               case 'Search':
                 iconName = 'search1';
                 break;
+              case 'Ranking':
+                iconName = 'solution1';
+                break;
               case 'About':
                 iconName = 'team';
                 break;
@@ -98,6 +102,7 @@ const App: () => Node = () => {
         <Tab.Screen name="Servers" component={ServerNavigator} />
         <Tab.Screen name="User" component={UserNavigator} />
         <Tab.Screen name="Search" component={SearchNavigator} />
+        <Tab.Screen name="Ranking" component={RankingNavigator} />
         <Tab.Screen name="About" component={AboutComponent} />
       </Tab.Navigator>
     </NavigationContainer>

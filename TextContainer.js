@@ -11,7 +11,7 @@ const TextContainer = props => {
       alignItems: 'center',
     },
     title: {
-      fontSize: props.headerSize || 15,
+      fontSize: props.titleSize || 15,
       fontWeight: 'bold',
       color: '#fff',
       textAlign: props.titleAlign || 'center',
@@ -25,7 +25,7 @@ const TextContainer = props => {
 
   return (
     <View style={style.container}>
-      <Text style={style.title}>
+      <Text style={[style.title, props.style]}>
         {props.icon} {props.title}
       </Text>
       <Text style={style.text}>{props.text}</Text>

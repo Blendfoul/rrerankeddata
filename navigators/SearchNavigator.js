@@ -5,7 +5,6 @@ import DriverDetailsScreen from '../DriverDetailsScreen';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Button} from 'react-native-elements';
 import {useRaceStore} from '../store/RaceContext';
-import {ToastAndroid} from 'react-native';
 import SessionDetailsScreen from '../SessionDetailsScreen';
 import {Observer} from 'mobx-react-lite';
 

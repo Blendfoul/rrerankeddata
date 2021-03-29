@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import TrackImage from './TrackImage';
-import RaceDataInfo from './RaceDataInfo';
 import axios from 'axios';
 import TimesTable from './TimesTable';
 import {styles} from './Theme';
@@ -34,19 +33,12 @@ const SessionDetailsScreen = ({route, navigation}) => {
   }, [route.params.hash, route.params.username]);
 
   return (
-    <>
-      <View style={[styles.column, styles.backgroundColor]}>
-        <TrackImage trackId={route.params.track} />
-        <View style={styles.column}>
-          {loading ? null : (
-            <>
-              <RaceDataInfo info={info.RaceInfos} />
-              <TimesTable info={info} />
-            </>
-          )}
-        </View>
+    <View style={[styles.column, styles.backgroundColor]}>
+      <TrackImage trackId={route.params.track} />
+      <View style={styles.column}>
+        {loading ? null : <TimesTable info={info} />}
       </View>
-    </>
+    </View>
   );
 };
 
