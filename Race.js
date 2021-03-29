@@ -72,6 +72,8 @@ const Race: props => Node = props => {
         break;
     }
     getTrackImage();
+
+    return () => source.cancel();
   }, [serverData.CurrentSession, serverData.Settings.TrackLayoutId]);
 
   return (

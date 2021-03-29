@@ -32,7 +32,7 @@ const RaceContainer: props => Node = props => {
           raceStore.setRefresh(false);
         }
       } catch (e) {
-        console.error(e);
+        console.error('[Race Container] ' + e.message);
       }
     };
 

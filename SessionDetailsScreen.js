@@ -11,25 +11,26 @@ const SessionDetailsScreen = ({route, navigation}) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
+
     const getData = async () => {
       setLoading(true);
 
-      const response = await axios(
-        `https://raceroom.dhsh.tk/api/race/${route.params.hash}`,
-      );
+      try {
+        const response = await axios(
+          `https://raceroom.dhsh.tk/api/race/${route.params.hash}`,
+        );
 
-      console.log(
-        response.data.Quali.filter(
-          driver => driver.Username === route.params.username,
-        ),
-        route.params.username,
-      );
-
-      setInfo(response.data);
+        setInfo(response.data);
+      } catch (e) {
+        console.error('[SessionDetails] ' + e.message);
+      }
       setLoading(false);
     };
 
     getData();
+
+    return () => source.cancel();
   }, [route.params.hash, route.params.username]);
 
   return (

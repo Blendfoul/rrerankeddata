@@ -5,7 +5,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import DriverDetailsScreen from '../DriverDetailsScreen';
 import {Button} from 'react-native-elements';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {ToastAndroid} from 'react-native';
 import {useRaceStore} from '../store/RaceContext';
 import SessionDetailsScreen from '../SessionDetailsScreen';
 import {Observer} from 'mobx-react-lite';
@@ -50,10 +49,7 @@ const ServerNavigator = () => {
                   title=""
                   onPress={() => {
                     raceStore.setDefaultDriver(raceStore.SearchDriver);
-                    ToastAndroid.show(
-                      'Default driver set!',
-                      ToastAndroid.SHORT,
-                    );
+                    raceStore.setNotification(true);
                   }}
                   style={{marginHorizontal: 10}}
                   type={'clear'}

@@ -91,14 +91,17 @@ function LaptimeData(props) {
       <TextContainer
         title={'Fastest Lap'}
         text={props.data.BestLaptimeOverallText}
+        titleSize={14}
       />
       <TextContainer
         title={'Avg. Laptime'}
         text={props.data.AvgLaptimeOverallText}
+        titleSize={14}
       />
       <TextContainer
         title={'Diff. average'}
         text={props.data.MaxDiffFastestLapText}
+        titleSize={14}
       />
     </View>
   );

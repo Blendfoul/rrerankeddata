@@ -26,6 +26,7 @@ const DriverList = props => {
         props.navigation.navigate('Driver Details', response.data.context.c);
       }
     } catch (e) {
+      console.error('[Driver List] ' + e.message);
       props.loading(false);
     }
 

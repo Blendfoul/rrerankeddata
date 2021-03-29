@@ -9,12 +9,13 @@ import {
   Text,
   View,
 } from 'react-native';
-import {DataTable} from 'react-native-paper';
+import {DataTable, Snackbar} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import type {QualiData, Race} from './interfaces/RaceData';
 import {Image} from 'react-native-elements';
 import TextContainer from './TextContainer';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 const QualiRoute = props => (
   <ScrollView style={style.tab}>
@@ -124,6 +125,9 @@ function RaceRow(props: {onPress: () => void, driver: Race}) {
             resizeMode={'contain'}
           />
         </DataTable.Cell>
+        <DataTable.Cell style={[data.cell, {justifyContent: 'center'}]}>
+          <Text>{props.driver.Incidents}</Text>
+        </DataTable.Cell>
         <DataTable.Cell
           style={[
             data.cell,
@@ -154,11 +158,22 @@ function RaceRow(props: {onPress: () => void, driver: Race}) {
 }
 
 function ModalData(props: {onPress: () => void, modalData: Race}) {
+  const [visible, setVisible] = React.useState(false);
+  const onDismissSnackBar = () => setVisible(false);
+
+  const onCopyText = () => {
+    Clipboard.setString(props.modalData?.Username);
+    setVisible(true);
+  };
+
   return (
     <View style={style.centeredView}>
       <View style={style.modalView}>
         <View style={style.header}>
-          <Text style={style.headerText}>{props.modalData?.Username}</Text>
+          <Pressable
+            onPress={onCopyText}>
+            <Text style={style.headerText}>{props.modalData?.Username}</Text>
+          </Pressable>
           <Pressable onPress={props.onPress} style={style.closeButton}>
             <AntIcon color={'white'} name={'close'} size={25} />
           </Pressable>
@@ -167,7 +182,7 @@ function ModalData(props: {onPress: () => void, modalData: Race}) {
           source={
             props.modalData.Livery !== undefined
               ? {uri: props.modalData.Livery + '&size=small'}
-              : require('./assets/r3e.jpg')
+              : require('./assets/r3e.png')
           }
           style={{width: 200, height: 100}}
           resizeMode={'stretch'}
@@ -250,6 +265,15 @@ function ModalData(props: {onPress: () => void, modalData: Race}) {
           />
         </View>
       </View>
+      <Snackbar
+        visible={visible}
+        onDismiss={onDismissSnackBar}
+        action={{
+          label: 'Ok',
+          onPress: onDismissSnackBar,
+        }}>
+        Username copied to clipboard.
+      </Snackbar>
     </View>
   );
 }
@@ -289,6 +313,11 @@ const RaceRoute = props => {
             style={[data.time, {justifyContent: 'center'}]}
             centered>
             <AntDesign name={'car'} size={25} color={'#fff'} />
+          </DataTable.Cell>
+          <DataTable.Cell
+            style={[data.cell, {justifyContent: 'center'}]}
+            numeric>
+            <AntDesign name={'close'} size={25} color={'#fff'} />
           </DataTable.Cell>
           <DataTable.Cell
             style={[data.cell, {justifyContent: 'center'}]}

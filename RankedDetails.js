@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {View} from 'react-native';
 import {useRaceStore} from './store/RaceContext';
 import DriverList from './DriverList';
 import axios from 'axios';
@@ -19,6 +19,8 @@ const RankedDetails = props => {
     };
 
     const promise = new Promise(async resolve => {
+      const source = axios.CancelToken.source();
+
       for (const driver of drivers) {
         const newData = raceStore.Ratings.find(
           value => value.UserId === driver,
@@ -28,6 +30,7 @@ const RankedDetails = props => {
         } else {
           const user = await axios(
             'https://game.raceroom.com/utils/user-info/' + driver,
+            {cancelToken: source.token},
           );
           data.drivers.push({
             Fullname: user.data.name,
@@ -38,6 +41,7 @@ const RankedDetails = props => {
         }
       }
       resolve(data);
+      return () => source.cancel();
     });
 
     promise.then(driverData => {

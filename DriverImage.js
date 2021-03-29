@@ -14,8 +14,8 @@ function DriverImage(props: {data: Profile}) {
       <ImageBackground
         style={componentStyle.backgroundContainer}
         source={
-          props.data.header === undefined
-            ? require('./assets/r3e.jpg')
+          props.data?.header === null
+            ? require('./assets/r3e.png')
             : {
                 uri: props.data?.header,
               }

@@ -7,7 +7,7 @@ import {Button} from 'react-native-elements';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import {useIsFocused} from '@react-navigation/core';
 import type {Profile} from './interfaces/Profile';
-import {RaceTheme, styles} from './Theme';
+import {styles} from './Theme';
 
 const DefaultUser = ({route, navigation}) => {
   const raceStore = useRaceStore();
@@ -30,7 +30,7 @@ const DefaultUser = ({route, navigation}) => {
 
           setData(response.data.context.c);
         } catch (e) {
-          console.log(e);
+          console.error('[Default user] ' + e.message);
         }
 
         setLoading(false);

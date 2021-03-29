@@ -42,6 +42,7 @@ const SearchScreen = ({route, navigation}) => {
 
         if (response.status === 200) {
           setSearching(false);
+          setText('');
           navigation.navigate('Details', response.data.context.c);
         } else {
           throw new Error();
@@ -49,6 +50,7 @@ const SearchScreen = ({route, navigation}) => {
       } catch (e) {
         setSearching(false);
         setVisible(true);
+        console.error('[Search Screen] ' + e.message);
       }
 
       setEnabled(true);
@@ -71,6 +73,7 @@ const SearchScreen = ({route, navigation}) => {
         onChangeText={onChangeText}
         value={text}
         placeholder={'Driver Username'}
+        autoCompleteType={'username'}
       />
       <View style={componentStyle.buttonWidth}>
         <Button

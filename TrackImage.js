@@ -33,7 +33,7 @@ export async function fetchTrackImage(trackData, source, setImage, setLoading) {
       setLoading(false);
     }
   } catch (e) {
-    console.log(e);
+    console.error('[Track Image] ' + e.message);
   }
 }
 
@@ -66,21 +66,25 @@ const TrackImage = props => {
     getTrackImage();
 
     return () => {
-      source.cancel();
+      source.cancel('Image fetching cancelled');
     };
   }, [props.trackId]);
 
   return isLoading ? (
-    <ActivityIndicator size="large" style={details.image} color={'#fff'} />
+    <ActivityIndicator
+      size="large"
+      style={componentStyle.image}
+      color={'#fff'}
+    />
   ) : (
     <View>
       <ImageBackground
-        style={details.backgroundContainer}
+        style={componentStyle.backgroundContainer}
         source={{
           uri: image.thumb,
         }}>
         <Image
-          style={details.logo}
+          style={componentStyle.logo}
           source={{
             uri: image.logo,
           }}
@@ -90,7 +94,7 @@ const TrackImage = props => {
   );
 };
 
-const details = StyleSheet.create({
+const componentStyle = StyleSheet.create({
   image: {
     height: 125,
     resizeMode: 'contain',

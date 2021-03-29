@@ -10,7 +10,6 @@ import AboutComponent from './navigators/AboutComponent';
 import UserNavigator from './navigators/UserNavigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SplashScreen from 'react-native-splash-screen';
-import RaceTheme from './Theme';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,7 +30,7 @@ const App: () => Node = () => {
           raceStore.setRatings(response.data);
         }
       } catch (e) {
-        console.log(e);
+        console.error('[Ratings] ' + e.message);
       }
     };
 
@@ -47,7 +46,7 @@ const App: () => Node = () => {
           raceStore.setRegion(region);
         }
       } catch (e) {
-        console.log(e);
+        console.error('[Data] ' + e.message);
       }
     };
 

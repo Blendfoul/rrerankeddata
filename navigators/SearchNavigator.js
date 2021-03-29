@@ -38,10 +38,7 @@ const SearchNavigator = ({route, navigation}) => {
                   title=""
                   onPress={() => {
                     raceStore.setDefaultDriver(raceStore.SearchDriver);
-                    ToastAndroid.show(
-                      'Default driver set!',
-                      ToastAndroid.SHORT,
-                    );
+                    raceStore.setNotification(true);
                   }}
                   style={{marginHorizontal: 10}}
                   type={'clear'}

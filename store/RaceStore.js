@@ -11,6 +11,7 @@ export interface RaceStore {
   SearchDriver: String;
   DefaultDriver: String;
   Refresh: Boolean;
+  notifyDefaultDriver: Boolean;
 
   setSearchDriver(driver: String): (driver: String) => void;
 
@@ -27,6 +28,8 @@ export interface RaceStore {
   setRaces(races: Server[]): (races: Server[]) => void;
 
   setUsername(name: string): (name: String) => void;
+
+  setNotification(state: Boolean): (state: Boolean) => void;
 }
 
 export const createRaceStore = (): RaceStore => {
@@ -39,8 +42,12 @@ export const createRaceStore = (): RaceStore => {
     Refresh: true,
     SearchDriver: '',
     DefaultDriver: '',
+    notifyDefaultDriver: false,
     setSearchDriver(driver: String) {
       this.SearchDriver = driver;
+    },
+    setNotification(state: Boolean) {
+      this.notifyDefaultDriver = state;
     },
     setDefaultDriver(driver) {
       this.DefaultDriver = driver;
@@ -75,7 +82,7 @@ const storeData = async value => {
   try {
     await AsyncStorage.setItem('defaultDriver', value);
   } catch (e) {
-    console.log(e);
+    console.error('[Store Data] ' + e.message);
   }
 };
 
@@ -83,6 +90,6 @@ const storeRegion = async value => {
   try {
     await AsyncStorage.setItem('selectedRegion', value);
   } catch (e) {
-    console.log(e);
+    console.error('[Store Region] ' + e.message);
   }
 };
