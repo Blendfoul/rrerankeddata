@@ -4,35 +4,10 @@ import {Pressable, StyleSheet} from 'react-native';
 import type {Driver} from './interfaces/Driver';
 import {useRaceStore} from './store/RaceContext';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import axios from 'axios';
 
 const DriverList = props => {
-  const raceStore = useRaceStore();
   const onDriverPress = async (userId: Number) => {
-    props.loading(true);
-    raceStore.setSearchDriver(userId);
-    const source = axios.CancelToken.source();
-
-    try {
-      const response = await axios(
-        `https://game.raceroom.com/users/${userId}/career?json`,
-        {
-          cancelToken: source.token,
-        },
-      );
-
-      if (response.status === 200) {
-        props.loading(false);
-        props.navigation.navigate('Driver Details', response.data.context.c);
-      }
-    } catch (e) {
-      console.error('[Driver List] ' + e.message);
-      props.loading(false);
-    }
-
-    return () => {
-      source.cancel();
-    };
+    props.navigation.navigate('Driver Details', userId);
   };
   return (
     <DataTable style={componentStyle.container}>

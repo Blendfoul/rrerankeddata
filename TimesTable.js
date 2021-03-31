@@ -382,7 +382,6 @@ const TimesTable = props => {
   return (
     <View style={style.tab}>
       <TabView
-        lazy
         scrollEnabled
         renderTabBar={renderTabBar}
         navigationState={{index, routes}}

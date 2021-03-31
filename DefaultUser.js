@@ -1,58 +1,28 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {useRaceStore} from './store/RaceContext';
-import axios from 'axios';
 import DriverComponent from './DriverComponent';
-import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import AntIcon from 'react-native-vector-icons/AntDesign';
-import {useIsFocused} from '@react-navigation/core';
-import type {Profile} from './interfaces/Profile';
 import {styles} from './Theme';
+import {useIsFocused} from '@react-navigation/core';
 
 const DefaultUser = ({route, navigation}) => {
   const raceStore = useRaceStore();
   const hasDefault = raceStore.DefaultDriver.length > 0;
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData]: [Profile, (profile: Profile) => void] = useState(null);
-  const isFocused = useIsFocused();
+  const focused = useIsFocused();
 
-  useEffect(() => {
-    const source = axios.CancelToken.source();
-
-    const getDriverData = async () => {
-      if (raceStore.DefaultDriver.length > 0) {
-        setLoading(true);
-        try {
-          const response = await axios(
-            `https://game.raceroom.com/users/${raceStore.DefaultDriver}/career?json`,
-            {cancelToken: source.token},
-          );
-
-          setData(response.data.context.c);
-        } catch (e) {
-          console.error('[Default user] ' + e.message);
-        }
-
-        setLoading(false);
-      }
-    };
-
-    getDriverData();
-    return () => source.cancel();
-  }, [isFocused, raceStore.DefaultDriver]);
+  useEffect(() => {}, [focused, raceStore.DefaultDriver]);
 
   const redirectSearch = useCallback(() => navigation.navigate('Search'), [
     navigation,
   ]);
 
   return hasDefault ? (
-    isLoading ? (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size={'large'} color={'#fff'} />
-      </View>
-    ) : (
-      <DriverComponent data={data} navigation={navigation} />
-    )
+    <DriverComponent
+      username={raceStore.DefaultDriver}
+      navigation={navigation}
+    />
   ) : (
     <View
       style={[

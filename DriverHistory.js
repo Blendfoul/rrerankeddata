@@ -1,6 +1,6 @@
 import React from 'react';
 import {DataTable} from 'react-native-paper';
-import type {Profile, Race} from './interfaces/Profile';
+import type {Race} from './interfaces/Profile';
 import CarClass from './CarClass';
 import {Pressable, StyleSheet} from 'react-native';
 import AntIcon from 'react-native-vector-icons/AntDesign';
@@ -9,18 +9,18 @@ function TableCell(props) {
   return <DataTable.Cell style={props.style}>{props.text}</DataTable.Cell>;
 }
 
-const DriverHistory = (props: {data: Profile}) => {
-  const races = props.data.raceList.GetUserMpRatingProgressResult.Entries.reverse();
+const DriverHistory = ({raceData, navigation}) => {
+  const races = raceData.Races.reverse();
 
   const onPress = (raceId: String, trackLayout: Number) => {
-    props.navigation.navigate('Session Details', {
+    navigation.navigate('Session Details', {
       hash: raceId,
       track: trackLayout,
     });
   };
 
   return (
-    <DataTable style={{backgroundColor: 'gray', marginTop: 10}}>
+    <DataTable style={{backgroundColor: 'gray'}}>
       <DataTable.Header>
         <TableCell
           text={<AntIcon name={'car'} size={25} color={'white'} />}

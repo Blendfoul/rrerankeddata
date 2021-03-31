@@ -33,6 +33,8 @@ const App: () => Node = () => {
       } catch (e) {
         console.error('[Ratings] ' + e.message);
       }
+
+      SplashScreen.hide();
     };
 
     const getData = async () => {
@@ -53,7 +55,6 @@ const App: () => Node = () => {
 
     getRatings();
     getData();
-    SplashScreen.hide();
     return () => {
       source.cancel();
     };

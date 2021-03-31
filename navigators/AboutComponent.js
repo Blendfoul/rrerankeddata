@@ -9,16 +9,27 @@ import {
   View,
 } from 'react-native';
 import {Button, Image} from 'react-native-elements';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {disclaimer, license, mvp} from '../assets/license.json';
 import {styles} from '../Theme';
 
 const AboutComponent = () => {
+  const image = () => {
+    const number = Math.floor(Math.random() * 3);
+    switch (number) {
+      case 0:
+        return require('../assets/about/haribo_amg.webp');
+      case 1:
+        return require('../assets/about/haribo_sls.webp');
+      case 2:
+        return require('../assets/about/haribo_z06.webp');
+    }
+  };
+
   return (
     <ScrollView style={[styles.column, styles.backgroundColor]}>
       <Image
-        source={require('../assets/haribo.webp')}
+        source={image()}
         style={componentStyle.hariboTrain}
         PlaceholderContent={<ActivityIndicator />}
       />
@@ -37,28 +48,6 @@ const AboutComponent = () => {
             }
             iconRight
             onPress={() => Linking.openURL('mailto:rrerankedstats@gmail.com')}
-          />
-        </View>
-      </View>
-      <View style={styles.alignCenter}>
-        <Text style={componentStyle.donationText}>
-          Like the app, maybe consider donating?
-        </Text>
-        <View style={componentStyle.donationButton}>
-          <Button
-            title={'Donate'}
-            icon={
-              <FontAwesome
-                name={'paypal'}
-                size={25}
-                color={'#fff'}
-                style={{marginHorizontal: 5}}
-              />
-            }
-            iconRight
-            onPress={() =>
-              Linking.openURL('https://www.buymeacoffee.com/imagineStats')
-            }
           />
         </View>
       </View>

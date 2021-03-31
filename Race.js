@@ -9,12 +9,11 @@ import {
 import CarClass from './CarClass';
 import type {Server} from './interfaces/Server';
 import {tracks} from './assets/r3e-data.json';
-import axios, {CancelTokenSource} from 'axios';
-import {fetchTrackImage} from './TrackImage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import CountDown from 'react-native-countdown-component';
 import {styles} from './Theme';
-import FastImage from 'react-native-fast-image';
+import {Image} from 'react-native-elements';
+import Logo from './assets/logos/Logo';
 
 interface Layout {
   Id: Number;
@@ -26,8 +25,7 @@ interface Layout {
 const Race: props => Node = props => {
   const serverData: Server.Server = props.data.item.Server;
 
-  const [isLoading, setLoading] = useState(true);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(0);
   const [session, setSession] = useState(null);
 
   const onRacePress = () => {
@@ -35,27 +33,21 @@ const Race: props => Node = props => {
   };
 
   useEffect(() => {
-    const source: CancelTokenSource = axios.CancelToken.source();
+    let trackData: Layout;
 
-    const getTrackImage = async () => {
-      setLoading(true);
-      let trackData: Layout;
-
-      for (const track in tracks) {
-        if (tracks.hasOwnProperty(track)) {
-          const {layouts} = tracks[track];
-          trackData = layouts.find(
-            (value: Layout) =>
-              value.Id === serverData.Settings.TrackLayoutId[0],
-          );
-          if (trackData !== undefined) {
-            break;
-          }
+    for (const track in tracks) {
+      if (tracks.hasOwnProperty(track)) {
+        const {layouts} = tracks[track];
+        trackData = layouts.find(
+          (value: Layout) => value.Id === serverData.Settings.TrackLayoutId[0],
+        );
+        if (trackData !== undefined) {
+          break;
         }
       }
+    }
 
-      await fetchTrackImage(trackData, source, setImage, setLoading);
-    };
+    setImage(trackData);
 
     switch (+serverData.CurrentSession) {
       case 0:
@@ -71,9 +63,6 @@ const Race: props => Node = props => {
         setSession('U');
         break;
     }
-    getTrackImage();
-
-    return () => source.cancel();
   }, [serverData.CurrentSession, serverData.Settings.TrackLayoutId]);
 
   return (
@@ -107,31 +96,17 @@ const Race: props => Node = props => {
               imgSize={'thumb'}
             />
           </View>
-          {isLoading ? (
-            <ActivityIndicator
-              color={'#fff'}
-              style={[
-                styles.column,
-                styles.alignCenter,
-                styles.justifyCenter,
-                componentStyle.logo,
-              ]}
-            />
-          ) : (
-            <FastImage
-              style={[
-                styles.column,
-                styles.alignCenter,
-                styles.justifyCenter,
-                componentStyle.logo,
-              ]}
-              source={{
-                uri: image.logo,
-                priority: FastImage.priority.high,
-              }}
-              resizeMode={FastImage.resizeMode.contain}
-            />
-          )}
+          <Image
+            style={[
+              styles.column,
+              styles.alignCenter,
+              styles.justifyCenter,
+              componentStyle.logo,
+            ]}
+            PlaceholderContent={<ActivityIndicator color={'#fff'} />}
+            placeholderStyle={{backgroundColor: '#2f2f2f'}}
+            source={Logo(image.Track)}
+          />
         </View>
         <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
           <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
@@ -166,7 +141,6 @@ const Race: props => Node = props => {
     </Pressable>
   );
 };
-
 const componentStyle = StyleSheet.create({
   card: {
     marginTop: 4,
@@ -178,6 +152,7 @@ const componentStyle = StyleSheet.create({
     width: 50,
     height: 50,
     resizeMode: 'contain',
+    marginHorizontal: 10,
   },
 });
 

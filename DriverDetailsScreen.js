@@ -10,7 +10,7 @@ const DriverDetailsScreen = ({route, navigation}) => {
   const onDismissSnackBar = () => raceStore.setNotification(false);
   return (
     <>
-      <DriverComponent data={route.params} navigation={navigation} />
+      <DriverComponent navigation={navigation} username={route.params} />
       <Observer>
         {() => (
           <Snackbar

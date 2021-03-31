@@ -1,11 +1,19 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {FlatList, ImageBackground, Text, View} from 'react-native';
+import {
+  FlatList,
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {styles} from '../Theme';
-import TextContainer from '../TextContainer';
 import type {Driver} from '../interfaces/Driver';
 import FastImage from 'react-native-fast-image';
-import { useRaceStore } from "../store/RaceContext";
+import {useRaceStore} from '../store/RaceContext';
+import {DataTable} from 'react-native-paper';
+import AntIcon from 'react-native-vector-icons/AntDesign';
 
 const Stack = createStackNavigator();
 
@@ -25,93 +33,100 @@ const RankingNavigator = ({route, navigation}) => {
 
 export default RankingNavigator;
 
+const itemsPerPage = 50;
+
 const RankingScreen = () => {
   const raceStore = useRaceStore();
 
+  const [page, setPage] = React.useState(0);
+  const from1 = page * itemsPerPage;
+  const to = (page + 1) * itemsPerPage;
+
+  const data = (): Driver[] => {
+    const temp = [];
+    for (let index = from1; index < to; index++) {
+      temp.push(raceStore.Ratings[index]);
+    }
+
+    return temp;
+  };
+
   return (
-    <ImageBackground
-      source={require('../assets/bg_home.png')}
-      style={{
-        flex: 1,
-        resizeMode: 'cover',
-        justifyContent: 'center',
-      }}
-      imageStyle={{opacity: 0.8}}
-      resizeMethod={'scale'}>
-      <FlatList
-        data={raceStore.Ratings}
-        keyExtractor={item => item.UserId}
-        renderItem={RankingItem}
-        removeClippedSubviews={true}
-        initialNumToRender={100}
-      />
-    </ImageBackground>
+    <ScrollView>
+      <DataTable style={[styles.backgroundColor]}>
+        <DataTable.Header>
+          <DataTable.Title style={[{flex: 0.5}]} />
+          <DataTable.Title numeric>
+            <AntIcon name={'exception1'} color={'#fff'} size={25} />
+          </DataTable.Title>
+          <DataTable.Title numeric>
+            <AntIcon name={'solution1'} color={'#fff'} size={25} />
+          </DataTable.Title>
+          <DataTable.Title numeric>
+            <AntIcon name={'car'} color={'#fff'} size={25} />
+          </DataTable.Title>
+        </DataTable.Header>
+
+        {data().map((item, index) => RankingItem(item, index, page))}
+
+        <DataTable.Pagination
+          page={page}
+          numberOfPages={Math.floor(raceStore.Ratings.length / itemsPerPage)}
+          onPageChange={page => setPage(page)}
+          label={
+            <Text style={styles.text}>
+              {from1 + 1}-{to} of {raceStore.Ratings.length}
+            </Text>
+          }
+        />
+      </DataTable>
+    </ScrollView>
   );
 };
 
-const RankingItem = ({item, index}: {item: Driver}) => {
+const RankingItem = (item: Driver, index: Number, page: Number) => {
   return (
-    <View
-      style={[
-        styles.row,
-        styles.backgroundColor,
-        {
-          marginVertical: 2.5,
-          marginLeft: 5,
-          marginRight: 5,
-          paddingVertical: 5,
-        },
-      ]}>
-      <View
-        style={[
-          styles.column,
-          styles.justifyCenter,
-          styles.alignCenter,
-          {flex: 0.25},
-        ]}>
+    <DataTable.Row key={item.UserId} style={[componentStyle.row, {height: 65}]}>
+      <DataTable.Cell style={{flex: 1}}>
         <FastImage
-          style={{width: 50, height: 50}}
+          style={{width: 40, height: 40}}
           resizeMode={FastImage.resizeMode.contain}
           source={{
             uri: 'http://game.raceroom.com/game/user_avatar/' + item.UserId,
             priority: FastImage.priority.normal,
           }}
         />
-      </View>
-      <View key={item.UserId} style={styles.column}>
-        <View style={[styles.row, styles.alignCenter]}>
-          <Text style={[styles.column, styles.text]}>{item.Fullname}</Text>
-          <Text
-            style={[
-              styles.column,
-              styles.text,
-              {textAlign: 'right', marginHorizontal: 10},
-            ]}>
-            #{index + 1}
+      </DataTable.Cell>
+      <View style={[styles.column, {flex: 6}]}>
+        <View style={styles.row}>
+          <Text style={[styles.row, styles.text, {flex: 2}]}>
+            {item.Fullname}
+          </Text>
+          <Text style={[styles.row, componentStyle.position, styles.text]}>
+            #{index + 1 + itemsPerPage * page}
           </Text>
         </View>
-        <View style={[styles.row]}>
-          <TextContainer
-            title={'Reputation'}
-            titleSize={12}
-            textSize={11}
-            text={item.Reputation}
-            textAlign={'left'}
-          />
-          <TextContainer
-            title={'Rating'}
-            titleSize={12}
-            textSize={11}
-            text={item.Rating}
-          />
-          <TextContainer
-            title={'Races'}
-            titleSize={12}
-            textSize={11}
-            text={item.RacesCompleted}
-          />
+        <View style={styles.row}>
+          <DataTable.Cell numeric>
+            <Text style={styles.text}>{item.Reputation}</Text>
+          </DataTable.Cell>
+          <DataTable.Cell numeric>
+            <Text style={styles.text}>{item.Rating}</Text>
+          </DataTable.Cell>
+          <DataTable.Cell numeric>
+            <Text style={styles.text}>{item.RacesCompleted}</Text>
+          </DataTable.Cell>
         </View>
       </View>
-    </View>
+    </DataTable.Row>
   );
 };
+
+const componentStyle = StyleSheet.create({
+  row: {
+    paddingVertical: 5,
+  },
+  position: {
+    textAlign: 'right',
+  },
+});

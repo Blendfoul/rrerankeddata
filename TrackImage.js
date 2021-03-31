@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Dimensions,
-  Image,
   ImageBackground,
   StyleSheet,
   View,
 } from 'react-native';
-import axios, {CancelTokenSource} from 'axios';
 import {tracks} from './assets/r3e-data.json';
+import Logo from './assets/logos/Logo';
+import Banner from './assets/banners/Banner';
+import {Image} from 'react-native-elements';
+import {styles} from './Theme';
 
 interface Layout {
   Id: Number;
@@ -17,77 +19,37 @@ interface Layout {
   Track: Number;
 }
 
-export async function fetchTrackImage(trackData, source, setImage, setLoading) {
-  try {
-    const response = await axios(
-      'https://game.raceroom.com/store/tracks/all/' +
-        tracks[trackData.Track].Name.replace(/ /g, '-')
-          .replace(/ü/g, 'u')
-          .toLowerCase() +
-        '?json',
-      {cancelToken: source.token},
-    );
-
-    if (response.status === 200) {
-      setImage(response.data.context.c.item.image);
-      setLoading(false);
-    }
-  } catch (e) {
-    console.error('[Track Image] ' + e.message);
-  }
-}
-
 const TrackImage = props => {
-  const [isLoading, setLoading] = useState(true);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState({Track: 0});
 
   useEffect(() => {
-    const source: CancelTokenSource = axios.CancelToken.source();
-    const getTrackImage = async () => {
-      setLoading(true);
-      let trackData: Layout;
+    let trackData: Layout;
 
-      for (const track in tracks) {
-        if (tracks.hasOwnProperty(track)) {
-          const {layouts} = tracks[track];
+    for (const track in tracks) {
+      if (tracks.hasOwnProperty(track)) {
+        const {layouts} = tracks[track];
 
-          trackData = layouts.find(
-            (value: Layout) => value.Id === props.trackId,
-          );
-          if (trackData !== undefined) {
-            break;
-          }
+        trackData = layouts.find((value: Layout) => value.Id === props.trackId);
+        if (trackData !== undefined) {
+          break;
         }
       }
+    }
 
-      await fetchTrackImage(trackData, source, setImage, setLoading);
-    };
-
-    getTrackImage();
-
-    return () => {
-      source.cancel('Image fetching cancelled');
-    };
+    setImage(trackData);
   }, [props.trackId]);
-
-  return isLoading ? (
-    <ActivityIndicator
-      size="large"
-      style={componentStyle.image}
-      color={'#fff'}
-    />
-  ) : (
+  return (
     <View>
       <ImageBackground
         style={componentStyle.backgroundContainer}
-        source={{
-          uri: image.thumb,
-        }}>
+        source={Banner(image.Track)}
+        placeholderStyle={styles.backgroundColor}
+        PlaceholderContent={<ActivityIndicator color={'#fff'} />}>
         <Image
           style={componentStyle.logo}
-          source={{
-            uri: image.logo,
-          }}
+          source={Logo(image.Track)}
+          placeholderStyle={styles.backgroundColor}
+          PlaceholderContent={<ActivityIndicator color={'#fff'} />}
         />
       </ImageBackground>
     </View>

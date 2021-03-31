@@ -34,22 +34,21 @@ const SearchScreen = ({route, navigation}) => {
       setSearching(true);
       try {
         const response = await axios(
-          `https://game.raceroom.com/users/${text}/career?json`,
+          `https://game.raceroom.com/utils/user-info/${text}`,
           {
             cancelToken: source.token,
           },
         );
 
-        if (response.status === 200) {
+        if (response.data.hasOwnProperty('error')) {
           setSearching(false);
-          setText('');
-          navigation.navigate('Details', response.data.context.c);
+          setVisible(true);
         } else {
-          throw new Error();
+          setSearching(false);
+          navigation.navigate('Details', text);
+          setText('');
         }
       } catch (e) {
-        setSearching(false);
-        setVisible(true);
         console.error('[Search Screen] ' + e.message);
       }
 

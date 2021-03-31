@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import TrackImage from './TrackImage';
 import axios from 'axios';
 import TimesTable from './TimesTable';
@@ -32,12 +32,14 @@ const SessionDetailsScreen = ({route, navigation}) => {
     return () => source.cancel();
   }, [route.params.hash, route.params.username]);
 
-  return (
+  return loading ? (
+    <View style={styles.loadingContainer}>
+      <ActivityIndicator size={'large'} color={'#fff'} />
+    </View>
+  ) : (
     <View style={[styles.column, styles.backgroundColor]}>
       <TrackImage trackId={route.params.track} />
-      <View style={styles.column}>
-        {loading ? null : <TimesTable info={info} />}
-      </View>
+      <TimesTable info={info} />
     </View>
   );
 };
