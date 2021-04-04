@@ -42,7 +42,7 @@ const RaceContainer: props => Node = props => {
       setRegion(
         raceStore.Races.filter((server: Server) =>
           server.Server.Settings.ServerName.includes(raceStore.Region),
-        ),
+        ).sort((a, b) => b.Server.PlayersOnServer > a.Server.PlayersOnServer),
       ),
     );
   }, [raceStore, raceStore.Region]);
