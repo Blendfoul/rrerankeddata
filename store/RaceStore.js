@@ -12,6 +12,7 @@ export interface RaceStore {
   DefaultDriver: String;
   Refresh: Boolean;
   notifyDefaultDriver: Boolean;
+  driver: {avatar: String, header: String};
 
   setSearchDriver(driver: String): (driver: String) => void;
 
@@ -30,6 +31,11 @@ export interface RaceStore {
   setUsername(name: string): (name: String) => void;
 
   setNotification(state: Boolean): (state: Boolean) => void;
+
+  setDriver(driver: {avatar: String, header: String}): (driver: {
+    avatar: String,
+    header: String,
+  }) => void;
 }
 
 export const createRaceStore = (): RaceStore => {
@@ -43,6 +49,7 @@ export const createRaceStore = (): RaceStore => {
     SearchDriver: '',
     DefaultDriver: '',
     notifyDefaultDriver: false,
+    driver: null,
     setSearchDriver(driver: String) {
       this.SearchDriver = driver;
     },
@@ -74,6 +81,9 @@ export const createRaceStore = (): RaceStore => {
     },
     setAvailableRegions(regions: String[]) {
       this.AvailableRegions = regions;
+    },
+    setDriver(driver) {
+      this.driver = driver;
     },
   };
 };

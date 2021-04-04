@@ -1,5 +1,7 @@
 const Banner = (trackId: Number): Number => {
   switch (trackId) {
+    case 262:
+      return require('./262.webp');
     case 1670:
       return require('./1670.webp');
     case 1673:
@@ -8,6 +10,8 @@ const Banner = (trackId: Number): Number => {
       return require('./1677.webp');
     case 1683:
       return require('./1683.webp');
+    case 1690:
+      return require('./1690.webp');
     case 1692:
       return require('./1692.webp');
     case 1771:
@@ -42,6 +46,8 @@ const Banner = (trackId: Number): Number => {
       return require('./2472.webp');
     case 2517:
       return require('./2517.webp');
+    case 2519:
+      return require('./2519.webp');
     case 2521:
       return require('./2521.webp');
     case 2812:
@@ -62,7 +68,7 @@ const Banner = (trackId: Number): Number => {
       return require('./5275.webp');
     case 5300:
       return require('./5300.webp');
-    case 5923:
+    case 5924:
       return require('./5924.webp');
     case 6009:
       return require('./6009.webp');
@@ -88,6 +94,8 @@ const Banner = (trackId: Number): Number => {
       return require('./8366.webp');
     case 8703:
       return require('./8703.webp');
+    case 9176:
+      return require('./9176.webp');
     case 9472:
       return require('./9472.webp');
   }

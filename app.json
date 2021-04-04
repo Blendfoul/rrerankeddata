@@ -1,4 +1,7 @@
 {
   "name": "rrerankeddata",
-  "displayName": "R3E Advanced Statistics"
+  "displayName": "R3E Advanced Statistics",
+  "expo": {
+    "scheme": "r3estats"
+  }
 }
