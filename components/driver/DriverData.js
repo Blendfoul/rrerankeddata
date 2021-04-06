@@ -1,13 +1,13 @@
 import {View} from 'react-native';
 import Developer from '../../assets/developer.svg';
 import Vip from '../../assets/vip.svg';
-import React from 'react';
+import React, {useContext} from 'react';
 import {styles} from '../utils/Theme';
 import TextContainer from '../utils/TextContainer';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import Logo from '../../assets/logos/Logo';
 import {Image} from 'react-native-elements';
-import {profile} from '../../assets/strings/en.json';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const PinContainer = ({data}) => {
   return (
@@ -33,12 +33,13 @@ function renderLogo(track, index) {
 }
 
 const DriverData = ({data}): React.Component => {
-  console.log(data.data.country);
+  const {translations} = useContext(LocalizationContext);
+
   return (
     <>
       <View style={[styles.row, styles.paddingTop15]}>
         <TextContainer
-          title={profile.name}
+          title={translations.profile.name}
           icon={<AntIcon name={'user'} color={'#fff'} size={15} />}
           text={data.data.name}
         />
@@ -46,32 +47,32 @@ const DriverData = ({data}): React.Component => {
       </View>
       <View style={[styles.row, styles.paddingTop15]}>
         <TextContainer
-          title={profile.team}
-          text={data.data.team || profile.privateer}
+          title={translations.profile.team}
+          text={data.data.team || translations.profile.privateer}
         />
         <TextContainer
-          title={profile.country}
+          title={translations.profile.country}
           text={data.data.overview.country.name}
         />
       </View>
       <View style={[styles.row, styles.paddingTop15]}>
         <TextContainer
-          title={profile.races}
+          title={translations.profile.races}
           text={data.rating.RacesCompleted || 0}
         />
         <TextContainer
-          title={profile.rating}
+          title={translations.profile.rating}
           icon={<AntIcon name={'solution1'} color={'#fff'} />}
           text={data.rating.Rating || 1700}
         />
         <TextContainer
-          title={profile.reputation}
+          title={translations.profile.reputation}
           icon={<AntIcon name={'exception1'} color={'#fff'} />}
           text={data.rating.Reputation || 70}
         />
       </View>
       <View style={[styles.column, styles.paddingTop15]}>
-        <TextContainer title={profile.track} />
+        <TextContainer title={translations.profile.track} />
       </View>
       <View
         style={[
@@ -83,7 +84,7 @@ const DriverData = ({data}): React.Component => {
         {data.data.overview.most_used_tracks.map(renderLogo)}
       </View>
       <View style={[styles.column, styles.paddingTop15]}>
-        <TextContainer title={profile.car} />
+        <TextContainer title={translations.profile.car} />
       </View>
       <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
         <Image

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import DefaultUser from '../screens/DefaultUser';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const Stack = createStackNavigator();
 
 const UserNavigator = ({route, navigation}) => {
+  const {translations} = useContext(LocalizationContext);
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -16,7 +19,7 @@ const UserNavigator = ({route, navigation}) => {
         }}
       />
       <Stack.Screen
-        name={'Session Details'}
+        name={translations.navigation.sessionDetails}
         component={SessionDetailsScreen}
         options={{
           headerStyle: {

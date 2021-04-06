@@ -13,9 +13,7 @@ function DriverImage({data}): React.Component {
   const raceStore = useRaceStore();
   const focused = useIsFocused();
 
-  useEffect(() => {
-    console.log('refreshed');
-  }, [raceStore.driver, focused]);
+  useEffect(() => {}, [raceStore.driver, focused]);
 
   return (
     <View style={componentStyle.view}>

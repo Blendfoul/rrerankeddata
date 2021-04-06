@@ -1,5 +1,5 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import React from 'react';
+import React, {useContext} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {styles} from '../utils/Theme';
 import type {Driver} from '../../interfaces/Driver';
@@ -7,14 +7,17 @@ import FastImage from 'react-native-fast-image';
 import {useRaceStore} from '../../store/RaceContext';
 import {DataTable} from 'react-native-paper';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const Stack = createStackNavigator();
 
 const RankingNavigator = ({route, navigation}) => {
+  const {translations} = useContext(LocalizationContext);
+
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={'Ranking'}
+        name={translations.navigation.ranking}
         component={RankingScreen}
         options={{
           headerShown: false,

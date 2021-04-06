@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet, TextInput, View} from 'react-native';
 import axios from 'axios';
 import {useRaceStore} from '../../store/RaceContext';
@@ -6,13 +6,14 @@ import {Button} from 'react-native-elements';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import {Snackbar} from 'react-native-paper';
 import {styles} from '../utils/Theme';
-import {search} from '../../assets/strings/en.json';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const SearchScreen = props => {
   const [text, setText] = useState('');
   const [isEnabled, setEnabled] = useState(false);
   const [isSearching, setSearching] = useState(false);
   const raceStore = useRaceStore();
+  const {translations} = useContext(LocalizationContext);
 
   const [visible, setVisible] = React.useState(false);
   const onDismissSnackBar = () => setVisible(false);
@@ -54,7 +55,7 @@ const SearchScreen = props => {
           setVisible(true);
         } else {
           setSearching(false);
-          props.navigation.navigate('Details', text);
+          props.navigation.navigate(translations.search.title.details, text);
           setText('');
         }
       } catch (e) {
@@ -66,7 +67,7 @@ const SearchScreen = props => {
         source.cancel();
       };
     }
-  }, [props.navigation, text]);
+  }, [props.navigation, raceStore, text, translations.search.title.details]);
 
   return (
     <SafeAreaView
@@ -80,12 +81,12 @@ const SearchScreen = props => {
         style={componentStyle.input}
         onChangeText={onChangeText}
         value={text}
-        placeholder={search.placeholder}
+        placeholder={translations.search.placeholder}
       />
       <View style={componentStyle.buttonWidth}>
         <Button
           onPress={searchUser}
-          title={search.search}
+          title={translations.search.search}
           iconRight
           icon={<AntIcon name={'user'} color={'#fff'} size={25} />}
           buttonStyle={{backgroundColor: 'green'}}

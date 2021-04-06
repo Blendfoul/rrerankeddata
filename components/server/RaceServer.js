@@ -1,25 +1,31 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import type {Server} from '../../interfaces/Server';
 import ServerDetails from './ServerDetails';
-import {sessions} from '../../assets/strings/en.json';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const RaceServer = props => {
   const [session, setSession] = useState('');
   const sessionData: Server.Server = props.session;
+  const {translations} = useContext(LocalizationContext);
 
   useEffect(() => {
     switch (sessionData.CurrentSession) {
       case 0:
-        setSession(sessions.practice);
+        setSession(translations.session.practice);
         break;
       case 256:
-        setSession(sessions.qualification);
+        setSession(translations.session.qualification);
         break;
       case 768:
-        setSession(sessions.race);
+        setSession(translations.session.race);
         break;
     }
-  }, [sessionData.CurrentSession]);
+  }, [
+    sessionData.CurrentSession,
+    translations.session.practice,
+    translations.session.qualification,
+    translations.session.race,
+  ]);
 
   return (
     <ServerDetails

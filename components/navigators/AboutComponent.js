@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   ActivityIndicator,
   Linking,
@@ -10,10 +10,12 @@ import {
 } from 'react-native';
 import {Button, Image} from 'react-native-elements';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {disclaimer, license, mvp} from '../../assets/license.json';
 import {styles} from '../utils/Theme';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const AboutComponent = () => {
+  const {translations} = useContext(LocalizationContext);
+
   const image = () => {
     const number = Math.floor(Math.random() * 3);
     switch (number) {
@@ -35,7 +37,9 @@ const AboutComponent = () => {
         placeholderStyle={styles.backgroundColor}
       />
       <View style={styles.alignCenter}>
-        <Text style={componentStyle.donationText}>Found something wrong?</Text>
+        <Text style={componentStyle.donationText}>
+          {translations.license.somethingWrong}
+        </Text>
         <View style={componentStyle.donationButton}>
           <Button
             title={'Mail'}
@@ -53,10 +57,14 @@ const AboutComponent = () => {
         </View>
       </View>
       <View style={styles.alignCenter}>
-        <Text style={componentStyle.disclaimerText}>{disclaimer}</Text>
+        <Text style={componentStyle.disclaimerText}>
+          {translations.license.disclaimer}
+        </Text>
       </View>
       <View style={styles.alignCenter}>
-        <Text style={componentStyle.disclaimerText}>{mvp}</Text>
+        <Text style={componentStyle.disclaimerText}>
+          {translations.license.mvp}
+        </Text>
         <Pressable onPress={() => Linking.openURL('https://raceroom.dhsh.tk/')}>
           <Text style={componentStyle.donationText}>
             Raceroom Advanced Statistics
@@ -64,7 +72,9 @@ const AboutComponent = () => {
         </Pressable>
       </View>
       <View style={styles.alignCenter}>
-        <Text style={componentStyle.disclaimerText}>{license}</Text>
+        <Text style={componentStyle.disclaimerText}>
+          {translations.license.license}
+        </Text>
       </View>
       <View style={styles.alignCenter}>
         <Text style={componentStyle.disclaimerText}>

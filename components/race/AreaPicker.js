@@ -1,16 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useContext} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import {useRaceStore} from '../../store/RaceContext';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Observer} from 'mobx-react-lite';
-import {race} from '../../assets/strings/en.json';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const AreaPicker: () => Node = () => {
   const raceStore = useRaceStore();
-
-  useEffect(() => {
-    raceStore.setAvailableRegions(race.regions);
-  }, [raceStore]);
+  const {translations} = useContext(LocalizationContext);
 
   return (
     <Observer>
@@ -20,9 +17,12 @@ const AreaPicker: () => Node = () => {
             style={pickerStyle.picker}
             selectedValue={raceStore.Region}
             onValueChange={raceStore.setRegion}>
-            <Picker.Item label={race.all} value={''} />
-            {race.regions.map((region, index) => (
-              <Picker.Item label={region} value={region} key={index} />
+            {translations.race.regions.map((region, index) => (
+              <Picker.Item
+                label={region.name}
+                value={region.value}
+                key={index}
+              />
             ))}
           </Picker>
         </TouchableOpacity>

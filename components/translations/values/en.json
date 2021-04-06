@@ -4,15 +4,33 @@
     "user": "User",
     "search": "Search",
     "ranking": "Ranking",
-    "about": "About"
+    "about": "About",
+    "raceDetails": "Race Details",
+    "sessionDetails": "Session Details",
+    "driverDetails": "Driver Details"
   },
   "race": {
-    "all": "All",
     "regions": [
-      "Europe",
-      "U.S.",
-      "South America",
-      "Oceania"
+      {
+        "name": "All",
+        "value": ""
+      },
+      {
+        "name": "Europe",
+        "value": "Europe"
+      },
+      {
+        "name": "North America",
+        "value": "U.S"
+      },
+      {
+        "name": "South America",
+        "value": "South America"
+      },
+      {
+        "name": "Oceania",
+        "value": "Oceania"
+      }
     ]
   },
   "raceDetails": {
@@ -24,6 +42,7 @@
     "tireWear": "Tire Wear",
     "fuel": "Fuel Usage",
     "mandatoryPit": "Mandatory Pit",
+    "cutRules": "Cut Rules",
     "players": "Players",
     "sof": "S.o.F",
     "reputation": "Reputation"
@@ -35,7 +54,12 @@
   },
   "search": {
     "placeholder": "Driver Username",
-    "search": "Search"
+    "search": "Search",
+    "title": {
+      "search": "Search",
+      "details": "Details",
+      "sessionDetails": "Session Details"
+    }
   },
   "profile": {
     "info": "Info",
@@ -99,5 +123,15 @@
     "trackCollision": "Track Collision",
     "vehicleCollision": "Vehicle Collision",
     "disconnect": "Disconnect"
+  },
+  "messages": {
+    "driverSet": "Default driver set!",
+    "copied": "Username copied to clipboard."
+  },
+  "license": {
+    "license": "",
+    "disclaimer": "R3E Ranked statistics is a 3rd party app and is not affiliated in anyway with Sector 3.",
+    "mvp": "A special thanks to DavidsAppStudio for providing the in-depth statistics for the session history.",
+    "somethingWrong": "Found something wrong?"
   }
 }

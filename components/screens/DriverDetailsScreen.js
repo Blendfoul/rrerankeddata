@@ -1,12 +1,15 @@
-import React from 'react';
-
+import React, {useContext} from 'react';
 import DriverComponent from '../driver/DriverComponent';
 import {Snackbar} from 'react-native-paper';
 import {useRaceStore} from '../../store/RaceContext';
 import {Observer} from 'mobx-react-lite';
+import {LocalizationContext} from '../translations/LocalizationContext';
+import {AdMobBanner} from 'react-native-admob';
 
 const DriverDetailsScreen = ({route, navigation}) => {
   const raceStore = useRaceStore();
+  const {translations} = useContext(LocalizationContext);
+
   const onDismissSnackBar = () => raceStore.setNotification(false);
   return (
     <>
@@ -20,7 +23,7 @@ const DriverDetailsScreen = ({route, navigation}) => {
               label: 'Ok',
               onPress: onDismissSnackBar,
             }}>
-            Default driver set!
+            {translations.messages.driverSet}
           </Snackbar>
         )}
       </Observer>

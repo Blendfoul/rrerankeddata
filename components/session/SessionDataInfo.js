@@ -1,37 +1,50 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import type {RaceInfo} from '../../interfaces/RaceData';
 import {View} from 'react-native';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import TextContainer from '../utils/TextContainer';
 import {styles} from '../utils/Theme';
-import {session} from '../../assets/strings/en.json';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const SessionDataInfo = (props: {info: RaceInfo}) => {
   const data: RaceInfo = props.info;
+  const {translations} = useContext(LocalizationContext);
+
   return (
     <View style={[styles.column, styles.backgroundColor]}>
-      <DriversOverall data={data} layoutId={props.layoutId} />
-      <DataAverage data={data} />
-      <DataOverall data={data} />
-      <LaptimeData data={data} />
+      <DriversOverall
+        data={data}
+        layoutId={props.layoutId}
+        translations={translations}
+      />
+      <DataAverage data={data} translations={translations} />
+      <DataOverall data={data} translations={translations} />
+      <LaptimeData data={data} translations={translations} />
     </View>
   );
 };
 
-function DriversOverall({data, layoutId}: {data: RaceInfo, layoutId: String}) {
+function DriversOverall({
+  data,
+  layoutId,
+  translations,
+}: {
+  data: RaceInfo,
+  layoutId: String,
+}) {
   return (
     <>
       <View style={styles.row}>
-        <TextContainer title={session.layout} text={layoutId} />
+        <TextContainer title={translations.session.layout} text={layoutId} />
       </View>
       <View style={styles.row}>
         <TextContainer
-          title={session.drivers}
+          title={translations.session.drivers}
           icon={<AntIcon name={'team'} color={'#fff'} size={15} />}
           text={data.Drivers}
         />
         <TextContainer
-          title={session.positions}
+          title={translations.session.positions}
           text={data.PositionsGainedOverall}
         />
       </View>
@@ -39,90 +52,90 @@ function DriversOverall({data, layoutId}: {data: RaceInfo, layoutId: String}) {
   );
 }
 
-function DataOverall(props: {data: any}) {
+function DataOverall({data, translations}) {
   return (
     <View style={styles.row}>
       <TextContainer
-        title={session.overall}
+        title={translations.session.overall}
         icon={
           <AntIcon
             name={'solution1'}
-            color={props.data.RatingOverall >= 0 ? '#24B533' : '#BB2124'}
+            color={data.RatingOverall >= 0 ? '#24B533' : '#BB2124'}
             size={15}
           />
         }
-        text={props.data.RatingOverall}
+        text={data.RatingOverall}
       />
       <TextContainer
-        title={session.overall}
+        title={translations.session.overall}
         icon={<AntIcon name={'close'} color={'#fff'} size={15} />}
-        text={props.data.IncidentsOverall}
+        text={data.IncidentsOverall}
       />
       <TextContainer
-        title={session.overall}
+        title={translations.session.overall}
         icon={
           <AntIcon
             name={'exception1'}
-            color={props.data.ReputationOverall >= 0 ? '#24B533' : '#BB2124'}
+            color={data.ReputationOverall >= 0 ? '#24B533' : '#BB2124'}
             size={15}
           />
         }
-        text={props.data.ReputationOverall}
+        text={data.ReputationOverall}
       />
     </View>
   );
 }
 
-function DataAverage(props) {
+function DataAverage({data, translations}) {
   return (
     <View style={styles.row}>
       <TextContainer
-        title={session.average}
+        title={translations.session.average}
         icon={
           <AntIcon
             name={'solution1'}
-            color={props.data.RatingAverage >= 0 ? '#24B533' : '#BB2124'}
+            color={data.RatingAverage >= 0 ? '#24B533' : '#BB2124'}
             size={15}
           />
         }
-        text={props.data.RatingAverage}
+        text={data.RatingAverage}
       />
       <TextContainer
-        title={session.average}
+        title={translations.session.average}
         icon={<AntIcon name={'close'} color={'#fff'} size={15} />}
-        text={props.data.IncidentsAverage}
+        text={data.IncidentsAverage}
       />
       <TextContainer
-        title={session.average}
+        title={translations.session.average}
         icon={
           <AntIcon
             name={'exception1'}
-            color={props.data.ReputationAverage >= 0 ? '#24B533' : '#BB2124'}
+            color={data.ReputationAverage >= 0 ? '#24B533' : '#BB2124'}
             size={15}
           />
         }
-        text={props.data.ReputationAverage}
+        text={data.ReputationAverage}
       />
     </View>
   );
 }
 
-function LaptimeData(props) {
+function LaptimeData({data, translations}) {
   return (
     <View style={styles.row}>
       <TextContainer
-        title={session.fastest}
-        text={props.data.BestLaptimeOverallText}
+        title={translations.session.fastest}
+        text={data.BestLaptimeOverallText}
         titleSize={14}
       />
       <TextContainer
-        title={session.averageLap}
-        text={props.data.AvgLaptimeOverallText}
+        title={translations.session.averageLap}
+        text={data.AvgLaptimeOverallText}
         titleSize={14}
       />
       <TextContainer
-        title={session.diffTimer}
-        text={props.data.MaxDiffFastestLapText}
+        title={translations.session.diffTimer}
+        text={data.MaxDiffFastestLapText}
         titleSize={14}
       />
     </View>

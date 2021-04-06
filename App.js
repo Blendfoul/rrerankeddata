@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {useRaceStore} from './store/RaceContext';
 import {NavigationContainer} from '@react-navigation/native';
 import axios from 'axios';
@@ -12,12 +12,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import SplashScreen from 'react-native-splash-screen';
 import RankingNavigator from './components/navigators/RankingNavigator';
 import RaceLink from './RaceLink';
-import {navigation} from './assets/strings/en.json';
+import {LocalizationContext} from './components/translations/LocalizationContext';
 
 const Tab = createBottomTabNavigator();
 
 const App: () => Node = () => {
   const raceStore = useRaceStore();
+  const {translations} = useContext(LocalizationContext);
 
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -25,7 +26,6 @@ const App: () => Node = () => {
     const getRatings = async () => {
       try {
         const value = await AsyncStorage.getItem('defaultDriver');
-
         const region = await AsyncStorage.getItem('selectedRegion');
 
         if (region !== null) {
@@ -66,23 +66,23 @@ const App: () => Node = () => {
           inactiveBackgroundColor: '#2f2f2f',
         }}
         screenOptions={({route}) => ({
-          tabBarIcon: ({focused, color, size}) => {
+          tabBarIcon: ({focused}) => {
             let iconName;
 
             switch (route.name) {
-              case 'Servers':
+              case translations.navigation.server:
                 iconName = 'car';
                 break;
-              case 'User':
+              case translations.navigation.user:
                 iconName = 'user';
                 break;
-              case 'Search':
+              case translations.navigation.search:
                 iconName = 'search1';
                 break;
-              case 'Ranking':
+              case translations.navigation.ranking:
                 iconName = 'solution1';
                 break;
-              case 'About':
+              case translations.navigation.about:
                 iconName = 'team';
                 break;
             }
@@ -96,11 +96,26 @@ const App: () => Node = () => {
             );
           },
         })}>
-        <Tab.Screen name={navigation.server} component={ServerNavigator} />
-        <Tab.Screen name={navigation.user} component={UserNavigator} />
-        <Tab.Screen name={navigation.search} component={SearchNavigator} />
-        <Tab.Screen name={navigation.ranking} component={RankingNavigator} />
-        <Tab.Screen name={navigation.about} component={AboutComponent} />
+        <Tab.Screen
+          name={translations.navigation.server}
+          component={ServerNavigator}
+        />
+        <Tab.Screen
+          name={translations.navigation.user}
+          component={UserNavigator}
+        />
+        <Tab.Screen
+          name={translations.navigation.search}
+          component={SearchNavigator}
+        />
+        <Tab.Screen
+          name={translations.navigation.ranking}
+          component={RankingNavigator}
+        />
+        <Tab.Screen
+          name={translations.navigation.about}
+          component={AboutComponent}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );

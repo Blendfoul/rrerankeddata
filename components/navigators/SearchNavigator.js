@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import SearchScreen from '../screens/SearchScreen';
 import DriverDetailsScreen from '../screens/DriverDetailsScreen';
@@ -7,15 +7,18 @@ import {Button} from 'react-native-elements';
 import {useRaceStore} from '../../store/RaceContext';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import {Observer} from 'mobx-react-lite';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const Stack = createStackNavigator();
 
 const SearchNavigator = ({route, navigation}) => {
   const raceStore = useRaceStore();
+  const {translations} = useContext(LocalizationContext);
+
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={'Search'}
+        name={translations.search.title.search}
         component={SearchScreen}
         initialParams={{id: route?.params?.id}}
         options={{
@@ -23,7 +26,7 @@ const SearchNavigator = ({route, navigation}) => {
         }}
       />
       <Stack.Screen
-        name={'Details'}
+        name={translations.search.title.details}
         component={DriverDetailsScreen}
         options={{
           headerStyle: {
@@ -49,7 +52,7 @@ const SearchNavigator = ({route, navigation}) => {
         }}
       />
       <Stack.Screen
-        name={'Session Details'}
+        name={translations.search.title.sessionDetails}
         component={SessionDetailsScreen}
         options={{
           headerStyle: {

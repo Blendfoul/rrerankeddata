@@ -4,6 +4,7 @@ import TrackImage from '../utils/TrackImage';
 import axios from 'axios';
 import SessionsTable from '../session/SessionsTable';
 import {styles} from '../utils/Theme';
+import {AdMobBanner} from 'react-native-admob';
 
 const SessionDetailsScreen = ({route, navigation}) => {
   const [info, setInfo] = useState(null);
@@ -40,6 +41,11 @@ const SessionDetailsScreen = ({route, navigation}) => {
     <View style={[styles.column, styles.backgroundColor]}>
       <TrackImage trackId={route.params.track.Id} />
       <SessionsTable info={info} layoutId={route.params.track.Name} />
+      <AdMobBanner
+        adSize="fullBanner"
+        adUnitID="ca-app-pub-3693871231832720/9427810951"
+        onAdFailedToLoad={error => console.error(error)}
+      />
     </View>
   );
 };

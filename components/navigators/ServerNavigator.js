@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import HomeScreen from '../screens/HomeScreen';
 import RaceDetailsScreen from '../screens/RaceDetailsScreen';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -8,11 +8,13 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useRaceStore} from '../../store/RaceContext';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import {Observer} from 'mobx-react-lite';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const Stack = createStackNavigator();
 
 const ServerNavigator = () => {
   const raceStore = useRaceStore();
+  const {translations} = useContext(LocalizationContext);
 
   return (
     <Stack.Navigator>
@@ -24,7 +26,7 @@ const ServerNavigator = () => {
         }}
       />
       <Stack.Screen
-        name={'Race Details'}
+        name={translations.navigation.raceDetails}
         component={RaceDetailsScreen}
         options={{
           headerStyle: {
@@ -34,7 +36,7 @@ const ServerNavigator = () => {
         }}
       />
       <Stack.Screen
-        name={'Driver Details'}
+        name={translations.navigation.driverDetails}
         component={DriverDetailsScreen}
         options={{
           headerStyle: {
@@ -60,7 +62,7 @@ const ServerNavigator = () => {
         }}
       />
       <Stack.Screen
-        name={'Session Details'}
+        name={translations.navigation.sessionDetails}
         component={SessionDetailsScreen}
         options={{
           headerStyle: {

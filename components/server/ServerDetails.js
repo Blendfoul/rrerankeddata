@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Dimensions} from 'react-native';
 import {useRaceStore} from '../../store/RaceContext';
 import DriverList from './DriverList';
@@ -6,6 +6,7 @@ import axios from 'axios';
 import {styles} from '../utils/Theme';
 import {TabBar, TabView} from 'react-native-tab-view';
 import RaceDetailsData from './ServerDetailsData';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const renderTabBar = props => (
   <TabBar
@@ -17,12 +18,14 @@ const renderTabBar = props => (
 
 const ServerDetails = ({data, navigation, loading, session}) => {
   const raceStore = useRaceStore();
+  const {translations} = useContext(LocalizationContext);
+
   const drivers = data.Players;
   const [details, setDetails] = useState({drivers: [], sof: 0, rep: 0});
   const [index, setIndex] = useState(0);
   const [routes] = useState([
-    {key: 'data', title: 'General'},
-    {key: 'drivers', title: 'Drivers'},
+    {key: 'data', title: translations.raceDetails.general},
+    {key: 'drivers', title: translations.raceDetails.drivers},
   ]);
 
   useEffect(() => {

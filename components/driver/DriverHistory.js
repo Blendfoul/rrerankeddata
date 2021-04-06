@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {DataTable} from 'react-native-paper';
 import type {Race} from '../../interfaces/Profile';
 import CarClass from '../utils/CarClass';
@@ -7,7 +7,7 @@ import AntIcon from 'react-native-vector-icons/AntDesign';
 import TrackImage from '../utils/TrackImage';
 import axios from 'axios';
 import {styles} from '../utils/Theme';
-import type {Driver} from '../../interfaces/Driver';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 function TableCell(props) {
   return <DataTable.Cell style={props.style}>{props.text}</DataTable.Cell>;
@@ -52,6 +52,9 @@ const DriverHistory = ({username, navigation}) => {
 
     if (data.Entries.length > 0) {
       for (let index = from1; index < to; index++) {
+        if (index === data.Entries.length) {
+          break;
+        }
         temp.push(data.Entries[index]);
       }
     }
@@ -95,7 +98,12 @@ const DriverHistory = ({username, navigation}) => {
 
         <DataTable.Pagination
           page={page}
-          numberOfPages={Math.floor(data.Entries / itemsPerPage)}
+          numberOfPages={
+            Math.floor(data.Entries.length / itemsPerPage) * itemsPerPage <
+            data.Entries.length
+              ? Math.floor(data.Entries.length / itemsPerPage) + 1
+              : Math.floor(data.Entries.length / itemsPerPage)
+          }
           onPageChange={page => setPage(page)}
           label={
             <Text style={styles.text}>
@@ -109,8 +117,10 @@ const DriverHistory = ({username, navigation}) => {
 };
 
 const RaceRow = ({race, navigation}: {race: Race}) => {
+  const {translations} = useContext(LocalizationContext);
+
   const racePress = (raceId: String, trackLayout: Number) => {
-    navigation.navigate('Session Details', {
+    navigation.navigate(translations.navigation.sessionDetails, {
       hash: raceId,
       track: trackLayout,
     });

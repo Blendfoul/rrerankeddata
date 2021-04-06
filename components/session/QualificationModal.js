@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   ActivityIndicator,
   Modal,
@@ -15,7 +15,7 @@ import {Snackbar} from 'react-native-paper';
 import TextContainer from '../utils/TextContainer';
 import type {QualiData} from '../../interfaces/RaceData';
 import {incidentType} from './RaceModal';
-import {qualificationModal} from '../../assets/strings/en.json';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const QualificationModal = ({
   modalVisible,
@@ -28,6 +28,7 @@ const QualificationModal = ({
 }) => {
   const [visible, setVisible] = React.useState(false);
   const onDismissSnackBar = () => setVisible(false);
+  const {translations} = useContext(LocalizationContext);
 
   const onCopyText = () => {
     Clipboard.setString('');
@@ -109,11 +110,11 @@ const QualificationModal = ({
               styles.padding5,
             ]}>
             <TextContainer
-              title={qualificationModal.fastest}
+              title={translations.qualificationModal.fastest}
               text={data?.BestTime}
             />
             <TextContainer
-              title={qualificationModal.position}
+              title={translations.qualificationModal.position}
               text={data?.FinishPosition}
             />
           </View>
@@ -127,7 +128,7 @@ const QualificationModal = ({
             {data?.BestSectorsTimes.map((number, index) => (
               <TextContainer
                 key={index}
-                title={qualificationModal.sector + (index + 1)}
+                title={translations.qualificationModal.sector + (index + 1)}
                 text={
                   (index !== 0
                     ? (number - data.BestSectorsTimes[index - 1]) / 1000
@@ -144,7 +145,7 @@ const QualificationModal = ({
               styles.padding5,
             ]}>
             <TextContainer
-              title={qualificationModal.optimal}
+              title={translations.qualificationModal.optimal}
               text={optimal()}
             />
           </View>
@@ -158,7 +159,7 @@ const QualificationModal = ({
             {data?.FastestSector.map((number, index) => (
               <TextContainer
                 key={index}
-                title={qualificationModal.sector + (index + 1)}
+                title={translations.qualificationModal.sector + (index + 1)}
                 text={
                   (index !== 0
                     ? (number - data.FastestSector[index - 1]) / 1000
@@ -175,7 +176,7 @@ const QualificationModal = ({
               styles.padding5,
             ]}>
             <TextContainer
-              title={qualificationModal.incidents}
+              title={translations.qualificationModal.incidents}
               text={data?.Incidents}
             />
           </View>
@@ -183,7 +184,7 @@ const QualificationModal = ({
             {data?.IncidentsDetails.map((data, index) => (
               <TextContainer
                 key={index}
-                title={incidentType(data.Type)}
+                title={incidentType(data.Type, translations)}
                 text={data.Count + 'x'}
               />
             ))}
@@ -197,7 +198,7 @@ const QualificationModal = ({
           label: 'Ok',
           onPress: onDismissSnackBar,
         }}>
-        Username copied to clipboard.
+        {translations.messages.copied}
       </Snackbar>
     </Modal>
   );

@@ -1,0 +1,137 @@
+{
+  "navigation": {
+    "server": "Servidores",
+    "user": "Utilizador",
+    "search": "Procurar",
+    "ranking": "Tabela",
+    "about": "Acerca",
+    "raceDetails": "Detalhes da Corrida",
+    "sessionDetails": "Detalhes da Sessão",
+    "driverDetails": "Detalhes do Piloto"
+  },
+  "race": {
+    "regions": [
+      {
+        "name": "Todos",
+        "value": ""
+      },
+      {
+        "name": "Europa",
+        "value": "Europe"
+      },
+      {
+        "name": "América do Norte",
+        "value": "U.S"
+      },
+      {
+        "name": "América do Sul",
+        "value": "South America"
+      },
+      {
+        "name": "Oceânia",
+        "value": "Oceania"
+      }
+    ]
+  },
+  "raceDetails": {
+    "general": "Geral",
+    "drivers": "Pilotos",
+    "layout": "Configuração",
+    "session": "Sessão",
+    "time": "Tempo restante",
+    "tireWear": "Desgaste",
+    "fuel": "Combustível",
+    "mandatoryPit": "Paragem Obrigatória",
+    "cutRules": "Corte",
+    "players": "Jogadores",
+    "sof": "S.o.F",
+    "reputation": "Reputação"
+  },
+  "user": {
+    "bummer": "Ahrg!!!",
+    "message": "Sem piloto definido!",
+    "search": "Procurar"
+  },
+  "search": {
+    "placeholder": "Username do piloto",
+    "search": "Procurar",
+    "title": {
+      "search": "Procurar",
+      "details": "Detalhes",
+      "sessionDetails": "Detalhes da Sessão"
+    }
+  },
+  "profile": {
+    "info": "Acerca",
+    "races": "Corridas",
+    "name": "Nome",
+    "team": "Equipa",
+    "country": "Pais",
+    "rating": "Rating",
+    "reputation": "Reputação",
+    "track": "Pista favorita",
+    "car": "Carro favorito",
+    "privateer": "Privado"
+  },
+  "session": {
+    "general": "Geral",
+    "qualification": "Qualificação",
+    "race": "Corrida",
+    "layout": "Configuração",
+    "drivers": "Pilotos",
+    "positions": "Posições",
+    "average": "média",
+    "overall": "total",
+    "fastest": "Tempo + rápido",
+    "averageLap": "Tempo médio",
+    "diffTimer": "Diff. média"
+  },
+  "qualificationModal": {
+    "fastest": "Tempo + rápido",
+    "position": "Posição",
+    "sector": "Sector ",
+    "optimal": "Tempo ótimo",
+    "incidents": "Incidentes"
+  },
+  "raceModal": {
+    "name": "Nome",
+    "team": "Equipa",
+    "bestLap": "Melhor volta",
+    "worstLap": "Pior Volta",
+    "averageLap": "Tempo médio",
+    "diff": "Diff",
+    "start": "Início",
+    "finish": "Fim",
+    "incidents": "Incidentes"
+  },
+  "lapTable": {
+    "lap": "Volta",
+    "sector1": "Sector 1",
+    "sector2": "Sector 2",
+    "sector3": "Sector 3",
+    "valid": "Válida",
+    "lapTime": "Tempo"
+  },
+  "sessions": {
+    "practice": "Treinos",
+    "qualification": "Qualificação",
+    "race": "Corrida"
+  },
+  "incidents": {
+    "invalidLap": "Volta Inválida",
+    "losingControl": "Perdeu controlo",
+    "trackCollision": "Colisão Pista",
+    "vehicleCollision": "Colisão Carro",
+    "disconnect": "Disconecção"
+  },
+  "messages": {
+    "driverSet": "Piloto default definido!",
+    "copied": "Username copiado."
+  },
+  "license": {
+    "license": "",
+    "disclaimer": "As estatísticas classificadas R3E é um aplicativo de terceiros e não está afiliado de forma alguma ao estúdio Setor 3.",
+    "mvp": "Um agradecimento especial a DavidsAppStudio por fornecer estatísticas detalhadas para o histórico da sessão.",
+    "somethingWrong": "Encontrou algo errado?"
+  }
+}

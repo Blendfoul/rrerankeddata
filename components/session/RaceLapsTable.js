@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {ScrollView, Text} from 'react-native';
 import {styles} from '../utils/Theme';
 import {DataTable, Title} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import type {Driver} from '../../interfaces/Driver';
-import {lapTable} from '../../assets/strings/en.json';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 function Lap({data, lap, best}) {
   const laptime = () => {
@@ -66,6 +66,7 @@ function Lap({data, lap, best}) {
 }
 
 const RaceLapsTable = ({laps, best}) => {
+  const {translations} = useContext(LocalizationContext);
   const itemsPerPage = 15;
   const [page, setPage] = useState(0);
   const from1 = page * itemsPerPage;
@@ -87,25 +88,25 @@ const RaceLapsTable = ({laps, best}) => {
       <DataTable>
         <DataTable.Header>
           <DataTable.Title style={styles.paddingHorizontal15}>
-            <Title style={styles.title}>{lapTable.lap}</Title>
+            <Title style={styles.title}>{translations.lapTable.lap}</Title>
           </DataTable.Title>
           <DataTable.Title style={styles.paddingHorizontal15}>
             <AntDesign name={'user'} color={'#fff'} />
           </DataTable.Title>
           <DataTable.Title style={styles.paddingHorizontal15}>
-            <Title style={styles.title}>{lapTable.sector1}</Title>
+            <Title style={styles.title}>{translations.lapTable.sector1}</Title>
           </DataTable.Title>
           <DataTable.Title style={styles.paddingHorizontal15}>
-            <Title style={styles.title}>{lapTable.sector2}</Title>
+            <Title style={styles.title}>{translations.lapTable.sector2}</Title>
           </DataTable.Title>
           <DataTable.Title style={styles.paddingHorizontal15}>
-            <Title style={styles.title}>{lapTable.sector3}</Title>
+            <Title style={styles.title}>{translations.lapTable.sector3}</Title>
           </DataTable.Title>
           <DataTable.Title style={styles.paddingHorizontal15}>
-            <Title style={styles.title}>{lapTable.valid}</Title>
+            <Title style={styles.title}>{translations.lapTable.valid}</Title>
           </DataTable.Title>
           <DataTable.Title style={styles.paddingHorizontal15}>
-            <Title style={styles.title}>{lapTable.lapTime}</Title>
+            <Title style={styles.title}>{translations.lapTable.lapTime}</Title>
           </DataTable.Title>
         </DataTable.Header>
         <ScrollView>

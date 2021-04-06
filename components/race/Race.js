@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Pressable,
@@ -14,6 +14,7 @@ import CountDown from 'react-native-countdown-component';
 import {styles} from '../utils/Theme';
 import {Image} from 'react-native-elements';
 import Logo from '../../assets/logos/Logo';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 interface Layout {
   Id: Number;
@@ -24,12 +25,15 @@ interface Layout {
 
 const Race: props => Node = props => {
   const serverData: Server.Server = props.data.item.Server;
-
+  const {translations} = useContext(LocalizationContext);
   const [image, setImage] = useState(0);
   const [session, setSession] = useState(null);
 
   const onRacePress = () => {
-    props.navigation.navigate('Race Details', props.data.item);
+    props.navigation.navigate(
+      translations.navigation.raceDetails,
+      props.data.item,
+    );
   };
 
   useEffect(() => {
@@ -58,9 +62,6 @@ const Race: props => Node = props => {
         break;
       case 768:
         setSession('R');
-        break;
-      default:
-        setSession('U');
         break;
     }
   }, [serverData.CurrentSession, serverData.Settings.TrackLayoutId]);

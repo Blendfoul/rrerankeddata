@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {DataTable} from 'react-native-paper';
 import {Pressable, ScrollView, StyleSheet} from 'react-native';
 import type {Driver} from '../../interfaces/Driver';
-import {useRaceStore} from '../../store/RaceContext';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const DriverList = props => {
+  const {translations} = useContext(LocalizationContext);
   const onDriverPress = async (userId: Number) => {
-    props.navigation.navigate('Driver Details', userId);
+    props.navigation.navigate(translations.navigation.driverDetails, userId);
   };
   return (
     <DataTable style={componentStyle.container}>

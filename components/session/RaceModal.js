@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   ActivityIndicator,
   Modal,
@@ -14,11 +14,12 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import {Snackbar} from 'react-native-paper';
 import TextContainer from '../utils/TextContainer';
 import RaceLapsTable from './RaceLapsTable';
-import {raceModal, incidents} from '../../assets/strings/en.json';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
 const RaceModal = ({modalVisible, setModalVisible, data}) => {
   const [visible, setVisible] = React.useState(false);
   const onDismissSnackBar = () => setVisible(false);
+  const {translations} = useContext(LocalizationContext);
 
   const onCopyText = () => {
     Clipboard.setString(data.Username);
@@ -84,8 +85,14 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
                 styles.justifyCenter,
                 styles.padding5,
               ]}>
-              <TextContainer title={raceModal.name} text={data?.FullName} />
-              <TextContainer title={raceModal.team} text={data?.Team} />
+              <TextContainer
+                title={translations.raceModal.name}
+                text={data?.FullName}
+              />
+              <TextContainer
+                title={translations.raceModal.team}
+                text={data?.Team}
+              />
             </View>
             <View
               style={[
@@ -94,9 +101,12 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
                 styles.justifyCenter,
                 styles.padding5,
               ]}>
-              <TextContainer title={raceModal.bestLap} text={data?.BestTime} />
               <TextContainer
-                title={raceModal.worstLap}
+                title={translations.raceModal.bestLap}
+                text={data?.BestTime}
+              />
+              <TextContainer
+                title={translations.raceModal.worstLap}
                 text={data?.WorstTime}
               />
             </View>
@@ -108,10 +118,13 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
                 styles.padding5,
               ]}>
               <TextContainer
-                title={raceModal.averageLap}
+                title={translations.raceModal.averageLap}
                 text={data?.AvgTime}
               />
-              <TextContainer title={raceModal.diff} text={data?.DiffTime} />
+              <TextContainer
+                title={translations.raceModal.diff}
+                text={data?.DiffTime}
+              />
             </View>
             <View
               style={[
@@ -121,12 +134,15 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
                 styles.padding5,
               ]}>
               <TextContainer
-                title={raceModal.start}
+                title={translations.raceModal.start}
                 text={'P' + data?.StartPosition}
               />
-              <TextContainer title={raceModal.diff} text={data?.DiffPosition} />
               <TextContainer
-                title={raceModal.finish}
+                title={translations.raceModal.diff}
+                text={data?.DiffPosition}
+              />
+              <TextContainer
+                title={translations.raceModal.finish}
                 text={'P' + data?.FinishPosition}
               />
             </View>
@@ -138,7 +154,7 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
                 styles.padding5,
               ]}>
               <TextContainer
-                title={raceModal.incidents}
+                title={translations.raceModal.incidents}
                 text={data?.Incidents}
               />
             </View>
@@ -146,7 +162,7 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
               {data?.IncidentsDetails.map((data, index) => (
                 <TextContainer
                   key={index}
-                  title={incidentType(data.Type)}
+                  title={incidentType(data.Type, translations)}
                   text={data.Count + 'x'}
                 />
               ))}
@@ -162,7 +178,7 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
           label: 'Ok',
           onPress: onDismissSnackBar,
         }}>
-        Username copied to clipboard.
+        {translations.messages.copied}
       </Snackbar>
     </Modal>
   );
@@ -170,17 +186,17 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
 
 export default RaceModal;
 
-export function incidentType(type: String) {
+export function incidentType(type: String, translations) {
   switch (type) {
     case 'InvalidLap':
-      return incidents.invalidLap;
+      return translations.incidents.invalidLap;
     case 'LosingControl':
-      return incidents.losingControl;
+      return translations.incidents.losingControl;
     case 'Track':
-      return incidents.trackCollision;
+      return translations.incidents.trackCollision;
     case 'Vehicle':
-      return incidents.vehicleCollision;
+      return translations.incidents.vehicleCollision;
     case 'Disconnect':
-      return incidents.disconnect;
+      return translations.incidents.disconnect;
   }
 }

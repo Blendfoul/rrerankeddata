@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {TabBar, TabView} from 'react-native-tab-view';
 import {styles} from '../utils/Theme';
 import {Dimensions} from 'react-native';
 import DriverDetails from './DriverDetails';
 import DriverHistory from './DriverHistory';
-import {profile} from '../../assets/strings/en.json';
+import {LocalizationContext} from '../translations/LocalizationContext';
+import {AdMobBanner} from 'react-native-admob';
 
 const renderTabBar = props => (
   <TabBar
@@ -15,10 +16,12 @@ const renderTabBar = props => (
 );
 
 const DriverComponent = ({username, navigation}) => {
+  const {translations} = useContext(LocalizationContext);
+
   const [index, setIndex] = useState(0);
   const [routes] = useState([
-    {key: 'data', title: profile.info},
-    {key: 'races', title: profile.races},
+    {key: 'data', title: translations.profile.info},
+    {key: 'races', title: translations.profile.races},
   ]);
 
   const renderScene = ({route}) => {
@@ -38,14 +41,21 @@ const DriverComponent = ({username, navigation}) => {
   };
 
   return (
-    <TabView
-      lazy={true}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-      navigationState={{index, routes}}
-      renderTabBar={renderTabBar}
-      initialLayout={initialLayout}
-    />
+    <>
+      <TabView
+        lazy={true}
+        onIndexChange={setIndex}
+        renderScene={renderScene}
+        navigationState={{index, routes}}
+        renderTabBar={renderTabBar}
+        initialLayout={initialLayout}
+      />
+      <AdMobBanner
+        adSize="fullBanner"
+        adUnitID="ca-app-pub-3693871231832720/7421606479"
+        onAdFailedToLoad={error => console.error(error)}
+      />
+    </>
   );
 };
 

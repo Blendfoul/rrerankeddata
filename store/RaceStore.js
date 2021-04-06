@@ -1,11 +1,11 @@
 import type {Server} from '../interfaces/Server';
 import type {Driver} from '../interfaces/Driver';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import type {Language} from '../interfaces/Language';
 
 export interface RaceStore {
   Username: String;
   Region: String;
-  AvailableRegions: String[];
   Races: Server[];
   Ratings: Driver[];
   SearchDriver: String;
@@ -13,6 +13,8 @@ export interface RaceStore {
   Refresh: Boolean;
   notifyDefaultDriver: Boolean;
   driver: {avatar: String, header: String};
+  language: Language;
+  languageSelected: String;
 
   setSearchDriver(driver: String): (driver: String) => void;
 
@@ -24,8 +26,6 @@ export interface RaceStore {
 
   setRegion(region: String): (region: String) => void;
 
-  setAvailableRegions(region: String[]): (region: String[]) => void;
-
   setRaces(races: Server[]): (races: Server[]) => void;
 
   setUsername(name: string): (name: String) => void;
@@ -36,6 +36,8 @@ export interface RaceStore {
     avatar: String,
     header: String,
   }) => void;
+
+  setLanguage(language: String): (language: String) => void;
 }
 
 export const createRaceStore = (): RaceStore => {
@@ -43,7 +45,6 @@ export const createRaceStore = (): RaceStore => {
     Username: '',
     Races: [],
     Region: '',
-    AvailableRegions: [],
     Ratings: [],
     Refresh: true,
     SearchDriver: '',
@@ -78,9 +79,6 @@ export const createRaceStore = (): RaceStore => {
     },
     setUsername(name: string) {
       this.Username = name;
-    },
-    setAvailableRegions(regions: String[]) {
-      this.AvailableRegions = regions;
     },
     setDriver(driver) {
       this.driver = driver;
