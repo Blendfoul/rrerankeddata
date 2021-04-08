@@ -1,73 +1,94 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
-import {SafeAreaView, StyleSheet, TextInput, View} from 'react-native';
+import React, {useCallback, useContext, useState} from 'react';
+import {
+  FlatList,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import axios from 'axios';
 import {useRaceStore} from '../../store/RaceContext';
-import {Button} from 'react-native-elements';
-import AntIcon from 'react-native-vector-icons/AntDesign';
-import {Snackbar} from 'react-native-paper';
 import {styles} from '../utils/Theme';
 import {LocalizationContext} from '../translations/LocalizationContext';
+import {Image} from 'react-native-elements';
+import TextContainer from '../utils/TextContainer';
+import {AxiosRequestConfig} from 'axios';
+
+const UserItem = ({data, navigation, setText, translations}) => {
+  const raceStore = useRaceStore();
+
+  const selectUser = useCallback(() => {
+    raceStore.setSearchDriver(data?.meta_data.slug);
+    navigation.navigate(
+      translations.search.title.details,
+      data?.meta_data.slug,
+    );
+    setText('');
+  }, [
+    data?.meta_data.slug,
+    navigation,
+    raceStore,
+    setText,
+    translations.search.title.details,
+  ]);
+
+  return (
+    <TouchableOpacity
+      style={[
+        styles.row,
+        styles.alignCenter,
+        {
+          borderBottomColor: '#fff',
+          borderBottomWidth: 1,
+          paddingVertical: 5,
+          paddingHorizontal: 10,
+        },
+      ]}
+      onPress={selectUser}>
+      <Image
+        source={{uri: data?.image}}
+        style={[styles.column, componentStyle.userImage]}
+      />
+      <TextContainer title={data?.name} text={data?.meta_data.slug} />
+    </TouchableOpacity>
+  );
+};
 
 const SearchScreen = props => {
   const [text, setText] = useState('');
-  const [isEnabled, setEnabled] = useState(false);
-  const [isSearching, setSearching] = useState(false);
-  const raceStore = useRaceStore();
+  const [users, setUsers] = useState([]);
   const {translations} = useContext(LocalizationContext);
 
-  const [visible, setVisible] = React.useState(false);
-  const onDismissSnackBar = () => setVisible(false);
+  let cancelRequest = null;
+  const CancelToken = axios.CancelToken;
 
-  useEffect(() => {
-    if (props.route?.params.id !== undefined) {
-      setText(props.route.params.id);
-      searchUser();
-    }
-  }, [props.route?.params.id, searchUser]);
-
-  const onChangeText = (text: String) => {
-    if (text.length === 0) {
-      setEnabled(false);
-    } else if (!isEnabled) {
-      setEnabled(true);
-    }
-
+  const search = async (text: String) => {
     setText(text);
-    raceStore.setSearchDriver(text);
+
+    const options: AxiosRequestConfig = {
+      cancelToken: new CancelToken(function executor(c) {
+        cancelRequest = c;
+      }),
+      baseURL: 'https://game.raceroom.com/',
+    };
+
+    try {
+      const response = await axios('/search?query=' + text, options);
+      setUsers(response.data);
+    } catch (err) {
+      if (axios.isCancel()) {
+        console.error('Request cancelled');
+      }
+      console.error(err.message);
+    }
   };
 
-  const searchUser = useCallback(async () => {
-    if (text.length > 0) {
-      raceStore.setDriver(null);
-      const source = axios.CancelToken.source();
-      setEnabled(false);
-      setSearching(true);
-      try {
-        const response = await axios(
-          `https://game.raceroom.com/utils/user-info/${text}`,
-          {
-            cancelToken: source.token,
-          },
-        );
-
-        if (response.data.hasOwnProperty('error')) {
-          setSearching(false);
-          setVisible(true);
-        } else {
-          setSearching(false);
-          props.navigation.navigate(translations.search.title.details, text);
-          setText('');
-        }
-      } catch (e) {
-        console.error('[Search Screen] ' + e.message);
-      }
-
-      setEnabled(true);
-      return () => {
-        source.cancel();
-      };
-    }
-  }, [props.navigation, raceStore, text, translations.search.title.details]);
+  const handleChange = async (text: String) => {
+    cancelRequest && cancelRequest();
+    await search(text);
+  };
 
   return (
     <SafeAreaView
@@ -79,29 +100,26 @@ const SearchScreen = props => {
       ]}>
       <TextInput
         style={componentStyle.input}
-        onChangeText={onChangeText}
+        onChangeText={handleChange}
         value={text}
         placeholder={translations.search.placeholder}
       />
       <View style={componentStyle.buttonWidth}>
-        <Button
-          onPress={searchUser}
-          title={translations.search.search}
-          iconRight
-          icon={<AntIcon name={'user'} color={'#fff'} size={25} />}
-          buttonStyle={{backgroundColor: 'green'}}
-          loading={isSearching}
+        <FlatList
+          data={users}
+          keyExtractor={({item}, index) => index}
+          renderItem={({item}) =>
+            item.type === 'user' ? (
+              <UserItem
+                data={item}
+                navigation={props.navigation}
+                setText={setText}
+                translations={translations}
+              />
+            ) : null
+          }
         />
       </View>
-      <Snackbar
-        visible={visible}
-        onDismiss={onDismissSnackBar}
-        action={{
-          label: 'Ok',
-          onPress: onDismissSnackBar,
-        }}>
-        Driver with username {text} not found!
-      </Snackbar>
     </SafeAreaView>
   );
 };
@@ -115,8 +133,16 @@ const componentStyle = StyleSheet.create({
     backgroundColor: 'gray',
     borderRadius: 2,
     fontWeight: 'bold',
+    flex: 0,
   },
-  buttonWidth: {width: '90%'},
+  buttonWidth: {
+    width: '100%',
+    flex: 1,
+  },
+  userImage: {
+    width: 50,
+    height: 50,
+  },
 });
 
 export default SearchScreen;

@@ -36,6 +36,8 @@
   "raceDetails": {
     "general": "General",
     "drivers": "Conductores",
+    "enabled": "Activado",
+    "disabled": "Desactivado",
     "layout": "Diseño de pista",
     "session": "Sesión",
     "time": "Tiempo restante",
@@ -95,6 +97,8 @@
   "raceModal": {
     "name": "Nombre",
     "team": "Equipo",
+    "rating": "Cambio rating",
+    "reputation": "Cambio reputación",
     "bestLap": "Mejor vuelta",
     "worstLap": "Peor vuelta",
     "averageLap": "Vuelta media",

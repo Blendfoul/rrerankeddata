@@ -87,7 +87,7 @@ const RaceLapsTable = ({laps, best}) => {
     <ScrollView horizontal style={[styles.row]}>
       <DataTable>
         <DataTable.Header>
-          <DataTable.Title style={styles.paddingHorizontal15}>
+          <DataTable.Title style={styles.paddingHorizontal5}>
             <Title style={styles.title}>{translations.lapTable.lap}</Title>
           </DataTable.Title>
           <DataTable.Title style={styles.paddingHorizontal15}>

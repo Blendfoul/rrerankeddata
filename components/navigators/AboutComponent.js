@@ -78,7 +78,7 @@ const AboutComponent = () => {
       </View>
       <View style={styles.alignCenter}>
         <Text style={componentStyle.disclaimerText}>
-          2021 - João Castanheira
+          {new Date().getFullYear()} - João Castanheira
         </Text>
       </View>
     </ScrollView>

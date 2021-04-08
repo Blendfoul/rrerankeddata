@@ -25,8 +25,8 @@ const HomeScreen = ({navigation}) => {
         <RaceContainer navigation={navigation} />
       </ImageBackground>
       <AdMobBanner
-        adSize="fullBanner"
-        adUnitID="ca-app-pub-3693871231832720/1409720136"
+        adSize={'smartBannerPortrait'}
+        adUnitID="ca-app-pub-3693871231832720/1409720136" //"ca-app-pub-3940256099942544/6300978111"
         onAdFailedToLoad={error => console.error(error)}
       />
     </View>

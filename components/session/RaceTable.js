@@ -122,11 +122,13 @@ const RaceTable = ({data}) => {
           )}
         </DataTable>
       </ScrollView>
-      <RaceModal
-        modalVisible={visible}
-        setModalVisible={setVisible}
-        data={modalData}
-      />
+      {modalData === null ? null : (
+        <RaceModal
+          modalVisible={visible}
+          setModalVisible={setVisible}
+          data={modalData}
+        />
+      )}
     </>
   );
 };

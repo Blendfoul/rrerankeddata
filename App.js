@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useRaceStore} from './store/RaceContext';
 import {NavigationContainer} from '@react-navigation/native';
 import axios from 'axios';
@@ -18,7 +18,8 @@ const Tab = createBottomTabNavigator();
 
 const App: () => Node = () => {
   const raceStore = useRaceStore();
-  const {translations} = useContext(LocalizationContext);
+  const {translations, initializeAppLanguage} = useContext(LocalizationContext);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -46,17 +47,25 @@ const App: () => Node = () => {
       } catch (e) {
         console.error('[Ratings] ' + e.message);
       }
+
+      SplashScreen.hide();
     };
 
     getRatings();
-    SplashScreen.hide();
 
     return () => {
       source.cancel();
     };
   }, [raceStore]);
 
-  return (
+  useEffect(() => {
+    const appStart = async () =>
+      initializeAppLanguage().then(() => setLoading(false));
+
+    appStart();
+  }, [initializeAppLanguage]);
+
+  return loading ? null : (
     <NavigationContainer linking={RaceLink}>
       <Tab.Navigator
         tabBarOptions={{

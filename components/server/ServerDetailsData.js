@@ -71,7 +71,11 @@ const RaceDetailsData = ({data, details, session}) => {
       <View style={[styles.row, padding]}>
         <TextContainer
           title={translations.raceDetails.mandatoryPit}
-          text={data.Settings.MandatoryPitStop ? 'Enabled' : 'Disabled'}
+          text={
+            data.Settings.MandatoryPitStop
+              ? translations.raceDetails.enabled
+              : translations.raceDetails.disabled
+          }
         />
         <TextContainer
           title={translations.raceDetails.cutRules}

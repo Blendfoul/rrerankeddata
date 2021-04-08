@@ -26,6 +26,23 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
     setVisible(true);
   };
 
+  const calculateOptimalLap = (sectors: Number[]) => {
+    if (sectors !== undefined) {
+      const value =
+        sectors[2] -
+        sectors[1] +
+        (sectors[1] - data.FastestSector[0]) +
+        sectors[0];
+
+      return `${Math.floor((value / 1000 / 60) << 0)}:${(
+        (value / 1000) %
+        60
+      ).toFixed(3)}s`;
+    } else {
+      return '-';
+    }
+  };
+
   return (
     <Modal
       animationType="slide"
@@ -87,11 +104,39 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
               ]}>
               <TextContainer
                 title={translations.raceModal.name}
-                text={data?.FullName}
+                text={data.FullName}
               />
               <TextContainer
                 title={translations.raceModal.team}
-                text={data?.Team}
+                text={data.Team}
+              />
+            </View>
+            <View
+              style={[
+                styles.row,
+                styles.alignCenter,
+                styles.justifyCenter,
+                styles.padding5,
+              ]}>
+              <TextContainer
+                title={translations.raceModal.rating}
+                text={data.RatingChange}
+              />
+              <TextContainer
+                title={translations.raceModal.reputation}
+                text={data.ReputationChange}
+              />
+            </View>
+            <View
+              style={[
+                styles.row,
+                styles.alignCenter,
+                styles.justifyCenter,
+                styles.padding5,
+              ]}>
+              <TextContainer
+                title={translations.raceModal.optimalLap}
+                text={calculateOptimalLap(data.BestSectorsTimes)}
               />
             </View>
             <View
@@ -103,11 +148,11 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
               ]}>
               <TextContainer
                 title={translations.raceModal.bestLap}
-                text={data?.BestTime}
+                text={data.BestTime}
               />
               <TextContainer
                 title={translations.raceModal.worstLap}
-                text={data?.WorstTime}
+                text={data.WorstTime}
               />
             </View>
             <View
@@ -119,33 +164,58 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
               ]}>
               <TextContainer
                 title={translations.raceModal.averageLap}
-                text={data?.AvgTime}
+                text={data.AvgTime}
               />
               <TextContainer
                 title={translations.raceModal.diff}
-                text={data?.DiffTime}
+                text={data.DiffTime}
               />
             </View>
-            <View
-              style={[
-                styles.row,
-                styles.alignCenter,
-                styles.justifyCenter,
-                styles.padding5,
-              ]}>
-              <TextContainer
-                title={translations.raceModal.start}
-                text={'P' + data?.StartPosition}
-              />
-              <TextContainer
-                title={translations.raceModal.diff}
-                text={data?.DiffPosition}
-              />
-              <TextContainer
-                title={translations.raceModal.finish}
-                text={'P' + data?.FinishPosition}
-              />
-            </View>
+
+            {data.Laps[data.Laps.length - 1].Position !==
+            data.Laps[data.Laps.length - 1].PositionInClass ? (
+              <View
+                style={[
+                  styles.row,
+                  styles.alignCenter,
+                  styles.justifyCenter,
+                  styles.padding5,
+                ]}>
+                <TextContainer
+                  title={translations.raceModal.start}
+                  text={'P' + data.Laps[0].PositionInClass}
+                />
+                <TextContainer
+                  title={translations.raceModal.diff}
+                  text={data.DiffPosition}
+                />
+                <TextContainer
+                  title={translations.raceModal.finish}
+                  text={'P' + data.Laps[data.Laps.length - 1].PositionInClass}
+                />
+              </View>
+            ) : (
+              <View
+                style={[
+                  styles.row,
+                  styles.alignCenter,
+                  styles.justifyCenter,
+                  styles.padding5,
+                ]}>
+                <TextContainer
+                  title={translations.raceModal.start}
+                  text={'P' + data.StartPosition}
+                />
+                <TextContainer
+                  title={translations.raceModal.diff}
+                  text={data.DiffPosition}
+                />
+                <TextContainer
+                  title={translations.raceModal.finish}
+                  text={'P' + data.FinishPosition}
+                />
+              </View>
+            )}
             <View
               style={[
                 styles.row,
@@ -155,11 +225,11 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
               ]}>
               <TextContainer
                 title={translations.raceModal.incidents}
-                text={data?.Incidents}
+                text={data.Incidents}
               />
             </View>
-            <View style={styles.row}>
-              {data?.IncidentsDetails.map((data, index) => (
+            <View style={[styles.row, {flexWrap: 'wrap'}]}>
+              {data.IncidentsDetails.map((data, index) => (
                 <TextContainer
                   key={index}
                   title={incidentType(data.Type, translations)}
@@ -167,7 +237,7 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
                 />
               ))}
             </View>
-            <RaceLapsTable laps={data?.Laps} best={data?.BestSectorsTimes} />
+            <RaceLapsTable laps={data?.Laps} best={data.BestSectorsTimes} />
           </View>
         </View>
       </ScrollView>

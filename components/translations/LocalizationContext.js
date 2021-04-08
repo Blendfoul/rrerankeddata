@@ -15,7 +15,7 @@ export const LocalizationContext = createContext({
 export const LocalizationProvider = ({children}) => {
   const [appLanguage, setAppLanguage] = useState(DEFAULT_LANGUAGE);
 
-  const setLanguage = language => {
+  const setLanguage = async language => {
     translations.setLanguage(language);
     setAppLanguage(language);
     AsyncStorage.setItem(APP_LANGUAGE, language);
@@ -36,9 +36,11 @@ export const LocalizationProvider = ({children}) => {
           return true;
         }
       });
-      setLanguage(localeCode);
+      await setLanguage(localeCode);
+      return localeCode;
     } else {
-      setLanguage(currentLanguage);
+      await setLanguage(currentLanguage);
+      return currentLanguage;
     }
   };
 

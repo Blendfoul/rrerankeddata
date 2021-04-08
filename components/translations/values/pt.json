@@ -36,6 +36,8 @@
   "raceDetails": {
     "general": "Geral",
     "drivers": "Pilotos",
+    "enabled": "Ativado",
+    "disabled": "Desativado",
     "layout": "Configuração",
     "session": "Sessão",
     "time": "Tempo restante",
@@ -96,6 +98,10 @@
   "raceModal": {
     "name": "Nome",
     "team": "Equipa",
+    "optimalLap": "Volta perfeita",
+    "consistency": "Consistência",
+    "rating": "Rating",
+    "reputation": "Reputação",
     "bestLap": "Melhor volta",
     "worstLap": "Pior Volta",
     "averageLap": "Tempo médio",

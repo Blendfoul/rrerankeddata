@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {TabBar, TabView} from 'react-native-tab-view';
 import {styles} from '../utils/Theme';
-import {Dimensions} from 'react-native';
+import {Dimensions, View} from 'react-native';
 import DriverDetails from './DriverDetails';
 import DriverHistory from './DriverHistory';
 import {LocalizationContext} from '../translations/LocalizationContext';
@@ -51,8 +51,8 @@ const DriverComponent = ({username, navigation}) => {
         initialLayout={initialLayout}
       />
       <AdMobBanner
-        adSize="fullBanner"
-        adUnitID="ca-app-pub-3693871231832720/7421606479"
+        adSize={'smartBannerPortrait'}
+        adUnitID="ca-app-pub-3693871231832720/7421606479" //"ca-app-pub-3940256099942544/6300978111"
         onAdFailedToLoad={error => console.error(error)}
       />
     </>

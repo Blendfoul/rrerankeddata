@@ -42,8 +42,8 @@ const SessionDetailsScreen = ({route, navigation}) => {
       <TrackImage trackId={route.params.track.Id} />
       <SessionsTable info={info} layoutId={route.params.track.Name} />
       <AdMobBanner
-        adSize="fullBanner"
-        adUnitID="ca-app-pub-3693871231832720/9427810951"
+        adSize={'smartBannerPortrait'}
+        adUnitID="ca-app-pub-3693871231832720/9427810951" //"ca-app-pub-3940256099942544/6300978111"
         onAdFailedToLoad={error => console.error(error)}
       />
     </View>

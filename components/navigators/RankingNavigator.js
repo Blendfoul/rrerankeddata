@@ -8,6 +8,7 @@ import {useRaceStore} from '../../store/RaceContext';
 import {DataTable} from 'react-native-paper';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import {LocalizationContext} from '../translations/LocalizationContext';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 const Stack = createStackNavigator();
 
@@ -84,13 +85,15 @@ const RankingScreen = () => {
 
 const RankingItem = ({data, index, page}) => {
   return (
-    <DataTable.Row style={[componentStyle.row, {height: 65}]}>
+    <DataTable.Row
+      style={[componentStyle.row, {height: 65}]}
+      onPress={() => Clipboard.setString(data.FullName)}>
       <DataTable.Cell style={{flex: 1}}>
         <FastImage
           style={{width: 40, height: 40}}
           resizeMode={FastImage.resizeMode.contain}
           source={{
-            uri: 'http://game.raceroom.com/game/user_avatar/' + data.UserId,
+            uri: 'https://game.raceroom.com/game/user_avatar/' + data.UserId,
             priority: FastImage.priority.normal,
           }}
         />

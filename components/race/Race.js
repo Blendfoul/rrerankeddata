@@ -67,7 +67,7 @@ const Race: props => Node = props => {
   }, [serverData.CurrentSession, serverData.Settings.TrackLayoutId]);
 
   return (
-    <Pressable onPress={onRacePress}>
+    <Pressable onPress={onRacePress} style={componentStyle.cardMargin}>
       <View
         style={[
           styles.column,
@@ -87,7 +87,7 @@ const Race: props => Node = props => {
               styles.column,
               styles.justifySpaceBetween,
               styles.alignCenter,
-              styles.padding10,
+              styles.paddingHorizontal10,
               {flex: 3},
             ]}>
             <Text style={styles.text}>{serverData.Settings.ServerName}</Text>
@@ -109,7 +109,13 @@ const Race: props => Node = props => {
             source={Logo(image.Track)}
           />
         </View>
-        <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
+        <View
+          style={[
+            styles.row,
+            styles.alignCenter,
+            styles.justifyCenter,
+            styles.paddingVertical5,
+          ]}>
           <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
             <AntDesign name={'team'} color={'#fff'} size={25} />
             <Text style={[styles.text, styles.paddingHorizontal5]}>
@@ -150,10 +156,13 @@ const componentStyle = StyleSheet.create({
     paddingVertical: 5,
   },
   logo: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     resizeMode: 'contain',
     marginHorizontal: 10,
+  },
+  cardMargin: {
+    marginVertical: 2,
   },
 });
 
