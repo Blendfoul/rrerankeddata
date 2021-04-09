@@ -22,10 +22,9 @@ const DriverHistory = ({username, navigation}) => {
 
     const getRaces = async () => {
       if (refresh) {
-        const response = await axios(
-          `https://game.raceroom.com/users/${username}/career/?json`,
-          {cancelToken: source.token},
-        );
+        const response = await axios(`/users/${username}/career/?json`, {
+          cancelToken: source.token,
+        });
 
         setData({
           Entries: response.data.context.c.raceList.GetUserMpRatingProgressResult.Entries.reverse(),

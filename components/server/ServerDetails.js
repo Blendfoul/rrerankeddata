@@ -45,10 +45,9 @@ const ServerDetails = ({data, navigation, loading, session}) => {
         if (newData !== undefined) {
           data.drivers.push(newData);
         } else {
-          const user = await axios(
-            'https://game.raceroom.com/utils/user-info/' + driver,
-            {cancelToken: source.token},
-          );
+          const user = await axios('/utils/user-info/' + driver, {
+            cancelToken: source.token,
+          });
           data.drivers.push({
             Fullname: user.data.name,
             Username: user.data.username,

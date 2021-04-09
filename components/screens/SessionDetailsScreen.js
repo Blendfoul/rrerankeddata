@@ -19,6 +19,9 @@ const SessionDetailsScreen = ({route, navigation}) => {
       try {
         const response = await axios(
           `https://raceroom.dhsh.tk/api/race/${route.params.hash}`,
+          {
+            baseURL: '',
+          },
         );
 
         setInfo(response.data);

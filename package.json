@@ -20,6 +20,7 @@
     "@react-navigation/native": "^5.9.3",
     "@react-navigation/stack": "^5.14.3",
     "axios": "^0.21.1",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "mathjs": "^9.3.0",
     "mobx": "^6.1.8",
     "mobx-react-lite": "^3.2.0",

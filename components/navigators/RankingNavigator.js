@@ -1,14 +1,18 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import React, {useContext} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {styles} from '../utils/Theme';
 import type {Driver} from '../../interfaces/Driver';
-import FastImage from 'react-native-fast-image';
 import {useRaceStore} from '../../store/RaceContext';
-import {DataTable} from 'react-native-paper';
-import AntIcon from 'react-native-vector-icons/AntDesign';
+import {Caption, DataTable, Paragraph} from 'react-native-paper';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import Clipboard from '@react-native-clipboard/clipboard';
+import {Image} from 'react-native-elements';
 
 const Stack = createStackNavigator();
 
@@ -32,90 +36,113 @@ export default RankingNavigator;
 
 const itemsPerPage = 50;
 
-const RankingScreen = () => {
+const RankingScreen = ({route, navigation}) => {
   const raceStore = useRaceStore();
+  const {translations} = useContext(LocalizationContext);
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(true);
 
-  const [page, setPage] = React.useState(0);
   const from1 = page * itemsPerPage;
   const to = (page + 1) * itemsPerPage;
 
-  const data = (): Driver[] => {
+  const [data, setData] = useState([]);
+
+  const filterData = useCallback((): Driver[] => {
     const temp = [];
     for (let index = from1; index < to; index++) {
-      temp.push(raceStore.Ratings[index]);
-    }
+      if (raceStore.Ratings.length === 0) {
+        break;
+      }
 
+      const driver = raceStore.Ratings[index];
+
+      if (driver !== null) {
+        temp.push(driver);
+      }
+    }
     return temp;
-  };
+  }, [from1, raceStore.Ratings, to]);
+
+  useEffect(() => {
+    setLoading(true);
+    setData(filterData());
+    setLoading(false);
+  }, [filterData]);
 
   return (
-    <ScrollView>
-      <DataTable style={[styles.backgroundColor]}>
-        <DataTable.Header>
-          <DataTable.Title style={[{flex: 0.5}]} />
-          <DataTable.Title numeric>
-            <AntIcon name={'exception1'} color={'#fff'} size={25} />
-          </DataTable.Title>
-          <DataTable.Title numeric>
-            <AntIcon name={'solution1'} color={'#fff'} size={25} />
-          </DataTable.Title>
-          <DataTable.Title numeric>
-            <AntIcon name={'car'} color={'#fff'} size={25} />
-          </DataTable.Title>
-        </DataTable.Header>
-
-        {data().map((item, index) => (
-          <Item key={index} data={item} index={index} page={page} />
-        ))}
-
-        <DataTable.Pagination
-          page={page}
-          numberOfPages={Math.floor(raceStore.Ratings.length / itemsPerPage)}
-          onPageChange={page => setPage(page)}
-          label={
-            <Text style={styles.text}>
-              {from1 + 1}-{to} of {raceStore.Ratings.length}
-            </Text>
-          }
-        />
-      </DataTable>
-    </ScrollView>
+    <DataTable style={[styles.column, {backgroundColor: 'gray'}]}>
+      {loading ? (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size={'large'} color={'#fff'} />
+        </View>
+      ) : (
+        <ScrollView>
+          {data.map((item, index) => (
+            <Item
+              key={index}
+              driver={item}
+              index={index}
+              page={page}
+              navigation={navigation}
+              translations={translations}
+            />
+          ))}
+        </ScrollView>
+      )}
+      <DataTable.Pagination
+        page={page}
+        numberOfPages={Math.floor(raceStore.Ratings.length / itemsPerPage)}
+        onPageChange={nPage => setPage(nPage)}
+        label={
+          <Text style={styles.text}>
+            {from1 + 1}-{to} of {raceStore.Ratings.length}
+          </Text>
+        }
+      />
+    </DataTable>
   );
 };
 
-const RankingItem = ({data, index, page}) => {
+const RankingItem = ({driver, index, page, navigation, translations}) => {
   return (
     <DataTable.Row
-      style={[componentStyle.row, {height: 65}]}
-      onPress={() => Clipboard.setString(data.FullName)}>
-      <DataTable.Cell style={{flex: 1}}>
-        <FastImage
-          style={{width: 40, height: 40}}
-          resizeMode={FastImage.resizeMode.contain}
+      onPress={() =>
+        navigation.navigate(translations.search.title.details, driver.Username)
+      }
+      style={{paddingVertical: 5}}>
+      <View
+        style={[
+          styles.column,
+          styles.alignCenter,
+          styles.justifyCenter,
+          {flex: 0, paddingRight: 10},
+        ]}>
+        <Image
+          style={{width: 40, height: 40, borderRadius: 5}}
           source={{
-            uri: 'https://game.raceroom.com/game/user_avatar/' + data.UserId,
-            priority: FastImage.priority.normal,
+            uri: 'https://game.raceroom.com/game/user_avatar/' + driver.UserId,
           }}
         />
-      </DataTable.Cell>
-      <View style={[styles.column, {flex: 6}]}>
+      </View>
+      <View style={styles.column}>
+        <Paragraph>{driver.Fullname}</Paragraph>
+        <Caption>{driver.Team || translations.profile.privateer}</Caption>
+      </View>
+      <View style={styles.column}>
         <View style={styles.row}>
-          <Text style={[styles.row, styles.text, {flex: 2}]}>
-            {data.Fullname}
-          </Text>
-          <Text style={[styles.row, componentStyle.position, styles.text]}>
-            #{index + 1 + itemsPerPage * page}
-          </Text>
+          <DataTable.Cell numeric>
+            <Paragraph>{driver.RacesCompleted}</Paragraph>
+          </DataTable.Cell>
+          <DataTable.Cell numeric>
+            <Paragraph>#{index + 1 + itemsPerPage * page}</Paragraph>
+          </DataTable.Cell>
         </View>
         <View style={styles.row}>
           <DataTable.Cell numeric>
-            <Text style={styles.text}>{data.Reputation}</Text>
+            <Paragraph>{driver.Reputation}</Paragraph>
           </DataTable.Cell>
           <DataTable.Cell numeric>
-            <Text style={styles.text}>{data.Rating}</Text>
-          </DataTable.Cell>
-          <DataTable.Cell numeric>
-            <Text style={styles.text}>{data.RacesCompleted}</Text>
+            <Paragraph>{driver.Rating}</Paragraph>
           </DataTable.Cell>
         </View>
       </View>

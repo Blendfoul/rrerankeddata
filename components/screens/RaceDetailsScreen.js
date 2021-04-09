@@ -13,19 +13,21 @@ const RaceDetailsScreen = ({route, navigation}) => {
       <ActivityIndicator size={'large'} color={'#fff'} />
     </View>
   ) : (
-    <View style={[styles.column, styles.backgroundColor]}>
-      <TrackImage trackId={route.params.Server.Settings.TrackLayoutId[0]} />
-      <RaceServer
-        session={route.params.Server}
-        navigation={navigation}
-        loading={setLoading}
-      />
-      <AdMobBanner
-        adSize={'smartBannerPortrait'}
-        adUnitID="ca-app-pub-3693871231832720/4221863534" //"ca-app-pub-3940256099942544/6300978111"
-        onAdFailedToLoad={error => console.error(error)}
-      />
-    </View>
+    <>
+      <View style={[styles.column, styles.backgroundColor]}>
+        <TrackImage trackId={route.params.Server.Settings.TrackLayoutId[0]} />
+        <RaceServer
+          session={route.params.Server}
+          navigation={navigation}
+          loading={setLoading}
+        />
+        <AdMobBanner
+          adSize={'smartBannerPortrait'}
+          adUnitID="ca-app-pub-3693871231832720/4221863534" //"ca-app-pub-3940256099942544/6300978111"
+          onAdFailedToLoad={error => console.error(error)}
+        />
+      </View>
+    </>
   );
 };
 

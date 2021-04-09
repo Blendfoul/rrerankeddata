@@ -4,7 +4,6 @@ import {Snackbar} from 'react-native-paper';
 import {useRaceStore} from '../../store/RaceContext';
 import {Observer} from 'mobx-react-lite';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {AdMobBanner} from 'react-native-admob';
 
 const DriverDetailsScreen = ({route, navigation}) => {
   const raceStore = useRaceStore();

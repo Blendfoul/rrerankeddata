@@ -16,10 +16,9 @@ const RaceContainer: props => Node = props => {
 
     const getRaces = async () => {
       try {
-        const response = await axios(
-          'https://game.raceroom.com/multiplayer-rating/servers/',
-          {cancelToken: source.token},
-        );
+        const response = await axios('/multiplayer-rating/servers/', {
+          cancelToken: source.token,
+        });
 
         if (response.status === 200) {
           raceStore.setRaces(response.data.result);
@@ -53,15 +52,13 @@ const RaceContainer: props => Node = props => {
     const source: CancelTokenSource = axios.CancelToken.source();
 
     try {
-      const response = await axios(
-        'https://game.raceroom.com/multiplayer-rating/servers/',
-        {cancelToken: source.token},
-      );
+      const response = await axios('multiplayer-rating/servers/', {
+        cancelToken: source.token,
+      });
 
-      const rating = await axios(
-        'https://game.raceroom.com/multiplayer-rating/ratings.json',
-        {cancelToken: source.token},
-      );
+      const rating = await axios('multiplayer-rating/ratings.json', {
+        cancelToken: source.token,
+      });
 
       if (response.status === 200 && rating.status === 200) {
         raceStore.setRatings(rating.data);

@@ -18,14 +18,13 @@ const DriverDetails = ({username}: {username: String}): React.Component => {
 
     const getDetails = async () => {
       setLoading(true);
-      const response = await axios(
-        `https://game.raceroom.com/users/${username}/?json`,
-        {cancelToken: source.token},
-      );
+      const response = await axios(`/users/${username}/?json`, {
+        cancelToken: source.token,
+      });
 
       try {
         const rating = await axios(
-          `https://game.raceroom.com/multiplayer-rating/user/${response.data.context.c.user_id}.json`,
+          `/multiplayer-rating/user/${response.data.context.c.user_id}.json`,
           {cancelToken: source.token},
         );
 
@@ -54,7 +53,7 @@ const DriverDetails = ({username}: {username: String}): React.Component => {
     const getUpdatedRating = async () => {
       try {
         const rating = await axios(
-          `https://game.raceroom.com/multiplayer-rating/user/${data.data.user_id}.json`,
+          `/multiplayer-rating/user/${data.data.user_id}.json`,
           {cancelToken: source.token},
         );
 

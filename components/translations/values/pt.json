@@ -66,6 +66,9 @@
   "profile": {
     "info": "Acerca",
     "races": "Corridas",
+    "laps": "Voltas",
+    "distance": "Distância",
+    "lapsCompleted": "Voltas Completadas",
     "name": "Nome",
     "team": "Equipa",
     "country": "Pais",

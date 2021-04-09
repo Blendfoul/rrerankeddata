@@ -36,10 +36,9 @@ const App: () => Node = () => {
           raceStore.setDefaultDriver(value);
         }
 
-        const response = await axios(
-          'https://game.raceroom.com/multiplayer-rating/ratings.json',
-          {cancelToken: source.token},
-        );
+        const response = await axios('/multiplayer-rating/ratings.json', {
+          cancelToken: source.token,
+        });
 
         if (response.status === 200) {
           raceStore.setRatings(response.data);

@@ -65,6 +65,9 @@
   },
   "profile": {
     "info": "Info",
+    "laps": "Laps",
+    "distance": "Distance",
+    "lapsCompleted": "Laps Completed",
     "races": "Races",
     "name": "Name",
     "team": "Team",

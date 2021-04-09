@@ -57,6 +57,19 @@ const DriverData = ({data}): React.Component => {
       </View>
       <View style={[styles.row, styles.paddingTop15]}>
         <TextContainer
+          title={translations.profile.lapsCompleted}
+          text={
+            data.data.overview.basic_statistics[0].value +
+            ` ${translations.profile.laps}`
+          }
+        />
+        <TextContainer
+          title={translations.profile.distance}
+          text={data.data.overview.basic_statistics[1].value}
+        />
+      </View>
+      <View style={[styles.row, styles.paddingTop15]}>
+        <TextContainer
           title={translations.profile.races}
           text={data.rating.RacesCompleted || 0}
         />

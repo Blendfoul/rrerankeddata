@@ -1,9 +1,45 @@
 import React, {useContext} from 'react';
-import {DataTable} from 'react-native-paper';
-import {Pressable, ScrollView, StyleSheet} from 'react-native';
+import {Caption, DataTable, Paragraph} from 'react-native-paper';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import type {Driver} from '../../interfaces/Driver';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import {LocalizationContext} from '../translations/LocalizationContext';
+import {styles} from '../utils/Theme';
+import {Image} from 'react-native-elements';
+
+const DriverRow = ({onPress, driver}) => {
+  const {translations} = useContext(LocalizationContext);
+
+  return (
+    <DataTable.Row onPress={onPress} style={{paddingVertical: 5}}>
+      <View
+        style={[
+          styles.column,
+          styles.alignCenter,
+          styles.justifyCenter,
+          {flex: 0, paddingRight: 10},
+        ]}>
+        <Image
+          style={{width: 40, height: 40, borderRadius: 5}}
+          source={{
+            uri: 'https://game.raceroom.com/game/user_avatar/' + driver.UserId,
+          }}
+        />
+      </View>
+      <View style={styles.column}>
+        <Paragraph>{driver.Fullname}</Paragraph>
+        <Caption>{driver.Team || translations.profile.privateer}</Caption>
+      </View>
+      <View style={styles.row}>
+        <DataTable.Cell numeric>
+          <Paragraph>{driver.Reputation}</Paragraph>
+        </DataTable.Cell>
+        <DataTable.Cell numeric>
+          <Paragraph>{driver.Rating}</Paragraph>
+        </DataTable.Cell>
+      </View>
+    </DataTable.Row>
+  );
+};
 
 const DriverList = props => {
   const {translations} = useContext(LocalizationContext);
@@ -12,26 +48,13 @@ const DriverList = props => {
   };
   return (
     <DataTable style={componentStyle.container}>
-      <DataTable.Header>
-        <DataTable.Title>
-          <AntDesign name={'user'} color={'white'} size={25} />
-        </DataTable.Title>
-        <DataTable.Title numeric>
-          <AntDesign name={'exception1'} color={'white'} size={25} />
-        </DataTable.Title>
-        <DataTable.Title numeric>
-          <AntDesign name={'solution1'} color={'white'} size={25} />
-        </DataTable.Title>
-      </DataTable.Header>
       <ScrollView>
         {props.drivers.map((driver: Driver, index: Number) => (
-          <Pressable onPress={() => onDriverPress(driver.Username)} key={index}>
-            <DataTable.Row>
-              <DataTable.Cell>{driver.Fullname}</DataTable.Cell>
-              <DataTable.Cell numeric>{driver.Reputation}</DataTable.Cell>
-              <DataTable.Cell numeric>{driver.Rating}</DataTable.Cell>
-            </DataTable.Row>
-          </Pressable>
+          <DriverRow
+            key={index}
+            onPress={() => onDriverPress(driver.Username)}
+            driver={driver}
+          />
         ))}
       </ScrollView>
     </DataTable>
