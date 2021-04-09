@@ -1,0 +1,56 @@
+import React, {useEffect, useState} from 'react';
+import {ActivityIndicator, View} from 'react-native';
+import TrackImage from '../utils/TrackImage';
+import axios from 'axios';
+import SessionsTable from '../session/SessionsTable';
+import {styles} from '../utils/Theme';
+import {AdMobBanner} from 'react-native-admob';
+
+const SessionDetailsScreen = ({route, navigation}) => {
+  const [info, setInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const source = axios.CancelToken.source();
+
+    const getData = async () => {
+      setLoading(true);
+
+      try {
+        const response = await axios(
+          `https://raceroom.dhsh.tk/api/race/${route.params.hash}`,
+          {
+            baseURL: '',
+          },
+        );
+
+        setInfo(response.data);
+      } catch (e) {
+        console.error('[SessionDetails] ' + e.message);
+      }
+      setLoading(false);
+    };
+
+    getData();
+
+    return () => source.cancel();
+  }, [route.params.hash, route.params.username]);
+
+  return loading ? (
+    <View style={styles.loadingContainer}>
+      <ActivityIndicator size={'large'} color={'#fff'} />
+    </View>
+  ) : (
+    <View style={[styles.column, styles.backgroundColor]}>
+      <TrackImage trackId={route.params.track.Id} />
+      <SessionsTable info={info} layoutId={route.params.track.Name} />
+      <AdMobBanner
+        adSize={'smartBannerPortrait'}
+        adUnitID="ca-app-pub-3693871231832720/9427810951" //"ca-app-pub-3940256099942544/6300978111"
+        onAdFailedToLoad={error => console.error(error)}
+      />
+    </View>
+  );
+};
+
+export default SessionDetailsScreen;

@@ -1,0 +1,146 @@
+{
+  "navigation": {
+    "server": "Servers",
+    "user": "User",
+    "search": "Search",
+    "ranking": "Ranking",
+    "about": "About",
+    "raceDetails": "Race Details",
+    "sessionDetails": "Session Details",
+    "driverDetails": "Driver Details"
+  },
+  "race": {
+    "regions": [
+      {
+        "name": "All",
+        "value": ""
+      },
+      {
+        "name": "Europe",
+        "value": "Europe"
+      },
+      {
+        "name": "North America",
+        "value": "U.S"
+      },
+      {
+        "name": "South America",
+        "value": "South America"
+      },
+      {
+        "name": "Oceania",
+        "value": "Oceania"
+      }
+    ]
+  },
+  "raceDetails": {
+    "general": "General",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "drivers": "Drivers",
+    "layout": "Track Layout",
+    "session": "Session",
+    "time": "Time Left",
+    "tireWear": "Tire Wear",
+    "fuel": "Fuel Usage",
+    "mandatoryPit": "Mandatory Pit",
+    "cutRules": "Cut Rules",
+    "players": "Players",
+    "sof": "S.o.F",
+    "reputation": "Reputation"
+  },
+  "user": {
+    "bummer": "Bummer",
+    "message": "No driver set!",
+    "search": "Search"
+  },
+  "search": {
+    "placeholder": "Driver Username",
+    "search": "Search",
+    "title": {
+      "search": "Search",
+      "details": "Details",
+      "sessionDetails": "Session Details"
+    }
+  },
+  "profile": {
+    "info": "Info",
+    "laps": "Laps",
+    "distance": "Distance",
+    "lapsCompleted": "Laps Completed",
+    "races": "Races",
+    "name": "Name",
+    "team": "Team",
+    "country": "Country",
+    "rating": "Rating",
+    "reputation": "Reputation",
+    "track": "Favourite Track",
+    "car": "Favourite Car",
+    "privateer": "Privateer"
+  },
+  "session": {
+    "general": "General",
+    "qualification": "Qualify",
+    "race": "Race",
+    "layout": "Layout",
+    "drivers": "Drivers",
+    "positions": "Positions",
+    "average": "average",
+    "overall": "overall",
+    "fastest": "Fastest Lap",
+    "averageLap": "avg. Laptime",
+    "diffTimer": "Diff. average"
+  },
+  "qualificationModal": {
+    "fastest": "Fastest Lap",
+    "position": "Position",
+    "sector": "Sector ",
+    "optimal": "Optimal Lap",
+    "incidents": "Incidents"
+  },
+  "raceModal": {
+    "name": "Name",
+    "team": "Team",
+    "bestLap": "Best Lap",
+    "worstLap": "Worst Lap",
+    "averageLap": "Average Lap",
+    "rating": "Rating Change",
+    "reputation": "Reputation Change",
+    "optimalLap": "Optimal Lap",
+    "consistency": "Consistency",
+    "diff": "Diff",
+    "start": "Start",
+    "finish": "Finish",
+    "incidents": "Incidents"
+  },
+  "lapTable": {
+    "lap": "Lap",
+    "sector1": "Sector 1",
+    "sector2": "Sector 2",
+    "sector3": "Sector 3",
+    "valid": "Valid",
+    "lapTime": "Lap Time"
+  },
+  "sessions": {
+    "practice": "Practice",
+    "qualification": "Qualification",
+    "race": "Race"
+  },
+  "incidents": {
+    "invalidLap": "Invalid Lap",
+    "losingControl": "Losing Control",
+    "trackCollision": "Track Collision",
+    "vehicleCollision": "Vehicle Collision",
+    "disconnect": "Disconnect"
+  },
+  "messages": {
+    "driverSet": "Default driver set!",
+    "copied": "Username copied to clipboard."
+  },
+  "license": {
+    "license": "",
+    "disclaimer": "R3E Ranked statistics is a 3rd party app and is not affiliated in anyway with Sector 3.",
+    "mvp": "A special thanks to DavidsAppStudio for providing the in-depth statistics for the session history.",
+    "somethingWrong": "Found something wrong?"
+  }
+}
