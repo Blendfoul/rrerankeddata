@@ -1,11 +1,17 @@
-import {ActivityIndicator, ScrollView, StyleSheet, Text} from 'react-native';
-import {DataTable} from 'react-native-paper';
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
+import {Caption, DataTable, Paragraph} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import type {QualiData} from '../../interfaces/RaceData';
 import {Image} from 'react-native-elements';
 import React, {useState} from 'react';
 import {styles} from '../utils/Theme';
 import QualificationModal from './QualificationModal';
+import {useRaceStore} from '../../store/RaceContext';
 
 const componentStyle = StyleSheet.create({
   flex_1: {
@@ -20,6 +26,7 @@ const componentStyle = StyleSheet.create({
   image: {
     height: 50,
     width: 50,
+    borderRadius: 5,
   },
   imageCar: {
     width: 62.5,
@@ -30,52 +37,75 @@ const componentStyle = StyleSheet.create({
   },
 });
 
-const QualificationTitle = ({icon}) => (
-  <DataTable.Title style={[componentStyle.flex_1, styles.justifyCenter]}>
-    {icon}
-  </DataTable.Title>
-);
+const QualificationRow = (data: QualiData, index, setData, setVisible) => {
+  const raceStore = useRaceStore();
 
-const QualificationCell = ({data}) => (
-  <DataTable.Cell
-    style={[componentStyle.flex_1, styles.justifyCenter, styles.alignCenter]}>
-    {data}
-  </DataTable.Cell>
-);
-
-const QualificationRow = (data: QualiData, index, setData, setVisible) => (
-  <DataTable.Row
-    key={index}
-    style={componentStyle.rowHeight}
-    onPress={() => {
-      setData(data);
-      setVisible(true);
-    }}>
-    <QualificationCell
-      data={
-        <Image
-          source={{uri: data.Avatar}}
-          style={componentStyle.image}
-          resizeMode={'contain'}
-          PlaceholderContent={<ActivityIndicator color={'#fff'} />}
-          placeholderStyle={componentStyle.gray}
-        />
-      }
-    />
-    <QualificationCell
-      data={
-        <Image
-          source={{uri: data.Livery + '&size=small'}}
-          style={componentStyle.imageCar}
-          resizeMode={'contain'}
-          PlaceholderContent={<ActivityIndicator color={'#fff'} />}
-          placeholderStyle={componentStyle.gray}
-        />
-      }
-    />
-    <QualificationCell data={<Text>{data.BestTime}</Text>} />
-  </DataTable.Row>
-);
+  return (
+    <DataTable.Row
+      key={index}
+      style={[
+        componentStyle.rowHeight,
+        {
+          backgroundColor:
+            raceStore.DefaultDriver === data.Username ? 'darkgray' : 'gray',
+        },
+      ]}
+      onPress={() => {
+        setData(data);
+        setVisible(true);
+      }}>
+      <View style={[styles.row, {paddingVertical: 10}]}>
+        <View
+          style={[
+            styles.column,
+            styles.alignCenter,
+            styles.justifyCenter,
+            {flex: 0},
+          ]}>
+          <Image
+            source={{uri: data.Avatar}}
+            style={componentStyle.image}
+            resizeMode={'contain'}
+            PlaceholderContent={<ActivityIndicator color={'#fff'} />}
+            placeholderStyle={componentStyle.gray}
+          />
+        </View>
+        <View style={[styles.column, styles.alignCenter, styles.justifyCenter]}>
+          <View
+            style={[
+              styles.row,
+              styles.alignCenter,
+              styles.justifySpaceBetween,
+              styles.paddingHorizontal5,
+            ]}>
+            <Caption style={{width: '100%', textAlign: 'center'}}>{data.FullName}</Caption>
+          </View>
+          <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
+            <AntDesign name={'clockcircleo'} size={15} color={'#fff'} />
+            <Paragraph style={styles.paddingHorizontal5}>
+              {data.BestTime}
+            </Paragraph>
+          </View>
+        </View>
+        <View
+          style={[
+            styles.column,
+            styles.alignCenter,
+            styles.justifyCenter,
+            {flex: 0},
+          ]}>
+          <Image
+            source={{uri: data.Livery + '&size=small'}}
+            style={componentStyle.imageCar}
+            resizeMode={'contain'}
+            PlaceholderContent={<ActivityIndicator color={'#fff'} />}
+            placeholderStyle={componentStyle.gray}
+          />
+        </View>
+      </View>
+    </DataTable.Row>
+  );
+};
 
 const QualificationTable = ({data}: {data: QualiData}) => {
   const [visible, setVisible] = useState(false);
@@ -83,26 +113,13 @@ const QualificationTable = ({data}: {data: QualiData}) => {
 
   return (
     <>
-      <ScrollView>
-        <DataTable>
-          <DataTable.Header>
-            <QualificationTitle
-              icon={<AntDesign name={'user'} size={25} color={'#fff'} />}
-            />
-            <QualificationTitle
-              icon={<AntDesign name={'car'} size={25} color={'#fff'} />}
-            />
-            <QualificationTitle
-              icon={
-                <AntDesign name={'clockcircleo'} size={25} color={'#fff'} />
-              }
-            />
-          </DataTable.Header>
+      <DataTable>
+        <ScrollView>
           {data.map((data, index) =>
             QualificationRow(data, index, setData, setVisible),
           )}
-        </DataTable>
-      </ScrollView>
+        </ScrollView>
+      </DataTable>
       <QualificationModal
         modalVisible={visible}
         setModalVisible={setVisible}

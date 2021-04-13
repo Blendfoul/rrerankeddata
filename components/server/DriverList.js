@@ -5,12 +5,22 @@ import type {Driver} from '../../interfaces/Driver';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {styles} from '../utils/Theme';
 import {Image} from 'react-native-elements';
+import {useRaceStore} from '../../store/RaceContext';
+import AntIcon from 'react-native-vector-icons/AntDesign';
+import Flag from 'react-native-flags';
 
 const DriverRow = ({onPress, driver}) => {
   const {translations} = useContext(LocalizationContext);
+  const raceStore = useRaceStore();
 
   return (
-    <DataTable.Row onPress={onPress} style={{paddingVertical: 5}}>
+    <DataTable.Row
+      onPress={onPress}
+      style={{
+        paddingVertical: 5,
+        backgroundColor:
+          raceStore.DefaultDriver === driver.Username ? 'darkgray' : 'gray',
+      }}>
       <View
         style={[
           styles.column,
@@ -27,15 +37,35 @@ const DriverRow = ({onPress, driver}) => {
       </View>
       <View style={styles.column}>
         <Paragraph>{driver.Fullname}</Paragraph>
-        <Caption>{driver.Team || translations.profile.privateer}</Caption>
+        <View style={[styles.row, styles.alignCenter]}>
+          <Flag size={24} code={driver.Country} type={'flat'} />
+          <Caption style={{paddingLeft: 5}}>
+            {driver.Team || translations.profile.privateer}
+          </Caption>
+        </View>
       </View>
-      <View style={styles.row}>
-        <DataTable.Cell numeric>
-          <Paragraph>{driver.Reputation}</Paragraph>
-        </DataTable.Cell>
-        <DataTable.Cell numeric>
-          <Paragraph>{driver.Rating}</Paragraph>
-        </DataTable.Cell>
+      <View
+        style={[
+          styles.column,
+          styles.alignCenter,
+          styles.justifyCenter,
+          {
+            flex: 0.5,
+            justifyContent: 'flex-start',
+          },
+        ]}>
+        <View style={[styles.row, styles.alignCenter, {width: '100%'}]}>
+          <AntIcon size={15} name={'solution1'} color={'#fff'} />
+          <Paragraph style={[styles.paddingHorizontal5]}>
+            {driver.Rating}
+          </Paragraph>
+        </View>
+        <View style={[styles.row, styles.alignCenter, {width: '100%'}]}>
+          <AntIcon size={15} name={'exception1'} color={'#fff'} />
+          <Paragraph style={styles.paddingHorizontal5}>
+            {driver.Reputation}
+          </Paragraph>
+        </View>
       </View>
     </DataTable.Row>
   );
@@ -43,16 +73,22 @@ const DriverRow = ({onPress, driver}) => {
 
 const DriverList = props => {
   const {translations} = useContext(LocalizationContext);
-  const onDriverPress = async (userId: Number) => {
+  const raceStore = useRaceStore();
+
+  const onDriverPress = (userId: Number) => {
     props.navigation.navigate(translations.navigation.driverDetails, userId);
   };
+
   return (
     <DataTable style={componentStyle.container}>
       <ScrollView>
         {props.drivers.map((driver: Driver, index: Number) => (
           <DriverRow
             key={index}
-            onPress={() => onDriverPress(driver.Username)}
+            onPress={() => {
+              raceStore.setSearchDriver(driver.Username);
+              onDriverPress(driver.Username);
+            }}
             driver={driver}
           />
         ))}

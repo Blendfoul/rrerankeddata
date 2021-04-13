@@ -1,17 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {DataTable} from 'react-native-paper';
 import type {Race} from '../../interfaces/Profile';
-import CarClass from '../utils/CarClass';
 import {RefreshControl, ScrollView, StyleSheet, Text} from 'react-native';
-import AntIcon from 'react-native-vector-icons/AntDesign';
-import TrackImage from '../utils/TrackImage';
 import axios from 'axios';
 import {styles} from '../utils/Theme';
-import {LocalizationContext} from '../translations/LocalizationContext';
-
-function TableCell(props) {
-  return <DataTable.Cell style={props.style}>{props.text}</DataTable.Cell>;
-}
+import HistoryRow from './HistoryRow';
 
 const DriverHistory = ({username, navigation}) => {
   const [data, setData] = useState({TotalEntries: 0, Entries: []});
@@ -62,91 +55,36 @@ const DriverHistory = ({username, navigation}) => {
   };
 
   return (
-    <ScrollView
-      style={[styles.column, styles.backgroundColor]}
-      refreshControl={
-        <RefreshControl
-          refreshing={refresh}
-          onRefresh={() => setRefresh(true)}
-        />
-      }>
-      <DataTable style={{backgroundColor: 'gray'}}>
-        <DataTable.Header>
-          <TableCell
-            text={<AntIcon name={'car'} size={25} color={'white'} />}
-            style={componentStyle.flex_3}
+    <DataTable style={[styles.column, {backgroundColor: 'gray'}]}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => setRefresh(true)}
           />
-          <TableCell text={null} style={componentStyle.flex_1} />
-          <TableCell
-            text={<AntIcon name={'user'} size={25} color={'white'} />}
-            style={componentStyle.flex_1}
-          />
-          <TableCell
-            text={<AntIcon name={'team'} size={25} color={'white'} />}
-            style={componentStyle.flex_1}
-          />
-          <TableCell
-            text={<AntIcon name={'exception1'} size={25} color={'white'} />}
-            style={componentStyle.flex_1}
-          />
-        </DataTable.Header>
-
+        }>
         {races().map((race: Race, index: Number) => (
-          <RaceRow race={race} key={index} navigation={navigation} />
+          <HistoryRow race={race} key={index} navigation={navigation} />
         ))}
+      </ScrollView>
 
-        <DataTable.Pagination
-          page={page}
-          numberOfPages={
-            Math.floor(data.Entries.length / itemsPerPage) * itemsPerPage <
-            data.Entries.length
-              ? Math.floor(data.Entries.length / itemsPerPage) + 1
-              : Math.floor(data.Entries.length / itemsPerPage)
-          }
-          onPageChange={page => setPage(page)}
-          label={
-            <Text style={styles.text}>
-              {from1 + 1}-{to} of {data.Entries.length}
-            </Text>
-          }
-        />
-      </DataTable>
-    </ScrollView>
-  );
-};
-
-const RaceRow = ({race, navigation}: {race: Race}) => {
-  const {translations} = useContext(LocalizationContext);
-
-  const racePress = (raceId: String, trackLayout: Number) => {
-    navigation.navigate(translations.navigation.sessionDetails, {
-      hash: raceId,
-      track: trackLayout,
-    });
-  };
-
-  return (
-    <DataTable.Row onPress={() => racePress(race.RaceHash, race.TrackLayoutId)}>
-      <TableCell
-        text={
-          <CarClass
-            classes={race.CarClasses.map(classes => classes.Id)}
-            size={20}
-            imgSize={'small'}
-          />
+      <DataTable.Pagination
+        page={page}
+        numberOfPages={
+          Math.floor(data.Entries.length / itemsPerPage) * itemsPerPage <
+          data.Entries.length
+            ? Math.floor(data.Entries.length / itemsPerPage) + 1
+            : Math.floor(data.Entries.length / itemsPerPage)
         }
-        style={componentStyle.flex_3}
-      />
-      <TableCell
-        text={
-          <TrackImage logo={true} trackId={race.TrackLayoutId.Id} size={25} />
+        onPageChange={page => setPage(page)}
+        label={
+          <Text style={styles.text}>
+            {from1 + 1}-{data.Entries.length < to ? data.Entries.length : to} of{' '}
+            {data.Entries.length}
+          </Text>
         }
-        style={[componentStyle.flex_1, componentStyle.trackLogo]}
       />
-      <TableCell text={race.FinishPosition} style={componentStyle.flex_1} />
-      <TableCell text={race.PlayersCount} style={componentStyle.flex_1} />
-      <TableCell text={race.IncidentPoints} style={componentStyle.flex_1} />
-    </DataTable.Row>
+    </DataTable>
   );
 };
 

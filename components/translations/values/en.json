@@ -64,6 +64,7 @@
     }
   },
   "profile": {
+    "ranking": "Ranking",
     "info": "Info",
     "laps": "Laps",
     "distance": "Distance",
@@ -131,7 +132,9 @@
     "losingControl": "Losing Control",
     "trackCollision": "Track Collision",
     "vehicleCollision": "Vehicle Collision",
-    "disconnect": "Disconnect"
+    "disconnect": "Disconnect",
+    "unservedPenalty": "Unserved Penalty",
+    "wrongWay": "Wrong Way"
   },
   "messages": {
     "driverSet": "Default driver set!",
@@ -142,5 +145,6 @@
     "disclaimer": "R3E Ranked statistics is a 3rd party app and is not affiliated in anyway with Sector 3.",
     "mvp": "A special thanks to DavidsAppStudio for providing the in-depth statistics for the session history.",
     "somethingWrong": "Found something wrong?"
-  }
+  },
+  "noConnection": "No connection available!"
 }

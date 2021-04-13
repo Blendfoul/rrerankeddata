@@ -60,6 +60,7 @@ const SearchScreen = props => {
   const [text, setText] = useState('');
   const [users, setUsers] = useState([]);
   const {translations} = useContext(LocalizationContext);
+  const raceStore = useRaceStore();
 
   let cancelRequest = null;
   const CancelToken = axios.CancelToken;
@@ -76,7 +77,27 @@ const SearchScreen = props => {
 
     try {
       const response = await axios('/search?query=' + text, options);
-      setUsers(response.data);
+
+      if (response.data.length !== 0) {
+        setUsers(response.data);
+      } else {
+        const data = raceStore.Ratings.find(
+          driver =>
+            driver.Username.toLowerCase() === text.toLowerCase() ||
+            driver.Fullname.toLowerCase() === text.toLowerCase(),
+        );
+
+        if (data !== undefined) {
+          setUsers([
+            {
+              name: data.Fullname,
+              image: `https://game.raceroom.com/game/user_avatar/${data.UserId}`,
+              meta_data: {slug: data.Username},
+              type: 'user',
+            },
+          ]);
+        }
+      }
     } catch (err) {
       if (axios.isCancel()) {
         console.error('Request cancelled');

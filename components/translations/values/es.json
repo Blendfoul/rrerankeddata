@@ -63,6 +63,7 @@
     }
   },
   "profile": {
+    "ranking": "Clasificación",
     "info": "Información",
     "races": "Carreras",
     "name": "Nombre",
@@ -129,7 +130,8 @@
     "losingControl": "Perder el control",
     "trackCollision": "Colisión de pista",
     "vehicleCollision": "Colisión de vehículo",
-    "disconnect": "Desconectar"
+    "disconnect": "Desconectar",
+    "unservedPenalty": "Penalización no atendida"
   },
   "messages": {
     "driverSet": "Conductor predeterminado configurado!",
@@ -140,5 +142,6 @@
     "disclaimer": "Las estadísticas clasificadas de R3E son una aplicación de terceros y no están afiliadas de ninguna manera con el Sector 3.",
     "mvp": "Un agradecimiento especial a DavidsAppStudio por proporcionar las estadísticas detalladas para el historial de sesiones",
     "somethingWrong": "Encontraste algo mal?"
-  }
+  },
+  "noConnection": "No hay conexión disponible!"
 }

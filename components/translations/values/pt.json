@@ -131,7 +131,9 @@
     "losingControl": "Perdeu controlo",
     "trackCollision": "Colisão Pista",
     "vehicleCollision": "Colisão Carro",
-    "disconnect": "Disconecção"
+    "disconnect": "Disconecção",
+    "unservedPenalty": "Penalização não servida",
+    "wrongWay": "Sentido Contrário"
   },
   "messages": {
     "driverSet": "Piloto default definido!",
@@ -142,5 +144,6 @@
     "disclaimer": "As estatísticas classificadas R3E é um aplicativo de terceiros e não está afiliado de forma alguma ao estúdio Setor 3.",
     "mvp": "Um agradecimento especial a DavidsAppStudio por fornecer estatísticas detalhadas para o histórico da sessão.",
     "somethingWrong": "Encontrou algo errado?"
-  }
+  },
+    "noConnection": "Sem conexão disponível!"
 }

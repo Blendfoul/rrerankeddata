@@ -13,6 +13,10 @@ import SplashScreen from 'react-native-splash-screen';
 import RankingNavigator from './components/navigators/RankingNavigator';
 import RaceLink from './RaceLink';
 import {LocalizationContext} from './components/translations/LocalizationContext';
+import {View} from 'react-native';
+import {styles} from './components/utils/Theme';
+import {useNetInfo} from '@react-native-community/netinfo';
+import TextContainer from './components/utils/TextContainer';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,6 +24,7 @@ const App: () => Node = () => {
   const raceStore = useRaceStore();
   const {translations, initializeAppLanguage} = useContext(LocalizationContext);
   const [loading, setLoading] = useState(true);
+  const isConnected = useNetInfo();
 
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -36,7 +41,7 @@ const App: () => Node = () => {
           raceStore.setDefaultDriver(value);
         }
 
-        const response = await axios('/multiplayer-rating/ratings.json', {
+        const response = await axios('multiplayer-rating/ratings.json', {
           cancelToken: source.token,
         });
 
@@ -46,16 +51,15 @@ const App: () => Node = () => {
       } catch (e) {
         console.error('[Ratings] ' + e.message);
       }
-
-      SplashScreen.hide();
     };
 
     getRatings();
+    SplashScreen.hide();
 
     return () => {
       source.cancel();
     };
-  }, [raceStore]);
+  }, [raceStore, isConnected.isConnected]);
 
   useEffect(() => {
     const appStart = async () =>
@@ -64,7 +68,14 @@ const App: () => Node = () => {
     appStart();
   }, [initializeAppLanguage]);
 
-  return loading ? null : (
+  return loading ? null : !isConnected.isConnected ? (
+    <View style={styles.loadingContainer}>
+      <TextContainer
+        title={<AntIcon name={'exclamation'} size={100} color={'#fff'} />}
+        text={translations.noConnection}
+      />
+    </View>
+  ) : (
     <NavigationContainer linking={RaceLink}>
       <Tab.Navigator
         tabBarOptions={{

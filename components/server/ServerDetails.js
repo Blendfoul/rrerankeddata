@@ -48,11 +48,14 @@ const ServerDetails = ({data, navigation, loading, session}) => {
           const user = await axios('/utils/user-info/' + driver, {
             cancelToken: source.token,
           });
+
           data.drivers.push({
             Fullname: user.data.name,
             Username: user.data.username,
+            UserId: user.data.id,
             Rating: 1700,
             Reputation: 70,
+            Country: user.data.country.code.toUpperCase(),
           });
         }
       }

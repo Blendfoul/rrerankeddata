@@ -8,6 +8,7 @@ import AntIcon from 'react-native-vector-icons/AntDesign';
 import Logo from '../../assets/logos/Logo';
 import {Image} from 'react-native-elements';
 import {LocalizationContext} from '../translations/LocalizationContext';
+import {useRaceStore} from '../../store/RaceContext';
 
 const PinContainer = ({data}) => {
   return (
@@ -34,6 +35,7 @@ function renderLogo(track, index) {
 
 const DriverData = ({data}): React.Component => {
   const {translations} = useContext(LocalizationContext);
+  const raceStore = useRaceStore();
 
   return (
     <>
@@ -73,6 +75,16 @@ const DriverData = ({data}): React.Component => {
           title={translations.profile.races}
           text={data.rating.RacesCompleted || 0}
         />
+        <TextContainer
+          title={translations.profile.ranking}
+          text={`#${
+            raceStore.Ratings.findIndex(
+              driver => driver.UserId === data.data.user_id,
+            ) + 1 || 0
+          }`}
+        />
+      </View>
+      <View style={[styles.row, styles.paddingTop15]}>
         <TextContainer
           title={translations.profile.rating}
           icon={<AntIcon name={'solution1'} color={'#fff'} />}

@@ -16,7 +16,8 @@ const AreaPicker: () => Node = () => {
           <Picker
             style={pickerStyle.picker}
             selectedValue={raceStore.Region}
-            onValueChange={raceStore.setRegion}>
+            onValueChange={raceStore.setRegion}
+            dropdownIconColor={'#fff'}>
             {translations.race.regions.map((region, index) => (
               <Picker.Item
                 label={region.name}

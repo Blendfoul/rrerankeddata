@@ -20,7 +20,7 @@ function Lap({data, lap, best}) {
         <Text style={styles.text}>{lap}</Text>
       </DataTable.Cell>
       <DataTable.Cell style={styles.paddingHorizontal10}>
-        <Text style={styles.text}>P{data.Position}</Text>
+        <Text style={styles.text}>P{data.PositionInClass}</Text>
       </DataTable.Cell>
       <DataTable.Cell
         style={[

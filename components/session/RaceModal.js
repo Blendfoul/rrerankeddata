@@ -43,6 +43,36 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
     }
   };
 
+  const renderIncidentCounts = IncidentDetails => {
+    const elements = [];
+
+    for (let index = 0; index < IncidentDetails.length; index = index + 2) {
+      if (index >= IncidentDetails.length) {
+        break;
+      }
+
+      elements.push(
+        <View style={[styles.row, styles.alignCenter, styles.justifyCenter, {width: '100%'}]}>
+          <TextContainer
+            title={incidentType(IncidentDetails[index].Type, translations)}
+            text={IncidentDetails[index].Count + 'x'}
+          />
+          {index + 1 !== IncidentDetails.length ? (
+            <TextContainer
+              title={incidentType(
+                IncidentDetails[index + 1].Type,
+                translations,
+              )}
+              text={IncidentDetails[index + 1].Count + 'x'}
+            />
+          ) : null}
+        </View>,
+      );
+    }
+
+    return elements;
+  };
+
   return (
     <Modal
       animationType="slide"
@@ -228,14 +258,8 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
                 text={data.Incidents}
               />
             </View>
-            <View style={[styles.row, {flexWrap: 'wrap'}]}>
-              {data.IncidentsDetails.map((data, index) => (
-                <TextContainer
-                  key={index}
-                  title={incidentType(data.Type, translations)}
-                  text={data.Count + 'x'}
-                />
-              ))}
+            <View style={[styles.column]}>
+              {renderIncidentCounts(data.IncidentsDetails)}
             </View>
             <RaceLapsTable laps={data?.Laps} best={data.BestSectorsTimes} />
           </View>
@@ -257,6 +281,8 @@ const RaceModal = ({modalVisible, setModalVisible, data}) => {
 export default RaceModal;
 
 export function incidentType(type: String, translations) {
+  console.log(type);
+
   switch (type) {
     case 'InvalidLap':
       return translations.incidents.invalidLap;
@@ -268,5 +294,9 @@ export function incidentType(type: String, translations) {
       return translations.incidents.vehicleCollision;
     case 'Disconnect':
       return translations.incidents.disconnect;
+    case 'NonServedPenalty':
+      return translations.incidents.unservedPenalty;
+    case 'WrongWay':
+      return translations.incidents.wrongWay;
   }
 }

@@ -48,7 +48,6 @@ const ServerNavigator = () => {
               {() => (
                 <Button
                   icon={<AntDesign name="adduser" size={25} color="white" />}
-                  title=""
                   onPress={() => {
                     raceStore.setDefaultDriver(raceStore.SearchDriver);
                     raceStore.setNotification(true);

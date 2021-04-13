@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import {DataTable} from 'react-native-paper';
-import {ActivityIndicator, ScrollView, StyleSheet} from 'react-native';
+import {Caption, DataTable, Paragraph} from 'react-native-paper';
+import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import RaceModal from './RaceModal';
 import {styles} from '../utils/Theme';
 import {Image} from 'react-native-elements';
 import Race from '../race/Race';
+import {useRaceStore} from '../../store/RaceContext';
+import AntIcon from 'react-native-vector-icons/AntDesign';
 
 const componentStyle = StyleSheet.create({
   flex_1: {
@@ -14,12 +16,10 @@ const componentStyle = StyleSheet.create({
   flex_2: {
     flex: 2,
   },
-  rowHeight: {
-    height: 75,
-  },
   image: {
     height: 50,
     width: 50,
+    borderRadius: 5,
   },
   imageCar: {
     width: 62.5,
@@ -30,35 +30,32 @@ const componentStyle = StyleSheet.create({
   },
 });
 
-const RaceTitle = ({icon}) => (
-  <DataTable.Title style={[componentStyle.flex_1, styles.justifyCenter]}>
-    {icon}
-  </DataTable.Title>
-);
-
-const RaceCell = ({data, style}) => (
-  <DataTable.Cell
-    style={[
-      componentStyle.flex_1,
-      styles.justifyCenter,
-      styles.alignCenter,
-      style,
-    ]}>
-    {data}
-  </DataTable.Cell>
-);
-
 const RaceRow = (data: Race, index, setData, setVisible) => {
+  const raceStore = useRaceStore();
+  console.log(data);
+
   return (
     <DataTable.Row
       key={index}
-      style={componentStyle.rowHeight}
+      style={[
+        componentStyle.rowHeight,
+        {
+          backgroundColor:
+            raceStore.DefaultDriver === data.Username ? 'darkgray' : 'gray',
+        },
+      ]}
       onPress={() => {
         setData(data);
         setVisible(true);
       }}>
-      <RaceCell
-        data={
+      <View style={[styles.row, {paddingVertical: 10}]}>
+        <View
+          style={[
+            styles.column,
+            styles.alignCenter,
+            styles.justifyCenter,
+            {flex: 0},
+          ]}>
           <Image
             source={{uri: data.Avatar}}
             style={componentStyle.image}
@@ -66,31 +63,80 @@ const RaceRow = (data: Race, index, setData, setVisible) => {
             PlaceholderContent={<ActivityIndicator color={'#fff'} />}
             placeholderStyle={componentStyle.gray}
           />
-        }
-      />
-      <RaceCell
-        data={
+        </View>
+        <View style={[styles.column, styles.alignCenter, styles.justifyCenter]}>
+          <View
+            style={[
+              styles.row,
+              styles.alignCenter,
+              styles.justifySpaceBetween,
+              styles.paddingHorizontal5,
+            ]}>
+            <Caption style={{width: '100%', textAlign: 'center'}}>
+              {data.FullName}
+            </Caption>
+          </View>
+          <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
+            <AntDesign name={'clockcircleo'} size={15} color={'#fff'} />
+            <Paragraph style={styles.paddingHorizontal5}>
+              {data.BestTime}
+            </Paragraph>
+            <AntDesign name={'user'} size={15} color={'#fff'} />
+            <Paragraph style={styles.paddingHorizontal5}>
+              {data.Laps[data.Laps.length - 1].PositionInClass !== undefined
+                ? data.Laps[data.Laps.length - 1].PositionInClass
+                : data.FinishPosition}
+            </Paragraph>
+          </View>
+          <View style={[styles.row]}>
+            <Paragraph
+              style={[
+                componentStyle.caption,
+                {
+                  backgroundColor:
+                    data.RatingChange >= 0 ? '#24B533' : '#BB2124',
+                  borderTopLeftRadius: 2.5,
+                  borderBottomLeftRadius: 2.5,
+                  paddingVertical: 5,
+                  paddingHorizontal: 10,
+                },
+              ]}>
+              <AntIcon name={'solution1'} size={15} color={'white'} />{' '}
+              {data.RatingChange}
+            </Paragraph>
+            <Paragraph
+              style={[
+                componentStyle.caption,
+                {
+                  backgroundColor:
+                    data.ReputationChange >= 0 ? '#24B533' : '#BB2124',
+                  borderTopRightRadius: 2.5,
+                  borderBottomRightRadius: 2.5,
+                  paddingVertical: 5,
+                  paddingHorizontal: 10,
+                },
+              ]}>
+              <AntIcon name={'exception1'} size={15} color={'white'} />{' '}
+              {data.ReputationChange}
+            </Paragraph>
+          </View>
+        </View>
+        <View
+          style={[
+            styles.column,
+            styles.alignCenter,
+            styles.justifyCenter,
+            {flex: 0},
+          ]}>
           <Image
             source={{uri: data.Livery + '&size=small'}}
-            style={componentStyle.image}
+            style={componentStyle.imageCar}
             resizeMode={'contain'}
             PlaceholderContent={<ActivityIndicator color={'#fff'} />}
             placeholderStyle={componentStyle.gray}
           />
-        }
-      />
-      <RaceCell
-        data={data.ReputationChange}
-        style={{
-          backgroundColor: data.ReputationChange >= 0 ? '#24B533' : '#BB2124',
-        }}
-      />
-      <RaceCell
-        data={data.RatingChange}
-        style={{
-          backgroundColor: data.RatingChange >= 0 ? '#24B533' : '#BB2124',
-        }}
-      />
+        </View>
+      </View>
     </DataTable.Row>
   );
 };
@@ -101,27 +147,13 @@ const RaceTable = ({data}) => {
 
   return (
     <>
-      <ScrollView>
-        <DataTable>
-          <DataTable.Header>
-            <RaceTitle
-              icon={<AntDesign name={'user'} color={'#fff'} size={25} />}
-            />
-            <RaceTitle
-              icon={<AntDesign name={'car'} color={'#fff'} size={25} />}
-            />
-            <RaceTitle
-              icon={<AntDesign name={'exception1'} color={'#fff'} size={25} />}
-            />
-            <RaceTitle
-              icon={<AntDesign name={'solution1'} color={'#fff'} size={25} />}
-            />
-          </DataTable.Header>
+      <DataTable>
+        <ScrollView>
           {data.map((driver, index) =>
             RaceRow(driver, index, setData, setVisible),
           )}
-        </DataTable>
-      </ScrollView>
+        </ScrollView>
+      </DataTable>
       {modalData === null ? null : (
         <RaceModal
           modalVisible={visible}

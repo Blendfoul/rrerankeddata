@@ -12,12 +12,16 @@ import type {Driver} from '../../interfaces/Driver';
 import {useRaceStore} from '../../store/RaceContext';
 import {Caption, DataTable, Paragraph} from 'react-native-paper';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {Image} from 'react-native-elements';
+import {Button, Image} from 'react-native-elements';
+import DriverDetailsScreen from '../screens/DriverDetailsScreen';
+import {Observer} from 'mobx-react-lite';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Stack = createStackNavigator();
 
 const RankingNavigator = ({route, navigation}) => {
   const {translations} = useContext(LocalizationContext);
+  const raceStore = useRaceStore();
 
   return (
     <Stack.Navigator>
@@ -26,6 +30,32 @@ const RankingNavigator = ({route, navigation}) => {
         component={RankingScreen}
         options={{
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name={translations.search.title.details}
+        component={DriverDetailsScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: '#2f2f2f',
+          },
+          headerTintColor: '#fff',
+          headerRight: props => (
+            <Observer>
+              {() => (
+                <Button
+                  icon={<AntDesign name="adduser" size={25} color="white" />}
+                  title=""
+                  onPress={() => {
+                    raceStore.setDefaultDriver(raceStore.SearchDriver);
+                    raceStore.setNotification(true);
+                  }}
+                  style={{marginHorizontal: 10}}
+                  type={'clear'}
+                />
+              )}
+            </Observer>
+          ),
         }}
       />
     </Stack.Navigator>

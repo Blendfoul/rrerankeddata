@@ -23,13 +23,13 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <>
-      <View style={styles.column}>
+      <View style={[styles.column, {zIndex: 0}]}>
         <StatusBar />
-        <View style={[styles.row, {flex: 0}]}>
-          <View style={{flex: 1.5}}>
+        <View style={[styles.row, {flex: 0, height: 53.5}]}>
+          <View style={{flex: 1}}>
             <LanguagePicker />
           </View>
-          <View style={{flex: 2.5}}>
+          <View style={{flex: 3}}>
             <AreaPicker />
           </View>
           <View
@@ -94,9 +94,10 @@ const HomeScreen = ({navigation}) => {
                     'https://evosupport.raceroom.com/index.php/apps/files_sharing/publicpreview/tne8CWb45oQmcTx?file=/schedule%20post.png&x=1920&y=1080&a=true',
                 }}
                 resizeMode={'contain'}
-                loadingIndicatorSource={
+                PlaceholderContent={
                   <ActivityIndicator size={'large'} color={'#fff'} />
                 }
+                placeholderStyle={styles.backgroundColor}
                 style={componentStyle.schedule}
               />
             </ScrollView>
