@@ -1,39 +1,39 @@
-import React, {useContext, useEffect, useState} from 'react';
-import type {Server} from '../../interfaces/Server';
+import React from 'react';
 import ServerDetails from './ServerDetails';
-import {LocalizationContext} from '../translations/LocalizationContext';
+import {View} from 'react-native';
+import {styles} from '../utils/Theme';
+import TrackImage from '../utils/TrackImage';
+import {AdMobBanner} from 'react-native-admob';
+import {Observer} from 'mobx-react-lite';
+import {useRaceStore} from '../../store/RaceContext';
 
-const RaceServer = props => {
-  const [session, setSession] = useState('');
-  const sessionData: Server.Server = props.session;
-  const {translations} = useContext(LocalizationContext);
+const RaceServer = ({data, loading, navigation}) => {
+  const raceStore = useRaceStore();
 
-  useEffect(() => {
-    switch (sessionData.CurrentSession) {
-      case 0:
-        setSession(translations.session.practice);
-        break;
-      case 256:
-        setSession(translations.session.qualification);
-        break;
-      case 768:
-        setSession(translations.session.race);
-        break;
-    }
-  }, [
-    sessionData.CurrentSession,
-    translations.session.practice,
-    translations.session.qualification,
-    translations.session.race,
-  ]);
+  console.log(data);
+
+  const value = raceStore.RegionRaces.find(
+    server => server.Server.Settings.ServerName === data,
+  ).Server;
 
   return (
-    <ServerDetails
-      data={sessionData}
-      navigation={props.navigation}
-      loading={props.loading}
-      session={session}
-    />
+    <Observer>
+      {() => (
+        <View style={[styles.column, styles.backgroundColor]}>
+          <TrackImage trackId={value.Settings.TrackLayoutId[0]} />
+          <ServerDetails
+            data={value}
+            navigation={navigation}
+            loading={loading}
+          />
+          <AdMobBanner
+            adSize={'smartBannerPortrait'}
+            adUnitID="ca-app-pub-3693871231832720/4221863534" //"ca-app-pub-3940256099942544/6300978111"
+            onAdFailedToLoad={error => console.error(error)}
+          />
+        </View>
+      )}
+    </Observer>
   );
 };
 

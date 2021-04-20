@@ -12,11 +12,11 @@ import {
 import AreaPicker from '../race/AreaPicker';
 import RaceContainer from '../race/RaceContainer';
 import {styles} from '../utils/Theme';
-import LanguagePicker from '../race/LanguagePicker';
 import {AdMobBanner} from 'react-native-admob';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Button, Image} from 'react-native-elements';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const HomeScreen = ({navigation}) => {
   const [visible, setVisible] = useState(false);
@@ -25,9 +25,21 @@ const HomeScreen = ({navigation}) => {
     <>
       <View style={[styles.column, {zIndex: 0}]}>
         <StatusBar />
-        <View style={[styles.row, {flex: 0, height: 53.5}]}>
-          <View style={{flex: 1}}>
-            <LanguagePicker />
+        <View style={[styles.row, {flex: 0}]}>
+          <View
+            style={[
+              styles.alignCenter,
+              styles.justifyCenter,
+              styles.backgroundColor,
+              {flex: 0},
+            ]}>
+            <Button
+              icon={<MaterialIcons name="menu" size={25} color="white" />}
+              title=""
+              onPress={() => navigation.toggleDrawer()}
+              style={{marginHorizontal: 10}}
+              type={'clear'}
+            />
           </View>
           <View style={{flex: 3}}>
             <AreaPicker />
@@ -92,6 +104,7 @@ const HomeScreen = ({navigation}) => {
                 source={{
                   uri:
                     'https://evosupport.raceroom.com/index.php/apps/files_sharing/publicpreview/tne8CWb45oQmcTx?file=/schedule%20post.png&x=1920&y=1080&a=true',
+                  cache: 'only-if-cached',
                 }}
                 resizeMode={'contain'}
                 PlaceholderContent={

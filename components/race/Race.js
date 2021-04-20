@@ -7,7 +7,6 @@ import {
   View,
 } from 'react-native';
 import CarClass from '../utils/CarClass';
-import type {Server} from '../../interfaces/Server';
 import {tracks} from '../../assets/r3e-data.json';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import CountDown from 'react-native-countdown-component';
@@ -23,16 +22,15 @@ interface Layout {
   Track: Number;
 }
 
-const Race: props => Node = props => {
-  const serverData: Server.Server = props.data.item.Server;
+const Race = ({data, navigation, index}) => {
   const {translations} = useContext(LocalizationContext);
   const [image, setImage] = useState(0);
   const [session, setSession] = useState(null);
 
   const onRacePress = () => {
-    props.navigation.navigate(
+    navigation.navigate(
       translations.navigation.raceDetails,
-      props.data.item,
+      data.Settings.ServerName,
     );
   };
 
@@ -43,7 +41,7 @@ const Race: props => Node = props => {
       if (tracks.hasOwnProperty(track)) {
         const {layouts} = tracks[track];
         trackData = layouts.find(
-          (value: Layout) => value.Id === serverData.Settings.TrackLayoutId[0],
+          (value: Layout) => value.Id === data.Settings.TrackLayoutId[0],
         );
         if (trackData !== undefined) {
           break;
@@ -53,7 +51,7 @@ const Race: props => Node = props => {
 
     setImage(trackData);
 
-    switch (+serverData.CurrentSession) {
+    switch (+data.CurrentSession) {
       case 0:
         setSession('P');
         break;
@@ -64,7 +62,7 @@ const Race: props => Node = props => {
         setSession('R');
         break;
     }
-  }, [serverData.CurrentSession, serverData.Settings.TrackLayoutId]);
+  }, [data.CurrentSession, data.Settings.TrackLayoutId]);
 
   return (
     <Pressable onPress={onRacePress} style={componentStyle.cardMargin}>
@@ -90,9 +88,9 @@ const Race: props => Node = props => {
               styles.paddingHorizontal10,
               {flex: 3},
             ]}>
-            <Text style={styles.text}>{serverData.Settings.ServerName}</Text>
+            <Text style={styles.text}>{data.Settings.ServerName}</Text>
             <CarClass
-              liveries={serverData.Settings.LiveryId}
+              liveries={data.Settings.LiveryId}
               size={25}
               imgSize={'thumb'}
             />
@@ -119,7 +117,7 @@ const Race: props => Node = props => {
           <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
             <AntDesign name={'team'} color={'#fff'} size={25} />
             <Text style={[styles.text, styles.paddingHorizontal5]}>
-              {serverData.PlayersOnServer}
+              {data.PlayersOnServer}
             </Text>
           </View>
           <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
@@ -137,7 +135,7 @@ const Race: props => Node = props => {
             ]}>
             <AntDesign name={'hourglass'} color={'#fff'} size={25} />
             <CountDown
-              until={serverData.TimeLeft / 1000}
+              until={data.TimeLeft / 1000}
               timeToShow={['H', 'M', 'S']}
               timeLabels={{m: null, s: null}}
               size={10}

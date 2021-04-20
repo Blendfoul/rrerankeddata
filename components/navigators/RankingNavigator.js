@@ -1,12 +1,6 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React, {useCallback, useContext, useEffect, useState} from 'react';
-import {
-  ActivityIndicator,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {styles} from '../utils/Theme';
 import type {Driver} from '../../interfaces/Driver';
 import {useRaceStore} from '../../store/RaceContext';
@@ -16,6 +10,8 @@ import {Button, Image} from 'react-native-elements';
 import DriverDetailsScreen from '../screens/DriverDetailsScreen';
 import {Observer} from 'mobx-react-lite';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import LoadingActivity from '../utils/LoadingActivity';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const Stack = createStackNavigator();
 
@@ -29,7 +25,18 @@ const RankingNavigator = ({route, navigation}) => {
         name={translations.navigation.ranking}
         component={RankingScreen}
         options={{
-          headerShown: false,
+          headerStyle: {
+            backgroundColor: '#2f2f2f',
+          },
+          headerTintColor: '#fff',
+          headerLeft: props => (
+            <Button
+              icon={<MaterialIcons name="menu" size={25} color="white" />}
+              title=""
+              onPress={() => navigation.toggleDrawer()}
+              type={'clear'}
+            />
+          ),
         }}
       />
       <Stack.Screen
@@ -102,9 +109,7 @@ const RankingScreen = ({route, navigation}) => {
   return (
     <DataTable style={[styles.column, {backgroundColor: 'gray'}]}>
       {loading ? (
-        <View style={styles.loadingContainer}>
-          <ActivityIndicator size={'large'} color={'#fff'} />
-        </View>
+        <LoadingActivity />
       ) : (
         <ScrollView>
           {data.map((item, index) => (
@@ -181,12 +186,3 @@ const RankingItem = ({driver, index, page, navigation, translations}) => {
 };
 
 const Item = React.memo(RankingItem);
-
-const componentStyle = StyleSheet.create({
-  row: {
-    paddingVertical: 5,
-  },
-  position: {
-    textAlign: 'right',
-  },
-});

@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {TabBar, TabView} from 'react-native-tab-view';
 import {styles} from '../utils/Theme';
-import {Dimensions, View} from 'react-native';
+import {Dimensions} from 'react-native';
 import DriverDetails from './DriverDetails';
 import DriverHistory from './DriverHistory';
 import {LocalizationContext} from '../translations/LocalizationContext';

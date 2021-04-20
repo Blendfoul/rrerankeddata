@@ -25,10 +25,12 @@ const TextContainer = props => {
 
   return (
     <View style={style.container}>
-      <Text style={[style.title, props.style]}>
+      <Text style={[style.title, props.style]} allowFontScaling={false}>
         {props.icon} {props.title}
       </Text>
-      <Text style={style.text}>{props.text}</Text>
+      <Text style={style.text} allowFontScaling={false}>
+        {props.text}
+      </Text>
     </View>
   );
 };

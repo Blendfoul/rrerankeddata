@@ -12,9 +12,10 @@ import axios from 'axios';
 import {useRaceStore} from '../../store/RaceContext';
 import {styles} from '../utils/Theme';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {Image} from 'react-native-elements';
+import {Button, Image} from 'react-native-elements';
 import TextContainer from '../utils/TextContainer';
 import {AxiosRequestConfig} from 'axios';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const UserItem = ({data, navigation, setText, translations}) => {
   const raceStore = useRaceStore();
@@ -119,12 +120,27 @@ const SearchScreen = props => {
         styles.justifyCenter,
         styles.backgroundColor,
       ]}>
-      <TextInput
-        style={componentStyle.input}
-        onChangeText={handleChange}
-        value={text}
-        placeholder={translations.search.placeholder}
-      />
+      <View
+        style={[
+          styles.row,
+          styles.alignCenter,
+          styles.justifyCenter,
+          {flex: 0},
+        ]}>
+        <Button
+          icon={<MaterialIcons name="menu" size={25} color="white" />}
+          title=""
+          onPress={() => props.navigation.toggleDrawer()}
+          type={'clear'}
+        />
+        <TextInput
+          style={componentStyle.input}
+          onChangeText={handleChange}
+          allowFontScaling={false}
+          value={text}
+          placeholder={translations.search.placeholder}
+        />
+      </View>
       <View style={componentStyle.buttonWidth}>
         <FlatList
           data={users}
@@ -147,10 +163,11 @@ const SearchScreen = props => {
 
 const componentStyle = StyleSheet.create({
   input: {
-    width: '90%',
+    width: '85%',
     textAlign: 'center',
     height: 50,
-    margin: 12,
+    marginVertical: 12,
+    marginHorizontal: 6,
     backgroundColor: 'gray',
     borderRadius: 2,
     fontWeight: 'bold',

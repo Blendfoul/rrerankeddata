@@ -1,8 +1,7 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {useRaceStore} from './store/RaceContext';
 import {NavigationContainer} from '@react-navigation/native';
 import axios from 'axios';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import ServerNavigator from './components/navigators/ServerNavigator';
 import SearchNavigator from './components/navigators/SearchNavigator';
@@ -13,12 +12,19 @@ import SplashScreen from 'react-native-splash-screen';
 import RankingNavigator from './components/navigators/RankingNavigator';
 import RaceLink from './RaceLink';
 import {LocalizationContext} from './components/translations/LocalizationContext';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 import {styles} from './components/utils/Theme';
 import {useNetInfo} from '@react-native-community/netinfo';
 import TextContainer from './components/utils/TextContainer';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import DrawerContent from './components/drawer/DrawerContent';
+import FriendsNavigator from './components/navigators/FriendsNavigator';
+import SettingsComponent from './components/navigators/SettingsComponent';
 
-const Tab = createBottomTabNavigator();
+const drawerNavigator = createDrawerNavigator();
+
+Text.defaultProps = Text.defaultProps || {};
+Text.defaultProps.allowFontScaling = false;
 
 const App: () => Node = () => {
   const raceStore = useRaceStore();
@@ -26,40 +32,32 @@ const App: () => Node = () => {
   const [loading, setLoading] = useState(true);
   const isConnected = useNetInfo();
 
-  useEffect(() => {
+  const getRatings = useCallback(async () => {
     const source = axios.CancelToken.source();
+    try {
+      const value = await AsyncStorage.getItem('defaultDriver');
+      const region = await AsyncStorage.getItem('selectedRegion');
 
-    const getRatings = async () => {
-      try {
-        const value = await AsyncStorage.getItem('defaultDriver');
-        const region = await AsyncStorage.getItem('selectedRegion');
-
-        if (region !== null) {
-          raceStore.setRegion(region);
-        }
-        if (value !== null) {
-          raceStore.setDefaultDriver(value);
-        }
-
-        const response = await axios('multiplayer-rating/ratings.json', {
-          cancelToken: source.token,
-        });
-
-        if (response.status === 200) {
-          raceStore.setRatings(response.data);
-        }
-      } catch (e) {
-        console.error('[Ratings] ' + e.message);
+      if (region !== null) {
+        raceStore.setRegion(region);
       }
-    };
-
-    getRatings();
-    SplashScreen.hide();
+      if (value !== null) {
+        console.log(value);
+        raceStore.setDefaultDriver(value);
+      }
+    } catch (e) {
+      console.error('[Ratings] ' + e.message);
+    }
 
     return () => {
       source.cancel();
     };
-  }, [raceStore, isConnected.isConnected]);
+  }, [raceStore]);
+
+  useEffect(() => {
+    getRatings();
+    SplashScreen.hide();
+  }, [raceStore, isConnected.isConnected, getRatings]);
 
   useEffect(() => {
     const appStart = async () =>
@@ -77,65 +75,37 @@ const App: () => Node = () => {
     </View>
   ) : (
     <NavigationContainer linking={RaceLink}>
-      <Tab.Navigator
-        tabBarOptions={{
-          activeTintColor: 'white',
-          inactiveTintColor: 'tomato',
-          activeBackgroundColor: '#6f6f6f',
-          inactiveBackgroundColor: '#2f2f2f',
-        }}
-        screenOptions={({route}) => ({
-          tabBarIcon: ({focused}) => {
-            let iconName;
-
-            switch (route.name) {
-              case translations.navigation.server:
-                iconName = 'car';
-                break;
-              case translations.navigation.user:
-                iconName = 'user';
-                break;
-              case translations.navigation.search:
-                iconName = 'search1';
-                break;
-              case translations.navigation.ranking:
-                iconName = 'solution1';
-                break;
-              case translations.navigation.about:
-                iconName = 'team';
-                break;
-            }
-
-            return (
-              <AntIcon
-                name={iconName}
-                color={focused ? 'white' : 'gray'}
-                size={25}
-              />
-            );
-          },
-        })}>
-        <Tab.Screen
+      <drawerNavigator.Navigator
+        drawerContent={props => <DrawerContent {...props} />}>
+        <drawerNavigator.Screen
           name={translations.navigation.server}
           component={ServerNavigator}
         />
-        <Tab.Screen
+        <drawerNavigator.Screen
           name={translations.navigation.user}
           component={UserNavigator}
         />
-        <Tab.Screen
+        <drawerNavigator.Screen
           name={translations.navigation.search}
           component={SearchNavigator}
         />
-        <Tab.Screen
+        <drawerNavigator.Screen
           name={translations.navigation.ranking}
           component={RankingNavigator}
         />
-        <Tab.Screen
+        <drawerNavigator.Screen
+          name={translations.navigation.friends}
+          component={FriendsNavigator}
+        />
+        <drawerNavigator.Screen
+          name={translations.navigation.settings}
+          component={SettingsComponent}
+        />
+        <drawerNavigator.Screen
           name={translations.navigation.about}
           component={AboutComponent}
         />
-      </Tab.Navigator>
+      </drawerNavigator.Navigator>
     </NavigationContainer>
   );
 };

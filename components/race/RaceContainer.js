@@ -3,91 +3,84 @@ import {RefreshControl, FlatList} from 'react-native';
 import {useRaceStore} from '../../store/RaceContext';
 import axios, {CancelTokenSource} from 'axios';
 import Race from './Race';
-import type {Server} from '../../interfaces/Server';
-import {autorun} from 'mobx';
 import {Observer} from 'mobx-react-lite';
+import {reaction} from 'mobx';
 
-const RaceContainer: props => Node = props => {
+const RaceContainer: props => Node = ({navigation}) => {
   const raceStore = useRaceStore();
-  const [region, setRegion] = useState([]);
+  const [refresh, setRefresh] = useState(true);
 
-  useEffect(() => {
+  const getRaces = useCallback(async () => {
     const source: CancelTokenSource = axios.CancelToken.source();
-
-    const getRaces = async () => {
-      try {
-        const response = await axios('/multiplayer-rating/servers/', {
-          cancelToken: source.token,
-        });
-
-        if (response.status === 200) {
-          raceStore.setRaces(response.data.result);
-          raceStore.setRefresh(false);
-        }
-      } catch (e) {
-        console.error('[Race Container] ' + e.message);
-      }
-    };
-
-    getRaces();
-
-    return () => {
-      source.cancel();
-    };
-  }, [raceStore]);
-
-  useEffect(() => {
-    autorun(() =>
-      setRegion(
-        raceStore.Races.filter((server: Server) =>
-          server.Server.Settings.ServerName.includes(raceStore.Region),
-        ).sort((a, b) => b.Server.PlayersOnServer > a.Server.PlayersOnServer),
-      ),
-    );
-  }, [raceStore, raceStore.Region]);
-
-  const onRefresh = useCallback(async () => {
-    raceStore.setRefresh(true);
-
-    const source: CancelTokenSource = axios.CancelToken.source();
+    setRefresh(true);
 
     try {
-      const response = await axios('multiplayer-rating/servers/', {
+      const response = await axios('/multiplayer-rating/servers/', {
         cancelToken: source.token,
       });
 
-      const rating = await axios('multiplayer-rating/ratings.json', {
+      const ratings = await axios('multiplayer-rating/ratings.json', {
         cancelToken: source.token,
       });
 
-      if (response.status === 200 && rating.status === 200) {
-        raceStore.setRatings(rating.data);
+      if (response.status === 200) {
         raceStore.setRaces(response.data.result);
-        raceStore.setRefresh(false);
+        raceStore.setRatings(ratings.data);
+        const sorted = response.data.result
+          .filter(({Server}) =>
+            Server.Settings.ServerName.includes(raceStore.Region),
+          )
+          .sort((a, b) => b.Server.PlayersOnServer > a.Server.PlayersOnServer);
+
+        raceStore.setRegionRaces(sorted);
+        setRefresh(false);
       }
     } catch (e) {
-      console.error(e);
+      console.error('[Race Container] ' + e.message);
     }
+
+    setRefresh(false);
 
     return () => {
       source.cancel();
     };
   }, [raceStore]);
+
+  reaction(
+    () => raceStore.Region,
+    () => {
+      raceStore.setRegionRaces([]);
+
+      const races = raceStore.Races;
+
+      const sorted = races
+        .filter(({Server}) =>
+          Server.Settings.ServerName.includes(raceStore.Region),
+        )
+        .sort((a, b) => b.Server.PlayersOnServer > a.Server.PlayersOnServer);
+
+      raceStore.setRegionRaces(sorted);
+    },
+  );
+
+  useEffect(() => getRaces(), [getRaces]);
 
   return (
     <Observer>
       {() => (
         <FlatList
-          data={region}
-          renderItem={server => (
-            <Race data={server} navigation={props.navigation} />
-          )}
-          keyExtractor={(server: Server) => server.Server.Settings.ServerName}
-          refreshControl={
-            <RefreshControl
-              refreshing={raceStore.Refresh}
-              onRefresh={onRefresh}
+          data={raceStore.RegionRaces}
+          renderItem={({item, index}) => (
+            <Race
+              data={item.Server}
+              navigation={navigation}
+              index={index}
+              key={index}
             />
+          )}
+          keyExtractor={({item}, index) => index}
+          refreshControl={
+            <RefreshControl refreshing={refresh} onRefresh={getRaces} />
           }
         />
       )}

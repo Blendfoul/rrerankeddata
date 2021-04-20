@@ -1,19 +1,67 @@
-import {ScrollView, View} from 'react-native';
+import {RefreshControl, ScrollView, View} from 'react-native';
 import {styles} from '../utils/Theme';
 import CarClass from '../utils/CarClass';
 import TextContainer from '../utils/TextContainer';
-import React, {useContext} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import CountDown from 'react-native-countdown-component';
 import {layouts} from '../../assets/r3e-data.json';
 import {LocalizationContext} from '../translations/LocalizationContext';
+import {useRaceStore} from '../../store/RaceContext';
+import axios from 'axios';
 
 const padding = {paddingTop: 15};
 
-const RaceDetailsData = ({data, details, session}) => {
+const RaceDetailsData = ({data, details}) => {
   const {translations} = useContext(LocalizationContext);
+  const [session, setSession] = useState('');
+  const [refresh, setRefresh] = useState(false);
+  const raceStore = useRaceStore();
+
+  const refreshControl = useCallback(async () => {
+    const source = axios.CancelToken.source();
+
+    try {
+      setRefresh(true);
+
+      const response = await axios('multiplayer-rating/servers/', {
+        token: source.token,
+      });
+
+      raceStore.setRaces(response.data.result);
+
+      setRefresh(false);
+    } catch (e) {
+      console.error(e);
+    }
+
+    return () => source.cancel();
+  }, [raceStore, refresh]);
+
+  useEffect(() => {
+    switch (data.CurrentSession) {
+      case 0:
+        setSession(translations.session.practice);
+        break;
+      case 256:
+        setSession(translations.session.qualification);
+        break;
+      case 768:
+        setSession(translations.session.race);
+        break;
+    }
+  }, [
+    data.CurrentSession,
+    translations.session.practice,
+    translations.session.qualification,
+    translations.session.race,
+  ]);
 
   return (
-    <ScrollView style={[styles.column, styles.backgroundColor]}>
+    <ScrollView
+      style={[styles.column, styles.backgroundColor]}
+      refreshControl={
+        <RefreshControl refreshing={refresh} onRefresh={refreshControl} />
+      }>
       <View style={[styles.row, styles.alignCenter, padding]}>
         <CarClass
           liveries={data.Settings.LiveryId}
@@ -40,6 +88,7 @@ const RaceDetailsData = ({data, details, session}) => {
               timeToShow={['H', 'M', 'S']}
               timeLabels={{m: null, s: null}}
               size={15}
+              onFinish={refreshControl}
             />
           }
         />
@@ -82,7 +131,7 @@ const RaceDetailsData = ({data, details, session}) => {
           text={'Slow Down'}
         />
       </View>
-      <View style={[styles.row, padding]}>
+      <View style={[styles.row, padding, {paddingBottom: 25}]}>
         <TextContainer
           title={translations.raceDetails.players}
           text={data.PlayersOnServer}

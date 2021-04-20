@@ -24,6 +24,7 @@ function DriverImage({data}): React.Component {
             ? require('../../assets/r3e.png')
             : {
                 uri: data.header,
+                cache: 'only-if-cached',
               }
         }>
         <Image
@@ -33,6 +34,7 @@ function DriverImage({data}): React.Component {
               ? require('../../assets/r3e.png')
               : {
                   uri: data.avatar,
+                  cache: 'only-if-cached',
                 }
           }
         />

@@ -7,10 +7,10 @@ export interface RaceStore {
   Username: String;
   Region: String;
   Races: Server[];
+  RegionRaces: Server[];
   Ratings: Driver[];
   SearchDriver: String;
   DefaultDriver: String;
-  Refresh: Boolean;
   notifyDefaultDriver: Boolean;
   driver: {avatar: String, header: String};
   language: Language;
@@ -20,13 +20,13 @@ export interface RaceStore {
 
   setDefaultDriver(driver: String): (region: String) => void;
 
-  setRefresh(isRefreshing: boolean): (isRefreshing: boolean) => void;
-
   setRatings(ratings: Driver[]): (ratings: Driver[]) => void;
 
   setRegion(region: String): (region: String) => void;
 
   setRaces(races: Server[]): (races: Server[]) => void;
+
+  setRegionRaces(races: Server[]): (races: Server[]) => void;
 
   setUsername(name: string): (name: String) => void;
 
@@ -44,9 +44,9 @@ export const createRaceStore = (): RaceStore => {
   return {
     Username: '',
     Races: [],
+    RegionRaces: [],
     Region: '',
     Ratings: [],
-    Refresh: true,
     SearchDriver: '',
     DefaultDriver: '',
     notifyDefaultDriver: false,
@@ -61,12 +61,6 @@ export const createRaceStore = (): RaceStore => {
       this.DefaultDriver = driver;
       storeData(driver);
     },
-    setRefresh(isRefreshing: boolean) {
-      this.Refresh = isRefreshing;
-      if (isRefreshing) {
-        this.Races = [];
-      }
-    },
     setRatings(ratings: Driver[]) {
       this.Ratings = ratings;
     },
@@ -76,6 +70,9 @@ export const createRaceStore = (): RaceStore => {
     },
     setRaces(races: Server[]) {
       this.Races = races;
+    },
+    setRegionRaces(races: Server[]) {
+      this.RegionRaces = races;
     },
     setUsername(name: string) {
       this.Username = name;

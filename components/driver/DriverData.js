@@ -113,7 +113,10 @@ const DriverData = ({data}): React.Component => {
       </View>
       <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
         <Image
-          source={{uri: data.data?.overview.most_used_cars[0]?.image?.scaled}}
+          source={{
+            uri: data.data?.overview.most_used_cars[0]?.image?.scaled,
+            cache: 'only-if-cached',
+          }}
           style={styles.liveryImage}
         />
       </View>

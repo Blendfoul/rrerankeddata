@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, ScrollView, View} from 'react-native';
+import {ScrollView} from 'react-native';
 import axios from 'axios';
 import {styles} from '../utils/Theme';
 import DriverData from './DriverData';
 import {useRaceStore} from '../../store/RaceContext';
 import DriverImage from './DriverImage';
 import {useIsFocused} from '@react-navigation/core';
+import LoadingActivity from '../utils/LoadingActivity';
 
 const DriverDetails = ({username}: {username: String}): React.Component => {
   const [loading, setLoading] = useState(true);
@@ -78,9 +79,7 @@ const DriverDetails = ({username}: {username: String}): React.Component => {
   }, [data, isFocused, raceStore.DefaultDriver]);
 
   return loading ? (
-    <View style={styles.loadingContainer}>
-      <ActivityIndicator size={'large'} color={'#fff'} />
-    </View>
+    <LoadingActivity />
   ) : (
     <>
       <DriverImage data={data.data} />

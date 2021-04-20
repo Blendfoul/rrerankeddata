@@ -5,6 +5,8 @@
     "search": "Search",
     "ranking": "Ranking",
     "about": "About",
+    "friends": "Friends",
+    "settings": "Settings",
     "raceDetails": "Race Details",
     "sessionDetails": "Session Details",
     "driverDetails": "Driver Details"
@@ -146,5 +148,7 @@
     "mvp": "A special thanks to DavidsAppStudio for providing the in-depth statistics for the session history.",
     "somethingWrong": "Found something wrong?"
   },
-  "noConnection": "No connection available!"
+  "noConnection": "No connection available!",
+  "noDrivers": "No drivers on Server!",
+  "exitApp": "Exit"
 }

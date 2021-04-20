@@ -16,7 +16,7 @@ const renderTabBar = props => (
   />
 );
 
-const ServerDetails = ({data, navigation, loading, session}) => {
+const ServerDetails = ({data, navigation, loading}) => {
   const raceStore = useRaceStore();
   const {translations} = useContext(LocalizationContext);
 
@@ -53,7 +53,7 @@ const ServerDetails = ({data, navigation, loading, session}) => {
             Fullname: user.data.name,
             Username: user.data.username,
             UserId: user.data.id,
-            Rating: 1700,
+            Rating: 1500,
             Reputation: 70,
             Country: user.data.country.code.toUpperCase(),
           });
@@ -90,9 +90,7 @@ const ServerDetails = ({data, navigation, loading, session}) => {
   const renderScene = ({route}) => {
     switch (route.key) {
       case 'data':
-        return (
-          <RaceDetailsData data={data} details={details} session={session} />
-        );
+        return <RaceDetailsData data={data} details={details} />;
       case 'drivers':
         return (
           <DriverList

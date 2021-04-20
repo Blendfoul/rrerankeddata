@@ -1,99 +1,150 @@
-import React, {useContext} from 'react';
-import {Caption, DataTable, Paragraph} from 'react-native-paper';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import type {Driver} from '../../interfaces/Driver';
+import React, {useCallback, useContext, useState} from 'react';
+import {Caption, Paragraph} from 'react-native-paper';
+import {
+  FlatList,
+  RefreshControl,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {styles} from '../utils/Theme';
 import {Image} from 'react-native-elements';
 import {useRaceStore} from '../../store/RaceContext';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import Flag from 'react-native-flags';
+import axios from 'axios';
+import TextContainer from '../utils/TextContainer';
 
-const DriverRow = ({onPress, driver}) => {
+const DriverRow = ({driver, navigation}) => {
   const {translations} = useContext(LocalizationContext);
   const raceStore = useRaceStore();
 
+  const driverPress = () => {
+    raceStore.setSearchDriver(driver.Username);
+    navigation.navigate(translations.navigation.driverDetails, driver.Username);
+  };
+
+  const rowStyle = StyleSheet.create({
+    opacity: {
+      paddingVertical: 5,
+      flex: 1,
+      flexDirection: 'row',
+      backgroundColor:
+        raceStore.DefaultDriver === driver.Username ? 'darkgray' : 'gray',
+      borderBottomWidth: 0.5,
+      borderBottomColor: 'white',
+      borderTopWidth: 0.5,
+      borderTopColor: 'white',
+    },
+    logo: {
+      width: 40,
+      height: 40,
+      borderRadius: 5,
+    },
+    container: {
+      flex: 0,
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      marginHorizontal: 5,
+    },
+    data: {width: '100%', alignItems: 'center', flexDirection: 'row', flex: 1},
+    dataContainer: {
+      flex: 0.75,
+      alignItems: 'center',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+    },
+    paddingLeft: {
+      paddingLeft: 5,
+      width: '100%',
+    },
+  });
+
   return (
-    <DataTable.Row
-      onPress={onPress}
-      style={{
-        paddingVertical: 5,
-        backgroundColor:
-          raceStore.DefaultDriver === driver.Username ? 'darkgray' : 'gray',
-      }}>
-      <View
-        style={[
-          styles.column,
-          styles.alignCenter,
-          styles.justifyCenter,
-          {flex: 0, paddingRight: 10},
-        ]}>
+    <TouchableOpacity onPress={driverPress} style={rowStyle.opacity}>
+      <View style={rowStyle.container}>
         <Image
-          style={{width: 40, height: 40, borderRadius: 5}}
+          style={rowStyle.logo}
           source={{
             uri: 'https://game.raceroom.com/game/user_avatar/' + driver.UserId,
+            cache: 'only-if-cached',
           }}
         />
       </View>
-      <View style={styles.column}>
+      <View style={[styles.column, {flex: 2}]}>
         <Paragraph>{driver.Fullname}</Paragraph>
-        <View style={[styles.row, styles.alignCenter]}>
+        <View style={rowStyle.data}>
           <Flag size={24} code={driver.Country} type={'flat'} />
-          <Caption style={{paddingLeft: 5}}>
+          <Caption style={rowStyle.paddingLeft}>
             {driver.Team || translations.profile.privateer}
           </Caption>
         </View>
       </View>
-      <View
-        style={[
-          styles.column,
-          styles.alignCenter,
-          styles.justifyCenter,
-          {
-            flex: 0.5,
-            justifyContent: 'flex-start',
-          },
-        ]}>
-        <View style={[styles.row, styles.alignCenter, {width: '100%'}]}>
+      <View style={rowStyle.dataContainer}>
+        <View style={rowStyle.data}>
           <AntIcon size={15} name={'solution1'} color={'#fff'} />
-          <Paragraph style={[styles.paddingHorizontal5]}>
+          <Paragraph style={styles.paddingHorizontal5}>
             {driver.Rating}
           </Paragraph>
         </View>
-        <View style={[styles.row, styles.alignCenter, {width: '100%'}]}>
+        <View style={rowStyle.data}>
           <AntIcon size={15} name={'exception1'} color={'#fff'} />
           <Paragraph style={styles.paddingHorizontal5}>
             {driver.Reputation}
           </Paragraph>
         </View>
       </View>
-    </DataTable.Row>
+    </TouchableOpacity>
   );
 };
 
-const DriverList = props => {
-  const {translations} = useContext(LocalizationContext);
+const DriverList = ({drivers, navigation}) => {
+  const [refresh, setRefresh] = useState(false);
   const raceStore = useRaceStore();
+  const {translations} = useContext(LocalizationContext);
 
-  const onDriverPress = (userId: Number) => {
-    props.navigation.navigate(translations.navigation.driverDetails, userId);
-  };
+  const refreshControl = useCallback(async () => {
+    const source = axios.CancelToken.source();
 
-  return (
-    <DataTable style={componentStyle.container}>
-      <ScrollView>
-        {props.drivers.map((driver: Driver, index: Number) => (
-          <DriverRow
-            key={index}
-            onPress={() => {
-              raceStore.setSearchDriver(driver.Username);
-              onDriverPress(driver.Username);
-            }}
-            driver={driver}
-          />
-        ))}
-      </ScrollView>
-    </DataTable>
+    try {
+      setRefresh(true);
+
+      const response = await axios('multiplayer-rating/servers/', {
+        token: source.token,
+      });
+
+      raceStore.setRaces(response.data.result);
+
+      setRefresh(false);
+    } catch (e) {
+      console.error(e);
+    }
+
+    return () => source.cancel();
+  }, [raceStore]);
+
+  return drivers.length === 0 ? (
+    <View style={[styles.loadingContainer]}>
+      <TextContainer
+        title={<AntIcon name={'car'} color={'#fff'} size={100} />}
+        text={translations.noDrivers}
+      />
+    </View>
+  ) : (
+    <FlatList
+      style={componentStyle.container}
+      data={drivers}
+      renderItem={({item, index}) => (
+        <DriverRow driver={item} navigation={navigation} key={index} />
+      )}
+      keyExtractor={({item, index}) => index}
+      refreshControl={
+        <RefreshControl refreshing={refresh} onRefresh={refreshControl} />
+      }
+      refreshing={refresh}
+    />
   );
 };
 
