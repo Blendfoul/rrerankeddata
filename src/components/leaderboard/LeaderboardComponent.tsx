@@ -13,8 +13,6 @@ export type ComboState = Combo | null;
 const LeaderboardComponent: React.FC<any> = () => {
   const [selectedCombo, setCombo] = useState(null as ComboState);
 
-  console.log(selectedCombo);
-
   return (
     <View style={[styles.column, styles.backgroundColor]}>
       <LeaderboardSelector data={[selectedCombo, setCombo!]} />

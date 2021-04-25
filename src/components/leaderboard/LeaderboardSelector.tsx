@@ -91,8 +91,6 @@ const LeaderboardSelector: React.FC<LeaderboardSelectorProps> = ({data}) => {
           return {title: it.label, data: it.options};
         });
 
-      console.log(tracks);
-
       await AsyncStorage.multiSet([
         ['CAR_CLASS', JSON.stringify(classes)],
         ['TRACKS', JSON.stringify(tracks)],

@@ -70,7 +70,6 @@ const App: React.FC<any> = () => {
         raceStore.setRegion(region);
       }
       if (value !== null) {
-        console.log(value);
         raceStore.setDefaultDriver(value);
       }
     } catch (e) {
