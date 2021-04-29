@@ -19,7 +19,7 @@ export interface ServerData {
     TrackLayoutId: number[];
     LiveryId: number[];
     Difficulty: number;
-    MaxnumberOfPlayers: number;
+    MaxNumberOfPlayers: number;
     FuelUsage: number;
     TireWear: number;
     MechanicalDamage: number;

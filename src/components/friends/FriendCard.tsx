@@ -1,15 +1,16 @@
 import React, {useContext} from 'react';
-import {Driver} from '../../@types/Driver';
+import {Rating} from '../../types/rating';
 import {NavigationProp} from '@react-navigation/core';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Avatar, Caption, Paragraph, Title} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {useRaceStore} from '../../store/RaceContext';
+//@ts-ignore
 import Flag from 'react-native-flags';
 
 interface FriendCardProps {
-  item: Driver;
+  item: Rating;
   navigation: NavigationProp<any>;
 }
 

@@ -1,5 +1,5 @@
 import React, {Dispatch, SetStateAction, useCallback} from 'react';
-import {Race} from '../../@types/RaceData';
+import {Race} from '../../types/raceData';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {styles} from '../utils/Theme';
 import {Avatar, Caption, Paragraph, Title} from 'react-native-paper';

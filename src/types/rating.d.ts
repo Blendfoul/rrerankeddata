@@ -1,4 +1,4 @@
-export interface Driver {
+export interface Rating {
   UserId: number;
   Username: string;
   Fullname: string;

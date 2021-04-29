@@ -1,13 +1,13 @@
-import type {Server} from '../@types/Server';
-import type {Driver} from '../@types/Driver';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Rating} from '../types/rating';
+import {Server} from '../types/server';
 
 export interface RaceStore {
   setRegion(region: String): void;
   setDriver(driver: {avatar: string; header: string}): void;
   setUsername(name: string): void;
   setRegionRaces(races: Server[]): void;
-  setRatings(ratings: Driver[]): void;
+  setRatings(ratings: Rating[]): void;
   SearchDriver: string;
   Ratings: any[];
   setDefaultDriver(driver: string): void;
@@ -50,7 +50,7 @@ export const createRaceStore = (): RaceStore => {
       this.DefaultDriver = driver;
       storeData(driver);
     },
-    setRatings(ratings: Driver[]) {
+    setRatings(ratings: Rating[]) {
       this.Ratings = ratings;
     },
     setRegion(region: string) {

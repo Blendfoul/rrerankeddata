@@ -5,6 +5,7 @@ import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {Button} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import LeaderboardDataComponent from '../leaderboard/LeaderboardDataComponent';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,16 @@ const LeaderboardNavigator: React.FC<LeaderboardNavigatorProps> = ({
               <Icon name="menu" size={25} color="white" />
             </Button>
           ),
+        }}
+      />
+      <Stack.Screen
+        name={translations.navigation.leaderboard + '-data'}
+        component={LeaderboardDataComponent}
+        options={{
+          headerStyle: {
+            backgroundColor: '#2f2f2f',
+          },
+          headerTintColor: '#fff',
         }}
       />
     </Stack.Navigator>
