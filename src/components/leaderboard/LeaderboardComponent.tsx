@@ -20,8 +20,6 @@ const LeaderboardComponent: React.FC<{
   const [enabled, setEnabled] = useState(false);
   const {translations} = useContext(LocalizationContext);
 
-  console.log(selectedCombo);
-
   const checkCombo = useCallback(() => {
     if (selectedCombo === null) {
       setEnabled(false);
@@ -42,17 +40,15 @@ const LeaderboardComponent: React.FC<{
   return (
     <View style={[styles.column, styles.backgroundColor]}>
       <LeaderboardSelector data={[selectedCombo, setCombo!]} />
-      <FAB
-        disabled={!enabled}
-        style={style.fab}
-        icon="search-web"
-        onPress={() =>
-          navigation.navigate(
-            translations.navigation.leaderboard + '-data',
-            selectedCombo,
-          )
-        }
-      />
+      {enabled ? (
+        <FAB
+          style={style.fab}
+          icon="search-web"
+          onPress={() =>
+            navigation.navigate(translations.navigation.result, selectedCombo)
+          }
+        />
+      ) : null}
     </View>
   );
 };

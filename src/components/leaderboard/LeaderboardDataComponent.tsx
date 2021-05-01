@@ -1,8 +1,13 @@
-import React, {useCallback, useEffect} from 'react';
-import {useRaceStore} from '../../store/RaceContext';
+import React, {useCallback, useEffect, useState} from 'react';
 import axios from 'axios';
-import {CareerProfile} from '../../types/careerProfile';
-import {Result} from '../../types/results';
+import getLeaderboardData from '../../hooks/leaderboardHooks';
+import {Laptime} from '../../types/laptimes';
+import {ActivityIndicator, FlatList, RefreshControl, View} from 'react-native';
+import LeaderboardRow from './LeaderboardRow';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {styles} from '../utils/Theme';
+import LeaderboardHeader from './LeaderboardHeader';
+import {Caption, ProgressBar} from 'react-native-paper';
 
 interface DataProps {
   route: {
@@ -13,54 +18,102 @@ interface DataProps {
   };
 }
 
+type LeaderboardState = Laptime[] | null;
+
 const LeaderboardDataComponent: React.FC<DataProps> = ({route}) => {
-  const raceStore = useRaceStore();
+  const [data, setData] = useState(null as LeaderboardState);
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [refresh, setRefresh] = useState(false);
 
   const fetchUserData = useCallback(async () => {
-    const activeUsers = raceStore.Ratings.filter(
-      driver => driver.ActivityPoints === 5,
-    );
-
     const source = axios.CancelToken.source();
 
-    const raceData = await Promise.all(
-      activeUsers.map(async user => {
-        try {
-          const response = await axios(`users/${user.Username}/career?json`, {
-            cancelToken: source.token,
-          });
-
-          const races: CareerProfile = response.data.context.c;
-
-          if (races.raceList.Entries.length > 0) {
-            return races.raceList.Entries.filter(
-              (race: Result) =>
-                race.TrackLayoutId.Id === route.params.trackId &&
-                race.CarClasses.find(
-                  carClass => carClass.Id === route.params.classId,
-                )?.Id === route.params.classId,
-            ).map((race: Result) => race.RaceHash);
-          } else {
-            return null;
-          }
-        } catch (e) {
-          if (axios.isCancel(e)) {
-          } else {
-            console.error('[FETCH_RACE_HASH] ' + e);
-            return null;
-          }
-        }
-      }),
+    const value = await AsyncStorage.getItem(
+      `${route.params.classId}-${route.params.trackId}`,
     );
+    if (value !== null && !refresh) {
+      const lapTimes: Laptime[] = JSON.parse(value);
 
-    console.log(raceData);
-  }, [raceStore.Ratings, route.params.classId, route.params.trackId]);
+      setData(
+        lapTimes
+          .filter(lapTime => lapTime.laptime !== -1000)
+          .sort((a, b) => a.laptime - b.laptime),
+      );
+    } else {
+      setLoading(true);
+      const lapTimes: Laptime[] = await (
+        await getLeaderboardData(
+          source.token,
+          route.params.classId,
+          route.params.trackId,
+          setProgress,
+        )
+      )
+        .filter(lapTime => lapTime.laptime !== -1000)
+        .sort((a, b) => a.laptime - b.laptime);
+
+      await AsyncStorage.setItem(
+        `${route.params.classId}-${route.params.trackId}`,
+        JSON.stringify(lapTimes),
+      );
+
+      setData(lapTimes);
+    }
+
+    setLoading(false);
+
+    return () => source.cancel();
+  }, [refresh, route.params.classId, route.params.trackId]);
 
   useEffect(() => {
     fetchUserData();
   }, [fetchUserData]);
 
-  return null;
+  return loading ? (
+    <View style={styles.loadingContainer}>
+      <View>
+        <ActivityIndicator
+          size={'large'}
+          color={'white'}
+          style={{marginVertical: 15}}
+        />
+        <ProgressBar
+          progress={progress}
+          color={'white'}
+          style={{
+            height: 20,
+            width: 150,
+            borderRadius: 5,
+          }}
+        />
+        <Caption style={{textAlign: 'center'}}>
+          {(progress * 100).toFixed(2)} %
+        </Caption>
+      </View>
+    </View>
+  ) : (
+    <FlatList
+      style={styles.backgroundColor}
+      data={data}
+      ListHeaderComponent={() => (
+        <LeaderboardHeader
+          trackId={route.params.trackId}
+          classId={route.params.classId}
+        />
+      )}
+      renderItem={({item, index}) => (
+        <LeaderboardRow item={item} index={index} />
+      )}
+      keyExtractor={(item, index) => `Leaderboard-${index}`}
+      refreshControl={
+        <RefreshControl
+          refreshing={refresh}
+          onRefresh={() => setRefresh(true)}
+        />
+      }
+    />
+  );
 };
 
 export default LeaderboardDataComponent;

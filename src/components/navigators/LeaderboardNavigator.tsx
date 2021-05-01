@@ -36,7 +36,7 @@ const LeaderboardNavigator: React.FC<LeaderboardNavigatorProps> = ({
         }}
       />
       <Stack.Screen
-        name={translations.navigation.leaderboard + '-data'}
+        name={translations.navigation.result}
         component={LeaderboardDataComponent}
         options={{
           headerStyle: {

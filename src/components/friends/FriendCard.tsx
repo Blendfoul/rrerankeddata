@@ -14,7 +14,7 @@ interface FriendCardProps {
   navigation: NavigationProp<any>;
 }
 
-const FriendCard: React.FC<FriendCardProps> = ({item, navigation}) => {
+const Friend: React.FC<FriendCardProps> = ({item, navigation}) => {
   const {translations} = useContext(LocalizationContext);
   const raceStore = useRaceStore();
 
@@ -112,5 +112,7 @@ const FriendCard: React.FC<FriendCardProps> = ({item, navigation}) => {
     </TouchableOpacity>
   );
 };
+
+const FriendCard = React.memo(Friend);
 
 export default FriendCard;

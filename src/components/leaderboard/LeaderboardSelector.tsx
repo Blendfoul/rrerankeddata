@@ -5,6 +5,7 @@ import {ComboState} from './LeaderboardComponent';
 import {Title} from 'react-native-paper';
 import ClassRow from './ClassRow';
 import TrackRow from './TrackRow';
+import axiosInstance from '../../hooks/axiosInstance';
 
 interface genericCombo {
   value: number;
@@ -40,7 +41,7 @@ const LeaderboardSelector: React.FC<LeaderboardSelectorProps> = ({data}) => {
     const source = axios.CancelToken.source();
 
     try {
-      const response = await axios('leaderboard/?json', {
+      const response = await axiosInstance('/leaderboard/?json', {
         cancelToken: source.token,
       } as AxiosRequestConfig);
 

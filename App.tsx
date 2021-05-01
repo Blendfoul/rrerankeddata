@@ -11,48 +11,18 @@ import SplashScreen from 'react-native-splash-screen';
 import RankingNavigator from './src/components/navigators/RankingNavigator';
 import RaceLink from './RaceLink';
 import {LocalizationContext} from './src/components/translations/LocalizationContext';
-import {View, Text, StyleProp, TextStyle} from 'react-native';
+import {View} from 'react-native';
 import {styles} from './src/components/utils/Theme';
 import {useNetInfo} from '@react-native-community/netinfo';
 import TextContainer from './src/components/utils/TextContainer';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import DrawerContent from './src/components/drawer/DrawerContent';
 import FriendsNavigator from './src/components/navigators/FriendsNavigator';
-import {Avatar, Button, Caption, Paragraph, Title} from 'react-native-paper';
 import AboutNavigator from './src/components/navigators/AboutNavigator';
 import LeaderboardNavigator from './src/components/navigators/LeaderboardNavigator';
+import './setTextPresets';
 
 const drawerNavigator = createDrawerNavigator();
-
-interface TextWithDefaultProps {
-  defaultProps?: {
-    allowFontScaling?: boolean;
-    style?: StyleProp<TextStyle>;
-  };
-}
-
-(Title as TextWithDefaultProps).defaultProps =
-  (Title as TextWithDefaultProps).defaultProps || {};
-(Title as TextWithDefaultProps)!.defaultProps!.allowFontScaling = false;
-(Caption as TextWithDefaultProps).defaultProps =
-  (Caption as TextWithDefaultProps).defaultProps || {};
-(Caption as TextWithDefaultProps)!.defaultProps!.allowFontScaling = false;
-(Paragraph as TextWithDefaultProps).defaultProps =
-  (Paragraph as TextWithDefaultProps).defaultProps || {};
-(Paragraph as TextWithDefaultProps)!.defaultProps!.allowFontScaling = false;
-
-Button.defaultProps = Button.defaultProps || {};
-Button.defaultProps.color = '#2c2c2c';
-
-Avatar.Image.defaultProps = Avatar.Image.defaultProps || {};
-Avatar.Image.defaultProps.style = {backgroundColor: '#2f2f2f'};
-
-((Text as unknown) as TextWithDefaultProps).defaultProps =
-  ((Text as unknown) as TextWithDefaultProps).defaultProps || {};
-((Text as unknown) as TextWithDefaultProps).defaultProps!.allowFontScaling = false;
-((Text as unknown) as TextWithDefaultProps).defaultProps!.style = {
-  fontFamily: 'Kwajong',
-};
 
 const App: React.FC<any> = () => {
   const raceStore = useRaceStore();
