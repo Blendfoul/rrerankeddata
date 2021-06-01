@@ -1,21 +1,33 @@
-import React from 'react';
-import {useLocalObservable} from 'mobx-react-lite';
+import React, {useReducer} from 'react';
 import {createContext, useContext} from 'react';
-import {createRaceStore, RaceStore} from './RaceStore';
+import {createRaceStore} from './RaceStore';
+import {Action, RaceStore} from '../types/raceStore';
+import {storeReducer} from './StoreReducer';
 
-const RaceContext = createContext({});
+type RaceContextType = [state: RaceStore, dispatch: React.Dispatch<Action>];
+
+const RaceContext = createContext<RaceContextType | null>(null);
 
 type RaceProps = {
   children: React.ReactNode;
 };
 
 export const RaceProvider: React.FC<RaceProps> = ({children}) => {
-  const raceStore: RaceStore = useLocalObservable<RaceStore>(createRaceStore);
+  const [state, dispatch] = useReducer(storeReducer, createRaceStore());
 
   return (
-    <RaceContext.Provider value={raceStore}>{children}</RaceContext.Provider>
+    <RaceContext.Provider value={[state, dispatch]}>
+      {children}
+    </RaceContext.Provider>
   );
 };
 
-export const useRaceStore = (): RaceStore =>
-  useContext(RaceContext) as RaceStore;
+export const useRaceContext: () => RaceContextType = () => {
+  const raceContext = useContext(RaceContext);
+
+  if (!raceContext) {
+    throw new Error('');
+  }
+
+  return raceContext;
+};

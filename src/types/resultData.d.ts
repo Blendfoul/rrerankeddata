@@ -1,17 +1,18 @@
+import {RaceInfo} from './raceData';
+
 export interface MpRaceResult {
-  GetMpRaceResultResult: {
-    TrackId: {
-      Id: number;
-      Name: string;
-    };
-    QualiResult: QualiResult[];
-    RaceHash: string;
-    TrackLayoutId: {
-      Id: number;
-      Name: string;
-    };
-    RaceResult: RaceResult[];
+  RaceInfos: RaceInfo;
+  TrackId: {
+    Id: number;
+    Name: string;
   };
+  QualiResult: QualiResult[];
+  RaceHash: string;
+  TrackLayoutId: {
+    Id: number;
+    Name: string;
+  };
+  RaceResult: RaceResult[];
 }
 
 export interface QualiResult {

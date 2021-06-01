@@ -4,7 +4,7 @@ const config = {
   screens: {
     Servers: 'servers',
     Search: {
-      path: 'users/:id/',
+      path: '/users/:id/',
       parse: {
         id: (id: string) => `${id}`,
       },
@@ -13,7 +13,7 @@ const config = {
 };
 
 const RaceLink: LinkingOptions = {
-  prefixes: ['https://game.raceroom.com/'],
+  prefixes: ['https://game.raceroom.com'],
   config,
   enabled: true,
 };
