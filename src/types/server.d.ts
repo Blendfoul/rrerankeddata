@@ -1,4 +1,4 @@
-export interface Server {
+export interface ServerInterface {
   Ping: number;
   Server: ServerData;
 }

@@ -5,9 +5,10 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Avatar, Caption, Paragraph, Title} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {useRaceStore} from '../../store/RaceContext';
 //@ts-ignore
 import Flag from 'react-native-flags';
+import {useRaceContext} from '../../store/RaceContext';
+import {ReducerActions} from '../../store/StoreReducer';
 
 interface FriendCardProps {
   item: Rating;
@@ -16,10 +17,13 @@ interface FriendCardProps {
 
 const Friend: React.FC<FriendCardProps> = ({item, navigation}) => {
   const {translations} = useContext(LocalizationContext);
-  const raceStore = useRaceStore();
+  const [state, dispatch] = useRaceContext();
 
   const driverPress = () => {
-    raceStore.setSearchDriver(item.Username);
+    dispatch({
+      type: ReducerActions.SET_SEARCH_DRIVER,
+      payload: item.Username,
+    });
     navigation.navigate(translations.navigation.driverDetails, item.Username);
   };
 
@@ -28,7 +32,7 @@ const Friend: React.FC<FriendCardProps> = ({item, navigation}) => {
       borderRadius: 4,
       elevation: 3,
       backgroundColor:
-        raceStore.DefaultDriver === item.Username ? '#646464' : '#2f2f2f',
+        state.defaultDriver === item.Username ? '#646464' : '#2f2f2f',
       shadowOffset: {
         width: 1,
         height: 1,
@@ -82,15 +86,15 @@ const Friend: React.FC<FriendCardProps> = ({item, navigation}) => {
       </View>
       <View>
         <View style={friendCardStyle.textContainer}>
-          <Title style={friendCardStyle.title}>
-            {item.Fullname}
+          <View style={[friendCardStyle.containerRow, {alignItems: 'center'}]}>
+            <Title style={friendCardStyle.title}>{item.Fullname}</Title>
             <Flag
               code={item.Country.toUpperCase()}
               size={24}
               type={'flat'}
               style={{marginLeft: 10}}
             />
-          </Title>
+          </View>
           <Caption style={friendCardStyle.caption}>
             {item.Team || translations.profile.privateer}
           </Caption>
