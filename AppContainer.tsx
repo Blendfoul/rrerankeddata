@@ -4,14 +4,15 @@ import App from './App';
 import {LocalizationProvider} from './src/components/translations/LocalizationContext';
 import {DefaultTheme, Provider} from 'react-native-paper';
 
-const theme = {
+const theme: ReactNativePaper.Theme = {
   ...DefaultTheme,
   dark: true,
   roundness: 2,
   colors: {
     ...DefaultTheme.colors,
     primary: '#2f2f2f',
-    accent: '#f4f4f4',
+    accent: '#493a3a',
+    background: '#c0c0c0',
     text: '#fff',
   },
 };

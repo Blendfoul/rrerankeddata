@@ -11,6 +11,8 @@ export interface RaceStore {
   regionRaces: any[];
   defaultDriver: string;
   region: string;
+  schedule: boolean;
+  refresh: boolean;
 }
 
 export interface Action {

@@ -9,6 +9,8 @@ export const createRaceStore = (): RaceStore => {
     ratings: [],
     searchDriver: '',
     defaultDriver: '',
+    schedule: false,
+    refresh: true,
     notifyDefaultDriver: false,
     driver: {
       header: '',

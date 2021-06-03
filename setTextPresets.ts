@@ -24,6 +24,7 @@ Button.defaultProps.color = '#2c2c2c';
 Avatar.Image.defaultProps = Avatar.Image.defaultProps || {};
 Avatar.Image.defaultProps.style = {backgroundColor: '#2f2f2f'};
 
-((Text as unknown) as TextWithDefaultProps).defaultProps =
-  ((Text as unknown) as TextWithDefaultProps).defaultProps || {};
-((Text as unknown) as TextWithDefaultProps).defaultProps!.allowFontScaling = false;
+(Text as unknown as TextWithDefaultProps).defaultProps =
+  (Text as unknown as TextWithDefaultProps).defaultProps || {};
+(Text as unknown as TextWithDefaultProps).defaultProps!.allowFontScaling =
+  false;

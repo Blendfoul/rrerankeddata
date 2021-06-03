@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Rating} from '../../types/rating';
-import {NavigationProp} from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Avatar, Caption, Paragraph, Title} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -12,19 +12,22 @@ import {ReducerActions} from '../../store/StoreReducer';
 
 interface FriendCardProps {
   item: Rating;
-  navigation: NavigationProp<any>;
 }
 
-const Friend: React.FC<FriendCardProps> = ({item, navigation}) => {
+const Friend: React.FC<FriendCardProps> = ({item}) => {
   const {translations} = useContext(LocalizationContext);
   const [state, dispatch] = useRaceContext();
+  const navigation = useNavigation();
 
   const driverPress = () => {
     dispatch({
       type: ReducerActions.SET_SEARCH_DRIVER,
       payload: item.Username,
     });
-    navigation.navigate(translations.navigation.driverDetails, item.Username);
+    navigation.navigate({
+      name: translations.navigation.driverDetails,
+      params: {data: item.Username},
+    });
   };
 
   const friendCardStyle = StyleSheet.create({

@@ -78,3 +78,11 @@ export interface Incident {
   Points: number;
   Type: string;
 }
+
+export interface SearchResult {
+  image: string;
+  name: string;
+  meta_data: {
+    slug: string;
+  };
+}

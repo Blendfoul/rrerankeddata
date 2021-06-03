@@ -16,7 +16,7 @@ interface RaceProps {
 const RaceComponent: React.FC<RaceProps> = ({route}) => {
   const {data}: {data: RaceResult} = route.params;
   const {translations} = useContext(LocalizationContext);
-  const {sectors} = useSectorTimes(data.Laps);
+  const {lapTime, sectors} = useSectorTimes(data.Laps);
   const theme = useTheme();
 
   const renderIncidentCounts = (IncidentDetails: Incident[]) => {
@@ -92,6 +92,9 @@ const RaceComponent: React.FC<RaceProps> = ({route}) => {
           title={translations.raceModal.reputation}
           text={data.ReputationChange}
         />
+      </View>
+      <View style={[styles.row, styles.justifyEvenly, styles.paddingTop15]}>
+        <TextContainer title={translations.raceModal.bestLap} text={lapTime} />
       </View>
       <View style={[styles.column, styles.justifyEvenly, styles.paddingTop15]}>
         <TextContainer title={translations.raceModal.incidents} />

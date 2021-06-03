@@ -9,10 +9,7 @@ const axiosInstanceGenerator = axios.create({
 
 export default axiosInstanceGenerator;
 
-export const getRaces = async (
-  dispatch: React.Dispatch<Action>,
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-) => {
+export const getRaces = async (dispatch: React.Dispatch<Action>) => {
   const source = axios.CancelToken.source();
 
   try {
@@ -28,17 +25,12 @@ export const getRaces = async (
       type: ReducerActions.ERROR,
       payload: error,
     });
-  } finally {
-    await setLoading(false);
   }
 
   return () => source.cancel('Request cancelled!');
 };
 
-export const getRatings = async (
-  dispatch: React.Dispatch<Action>,
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-) => {
+export const getRatings = async (dispatch: React.Dispatch<Action>) => {
   const source = axios.CancelToken.source();
 
   try {
@@ -57,8 +49,6 @@ export const getRatings = async (
       type: ReducerActions.ERROR,
       payload: error,
     });
-  } finally {
-    await setLoading(false);
   }
 
   return () => source.cancel('Request cancelled!');

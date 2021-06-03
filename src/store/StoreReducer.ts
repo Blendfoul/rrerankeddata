@@ -55,6 +55,16 @@ export const storeReducer: React.Reducer<RaceStore, Action> = (
         ...state,
         notifyDefaultDriver: action.payload,
       };
+    case ReducerActions.SET_SCHEDULE:
+      return {
+        ...state,
+        schedule: action.payload,
+      };
+    case ReducerActions.REFRESH_SERVERS:
+      return {
+        ...state,
+        refresh: action.payload,
+      };
     default:
       throw new Error();
   }
@@ -70,6 +80,8 @@ export enum ReducerActions {
   SET_DRIVER,
   ERROR,
   SET_NOTIFICATION,
+  SET_SCHEDULE,
+  REFRESH_SERVERS,
 }
 
 const storeData = async (value: string) => {
