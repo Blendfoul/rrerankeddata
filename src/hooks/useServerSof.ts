@@ -47,15 +47,20 @@ const useServerSof = (driversId: number[]) => {
     //@ts-ignore
     setDrivers(ratings.sort((a, b) => a.Rating < b.Rating));
 
-    setSof(
-      ratings.map(driver => driver.Rating).reduce((a, b) => a + b) /
-        ratings.length,
-    );
+    if (ratings.length) {
+      setSof(
+        ratings.map(driver => driver.Rating).reduce((a, b) => a + b) /
+          ratings.length,
+      );
 
-    setRep(
-      ratings.map(driver => driver.Reputation).reduce((a, b) => a + b) /
-        ratings.length,
-    );
+      setRep(
+        ratings.map(driver => driver.Reputation).reduce((a, b) => a + b) /
+          ratings.length,
+      );
+    } else {
+      setSof(1500);
+      setRep(70);
+    }
 
     setLoading(false);
   }, [driversId, state.ratings]);

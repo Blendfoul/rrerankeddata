@@ -48,9 +48,9 @@ const useSortRaces = () => {
     if (state.refresh) {
       filterRaces();
     }
-  }, [filterRaces, state.refresh]);
+  }, [filterRaces, state.refresh, state.defaultDriver]);
 
-  return {races, loading: state.refresh};
+  return {races};
 };
 
 export default useSortRaces;

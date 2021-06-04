@@ -65,8 +65,13 @@ export const storeReducer: React.Reducer<RaceStore, Action> = (
         ...state,
         refresh: action.payload,
       };
+    case ReducerActions.SET_R3E_DATA:
+      return {
+        ...state,
+        r3e_data: action.payload,
+      };
     default:
-      throw new Error();
+      throw new Error(`Action ${action.type} not supported!`);
   }
 };
 
@@ -82,6 +87,7 @@ export enum ReducerActions {
   SET_NOTIFICATION,
   SET_SCHEDULE,
   REFRESH_SERVERS,
+  SET_R3E_DATA,
 }
 
 const storeData = async (value: string) => {

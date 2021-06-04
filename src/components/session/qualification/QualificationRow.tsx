@@ -63,7 +63,7 @@ const QualificationRow: React.FC<QualificationRowProps> = ({item}) => {
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={navigate}>
+    <TouchableOpacity style={styles.root} onPress={navigate}>
       <View style={[styles.row, {paddingVertical: 10}]}>
         <View style={[styles.alignCenter, styles.justifyCenter, {flex: 0}]}>
           <Avatar.Image

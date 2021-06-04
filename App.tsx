@@ -1,7 +1,6 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import axios from 'axios';
-import AntIcon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/AntDesign';
 import ServerNavigator from './src/components/navigators/ServerNavigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SplashScreen from 'react-native-splash-screen';
@@ -22,17 +21,17 @@ import SearchNavigator from './src/components/navigators/SearchNavigator';
 import AboutNavigator from './src/components/navigators/AboutNavigator';
 import FriendsNavigator from './src/components/navigators/FriendsNavigator';
 import RankingNavigator from './src/components/navigators/RankingNavigator';
+import useR3EData from './src/hooks/useR3EData';
 
 const drawerNavigator = createDrawerNavigator();
 
 const App: React.FC<any> = () => {
   const [state, dispatch] = useRaceContext();
   const {translations, initializeAppLanguage} = useContext(LocalizationContext);
-  const [loading, setLoading] = useState(true);
   const isConnected = useNetInfo();
+  const {loading} = useR3EData();
 
   const getRatings = useCallback(async () => {
-    const source = axios.CancelToken.source();
     try {
       const value = await AsyncStorage.getItem('defaultDriver');
       const region = await AsyncStorage.getItem('selectedRegion');
@@ -52,10 +51,6 @@ const App: React.FC<any> = () => {
     } catch (e) {
       console.error('[Ratings] ' + e.message);
     }
-
-    return () => {
-      source.cancel();
-    };
   }, [dispatch]);
 
   useEffect(() => {
@@ -64,8 +59,7 @@ const App: React.FC<any> = () => {
   }, [isConnected.isConnected, getRatings]);
 
   useEffect(() => {
-    const appStart = async () =>
-      initializeAppLanguage().then(() => setLoading(false));
+    const appStart = async () => initializeAppLanguage();
 
     appStart();
   }, [initializeAppLanguage]);
@@ -78,7 +72,7 @@ const App: React.FC<any> = () => {
     return (
       <View style={styles.loadingContainer}>
         <TextContainer
-          title={<AntIcon name={'exclamation'} size={100} color={'#fff'} />}
+          title={<Icon name={'exclamation'} size={100} color={'#fff'} />}
           text={translations.noConnection}
         />
       </View>

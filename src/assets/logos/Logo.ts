@@ -1,4 +1,4 @@
-const Logo = (trackLayout: number): number => {
+const Logo = (trackLayout: number): number | {uri: string} => {
   switch (trackLayout) {
     case 262:
       return require('./262.webp');
@@ -100,8 +100,11 @@ const Logo = (trackLayout: number): number => {
       return require('./9464.webp');
     case 9472:
       return require('./9472.webp');
+    default:
+      return {
+        uri: `https://game.raceroom.com/store/image_redirect?id=${trackLayout}&amp;size=small`,
+      };
   }
-  return require('./262.webp');
 };
 
 export default Logo;

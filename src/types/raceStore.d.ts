@@ -1,3 +1,13 @@
+interface R3EData {
+  cars: any;
+  liveries: any;
+  tracks: any;
+  layouts: any;
+  classes: any;
+  manufacturers: any;
+  teams: any;
+}
+
 export interface RaceStore {
   searchDriver: string;
   ratings: any[];
@@ -10,6 +20,7 @@ export interface RaceStore {
   notifyDefaultDriver: boolean;
   regionRaces: any[];
   defaultDriver: string;
+  r3e_data: R3EData;
   region: string;
   schedule: boolean;
   refresh: boolean;

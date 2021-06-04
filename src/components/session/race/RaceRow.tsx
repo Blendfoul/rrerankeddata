@@ -138,7 +138,7 @@ const RaceRow: React.FC<RaceRowProps> = ({data}) => {
   }, [data.Laps]);
 
   return (
-    <TouchableOpacity style={styles.container} onPress={navigate}>
+    <TouchableOpacity style={styles.root} onPress={navigate}>
       {data.FinishPositionInClass <= 3 ? (
         <Label
           orientation={Orientation.TOP_RIGHT}

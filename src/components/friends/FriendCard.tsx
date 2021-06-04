@@ -31,7 +31,7 @@ const Friend: React.FC<FriendCardProps> = ({item}) => {
   };
 
   const friendCardStyle = StyleSheet.create({
-    container: {
+    root: {
       borderRadius: 4,
       elevation: 3,
       backgroundColor:
@@ -78,7 +78,7 @@ const Friend: React.FC<FriendCardProps> = ({item}) => {
   });
 
   return (
-    <TouchableOpacity style={friendCardStyle.container} onPress={driverPress}>
+    <TouchableOpacity style={friendCardStyle.root} onPress={driverPress}>
       <View style={friendCardStyle.logoContainer}>
         <Avatar.Image
           style={friendCardStyle.backgroundAvatar}

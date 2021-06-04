@@ -3,6 +3,7 @@ import {Lap} from '../types/resultData';
 
 const useSectorTimes = (data: Lap[]) => {
   const [lapTime, setLapTime] = useState<string>('');
+  const [avgTime, setAvgTime] = useState<string>('');
   const [sectors, setSectors] = useState<number[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -11,9 +12,16 @@ const useSectorTimes = (data: Lap[]) => {
       .filter(d => d.Time > 0)
       .reduce((acc, loc) => (acc.Time < loc.Time ? acc : loc));
 
-    console.log(lap);
-
     setSectors(lap.SectorTimes);
+
+    const times =
+      data.map(lap => lap.Time).reduce((a, b) => a + b) / data.length;
+
+    setAvgTime(
+      `${Math.floor((times / 1000 / 60) << 0)}:${((times / 1000) % 60).toFixed(
+        3,
+      )}s`,
+    );
 
     setLapTime(
       `${Math.floor((lap.Time / 1000 / 60) << 0)}:${(
@@ -29,7 +37,7 @@ const useSectorTimes = (data: Lap[]) => {
     getValues();
   }, [getValues]);
 
-  return {lapTime, sectors, loading};
+  return {lapTime, sectors, avgTime, loading};
 };
 
 export default useSectorTimes;

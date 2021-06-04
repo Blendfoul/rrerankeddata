@@ -11,6 +11,15 @@ export const createRaceStore = (): RaceStore => {
     defaultDriver: '',
     schedule: false,
     refresh: true,
+    r3e_data: {
+      cars: null,
+      classes: null,
+      layouts: null,
+      liveries: null,
+      manufacturers: null,
+      teams: null,
+      tracks: null,
+    },
     notifyDefaultDriver: false,
     driver: {
       header: '',

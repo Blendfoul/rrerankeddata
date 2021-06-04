@@ -3,12 +3,13 @@ import {useCallback, useEffect, useState} from 'react';
 import axios from 'axios';
 import axiosInstanceGenerator from './useAxiosMock';
 
-interface User {
+export interface User {
   name: string;
   team: string;
   avatar: string;
   rating: number;
   reputation: number;
+  id: number;
 }
 
 interface DrawerContent {

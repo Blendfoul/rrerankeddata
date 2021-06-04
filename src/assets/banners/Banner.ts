@@ -1,4 +1,4 @@
-const Banner = (trackId: number): number => {
+const Banner = (trackId: number): number | {uri: string} => {
   switch (trackId) {
     case 262:
       return require('./262.webp');
@@ -100,9 +100,11 @@ const Banner = (trackId: number): number => {
       return require('./9472.webp');
     case 9464:
       return require('./9464.webp');
+    default:
+      return {
+        uri: `https://game.raceroom.com/store/image_redirect?id=${trackId}&amp;size=small`,
+      };
   }
-
-  return 0;
 };
 
 export default Banner;
