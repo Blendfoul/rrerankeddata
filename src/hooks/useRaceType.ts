@@ -14,17 +14,17 @@ const useRaceType = (data: ServerDataSettings) => {
     setName(data.ServerName.replace('Rookie', ''));
 
     if (data.MinReputation === 0) {
-      setRaceType({value: 'R', color: '#619367'});
+      setRaceType({value: 'Rookie', color: '#619367'});
     } else if (data.ServerName.includes('Long')) {
-      setRaceType({value: 'L', color: '#5F6A84'});
+      setRaceType({value: 'Longer Race', color: '#5F6A84'});
     } else if (data.MinRating >= 1700) {
-      setRaceType({value: '🥇', color: '#5F6A84'});
+      setRaceType({value: 'Weekly 🥇', color: '#5F6A84'});
     } else if (data.MinRating >= 1600) {
-      setRaceType({value: '🥈', color: '#5F6A84'});
+      setRaceType({value: 'weekly 🥈', color: '#5F6A84'});
     } else if (data.ServerName.includes('BRONZE')) {
-      setRaceType({value: '🥉', color: '#5F6A84'});
+      setRaceType({value: 'Weekly 🥉', color: '#5F6A84'});
     } else {
-      setRaceType({value: 'D', color: '#767676'});
+      setRaceType({value: 'Daily Sprint', color: '#767676'});
     }
   }, [data.ServerName, data.MinReputation, data.MinRating]);
 

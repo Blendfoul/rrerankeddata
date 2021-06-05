@@ -2,8 +2,6 @@ import React, {useCallback, useContext} from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {styles} from '../../utils/Theme';
 import {Avatar, Caption, Paragraph, Title} from 'react-native-paper';
-//@ts-ignore
-import Label, {Orientation} from 'react-native-label';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import {RaceResult} from '../../../types/resultData';
 import {useNavigation} from '@react-navigation/core';
@@ -126,8 +124,17 @@ const RaceRow: React.FC<RaceRowProps> = ({data}) => {
     });
   };
 
+  const style = StyleSheet.create({
+    label: {
+      flex: 0,
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+      height: '100%',
+    },
+  });
+
   const findMedal = useCallback(() => {
-    switch (data.Laps[data.Laps.length - 1].PositionInClass) {
+    switch (data.FinishPositionInClass) {
       case 1:
         return '🥇';
       case 2:
@@ -135,22 +142,14 @@ const RaceRow: React.FC<RaceRowProps> = ({data}) => {
       case 3:
         return '🥉';
     }
-  }, [data.Laps]);
+  }, [data.FinishPositionInClass]);
 
   return (
     <TouchableOpacity style={styles.root} onPress={navigate}>
-      {data.FinishPositionInClass <= 3 ? (
-        <Label
-          orientation={Orientation.TOP_RIGHT}
-          title={findMedal()}
-          color={'#4f4f4f'}
-          distance={5}
-          style={{fontSize: 15, padding: 2.5}}>
-          <Content data={data} />
-        </Label>
-      ) : (
-        <Content data={data} />
-      )}
+      <Content data={data} />
+      <View style={style.label}>
+        <Title>{findMedal()}</Title>
+      </View>
     </TouchableOpacity>
   );
 };
