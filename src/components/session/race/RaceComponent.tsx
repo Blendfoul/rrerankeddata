@@ -34,7 +34,8 @@ const RaceComponent: React.FC<RaceProps> = ({route}) => {
             styles.alignCenter,
             styles.justifyCenter,
             {width: '100%'},
-          ]}>
+          ]}
+          key={`incident-${index}`}>
           <TextContainer
             title={incidentType(IncidentDetails[index].Type, translations)}
             text={IncidentDetails[index].Count + 'x'}

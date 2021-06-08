@@ -25,5 +25,10 @@ export const createRaceStore = (): RaceStore => {
       header: '',
       avatar: '',
     },
+    rateModal: {
+      isRated: false,
+      isVisible: false,
+      nOpens: 0,
+    },
   };
 };

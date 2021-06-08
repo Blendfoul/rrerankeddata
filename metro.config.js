@@ -5,12 +5,11 @@
  * @format
  */
 const path = require('path');
-const exclusionList = require('metro-config/src/defaults/exclusionList');
-const {getDefaultConfig} = require('metro-config');
+const blacklist = require('metro-config/src/defaults/exclusionList');
 
 module.exports = {
   resolver: {
-    blockList: exclusionList([
+    blacklistRE: blacklist([
       // This stops "react-native run-windows" from causing the metro server to crash if its already running
       new RegExp(
         `${path.resolve(__dirname, 'windows').replace(/[/\\]/g, '/')}.*`,
@@ -23,23 +22,8 @@ module.exports = {
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,
-        inlineRequires: true,
+        inlineRequires: false,
       },
     }),
   },
 };
-
-module.exports = (async () => {
-  const {
-    resolver: {sourceExts, assetExts},
-  } = await getDefaultConfig();
-  return {
-    transformer: {
-      babelTransformerPath: require.resolve('react-native-svg-transformer'),
-    },
-    resolver: {
-      assetExts: assetExts.filter(ext => ext !== 'svg'),
-      sourceExts: [...sourceExts, 'svg'],
-    },
-  };
-})();

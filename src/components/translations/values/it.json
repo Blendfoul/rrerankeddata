@@ -1,0 +1,178 @@
+{
+  "navigation": {
+    "server": "Server",
+    "user": "Utente",
+    "search": "Ricerca",
+    "ranking": "Graduatoria",
+    "about": "Circa",
+    "friends": "Amici",
+    "raceDetails": "Dettagli gara",
+    "sessionDetails": "Dettagli sessione",
+    "driverDetails": "Dettagli del conducente",
+    "leaderboard": "Classifica",
+    "myDriver": "Il mio autista",
+    "result": "Risultato",
+    "race": "Gara",
+    "qualification": "Qualificazione"
+  },
+  "regions": [
+    {
+      "name": "tutto",
+      "value": ""
+    },
+    {
+      "name": "Europa",
+      "value": "Europe"
+    },
+    {
+      "name": "America",
+      "value": "America"
+    },
+    {
+      "name": "Oceania",
+      "value": "Oceania"
+    }
+  ],
+  "raceDetails": {
+    "lowReputation": "Non hai abbastanza reputazione/valutazione per questa gara!",
+    "general": "Generale",
+    "enabled": "Abilitato",
+    "disabled": "disabile",
+    "drivers": "Driver",
+    "layout": "Layout traccia",
+    "session": "sessione",
+    "time": "Tempo a sinistra",
+    "tireWear": "Usura pneumatici",
+    "fuel": "Consumo di carburante",
+    "mandatoryPit": "Fossa obbligatoria",
+    "cutRules": "Regole di taglio",
+    "players": "Giocatori",
+    "sof": "S.o.F.",
+    "reputation": "reputazione"
+  },
+  "user": {
+    "tutorial": {
+      "message_1": "Durante la ricerca in un utente...",
+      "message_2": "Toccare il pulsante ",
+      "message_3": "Nell'angolo in alto a destra per impostare il driver predefinito!"
+    },
+    "message": "Nessun set di autisti!",
+    "search": "ricerca"
+  },
+  "search": {
+    "placeholder": "Nome utente driver",
+    "search": "ricerca",
+    "title": {
+      "search": "ricerca",
+      "details": "Dettagli",
+      "sessionDetails": "Dettagli sessione"
+    }
+  },
+  "profile": {
+    "ranking": "graduatoria",
+    "info": "Informazioni",
+    "laps": "Giri",
+    "distance": "distanza",
+    "lapsCompleted": "Giri completati",
+    "races": "corse di cavalli",
+    "name": "nome",
+    "team": "squadra",
+    "country": "paese",
+    "rating": "valutazione",
+    "reputation": "reputazione",
+    "track": "Traccia preferita",
+    "car": "Auto preferita",
+    "privateer": "corsaro"
+  },
+  "session": {
+    "general": "Generale",
+    "qualification": "qualificare",
+    "race": "razza",
+    "layout": "impaginazione",
+    "drivers": "Driver",
+    "positions": "Posizioni",
+    "average": "Nella media",
+    "overall": "grembiule",
+    "fastest": "Giro più veloce",
+    "averageLap": "Media. Tempo sul giro",
+    "diffTimer": "Media diff."
+  },
+  "qualificationModal": {
+    "fastest": "Giro più veloce",
+    "position": "posizione",
+    "sector": "settore ",
+    "optimal": "Giro ottimale",
+    "incidents": "Incidenti"
+  },
+  "raceModal": {
+    "name": "Nome",
+    "team": "Squadra",
+    "bestLap": "Miglior giro",
+    "worstLap": "Il peggior giro",
+    "averageLap": "Giro medio",
+    "rating": "Variazione di valutazione",
+    "reputation": "Cambiamento di reputazione",
+    "optimalLap": "Giro ottimale",
+    "consistency": "Consistenza",
+    "diff": "Diff",
+    "start": "Inizio",
+    "finish": "Finire",
+    "incidents": "Incidenti"
+  },
+  "laptime": {
+    "lap": "giro",
+    "sector1": "Settore 1",
+    "sector2": "Settore 2",
+    "sector3": "Settore 3",
+    "valid": "valevole",
+    "lapTime": "Tempo sul giro"
+  },
+  "sessions": {
+    "practice": "Praticare",
+    "qualification": "Qualificazione",
+    "race": "Razza"
+  },
+  "incidents": {
+    "invalidLap": "Giro non valido",
+    "losingControl": "Perdere il controllo",
+    "trackCollision": "Collisione tra tracce",
+    "vehicleCollision": "Collisione tra veicoli",
+    "disconnect": "Disconnettere",
+    "unservedPenalty": "Penalità non osservata",
+    "wrongWay": "Strada sbagliata"
+  },
+  "messages": {
+    "driverSet": "Set di driver predefinito.",
+    "copied": "Nome utente copiato negli Appunti."
+  },
+  "license": {
+    "license": "",
+    "disclaimer": "R3E Statistiche classificate è un'app di terze parti e non è comunque affiliata al settore 3.",
+    "mvp": "Un ringraziamento speciale a DavidsAppStudio per aver fornito le statistiche approfondite per la cronologia delle sessioni.",
+    "somethingWrong": "Hai trovato qualcosa che non va?"
+  },
+  "loading": {
+    "start": "Formattazione delle griglie",
+    "servers": "Caricamento delle gare disponibili",
+    "driver": "Cambio pneumatici driver",
+    "session": "Stampa dei risultati della gara",
+    "server": "Connessione al server",
+    "history": "Spiare la concorrenza",
+    "friends": "È tutto rose e fiori!",
+    "leaderboard": "Classifica di caricamento",
+    "search": "Chi è quel amico?",
+    "details": "Dati di gara scricchiolio"
+  },
+  "rateModal": {
+    "title": "Ti piace l'esperienza?",
+    "paragraph": "Si prega di prendere in considerazione la possibilità di lasciare una recensione sul negozio.",
+    "rate": "Tasso",
+    "later": "Ricorda più tardi",
+    "never": "Non mostrare più"
+  },
+  "noConnection": "Nessuna connessione disponibile!",
+  "noDrivers": "Nessun driver su Server!",
+  "exitApp": "uscita",
+  "noServers": "Solo velocità pit lane..."
+}
+

@@ -8,6 +8,12 @@ interface R3EData {
   teams: any;
 }
 
+interface RateModal {
+  isVisible: boolean;
+  isRated: boolean;
+  nOpens: number;
+}
+
 export interface RaceStore {
   searchDriver: string;
   ratings: any[];
@@ -24,6 +30,7 @@ export interface RaceStore {
   region: string;
   schedule: boolean;
   refresh: boolean;
+  rateModal: RateModal;
 }
 
 export interface Action {

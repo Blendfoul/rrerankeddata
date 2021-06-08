@@ -14,10 +14,10 @@ import {useRaceContext} from '../../store/RaceContext';
 import {ReducerActions} from '../../store/StoreReducer';
 
 const ScheduleComponent: React.FC = () => {
-  const [state, dispacth] = useRaceContext();
-
+  const [state, dispatch] = useRaceContext();
+  const date = new Date();
   const handleSchedule = () => {
-    dispacth({
+    dispatch({
       type: ReducerActions.SET_SCHEDULE,
       payload: !state.schedule,
     });
@@ -50,9 +50,9 @@ const ScheduleComponent: React.FC = () => {
           <ScrollView horizontal>
             <Image
               source={{
-                uri:
-                  'https://evosupport.raceroom.com/index.php/apps/files_sharing/publicpreview/tne8CWb45oQmcTx?file=/schedule%20post.png&x=1920&y=1080&a=true&c=' +
-                  new Date().toLocaleString('PT'),
+                uri: `https://evosupport.raceroom.com/index.php/apps/files_sharing/publicpreview/tne8CWb45oQmcTx?file=/schedule%20post.png&x=1920&y=1080&a=true&c=${date.getDate()}_${
+                  date.getHours() > 12 ? '1' : '0'
+                }`,
                 cache: 'reload',
               }}
               resizeMode={'contain'}

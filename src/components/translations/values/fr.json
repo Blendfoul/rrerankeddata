@@ -1,0 +1,179 @@
+{
+  "navigation": {
+    "server": "Serveurs",
+    "user": "Utilisateur",
+    "search": "Rechercher",
+    "ranking": "Classement",
+    "about": "Environ",
+    "friends": "Amis",
+    "raceDetails": "Détails de la course",
+    "sessionDetails": "Détails de la session",
+    "driverDetails": "Détails du pilote",
+    "leaderboard": "Classement",
+    "myDriver": "Mon chauffeur",
+    "result": "Résultat",
+    "race": "Course",
+    "qualification": "Qualification"
+  },
+  "race": {
+    "regions": [
+      {
+        "name": "tout",
+        "value": ""
+      },
+      {
+        "name": "Europe",
+        "value": "Europe"
+      },
+      {
+        "name": "Amérique",
+        "value": "America"
+      },
+      {
+        "name": "Océanie",
+        "value": "Oceania"
+      }
+    ]
+  },
+  "raceDetails": {
+    "lowReputation": "Vous n’avez pas assez de réputation / note pour cette course!",
+    "general": "Généralités",
+    "enabled": "Activé",
+    "disabled": "handicapé",
+    "drivers": "Pilotes",
+    "layout": "Disposition des pistes",
+    "session": "Session",
+    "time": "Temps restant",
+    "tireWear": "Usure des pneus",
+    "fuel": "Consommation de carburant",
+    "mandatoryPit": "Fosse obligatoire",
+    "cutRules": "Règles de coupe",
+    "players": "Joueurs",
+    "sof": "S.o.F",
+    "reputation": "réputation"
+  },
+  "user": {
+    "message": "Pas de driver set !",
+    "search": "rechercher",
+    "tutorial": {
+      "message_1": "Lors de la recherche d’un utilisateur...",
+      "message_2": "Appuyez sur le ",
+      "message_3": "Dans le coin supérieur droit pour définir votre pilote par défaut!"
+    }
+  },
+  "search": {
+    "placeholder": "Driver Username",
+    "search": "Search",
+    "title": {
+      "search": "Search",
+      "details": "Details",
+      "sessionDetails": "Session Details"
+    }
+  },
+  "profile": {
+    "ranking": "Classement",
+    "info": "Info",
+    "laps": "Tours",
+    "distance": "Distance",
+    "lapsCompleted": "Tours terminés",
+    "races": "Courses",
+    "name": "Nom",
+    "team": "Équipe",
+    "country": "Pays",
+    "rating": "Notation",
+    "reputation": "Réputation",
+    "track": "Piste préférée",
+    "car": "Voiture préférée",
+    "privateer": "Corsaire"
+  },
+  "session": {
+    "general": "Généralités",
+    "qualification": "Qualifier",
+    "race": "Course",
+    "layout": "Disposition",
+    "drivers": "Pilotes",
+    "positions": "Positions",
+    "average": "Moyenne",
+    "overall": "Total",
+    "fastest": "Tour le plus rapide",
+    "averageLap": "Avg. Temps au tour",
+    "diffTimer": "Moyenne diff."
+  },
+  "qualificationModal": {
+    "fastest": "Tour le plus rapide",
+    "position": "position",
+    "sector": "Secteur ",
+    "optimal": "Tour optimal",
+    "incidents": "Incidents"
+  },
+  "raceModal": {
+    "name": "Nom",
+    "team": "Équipe",
+    "bestLap": "Meilleur tour",
+    "worstLap": "Pire tour",
+    "averageLap": "Tour moyen",
+    "rating": "Changement d’évaluation",
+    "reputation": "Changement de réputation",
+    "optimalLap": "Tour optimal",
+    "consistency": "consistance",
+    "diff": "Diff",
+    "start": "Commencer",
+    "finish": "Finir",
+    "incidents": "Incidents"
+  },
+  "lapTable": {
+    "lap": "giron",
+    "sector1": "Secteur 1",
+    "sector2": "Secteur 2",
+    "sector3": "Secteur 3",
+    "valid": "valable",
+    "lapTime": "Temps au tour"
+  },
+  "sessions": {
+    "practice": "pratique",
+    "qualification": "qualification",
+    "race": "course"
+  },
+  "incidents": {
+    "invalidLap": "Tour non valide",
+    "losingControl": "Perte de contrôle",
+    "trackCollision": "Collision sur la voie",
+    "vehicleCollision": "Collision de véhicule",
+    "disconnect": "Déconnecter",
+    "unservedPenalty": "Pénalité non servie",
+    "wrongWay": "Dans le mauvais sens"
+  },
+  "messages": {
+    "driverSet": "Jeu de pilotes par défaut!",
+    "copied": "Nom d’utilisateur copié dans le Presse-papiers."
+  },
+  "license": {
+    "license": "",
+    "disclaimer": "R3E Ranked statistics est une application de 3ème partie et n’est de toute façon pas affiliée au secteur 3.",
+    "mvp": "Un merci spécial à DavidsAppStudio pour avoir fourni les statistiques détaillées pour l’historique de la session.",
+    "somethingWrong": "Vous avez trouvé quelque chose qui ne va pas?"
+  },
+  "loading": {
+    "start": "Mise en forme des grilles",
+    "servers": "Chargement des courses disponibles",
+    "driver": "Changer de pneus conducteur",
+    "session": "Impression des résultats de course",
+    "server": "Connexion au serveur",
+    "history": "Espionnage de la concurrence",
+    "friends": "C'est amusant!",
+    "leaderboard": "Classement de chargement",
+    "search": "Qui est ce compagnon?",
+    "details": "Croquant les données de course"
+  },
+  "rateModal": {
+    "title": "Vous aimant l’expérience?",
+    "paragraph": "S’il vous plaît envisager de laisser un commentaire sur le magasin.",
+    "rate": "Taux",
+    "later": "Rappelez-vous plus tard",
+    "never": "Ne plus afficher"
+  },
+  "noConnection": "Aucune connexion disponible!",
+  "noDrivers": "Pas de pilotes sur le serveur!",
+  "exitApp": "sortie",
+  "noServers": "Vitesse de la voie des stands seulement..."
+}

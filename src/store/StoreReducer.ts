@@ -70,6 +70,14 @@ export const storeReducer: React.Reducer<RaceStore, Action> = (
         ...state,
         r3e_data: action.payload,
       };
+    case ReducerActions.SET_RATE_ACTION: {
+      storeOpens(action.payload.nOpens);
+      storeRated(action.payload.isRated);
+      return {
+        ...state,
+        rateModal: action.payload,
+      };
+    }
     default:
       throw new Error(`Action ${action.type} not supported!`);
   }
@@ -88,6 +96,7 @@ export enum ReducerActions {
   SET_SCHEDULE,
   REFRESH_SERVERS,
   SET_R3E_DATA,
+  SET_RATE_ACTION,
 }
 
 const storeData = async (value: string) => {
@@ -103,5 +112,21 @@ const storeRegion = async (value: string) => {
     await AsyncStorage.setItem('selectedRegion', value);
   } catch (e) {
     console.error('[Store Region] ' + e.message);
+  }
+};
+
+const storeOpens = async (value: number) => {
+  try {
+    await AsyncStorage.setItem('opens', value.toString());
+  } catch (e) {
+    console.error('[Store Open] ' + e.message);
+  }
+};
+
+const storeRated = async (value: boolean) => {
+  try {
+    await AsyncStorage.setItem('rated', value.toString());
+  } catch (e) {
+    console.error('[Store Open] ' + e.message);
   }
 };
