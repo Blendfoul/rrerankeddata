@@ -1,0 +1,24 @@
+{
+  "languages": [
+    {
+      "name": "EN - English",
+      "value": "en"
+    },
+    {
+      "name": "DE - Deutsch",
+      "value": "de"
+    },
+    {
+      "name": "PT - Português",
+      "value": "pt"
+    },
+    {
+      "name": "NL - Dutch",
+      "value": "nl"
+    },
+    {
+      "name": "ES - Español",
+      "value": "es"
+    }
+  ]
+}

@@ -53,7 +53,7 @@ const useInitApp = () => {
     } catch (e) {
       console.error('[Ratings] ' + e.message);
     }
-  }, [dispatch]);
+  }, [dispatch, state.rateModal]);
 
   useEffect(() => {
     getRatings();

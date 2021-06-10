@@ -1,0 +1,170 @@
+{
+  "navigation": {
+    "server": "Servidores",
+    "user": "Utilizador",
+    "search": "Procurar",
+    "ranking": "Tabela",
+    "about": "Acerca",
+    "friends": "Amigos",
+    "raceDetails": "Detalhes da Corrida",
+    "sessionDetails": "Detalhes da Sessão",
+    "driverDetails": "Detalhes do Piloto",
+    "myDriver": "Meu Piloto",
+    "race": "Corrida",
+    "qualification": "Qualificação"
+  },
+  "race": {
+    "regions": [
+      {
+        "name": "Todos",
+        "value": ""
+      },
+      {
+        "name": "Europa",
+        "value": "Europe"
+      },
+      {
+        "name": "América",
+        "value": "America"
+      },
+      {
+        "name": "Oceânia",
+        "value": "Oceania"
+      }
+    ]
+  },
+  "raceDetails": {
+    "lowReputation": "Não tem Reputação/Rating suficiente para esta corrida!",
+    "general": "Geral",
+    "drivers": "Pilotos",
+    "enabled": "Ativado",
+    "disabled": "Desativado",
+    "layout": "Configuração",
+    "session": "Sessão",
+    "time": "Tempo restante",
+    "tireWear": "Desgaste",
+    "fuel": "Combustível",
+    "mandatoryPit": "Paragem Obrigatória",
+    "cutRules": "Corte",
+    "players": "Jogadores",
+    "sof": "S.o.F",
+    "reputation": "Reputação"
+  },
+  "user": {
+    "tutorial": {
+      "message_1": "Quando procurar um piloto...",
+      "message_2": "Tocar no icon ",
+      "message_3": "No canto superior direito para definir o meu piloto!"
+    },
+    "message": "Sem piloto definido!",
+    "search": "Procurar"
+  },
+  "search": {
+    "placeholder": "Username do piloto",
+    "search": "Procurar",
+    "title": {
+      "search": "Procurar",
+      "details": "Detalhes",
+      "sessionDetails": "Detalhes da Sessão"
+    }
+  },
+  "profile": {
+    "info": "Acerca",
+    "races": "Corridas",
+    "laps": "Voltas",
+    "distance": "Distância",
+    "lapsCompleted": "Voltas Completadas",
+    "joined": "Registo",
+    "timeInGame": "Tempo jogado",
+    "name": "Nome",
+    "team": "Equipa",
+    "country": "Pais",
+    "rating": "Rating",
+    "reputation": "Reputação",
+    "track": "Pista favorita",
+    "car": "Carro favorito",
+    "privateer": "Privado"
+  },
+  "session": {
+    "general": "Geral",
+    "qualification": "Qualificação",
+    "race": "Corrida",
+    "layout": "Configuração",
+    "drivers": "Pilotos",
+    "positions": "Posições",
+    "average": "média",
+    "overall": "total",
+    "fastest": "Tempo + rápido",
+    "averageLap": "Tempo médio",
+    "diffTimer": "Diff. média"
+  },
+  "qualificationModal": {
+    "fastest": "Tempo + rápido",
+    "position": "Posição",
+    "sector": "Sector ",
+    "optimal": "Tempo ótimo",
+    "incidents": "Incidentes"
+  },
+  "raceModal": {
+    "name": "Nome",
+    "team": "Equipa",
+    "optimalLap": "Volta perfeita",
+    "consistency": "Consistência",
+    "rating": "Rating",
+    "reputation": "Reputação",
+    "bestLap": "Melhor volta",
+    "worstLap": "Pior Volta",
+    "averageLap": "Tempo médio",
+    "diff": "Diff",
+    "start": "Início",
+    "finish": "Fim",
+    "incidents": "Incidentes"
+  },
+  "lapTable": {
+    "lap": "Volta",
+    "sector1": "Sector 1",
+    "sector2": "Sector 2",
+    "sector3": "Sector 3",
+    "valid": "Válida",
+    "lapTime": "Tempo"
+  },
+  "sessions": {
+    "practice": "Treinos",
+    "qualification": "Qualificação",
+    "race": "Corrida"
+  },
+  "incidents": {
+    "invalidLap": "Volta Inválida",
+    "losingControl": "Perdeu controlo",
+    "trackCollision": "Colisão Pista",
+    "vehicleCollision": "Colisão Carro",
+    "disconnect": "Disconecção",
+    "unservedPenalty": "Penalização não servida",
+    "wrongWay": "Sentido Contrário"
+  },
+  "messages": {
+    "driverSet": "Piloto default definido!",
+    "copied": "Username copiado."
+  },
+  "license": {
+    "license": "",
+    "disclaimer": "As estatísticas classificadas R3E é uma aplicação de terceiros e não está afiliada de forma alguma ao estúdio Setor 3.",
+    "mvp": "Um agradecimento especial a DavidsAppStudio por fornecer estatísticas detalhadas para o histórico da sessão.",
+    "somethingWrong": "Encontrou algo errado?"
+  },
+  "noConnection": "Sem conexão disponível!",
+  "noDrivers": "Sem pilotos no servidor!",
+  "exitApp": "Exit",
+  "loading": {
+    "start": "Formando grelha de partida",
+    "servers": "Carregando corridas disponíveis",
+    "driver": "Troca de pneus",
+    "session": "Impressão dos resultados da corrida",
+    "server": "Conectando ao servidor",
+    "history": "Abrindo a sala dos troféus!",
+    "friends": "É tudo diversão e jogos!",
+    "leaderboard": "Carregando leaderboard",
+    "search": "Que piloto é esse?",
+    "details": "Análise de dados de corrida"
+  }
+}

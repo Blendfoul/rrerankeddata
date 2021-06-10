@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {Rating} from '../../types/rating';
 import {useNavigation} from '@react-navigation/core';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {Avatar, Caption, Paragraph, Title} from 'react-native-paper';
+import {StyleSheet, View} from 'react-native';
+import {Avatar, Caption, Card, Paragraph, Title} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {LocalizationContext} from '../translations/LocalizationContext';
 //@ts-ignore
@@ -32,23 +32,9 @@ const Friend: React.FC<FriendCardProps> = ({item}) => {
 
   const friendCardStyle = StyleSheet.create({
     root: {
-      borderRadius: 4,
-      elevation: 3,
       backgroundColor:
         state.defaultDriver === item.Username ? '#646464' : '#2f2f2f',
-      shadowOffset: {
-        width: 1,
-        height: 1,
-      },
-      shadowOpacity: 0.5,
-      shadowRadius: 2,
-      shadowColor: '#f4f4f4',
-      margin: 3,
-      padding: 10,
-      flex: 1,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-evenly',
+      margin: 5,
     },
     textContainer: {
       alignItems: 'center',
@@ -66,6 +52,7 @@ const Friend: React.FC<FriendCardProps> = ({item}) => {
     },
     logoContainer: {
       alignItems: 'center',
+      justifyContent: 'center',
       padding: 5,
     },
     containerRow: {
@@ -78,45 +65,48 @@ const Friend: React.FC<FriendCardProps> = ({item}) => {
   });
 
   return (
-    <TouchableOpacity style={friendCardStyle.root} onPress={driverPress}>
-      <View style={friendCardStyle.logoContainer}>
-        <Avatar.Image
-          style={friendCardStyle.backgroundAvatar}
-          source={{
-            uri: 'https://game.raceroom.com/game/user_avatar/' + item.UserId,
-          }}
-        />
-      </View>
-      <View>
-        <View style={friendCardStyle.textContainer}>
-          <View style={[friendCardStyle.containerRow, {alignItems: 'center'}]}>
-            <Title style={friendCardStyle.title}>{item.Fullname}</Title>
-            <Flag
-              code={item.Country.toUpperCase()}
-              size={24}
-              type={'flat'}
-              style={{marginLeft: 10}}
-            />
+    <Card onPress={driverPress} elevation={3} style={friendCardStyle.root}>
+      <Card.Content style={friendCardStyle.containerRow}>
+        <View style={friendCardStyle.logoContainer}>
+          <Avatar.Image
+            style={friendCardStyle.backgroundAvatar}
+            source={{
+              uri: 'https://game.raceroom.com/game/user_avatar/' + item.UserId,
+            }}
+          />
+        </View>
+        <View>
+          <View style={friendCardStyle.textContainer}>
+            <View
+              style={[friendCardStyle.containerRow, {alignItems: 'center'}]}>
+              <Title style={friendCardStyle.title}>{item.Fullname}</Title>
+              <Flag
+                code={item.Country.toUpperCase()}
+                size={24}
+                type={'flat'}
+                style={{marginLeft: 10}}
+              />
+            </View>
+            <Caption style={friendCardStyle.caption}>
+              {item.Team || translations.profile.privateer}
+            </Caption>
           </View>
-          <Caption style={friendCardStyle.caption}>
-            {item.Team || translations.profile.privateer}
-          </Caption>
+          <View style={friendCardStyle.containerRow}>
+            <Paragraph style={friendCardStyle.caption}>
+              <AntDesign name={'solution1'} size={15} /> {item.Rating}
+            </Paragraph>
+            <Paragraph style={friendCardStyle.caption}>
+              <AntDesign name={'exception1'} size={15} /> {item.Reputation}
+            </Paragraph>
+          </View>
+          <View style={friendCardStyle.containerRow}>
+            <Paragraph style={friendCardStyle.caption}>
+              <AntDesign name={'car'} size={15} /> {item.RacesCompleted}
+            </Paragraph>
+          </View>
         </View>
-        <View style={friendCardStyle.containerRow}>
-          <Paragraph style={friendCardStyle.caption}>
-            <AntDesign name={'solution1'} size={15} /> {item.Rating}
-          </Paragraph>
-          <Paragraph style={friendCardStyle.caption}>
-            <AntDesign name={'exception1'} size={15} /> {item.Reputation}
-          </Paragraph>
-        </View>
-        <View style={friendCardStyle.containerRow}>
-          <Paragraph style={friendCardStyle.caption}>
-            <AntDesign name={'car'} size={15} /> {item.RacesCompleted}
-          </Paragraph>
-        </View>
-      </View>
-    </TouchableOpacity>
+      </Card.Content>
+    </Card>
   );
 };
 

@@ -1,0 +1,156 @@
+{
+  "navigation": {
+    "server": "Server",
+    "user": "Benutzer",
+    "search": "Suche",
+    "ranking": "Ranking",
+    "about": "Über",
+    "friends": "Freunde",
+    "raceDetails": "Renndetails",
+    "sessionDetails": "Sessiondetails",
+    "driverDetails": "Fahrerdetails",
+    "myDriver": "Mein Fahrer",
+    "race": "Rennen",
+    "qualification": "Qualifikation"
+  },
+  "race": {
+    "regions": [
+      {
+        "name": "Alle",
+        "value": ""
+      },
+      {
+        "name": "Europa",
+        "value": "Europe"
+      },
+      {
+        "name": "Amerika",
+        "value": "America"
+      },
+      {
+        "name": "Ozeanien",
+        "value": "Oceania"
+      }
+    ]
+  },
+  "raceDetails": {
+    "lowReputation": "Du hast nicht genug Reputation/Wertung für dieses Rennen!",
+    "enabled": "Aktiviert",
+    "disabled": "Behindert",
+    "general": "Allgemein",
+    "drivers": "Fahrer",
+    "layout": "Streckenvariante",
+    "session": "Sitzung",
+    "time": "Zeit",
+    "tireWear": "Reifenverschleiß",
+    "fuel": "Kraftstoffverbrauch",
+    "mandatoryPit": "Pflichtboxenstopp",
+    "cutRules": "Streckenbegrenzung",
+    "players": "Spieler",
+    "sof": "S.o.F",
+    "reputation": "Ruf"
+  },
+  "user": {
+    "tutorial": {
+      "message_1": "Bei der Suche nach einem Benutzer...",
+      "message_2": "Tippen Sie auf die ",
+      "message_3": "In der oberen rechten Ecke, um Ihren Standardtreiber einzustellen!"
+    },
+    "message": "Kein Treiberset!",
+    "search": "Suche"
+  },
+  "search": {
+    "placeholder": "Treiber-Benutzername",
+    "search": "Suche",
+    "title": {
+      "search": "Suche",
+      "details": "Details",
+      "sessionDetails": "Sitzungsdetails"
+    }
+  },
+  "profile": {
+    "info": "Informationen",
+    "laps": "Runden",
+    "distance": "Entfernung",
+    "lapsCompleted": "Runden abgeschlossen",
+    "races": "Rennen",
+    "name": "Name",
+    "team": "Team",
+    "country": "Land",
+    "rating": "Bewertung",
+    "reputation": "Ruf",
+    "track": "Lieblingsstrecke",
+    "car": "Lieblingsauto",
+    "privateer": "Privateer"
+  },
+  "session": {
+    "general": "Allgemein",
+    "qualification": "Qualfikation",
+    "race": "Rennen",
+    "layout": "Streckenvariante",
+    "drivers": "Fahrer",
+    "positions": "Positionen",
+    "average": "Durchschnittliche",
+    "overall": "Insgesamt",
+    "fastest": "Schnellste Runde",
+    "averageLap": "Durchschn. Rundenzeit",
+    "diffTimer": "Diff. Durchschnitt"
+  },
+  "qualificationModal": {
+    "fastest": "Schnellste Runde",
+    "position": "Position",
+    "sector": "Sektor ",
+    "optimal": "Optimale Runde",
+    "incidents": "Vorfälle"
+  },
+  "raceModal": {
+    "name": "Namen",
+    "team": "Team",
+    "bestLap": "Beste Runde",
+    "worstLap": "Schlechteste Runde",
+    "averageLap": "Durchschnittliche Runde",
+    "rating": "Veränderung des Ratings",
+    "reputation": "Veränderung des Rufs",
+    "optimalLap": "Optimale Runde",
+    "consistency": "Konstanz",
+    "diff": "Unterschiede",
+    "start": "Starten",
+    "finish": "Beenden",
+    "incidents": "Vorfälle"
+  },
+  "lapTable": {
+    "lap": "Runde",
+    "sector1": "Sektor 1",
+    "sector2": "Sektor 2",
+    "sector3": "Sektor 3",
+    "valid": "Gültig",
+    "lapTime": "Runde Zeit"
+  },
+  "sessions": {
+    "practice": "Training",
+    "qualification": "Qualifikation",
+    "race": "Rennen"
+  },
+  "incidents": {
+    "invalidLap": "Ungültige Runde",
+    "losingControl": "Kontrollverlust",
+    "trackCollision": "Streckenkollision",
+    "vehicleCollision": "Fahrzeugkollision",
+    "disconnect": "Verbindungsabbruch",
+    "unservedPenalty": "Unverdiente Strafe",
+    "wrongWay": "Falsche Weg"
+  },
+  "messages": {
+    "driverSet": "Standardtreibersatz!",
+    "copied": "Benutzername in Zwischenablage kopiert."
+  },
+  "license": {
+    "license": "",
+    "disclaimer": "R3E Ranked Statistics ist eine App von Drittanbietern und ist ohnehin nicht mit Sektor 3 verbunden.",
+    "mvp": "Ein besonderer Dank geht an DavidsAppStudio für die Bereitstellung der detaillierten Statistiken für den Sitzungsverlauf.",
+    "somethingWrong": "Haben Sie etwas falsches gefunden?"
+  },
+  "noConnection": "Keine Verbindung vorhanden!",
+  "noDrivers": "Keine Fahrer auf dem Server!",
+  "exitApp": "Exit"
+}

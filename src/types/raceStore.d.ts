@@ -1,3 +1,5 @@
+import {Rating} from './rating';
+
 interface R3EData {
   cars: any;
   liveries: any;
@@ -16,7 +18,7 @@ interface RateModal {
 
 export interface RaceStore {
   searchDriver: string;
-  ratings: any[];
+  ratings: Rating[];
   races: any[];
   driver: {
     header: string;

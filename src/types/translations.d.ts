@@ -12,6 +12,7 @@ export interface Translations {
     myDriver: string;
     sessionDetails: string;
     qualification: string;
+    driverDetails: string;
   };
   race: {
     all: string;
