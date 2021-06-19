@@ -12,7 +12,7 @@ interface HistoryProps {
   race: Result;
 }
 
-const HistoryRow: React.FC<HistoryProps> = ({race}) => {
+const HistoryRowComponent: React.FC<HistoryProps> = ({race}) => {
   const {translations} = useContext(LocalizationContext);
   const navigation = useNavigation();
   const {colors} = useTheme();
@@ -94,5 +94,7 @@ const HistoryRow: React.FC<HistoryProps> = ({race}) => {
     </Card>
   );
 };
+
+const HistoryRow = React.memo(HistoryRowComponent);
 
 export default HistoryRow;

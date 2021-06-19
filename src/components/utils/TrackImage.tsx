@@ -67,25 +67,24 @@ const TrackImageComponent: React.FC<TrackImageProps> = props => {
     setImage(trackData as Layout);
   }, [props.trackId, tracks]);
 
-  return props.logo ? (
-    <Image style={componentStyle.logo} source={Logo(image.Track)} />
-  ) : (
-    <>
+  if (props.logo) {
+    return <Image style={componentStyle.logo} source={Logo(image.Track)} />;
+  }
+
+  const banner = props.logoImage
+    ? {
+        uri: `https://game.raceroom.com/store/image_redirect?id=${props.logoImage}&amp;size=small`,
+      }
+    : Logo(image.Track);
+
+  return (
+    <React.Fragment>
       <ImageBackground
         style={componentStyle.backgroundContainer}
         source={Banner(image.Track)}>
-        <Image
-          style={componentStyle.logo}
-          source={
-            props.logoImage
-              ? {
-                  uri: `https://game.raceroom.com/store/image_redirect?id=${props.logoImage}&amp;size=small`,
-                }
-              : Logo(image.Track)
-          }
-        />
+        <Image style={componentStyle.logo} source={banner} />
       </ImageBackground>
-    </>
+    </React.Fragment>
   );
 };
 

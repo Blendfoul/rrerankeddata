@@ -1,10 +1,10 @@
 import axios from 'axios';
 import {UserProfile} from '../types/userProfile';
 import {Rating} from '../types/rating';
-import { useCallback, useEffect, useState } from "react";
+import {useCallback, useEffect, useState} from 'react';
 import axiosInstanceGenerator from './useAxiosMock';
 
-interface Driver {
+export interface Driver {
   data: UserProfile;
   rating: Rating;
 }

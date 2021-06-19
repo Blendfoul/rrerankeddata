@@ -2,18 +2,23 @@ import {ServerInterface} from '../types/server';
 import {useRaceContext} from '../store/RaceContext';
 import {useCallback, useEffect, useState} from 'react';
 import {ReducerActions} from '../store/StoreReducer';
-import {getRaces} from './useAxiosMock';
+import axiosInstanceGenerator from './useAxiosMock';
+import axios from 'axios';
 
 const useSortRaces = () => {
   const [state, dispatch] = useRaceContext();
   const [races, setRaces] = useState<ServerInterface[]>([]);
 
   const filterRaces = useCallback(async () => {
+    const source = axios.CancelToken.source();
+
     try {
-      await getRaces(dispatch);
+      const res = await axiosInstanceGenerator('multiplayer-rating/servers/', {
+        cancelToken: source.token,
+      });
 
       const data = state.region.length
-        ? state.races
+        ? res.data.result
             .filter((server: ServerInterface) =>
               server.Server.Settings.ServerName.includes(state.region),
             )
@@ -22,7 +27,7 @@ const useSortRaces = () => {
               (a: ServerInterface, b: ServerInterface) =>
                 b.Server.PlayersOnServer > a.Server.PlayersOnServer,
             )
-        : state.races.sort(
+        : res.data.result.sort(
             //@ts-ignore
             (a: ServerInterface, b: ServerInterface) =>
               b.Server.PlayersOnServer > a.Server.PlayersOnServer,
@@ -30,6 +35,10 @@ const useSortRaces = () => {
 
       setRaces(data);
 
+      dispatch({
+        type: ReducerActions.SET_RACES,
+        payload: res.data.result,
+      });
       dispatch({
         type: ReducerActions.SET_REGION_RACES,
         payload: races,
@@ -42,7 +51,7 @@ const useSortRaces = () => {
         payload: !state.refresh,
       });
     }
-  }, [dispatch, state.region, state.races, state.refresh, races]);
+  }, [dispatch, state.region, state.refresh, races]);
 
   useEffect(() => {
     if (state.refresh) {

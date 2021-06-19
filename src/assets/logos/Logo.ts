@@ -68,6 +68,8 @@ const Logo = (trackLayout: number): number | {uri: string} => {
       return require('./5275.webp');
     case 5300:
       return require('./5300.webp');
+    case 5297:
+      return require('./5297.webp');
     case 5924:
       return require('./5924.webp');
     case 6009:

@@ -22,6 +22,9 @@ export interface Translations {
     }[];
   };
   raceDetails: {
+    enabled: string;
+    disabled: string;
+    cutRules: string;
     general: string;
     drivers: string;
     layout: string;
@@ -33,6 +36,7 @@ export interface Translations {
     players: string;
     sof: string;
     reputation: string;
+    lowReputation: string;
   };
   user: {
     tutorial: {
@@ -63,6 +67,11 @@ export interface Translations {
     track: string;
     car: string;
     privateer: string;
+    lapsCompleted: string;
+    laps: string;
+    distance: string;
+    timeInGame: string;
+    joined: string;
   };
   session: {
     general: string;
@@ -104,6 +113,12 @@ export interface Translations {
     sector3: string;
     valid: string;
     lapTime: string;
+  };
+  license: {
+    disclaimer: string;
+    mvp: string;
+    license: string;
+    somethingWrong: string;
   };
   sessions: {
     practice: string;

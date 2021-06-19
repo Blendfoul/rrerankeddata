@@ -52,7 +52,7 @@ const DrawerContent: React.FC<any> = props => {
               props.navigation.navigate(translations.navigation.user)
             }
           />
-          {state.defaultDriver !== null ? (
+          {state.defaultDriver !== '' ? (
             <DrawerItem
               label={translations.navigation.friends}
               labelStyle={drawerStyle.textColor}

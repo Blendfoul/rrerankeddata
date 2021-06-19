@@ -2,8 +2,6 @@ import {useCallback, useEffect, useState} from 'react';
 import {useRaceContext} from '../store/RaceContext';
 
 const useCarClass = (classId?: number[], liveries?: number[]) => {
-  console.log(classId);
-
   const [classes, setClasses] = useState<number[]>([]);
   const [state] = useRaceContext();
   const {cars} = state.r3e_data;
@@ -32,7 +30,7 @@ const useCarClass = (classId?: number[], liveries?: number[]) => {
 
       setClasses([...classAvailable] as number[]);
     }
-  }, [cars, classId, liveries]);
+  }, [classId, liveries]);
 
   useEffect(() => {
     handleClasses();

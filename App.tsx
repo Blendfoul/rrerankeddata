@@ -10,18 +10,20 @@ import TextContainer from './src/components/utils/TextContainer';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import DrawerContent from './src/components/drawer/DrawerContent';
 import './setTextPresets';
-import LoadingActivity from './src/components/utils/LoadingActivity';
 import UserNavigator from './src/components/navigators/UserNavigator';
 import SearchNavigator from './src/components/navigators/SearchNavigator';
 import AboutNavigator from './src/components/navigators/AboutNavigator';
 import FriendsNavigator from './src/components/navigators/FriendsNavigator';
 import RankingNavigator from './src/components/navigators/RankingNavigator';
 import useInitApp from './src/hooks/useInitApp';
+import {getRatings} from './src/hooks/useAxiosMock';
+import {useRaceContext} from './src/store/RaceContext';
 
 const drawerNavigator = createDrawerNavigator();
 
 const App: React.FC<any> = () => {
   const {translations, initializeAppLanguage} = useContext(LocalizationContext);
+  const [state, dispatch] = useRaceContext();
   const {loading, isConnected} = useInitApp();
 
   useEffect(() => {
@@ -30,8 +32,12 @@ const App: React.FC<any> = () => {
     appStart();
   }, [initializeAppLanguage]);
 
+  useEffect(() => {
+    getRatings(dispatch);
+  }, [dispatch]);
+
   if (loading) {
-    return <LoadingActivity title={translations.loading.start} />;
+    return null;
   }
 
   if (!isConnected) {

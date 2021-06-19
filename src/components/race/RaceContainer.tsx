@@ -63,7 +63,6 @@ const RaceContainer: React.FC = () => {
     <FlatList
       style={style.root}
       data={races}
-      numColumns={1}
       ListHeaderComponent={
         <React.Fragment>
           <View style={style.headerBar}>
@@ -80,8 +79,12 @@ const RaceContainer: React.FC = () => {
       }
       stickyHeaderIndices={[0]}
       ListEmptyComponent={<EmptyRaceComponent />}
-      renderItem={({item}) => (
-        <RaceComponent data={item.Server} driver={driver} />
+      renderItem={({item, index}) => (
+        <RaceComponent
+          data={item.Server}
+          driver={driver}
+          key={`server-${index}`}
+        />
       )}
       keyExtractor={(item, index) => `server-${index}`}
       refreshControl={

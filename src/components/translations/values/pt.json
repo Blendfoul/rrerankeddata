@@ -154,6 +154,7 @@
   },
   "noConnection": "Sem conexão disponível!",
   "noDrivers": "Sem pilotos no servidor!",
+  "noServers": "Sem corridas disponíveis!",
   "exitApp": "Exit",
   "loading": {
     "start": "Formando grelha de partida",
@@ -166,5 +167,12 @@
     "leaderboard": "Carregando leaderboard",
     "search": "Que piloto é esse?",
     "details": "Análise de dados de corrida"
+  },
+  "rateModal": {
+    "title": "Está a gostar?",
+    "paragraph": "Por favor deixe uma classificação na página da loja.",
+    "rate": "Classificar",
+    "later": "Mais tarde",
+    "never": "Não voltar a mostrar"
   }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
-import {styles} from './Theme';
 import useCarClass from '../../hooks/useCarClass';
 
 interface CarClassProps {
@@ -10,7 +9,7 @@ interface CarClassProps {
   imgSize?: string;
 }
 
-const CarClass: React.FC<CarClassProps> = ({
+const CarClassComponent: React.FC<CarClassProps> = ({
   classId,
   liveries,
   size,
@@ -23,11 +22,15 @@ const CarClass: React.FC<CarClassProps> = ({
       width: size,
       height: size,
     },
+    root: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      paddingVertical: 5,
+    },
   });
 
-  console.log(classes);
   return (
-    <View style={[styles.row, styles.justifyCenter]}>
+    <View style={componentStyle.root}>
       {classes.map((id: number, index: number) => (
         <Image
           source={{
@@ -40,5 +43,7 @@ const CarClass: React.FC<CarClassProps> = ({
     </View>
   );
 };
+
+const CarClass = React.memo(CarClassComponent);
 
 export default CarClass;

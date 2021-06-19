@@ -5,7 +5,6 @@ import {Dimensions} from 'react-native';
 import DriverDetails from './DriverDetails';
 import DriverHistory from './DriverHistory';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {AdMobBanner} from 'react-native-admob';
 
 const renderTabBar: React.FC<any> = props => (
   <TabBar
@@ -53,11 +52,6 @@ const DriverComponent: React.FC<DriverProps> = ({username}) => {
         navigationState={{index, routes}}
         renderTabBar={renderTabBar}
         initialLayout={initialLayout}
-      />
-      <AdMobBanner
-        adSize={'smartBannerPortrait'}
-        adUnitID="ca-app-pub-3693871231832720/7421606479" //"ca-app-pub-3940256099942544/6300978111"
-        onAdFailedToLoad={(err: Error) => console.error('[ADMOB] ' + err)}
       />
     </React.Fragment>
   );
