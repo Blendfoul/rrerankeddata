@@ -10,7 +10,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {useRaceContext} from '../../store/RaceContext';
 import {ReducerActions} from '../../store/StoreReducer';
-import QualificationComponent from '../session/qualification/QualificationComponent';
 import RaceComponent from '../session/race/RaceComponent';
 
 const Stack = createStackNavigator();
@@ -66,16 +65,6 @@ const SearchNavigator: React.FC<SearchProps> = ({route, navigation}) => {
       <Stack.Screen
         name={translations.search.title.sessionDetails}
         component={SessionDetailsScreen}
-        options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
-        }}
-      />
-      <Stack.Screen
-        name={translations.navigation.qualification}
-        component={QualificationComponent}
         options={{
           headerStyle: {
             backgroundColor: '#2f2f2f',

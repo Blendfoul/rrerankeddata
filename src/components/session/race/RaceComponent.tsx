@@ -7,7 +7,7 @@ import {styles} from '../../utils/Theme';
 import TextContainer from '../../utils/TextContainer';
 import {LocalizationContext} from '../../translations/LocalizationContext';
 import useSectorTimes from '../../../hooks/useSectorTimes';
-import {incidentType} from '../RaceModal';
+import {incidentType} from '../IndicentType';
 
 interface RaceProps {
   route: any;

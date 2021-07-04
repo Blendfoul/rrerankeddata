@@ -10,7 +10,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {ReducerActions} from '../../store/StoreReducer';
 import RaceServer from '../server/RaceServer';
-import QualificationComponent from '../session/qualification/QualificationComponent';
 import RaceComponent from '../session/race/RaceComponent';
 
 const Stack = createStackNavigator();
@@ -80,16 +79,6 @@ const ServerNavigator: React.FC<ServerNavigatorProps> = ({navigation}) => {
             backgroundColor: colors.primary,
           },
           headerTintColor: colors.text,
-        }}
-      />
-      <Stack.Screen
-        name={translations.navigation.qualification}
-        component={QualificationComponent}
-        options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
         }}
       />
       <Stack.Screen

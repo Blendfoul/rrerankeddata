@@ -6,7 +6,6 @@ import {LocalizationContext} from '../translations/LocalizationContext';
 import {Button} from 'react-native-paper';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import QualificationComponent from '../session/qualification/QualificationComponent';
 import RaceComponent from '../session/race/RaceComponent';
 
 const Stack = createStackNavigator();
@@ -38,16 +37,6 @@ const UserNavigator: React.FC<UserProps> = ({navigation}) => {
       <Stack.Screen
         name={translations.navigation.sessionDetails}
         component={SessionDetailsScreen}
-        options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
-        }}
-      />
-      <Stack.Screen
-        name={translations.navigation.qualification}
-        component={QualificationComponent}
         options={{
           headerStyle: {
             backgroundColor: '#2f2f2f',

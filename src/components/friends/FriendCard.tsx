@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {Rating} from '../../types/rating';
 import {useNavigation} from '@react-navigation/core';
-import {StyleSheet, View} from 'react-native';
-import {Avatar, Caption, Card, Paragraph, Title} from 'react-native-paper';
+import {StyleSheet} from 'react-native';
+import {Avatar, Card, Paragraph} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {LocalizationContext} from '../translations/LocalizationContext';
 //@ts-ignore
@@ -36,13 +36,6 @@ const Friend: React.FC<FriendCardProps> = ({item}) => {
         state.defaultDriver === item.Username ? '#646464' : '#2f2f2f',
       margin: 5,
     },
-    textContainer: {
-      alignItems: 'center',
-    },
-    title: {
-      fontSize: 15,
-      color: '#fff',
-    },
     caption: {
       alignItems: 'center',
       justifyContent: 'center',
@@ -50,61 +43,44 @@ const Friend: React.FC<FriendCardProps> = ({item}) => {
       color: '#dbdbdb',
       marginHorizontal: 7.5,
     },
-    logoContainer: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: 5,
-    },
     containerRow: {
       flexDirection: 'row',
       justifyContent: 'space-around',
-    },
-    backgroundAvatar: {
-      backgroundColor: '#2f2f2f',
     },
   });
 
   return (
     <Card onPress={driverPress} elevation={3} style={friendCardStyle.root}>
-      <Card.Content style={friendCardStyle.containerRow}>
-        <View style={friendCardStyle.logoContainer}>
+      <Card.Title
+        title={item.Fullname}
+        subtitle={item.Team || translations.profile.privateer}
+        left={props => (
           <Avatar.Image
-            style={friendCardStyle.backgroundAvatar}
+            {...props}
             source={{
               uri: 'https://game.raceroom.com/game/user_avatar/' + item.UserId,
             }}
           />
-        </View>
-        <View>
-          <View style={friendCardStyle.textContainer}>
-            <View
-              style={[friendCardStyle.containerRow, {alignItems: 'center'}]}>
-              <Title style={friendCardStyle.title}>{item.Fullname}</Title>
-              <Flag
-                code={item.Country.toUpperCase()}
-                size={24}
-                type={'flat'}
-                style={{marginLeft: 10}}
-              />
-            </View>
-            <Caption style={friendCardStyle.caption}>
-              {item.Team || translations.profile.privateer}
-            </Caption>
-          </View>
-          <View style={friendCardStyle.containerRow}>
-            <Paragraph style={friendCardStyle.caption}>
-              <AntDesign name={'solution1'} size={15} /> {item.Rating}
-            </Paragraph>
-            <Paragraph style={friendCardStyle.caption}>
-              <AntDesign name={'exception1'} size={15} /> {item.Reputation}
-            </Paragraph>
-          </View>
-          <View style={friendCardStyle.containerRow}>
-            <Paragraph style={friendCardStyle.caption}>
-              <AntDesign name={'car'} size={15} /> {item.RacesCompleted}
-            </Paragraph>
-          </View>
-        </View>
+        )}
+        right={() => (
+          <Flag
+            code={item.Country.toUpperCase()}
+            size={24}
+            type={'flat'}
+            style={{marginHorizontal: 10}}
+          />
+        )}
+      />
+      <Card.Content style={friendCardStyle.containerRow}>
+        <Paragraph style={friendCardStyle.caption}>
+          <AntDesign name={'solution1'} size={15} /> {item.Rating}
+        </Paragraph>
+        <Paragraph style={friendCardStyle.caption}>
+          <AntDesign name={'exception1'} size={15} /> {item.Reputation}
+        </Paragraph>
+        <Paragraph style={friendCardStyle.caption}>
+          <AntDesign name={'car'} size={15} /> {item.RacesCompleted}
+        </Paragraph>
       </Card.Content>
     </Card>
   );

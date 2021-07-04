@@ -28,7 +28,11 @@ const DriverHeader: React.FC<DriverProps> = ({item}) => {
   return (
     <Card style={style.root} elevation={3}>
       <Card.Cover
-        source={{uri: item.data.header}}
+        source={
+          item.data.header
+            ? {uri: item.data.header}
+            : require('../../assets/r3e.png')
+        }
         resizeMode={'contain'}
         resizeMethod={'resize'}
         style={style.image}

@@ -13,7 +13,8 @@
     "myDriver": "My driver",
     "result": "Result",
     "race": "Race",
-    "qualification": "Qualification"
+    "qualification": "Qualification",
+    "donate": "Donate"
   },
   "race": {
     "regions": [
@@ -97,7 +98,8 @@
     "overall": "overall",
     "fastest": "Fastest Lap",
     "averageLap": "avg. Laptime",
-    "diffTimer": "Diff. average"
+    "diffTimer": "Diff. average",
+    "noTimeSet": "No time set"
   },
   "qualificationModal": {
     "fastest": "Fastest Lap",

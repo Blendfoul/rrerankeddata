@@ -8,27 +8,38 @@ const useSectorTimes = (data: Lap[]) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const getValues = useCallback(() => {
-    const lap = data
-      .filter(d => d.Time > 0)
-      .reduce((acc, loc) => (acc.Time < loc.Time ? acc : loc));
+    if (data.length) {
+      console.log(data.filter(d => d.Valid));
 
-    setSectors(lap.SectorTimes);
+      const lap = data
+        .filter(d => d.Valid)
+        .reduce((acc, loc) => {
+          if (loc.Time < 0) {
+            return acc;
+          }
 
-    const times =
-      data.map(lap => lap.Time).reduce((a, b) => a + b) / data.length;
+          return acc.Time < loc.Time ? acc : loc;
+        });
 
-    setAvgTime(
-      `${Math.floor((times / 1000 / 60) << 0)}:${((times / 1000) % 60).toFixed(
-        3,
-      )}s`,
-    );
+      setSectors(lap.SectorTimes);
 
-    setLapTime(
-      `${Math.floor((lap.Time / 1000 / 60) << 0)}:${(
-        (lap.Time / 1000) %
-        60
-      ).toFixed(3)}s`,
-    );
+      const times =
+        data.map(lap => lap.Time).reduce((a, b) => a + b) / data.length;
+
+      setAvgTime(
+        `${Math.floor((times / 1000 / 60) << 0)}:${(
+          (times / 1000) %
+          60
+        ).toFixed(3)}s`,
+      );
+
+      setLapTime(
+        `${Math.floor((lap.Time / 1000 / 60) << 0)}:${(
+          (lap.Time / 1000) %
+          60
+        ).toFixed(3)}s`,
+      );
+    }
 
     setLoading(false);
   }, [data]);

@@ -13,6 +13,7 @@ export interface Translations {
     sessionDetails: string;
     qualification: string;
     driverDetails: string;
+    donate: string;
   };
   race: {
     all: string;
@@ -85,6 +86,7 @@ export interface Translations {
     fastest: string;
     averageLap: string;
     diffTimer: string;
+    noTimeSet: string;
   };
   qualificationModal: {
     fastest: string;
@@ -105,6 +107,7 @@ export interface Translations {
     incidents: string;
     rating: string;
     reputation: string;
+    optimalLap: string;
   };
   lapTable: {
     lap: string;
@@ -134,6 +137,7 @@ export interface Translations {
   };
   messages: {
     driverSet: string;
+    copied: string;
   };
   loading: {
     start: string;

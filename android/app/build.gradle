@@ -134,8 +134,9 @@ android {
         applicationId "com.rrerankeddata"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 30
-        versionName "1.5.4"
+        versionCode 31
+        versionName "1.5.5"
+        missingDimensionStrategy ('store', 'play')
     }
     splits {
         abi {
@@ -228,3 +229,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+

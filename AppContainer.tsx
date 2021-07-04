@@ -11,7 +11,7 @@ const theme: ReactNativePaper.Theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: '#2f2f2f',
-    accent: '#493a3a',
+    accent: '#CB292B',
     background: '#c0c0c0',
     text: '#fff',
   },

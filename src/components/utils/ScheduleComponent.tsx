@@ -50,7 +50,7 @@ const ScheduleComponent: React.FC = () => {
           <ScrollView horizontal>
             <Image
               source={{
-                uri: `https://evosupport.raceroom.com/index.php/apps/files_sharing/publicpreview/tne8CWb45oQmcTx?file=/schedule%20post.png&x=1920&y=1080&a=true&c=${date.getDate()}_${
+                uri: `https://evosupport.raceroom.com/index.php/apps/files_sharing/publicpreview/xgT5EjNqkiiM8C3?x=1920&y=1080&a=true&file=schedule%2520post.png&scalingup=0&c=${date.getDate()}_${
                   date.getHours() > 12 ? '1' : '0'
                 }`,
                 cache: 'reload',

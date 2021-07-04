@@ -16,27 +16,25 @@ import AboutNavigator from './src/components/navigators/AboutNavigator';
 import FriendsNavigator from './src/components/navigators/FriendsNavigator';
 import RankingNavigator from './src/components/navigators/RankingNavigator';
 import useInitApp from './src/hooks/useInitApp';
-import {getRatings} from './src/hooks/useAxiosMock';
-import {useRaceContext} from './src/store/RaceContext';
+import useRatingContext from './src/hooks/useRatingContext';
+import DonateNavigator from './src/components/navigators/DonateNavigator';
 
 const drawerNavigator = createDrawerNavigator();
 
 const App: React.FC<any> = () => {
   const {translations, initializeAppLanguage} = useContext(LocalizationContext);
-  const [state, dispatch] = useRaceContext();
   const {loading, isConnected} = useInitApp();
+  const {loadingRatings} = useRatingContext();
 
   useEffect(() => {
-    const appStart = async () => initializeAppLanguage();
+    const appStart = async () => {
+      await initializeAppLanguage();
+    };
 
     appStart();
   }, [initializeAppLanguage]);
 
-  useEffect(() => {
-    getRatings(dispatch);
-  }, [dispatch]);
-
-  if (loading) {
+  if (loading && loadingRatings) {
     return null;
   }
 
@@ -78,6 +76,10 @@ const App: React.FC<any> = () => {
         <drawerNavigator.Screen
           name={translations.navigation.about}
           component={AboutNavigator}
+        />
+        <drawerNavigator.Screen
+          name={translations.navigation.donate}
+          component={DonateNavigator}
         />
       </drawerNavigator.Navigator>
     </NavigationContainer>

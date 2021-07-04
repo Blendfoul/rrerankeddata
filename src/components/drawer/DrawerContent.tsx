@@ -1,6 +1,10 @@
 import React, {useContext} from 'react';
 import {BackHandler, StyleSheet, View} from 'react-native';
-import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import {
+  DrawerContentComponentProps,
+  DrawerContentScrollView,
+  DrawerItem,
+} from '@react-navigation/drawer';
 import {Drawer} from 'react-native-paper';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import MaterialCommunityIcon from 'react-native-paper/src/components/MaterialCommunityIcon';
@@ -23,7 +27,7 @@ const drawerStyle = StyleSheet.create({
   content: {flex: 1, backgroundColor: '#2f2f2f'},
 });
 
-const DrawerContent: React.FC<any> = props => {
+const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
   const {translations} = useContext(LocalizationContext);
   const [state] = useRaceContext();
 
@@ -97,6 +101,21 @@ const DrawerContent: React.FC<any> = props => {
             )}
             onPress={() =>
               props.navigation.navigate(translations.navigation.about)
+            }
+          />
+          <DrawerItem
+            label={translations.navigation.donate}
+            labelStyle={drawerStyle.textColor}
+            icon={({size}) => (
+              <MaterialCommunityIcon
+                name={'hand-heart'}
+                color={'#fff'}
+                size={size}
+                direction={'ltr'}
+              />
+            )}
+            onPress={() =>
+              props.navigation.navigate(translations.navigation.donate)
             }
           />
         </Drawer.Section>
