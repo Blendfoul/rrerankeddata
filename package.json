@@ -1,6 +1,6 @@
 {
   "name": "rrerankeddata",
-  "version": "1.5.1",
+  "version": "1.5.6",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -23,7 +23,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "metro-config": "^0.66.0",
     "react": "17.0.1",
-    "react-native": "0.63.2",
+    "react-native": "0.63.4",
     "react-native-countdown-component": "^2.7.1",
     "react-native-dropdown-picker": "^4.0.5",
     "react-native-flags": "^1.0.0",

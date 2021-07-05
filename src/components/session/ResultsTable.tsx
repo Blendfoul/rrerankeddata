@@ -62,12 +62,21 @@ const ResultsTable: React.FC<TableGeneratorProps> = ({data, type}) => {
   };
 
   useEffect(() => {
-    return setRoutes(
-      names.map((value, index) => {
-        return {key: value, title: value, target: index} as Route;
-      }),
-    );
-  }, [names]);
+    const routes1 = names.map((value, i) => {
+      console.log(values.length);
+      if (i < values.length) {
+        return {key: value, title: value, target: i} as Route;
+      }
+
+      return null;
+    });
+
+    const filtered: Route[] = routes1.filter(function (el) {
+      return el != null;
+    });
+
+    setRoutes(filtered);
+  }, [names, values.length]);
 
   const initialLayout = {
     height: 0,
