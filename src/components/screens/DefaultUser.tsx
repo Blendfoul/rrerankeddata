@@ -11,7 +11,7 @@ import {
 } from 'react-native-paper';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface DefaultUserProps {
   navigation: DrawerNavigationProp<any>;

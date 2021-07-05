@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {Button, useTheme} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import DonateScreen from '../screens/DonateScreen';
 
 const Stack = createStackNavigator();

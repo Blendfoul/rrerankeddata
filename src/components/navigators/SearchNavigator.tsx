@@ -6,7 +6,7 @@ import {Button} from 'react-native-paper';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {RouteProp} from '@react-navigation/core';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {useRaceContext} from '../../store/RaceContext';
 import {ReducerActions} from '../../store/StoreReducer';

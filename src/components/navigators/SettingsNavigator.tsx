@@ -4,7 +4,7 @@ import {LocalizationContext} from '../translations/LocalizationContext';
 import SettingsComponent from '../settings/SettingsComponent';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {Button} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Stack = createStackNavigator();
 

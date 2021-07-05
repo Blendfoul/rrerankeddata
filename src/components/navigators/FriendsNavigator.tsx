@@ -5,7 +5,7 @@ import {LocalizationContext} from '../translations/LocalizationContext';
 import DriverDetailsScreen from '../screens/DriverDetailsScreen';
 import FriendsScreen from '../screens/FriendsScreen';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Stack = createStackNavigator();
 

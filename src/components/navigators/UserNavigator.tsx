@@ -5,7 +5,7 @@ import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {Button} from 'react-native-paper';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import RaceComponent from '../session/race/RaceComponent';
 
 const Stack = createStackNavigator();

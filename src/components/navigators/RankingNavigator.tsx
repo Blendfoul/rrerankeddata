@@ -3,7 +3,7 @@ import React, {useContext} from 'react';
 import {Button} from 'react-native-paper';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import DriverDetailsScreen from '../screens/DriverDetailsScreen';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useRaceContext} from '../../store/RaceContext';
 import {ReducerActions} from '../../store/StoreReducer';
 import RatingScreen from '../screens/RatingScreen';

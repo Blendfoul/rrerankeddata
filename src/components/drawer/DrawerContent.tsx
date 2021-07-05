@@ -8,7 +8,7 @@ import {
 import {Drawer} from 'react-native-paper';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import MaterialCommunityIcon from 'react-native-paper/src/components/MaterialCommunityIcon';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import DriverAvatar from './DriverAvatar';
 import {useRaceContext} from '../../store/RaceContext';
 

@@ -6,7 +6,7 @@ import {Button, useTheme} from 'react-native-paper';
 import {useRaceContext} from '../../store/RaceContext';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {ReducerActions} from '../../store/StoreReducer';
 import RaceServer from '../server/RaceServer';
