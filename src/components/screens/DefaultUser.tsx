@@ -86,7 +86,7 @@ const DefaultUser: React.FC<DefaultUserProps> = ({navigation}) => {
           <Caption style={componentStyle.caption}>
             {translations.user.tutorial.message_2}
           </Caption>
-          <Icon name={'person-add'} color={colors.text} size={55} />
+          <Icon name={'account-plus'} color={colors.text} size={55} />
         </View>
         <Caption style={componentStyle.caption}>
           {translations.user.tutorial.message_3}

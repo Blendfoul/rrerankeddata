@@ -40,7 +40,7 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
             label={translations.navigation.server}
             labelStyle={drawerStyle.textColor}
             icon={({size}) => (
-              <Icon name={'car-repair'} color={'#fff'} size={size} />
+              <Icon name={'car-traction-control'} color={'#fff'} size={size} />
             )}
             onPress={() =>
               props.navigation.navigate(translations.navigation.server)
@@ -50,7 +50,7 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
             label={translations.navigation.user}
             labelStyle={drawerStyle.textColor}
             icon={({size}) => (
-              <Icon name={'person'} color={'#fff'} size={size} />
+              <Icon name={'account'} color={'#fff'} size={size} />
             )}
             onPress={() =>
               props.navigation.navigate(translations.navigation.user)
@@ -61,7 +61,7 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
               label={translations.navigation.friends}
               labelStyle={drawerStyle.textColor}
               icon={({size}) => (
-                <Icon name={'group'} color={'#fff'} size={size} />
+                <Icon name={'account-group'} color={'#fff'} size={size} />
               )}
               onPress={() =>
                 props.navigation.navigate(translations.navigation.friends)
@@ -72,7 +72,7 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
             label={translations.navigation.search}
             labelStyle={drawerStyle.textColor}
             icon={({size}) => (
-              <Icon name={'search'} color={'#fff'} size={size} />
+              <Icon name={'account-search'} color={'#fff'} size={size} />
             )}
             onPress={() =>
               props.navigation.navigate(translations.navigation.search)
@@ -81,9 +81,7 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
           <DrawerItem
             label={translations.navigation.ranking}
             labelStyle={drawerStyle.textColor}
-            icon={({size}) => (
-              <Icon name={'table-rows'} color={'#fff'} size={size} />
-            )}
+            icon={({size}) => <Icon name={'text'} color={'#fff'} size={size} />}
             onPress={() =>
               props.navigation.navigate(translations.navigation.ranking)
             }

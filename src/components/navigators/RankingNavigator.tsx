@@ -53,7 +53,7 @@ const RankingNavigator: React.FC<RankingProp> = ({navigation}) => {
                   payload: state.searchDriver,
                 });
               }}>
-              <Icon name={'person-add'} size={25} color={'#fff'} />
+              <Icon name={'account-plus'} size={25} color={'#fff'} />
             </Button>
           ),
         }}

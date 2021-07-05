@@ -66,7 +66,7 @@ const ServerNavigator: React.FC<ServerNavigatorProps> = ({navigation}) => {
                   payload: state.searchDriver,
                 });
               }}>
-              <Icon name="person-add" size={25} color="white" />
+              <Icon name="account-plus" size={25} color="white" />
             </Button>
           ),
         }}
