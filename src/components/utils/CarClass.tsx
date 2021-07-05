@@ -37,7 +37,7 @@ const CarClassComponent: React.FC<CarClassProps> = ({
             uri: `https://game.raceroom.com/store/image_redirect?id=${id}&amp;size=${imgSize}`,
           }}
           style={componentStyle.image}
-          key={`class- ${index}`}
+          key={`class-${index}`}
         />
       ))}
     </View>

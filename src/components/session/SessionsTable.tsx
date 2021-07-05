@@ -36,12 +36,7 @@ const SessionsTable: React.FC<SessionsTableProps> = ({info}) => {
   const renderScene = ({route}: {route: {key: string}}) => {
     switch (route.key) {
       case 'data':
-        return (
-          <SessionDataInfo
-            info={info.RaceInfos}
-            layoutId={info.TrackLayoutId}
-          />
-        );
+        return <SessionDataInfo data={info} />;
       case 'qualification':
         return <ResultsTable data={info.QualiResult} type={'quali'} />;
       case 'race':

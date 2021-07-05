@@ -1,11 +1,12 @@
 import {StyleSheet, View, FlatList, Dimensions} from 'react-native';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {styles} from '../utils/Theme';
 import {QualiResult, RaceResult} from '../../types/resultData';
 import {TabBar, TabView} from 'react-native-tab-view';
 import QualificationRow from './qualification/QualificationRow';
 import LoadingActivity from '../utils/LoadingActivity';
 import RaceRow from './race/RaceRow';
+import useSessionClasses from '../../hooks/useSessionClasses';
 
 type Route = {key: string; title: string; target: number};
 
@@ -15,10 +16,9 @@ interface TableGeneratorProps {
 }
 
 const ResultsTable: React.FC<TableGeneratorProps> = ({data, type}) => {
-  const [loading, setLoading] = useState<boolean>(true);
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState<Route[]>([]);
-  const [values, setData] = useState<QualiResult[][] | RaceResult[][]>([]);
+  const {values, names, loading} = useSessionClasses(data);
 
   const renderTabBar: React.FC<any> = props => {
     const tabStyle = {backgroundColor: 'gray'};
@@ -61,36 +61,13 @@ const ResultsTable: React.FC<TableGeneratorProps> = ({data, type}) => {
     );
   };
 
-  const filterClasses = useCallback(() => {
-    const classIndex = data
-      .map(driver => driver.PerformanceIndex)
-      .filter((value, index, array) => array.indexOf(value) === index);
-
-    const classNames = data
-      .map(driver => driver.CarClass.Name)
-      .filter((value, index, array) => array.indexOf(value) === index);
-
-    while (classNames.length > classIndex.length) {
-      classNames.pop();
-    }
-
-    setRoutes(
-      classNames.map((value, index) => {
-        return {key: value, title: value, target: index};
+  useEffect(() => {
+    return setRoutes(
+      names.map((value, index) => {
+        return {key: value, title: value, target: index} as Route;
       }),
     );
-
-    setData(
-      classIndex.map(id =>
-        data.filter(driver => driver.PerformanceIndex === id),
-      ),
-    );
-    setLoading(false);
-  }, [data]);
-
-  useEffect(() => {
-    filterClasses();
-  }, [filterClasses]);
+  }, [names]);
 
   const initialLayout = {
     height: 0,
