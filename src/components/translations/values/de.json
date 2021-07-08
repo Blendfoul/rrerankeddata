@@ -94,7 +94,15 @@
     "overall": "Insgesamt",
     "fastest": "Schnellste Runde",
     "averageLap": "Durchschn. Rundenzeit",
-    "diffTimer": "Diff. Durchschnitt"
+    "diffTimer": "Diff. Durchschnitt",
+    "noTimeSet": "Keine Zeit einstellung",
+    "UserResults": "Benutzerergebnisse",
+    "CarClass": "Autoklasse",
+    "LapsCompleted": "Abgeschlossene Runden",
+    "StartPosition": "Startposition",
+    "FinishPosition": "Zielposition",
+    "RatingAfter": "Bewertung nach",
+    "ReputationAfter": "Reputation nach"
   },
   "qualificationModal": {
     "fastest": "Schnellste Runde",

@@ -95,7 +95,15 @@
     "overall": "general",
     "fastest": "Vuelta más rápida",
     "averageLap": "prom. Tiempo de vuelta",
-    "diffTimer": "Dif. promedio"
+    "diffTimer": "Dif. promedio",
+    "noTimeSet": "Sin tiempo establecido",
+    "UserResults": "Resultados del usuario",
+    "CarClass": "Clase de coche",
+    "LapsCompleted": "Vueltas completadas",
+    "StartPosition": "Posición inicial",
+    "FinishPosition": "Posición final",
+    "RatingAfter": "Calificación después",
+    "ReputationAfter": "Reputación después"
   },
   "qualificationModal": {
     "fastest": "Vuelta más rápida",
@@ -148,6 +156,10 @@
     "disclaimer": "Las estadísticas clasificadas de R3E son una aplicación de terceros y no están afiliadas de ninguna manera con el Sector 3.",
     "mvp": "Un agradecimiento especial a DavidsAppStudio por proporcionar las estadísticas detalladas para el historial de sesiones",
     "somethingWrong": "Encontraste algo mal?"
+  },
+  "donation": {
+    "greeting": "Hola chicos!",
+    "message": "Si te gusta la aplicación y tienes ganas de apoyarme en el desarrollo de la aplicación no dudes en seguir adelante. Todo el apoyo es muy apreciado!"
   },
   "noConnection": "No hay conexión disponible!",
   "noDrivers": "¡No hay controladores en el servidor!",

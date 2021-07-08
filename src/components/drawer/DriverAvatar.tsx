@@ -32,7 +32,7 @@ const drawerStyle = StyleSheet.create({
 const DriverAvatar: React.FC<any> = () => {
   const {translations} = useContext(LocalizationContext);
   const {driver, loading} = useDrawerContent();
-
+  const isJasper = driver?.id === 5716186;
   if (loading) {
     return <LoadingActivity title={translations.loading.start} />;
   }
@@ -48,7 +48,9 @@ const DriverAvatar: React.FC<any> = () => {
               }}
             />
             <View>
-              <Title style={drawerStyle.title}>{driver.name}</Title>
+              <Title style={drawerStyle.title}>
+                {isJasper ? 'Captain Slo' : driver.name}
+              </Title>
               <Caption style={drawerStyle.caption}>{driver.team}</Caption>
             </View>
           </View>

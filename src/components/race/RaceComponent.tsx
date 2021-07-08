@@ -1,5 +1,5 @@
 import React, {useCallback, useContext} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import CarClass from '../utils/CarClass';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 //@ts-ignore component sem types
@@ -7,7 +7,7 @@ import CountDown from 'react-native-countdown-component';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {ServerData} from '../../types/Server';
 import {useNavigation} from '@react-navigation/core';
-import {Caption, Card, Subheading, useTheme} from 'react-native-paper';
+import {Caption, Card, useTheme} from 'react-native-paper';
 import useRaceSession from '../../hooks/useRaceSession';
 import {User} from '../../hooks/useDrawerContent';
 import useRaceType from '../../hooks/useRaceType';
@@ -57,7 +57,6 @@ const RaceComponent: React.FC<RaceProps> = ({data, driver}) => {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      paddingVertical: 5,
     },
     label: {
       backgroundColor: raceType.color || colors.primary,
@@ -69,13 +68,27 @@ const RaceComponent: React.FC<RaceProps> = ({data, driver}) => {
     <Card style={style.root} onPress={onRacePress} elevation={3}>
       <TrackImage trackId={data.Settings.TrackLayoutId[0]} size={55} />
       <View style={style.label} />
+      <Card.Title
+        style={style.content}
+        title={name}
+        right={() => (
+          <Image
+            source={raceType.image}
+            style={{
+              width: 75,
+              height: 25,
+              marginRight: 12,
+            }}
+            resizeMode={'contain'}
+          />
+        )}
+      />
       <Card.Content style={style.content}>
         <CarClass
           liveries={data.Settings.LiveryId}
           size={25}
           imgSize={'small'}
         />
-        <Subheading>{name}</Subheading>
       </Card.Content>
       <Card.Content style={style.content}>
         <Caption>

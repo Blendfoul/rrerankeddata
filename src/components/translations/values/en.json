@@ -85,7 +85,9 @@
     "reputation": "Reputation",
     "track": "Favourite Track",
     "car": "Favourite Car",
-    "privateer": "Privateer"
+    "privateer": "Privateer",
+    "timeInGame": "Time in Game",
+    "joined": "Joined"
   },
   "session": {
     "general": "General",
@@ -99,7 +101,14 @@
     "fastest": "Fastest Lap",
     "averageLap": "avg. Laptime",
     "diffTimer": "Diff. average",
-    "noTimeSet": "No time set"
+    "noTimeSet": "No time set",
+    "UserResults": "User Results",
+    "CarClass": "Car Class",
+    "LapsCompleted": "Laps Completed",
+    "StartPosition": "Start Position",
+    "FinishPosition": "Finish Position",
+    "RatingAfter": "Rating After",
+    "ReputationAfter": "Reputation After"
   },
   "qualificationModal": {
     "fastest": "Fastest Lap",
@@ -173,6 +182,10 @@
     "rate": "Rate",
     "later": "Remember later",
     "never": "Don't show again"
+  },
+  "donation": {
+    "greeting": "Hello Guys!",
+    "message": "If you like the app and feel like supporting me developing the app feel free to go ahead. All the support is greatly appreciated!"
   },
   "noConnection": "No connection available!",
   "noDrivers": "No drivers on Server!",

@@ -95,35 +95,35 @@ const SessionDataInfo: React.FC<SessionDataProps> = ({data}) => {
           {driverData !== undefined ? (
             <React.Fragment>
               <View style={styles.contentRoot}>
-                <TextContainer title={'User Results'} />
+                <TextContainer title={translations.session.UserResults} />
               </View>
               <View style={styles.contentRoot}>
                 <TextContainer
-                  title={'Car class'}
+                  title={translations.session.CarClass}
                   text={driverData!.CarClass.Name}
                 />
                 <TextContainer
-                  title={'Laps Completed'}
+                  title={translations.session.LapsCompleted}
                   text={driverData!.Laps.length}
                 />
               </View>
               <View style={styles.contentRoot}>
                 <TextContainer
-                  title={'Starting Position'}
+                  title={translations.session.StartPosition}
                   text={driverData!.StartPositionInClass}
                 />
                 <TextContainer
-                  title={'Finish Position'}
+                  title={translations.session.FinishPosition}
                   text={driverData!.FinishPositionInClass}
                 />
               </View>
               <View style={styles.contentRoot}>
                 <TextContainer
-                  title={'Rating After'}
+                  title={translations.session.RatingAfter}
                   text={driverData!.RatingAfter}
                 />
                 <TextContainer
-                  title={'Reputation After'}
+                  title={translations.session.ReputationAfter}
                   text={driverData!.ReputationAfter}
                 />
               </View>

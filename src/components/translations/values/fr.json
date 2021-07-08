@@ -97,7 +97,15 @@
     "overall": "Total",
     "fastest": "Tour le plus rapide",
     "averageLap": "Avg. Temps au tour",
-    "diffTimer": "Moyenne diff."
+    "diffTimer": "Moyenne diff.",
+    "noTimeSet": "Pas d’heure définie",
+    "UserResults": "Résultats utilisateur",
+    "CarClass": "Classe de voiture",
+    "LapsCompleted": "Tours terminés",
+    "StartPosition": "Position de départ",
+    "FinishPosition": "Position d’arrivée",
+    "RatingAfter": "Évaluation après",
+    "ReputationAfter": "Réputation après"
   },
   "qualificationModal": {
     "fastest": "Tour le plus rapide",
@@ -171,6 +179,10 @@
     "rate": "Taux",
     "later": "Rappelez-vous plus tard",
     "never": "Ne plus afficher"
+  },
+  "donation": {
+    "greeting": "Bonjour les gars!",
+    "message": "Si vous aimez l’application et que vous avez envie de me soutenir dans le développement de l’application, n’hésitez pas à aller de l’avant. Tout le soutien est grandement apprécié!"
   },
   "noConnection": "Aucune connexion disponible!",
   "noDrivers": "Pas de pilotes sur le serveur!",

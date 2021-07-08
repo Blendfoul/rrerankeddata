@@ -16,7 +16,7 @@ const QualificationRow: React.FC<QualificationRowProps> = ({item}) => {
   const {translations} = useContext(LocalizationContext);
   const {colors} = useTheme();
   const [hidden, setHidden] = useState<boolean>(true);
-  const {sectors, lapTime, loading} = useSectorTimes(item.Laps || []);
+  const {sectors, lapTime, loading} = useSectorTimes(item.Laps);
 
   const componentStyle = StyleSheet.create({
     root: {

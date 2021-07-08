@@ -87,6 +87,13 @@ export interface Translations {
     averageLap: string;
     diffTimer: string;
     noTimeSet: string;
+    UserResults: string;
+    CarClass: string;
+    LapsCompleted: string;
+    StartPosition: string;
+    FinishPosition: string;
+    RatingAfter: string;
+    ReputationAfter: string;
   };
   qualificationModal: {
     fastest: string;
@@ -94,6 +101,10 @@ export interface Translations {
     sector: string;
     optimal: string;
     incidents: string;
+  };
+  donation: {
+    greeting: string;
+    message: string;
   };
   raceModal: {
     name: string;

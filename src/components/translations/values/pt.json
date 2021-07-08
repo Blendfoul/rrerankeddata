@@ -96,7 +96,15 @@
     "overall": "total",
     "fastest": "Tempo + rápido",
     "averageLap": "Tempo médio",
-    "diffTimer": "Diff. média"
+    "diffTimer": "Diff. média",
+    "noTimeSet": "Sem tempo definido",
+    "UserResults": "Resultados do utilizador",
+    "CarClass": "Classe Automóvel",
+    "LapsCompleted": "Voltas Concluídas",
+    "StartPosition": "Posição de início",
+    "FinishPosition": "Posição de acabamento",
+    "RatingAfter": "Classificação depois",
+    "ReputationAfter": "Reputação Depois"
   },
   "qualificationModal": {
     "fastest": "Tempo + rápido",
@@ -167,6 +175,10 @@
     "leaderboard": "Carregando leaderboard",
     "search": "Que piloto é esse?",
     "details": "Análise de dados de corrida"
+  },
+  "donation": {
+    "greeting": "Olá Pessoal!",
+    "message": "Se gostas da app e quiseres apoiar-me a desenvolve-la podes faze-lo aqui em baixo. Todo o apoio é muito apreciado!"
   },
   "rateModal": {
     "title": "Está a gostar?",

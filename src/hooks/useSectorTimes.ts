@@ -8,18 +8,16 @@ const useSectorTimes = (data: Lap[]) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const getValues = useCallback(() => {
-    if (data.length) {
-      console.log(data.filter(d => d.Valid));
+    const filtered = data.filter(d => d.Valid);
 
-      const lap = data
-        .filter(d => d.Valid)
-        .reduce((acc, loc) => {
-          if (loc.Time < 0) {
-            return acc;
-          }
+    if (filtered.length) {
+      const lap = filtered.reduce((acc, loc) => {
+        if (loc.Time < 0) {
+          return acc;
+        }
 
-          return acc.Time < loc.Time ? acc : loc;
-        });
+        return acc.Time < loc.Time ? acc : loc;
+      });
 
       setSectors(lap.SectorTimes);
 

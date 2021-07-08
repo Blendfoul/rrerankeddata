@@ -14,6 +14,7 @@ import {LocalizationContext} from '../../translations/LocalizationContext';
 import {styles} from '../../utils/Theme';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcon from 'react-native-paper/src/components/MaterialCommunityIcon';
+import useSectorTimes from '../../../hooks/useSectorTimes';
 
 interface RaceRowProps {
   data: RaceResult;
@@ -24,6 +25,7 @@ const RaceRow: React.FC<RaceRowProps> = ({data}) => {
   const {translations} = useContext(LocalizationContext);
   const {colors} = useTheme();
   const [hidden, setHidden] = useState<boolean>(true);
+  const {lapTime} = useSectorTimes(data.Laps);
 
   const componentStyle = StyleSheet.create({
     root: {
@@ -70,20 +72,6 @@ const RaceRow: React.FC<RaceRowProps> = ({data}) => {
     }
   }, [data.FinishPositionInClass]);
 
-  const bestLap = useCallback(() => {
-    const value = data.Laps.filter(lap => lap.Time > 0);
-
-    if (value.length) {
-      const lap = value.reduce((acc, loc) => (acc.Time < loc.Time ? acc : loc));
-      return `${Math.floor((lap.Time / 1000 / 60) << 0)}:${(
-        (lap.Time / 1000) %
-        60
-      ).toFixed(3)}s`;
-    } else {
-      return data.Laps[0].Time;
-    }
-  }, [data.Laps]);
-
   const showExtra = () => setHidden(prevState => !prevState);
 
   return (
@@ -111,9 +99,7 @@ const RaceRow: React.FC<RaceRowProps> = ({data}) => {
             <View
               style={[styles.row, styles.justifyCenter, styles.alignCenter]}>
               <AntIcon name={'clockcircleo'} size={15} color={'#fff'} />
-              <Paragraph style={[{paddingHorizontal: 10}]}>
-                {bestLap()}
-              </Paragraph>
+              <Paragraph style={{paddingHorizontal: 10}}>{lapTime}</Paragraph>
             </View>
             <View
               style={[styles.row, styles.justifyCenter, styles.alignCenter]}>
@@ -123,7 +109,13 @@ const RaceRow: React.FC<RaceRowProps> = ({data}) => {
               </Paragraph>
             </View>
           </View>
-          <View style={[styles.row, styles.justifyEvenly, styles.alignCenter, styles.paddingTop15]}>
+          <View
+            style={[
+              styles.row,
+              styles.justifyEvenly,
+              styles.alignCenter,
+              styles.paddingTop15,
+            ]}>
             <Paragraph style={componentStyle.rat}>
               <AntIcon name={'solution1'} size={15} color={'white'} />{' '}
               {data.RatingChange}

@@ -95,7 +95,15 @@
     "overall": "grembiule",
     "fastest": "Giro più veloce",
     "averageLap": "Media. Tempo sul giro",
-    "diffTimer": "Media diff."
+    "diffTimer": "Media diff.",
+    "noTimeSet": "Nessun set di tempo",
+    "UserResults": "Risultati utente",
+    "CarClass": "Classe Car",
+    "LapsCompleted": "Giri completati",
+    "StartPosition": "Posizione iniziale",
+    "FinishPosition": "Posizione di finitura",
+    "RatingAfter": "Valutazione dopo",
+    "ReputationAfter": "Reputazione dopo"
   },
   "qualificationModal": {
     "fastest": "Giro più veloce",
@@ -169,6 +177,10 @@
     "rate": "Tasso",
     "later": "Ricorda più tardi",
     "never": "Non mostrare più"
+  },
+  "donation": {
+    "greeting": "Ciao ragazzi!",
+    "message": "Se ti piace l'app e hai voglia di supportarmi nello sviluppo dell'app, sentiti libero di andare avanti. Tutto il supporto è molto apprezzato!"
   },
   "noConnection": "Nessuna connessione disponibile!",
   "noDrivers": "Nessun driver su Server!",

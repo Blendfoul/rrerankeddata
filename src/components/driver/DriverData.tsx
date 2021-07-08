@@ -67,10 +67,7 @@ const DriverData: React.FC<DriverProps> = ({data}) => {
         <TextContainer
           title={translations.profile.timeInGame}
           titleSize={14}
-          text={
-            data.data.overview.basic_statistics[2].value +
-            ` ${translations.profile.laps}`
-          }
+          text={data.data.overview.basic_statistics[2].value}
         />
         <TextContainer
           titleSize={14}

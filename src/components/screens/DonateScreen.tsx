@@ -1,19 +1,41 @@
-import React, {useCallback, useEffect} from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
-import {Button, Subheading, useTheme} from 'react-native-paper';
-import {initConnection, useIAP} from 'react-native-iap';
+import React, {useCallback, useContext, useEffect} from 'react';
+import {
+  Dimensions,
+  Image,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
+import {Button, Paragraph, Subheading, useTheme} from 'react-native-paper';
+import {
+  initConnection,
+  useIAP,
+  requestPurchase,
+  Purchase,
+  consumePurchaseAndroid,
+} from 'react-native-iap';
+import {LocalizationContext} from '../translations/LocalizationContext';
 
-const productsId = ['com.rrerankeddata.donation_1'];
+const productIds = Platform.select({
+  ios: ['rrerankeddata'],
+  android: ['donation_0', 'donation_1', 'donation_2', 'donation_3'],
+  default: ['rrerankeddata'],
+});
 
 const DonateScreen: React.FC = () => {
   const {colors} = useTheme();
-  const {connected, products, getProducts} = useIAP();
+  const {translations} = useContext(LocalizationContext);
+
+  const {connected, products, getProducts, currentPurchase, finishTransaction} =
+    useIAP();
 
   useEffect(() => {
     const getData = async () => {
       try {
         if (connected) {
-          await getProducts(productsId);
+          console.log('Getting products!');
+          await getProducts(productIds);
         } else {
           await initConnection();
         }
@@ -25,22 +47,44 @@ const DonateScreen: React.FC = () => {
     getData();
   }, [connected, getProducts]);
 
-  console.log(products);
+  const checkCurrentPurchase = useCallback(
+    async (purchase?: Purchase): Promise<void> => {
+      if (purchase) {
+        const receipt = purchase.transactionReceipt;
+        if (receipt) {
+          try {
+            const ackResult = await finishTransaction(purchase);
+            await consumePurchaseAndroid(purchase.purchaseToken as string);
+            console.log('ackResult', ackResult);
+          } catch (ackErr) {
+            console.warn('ackErr', ackErr);
+          }
+        }
+      }
+    },
+    [finishTransaction],
+  );
+
+  useEffect(() => {
+    checkCurrentPurchase(currentPurchase);
+  }, [checkCurrentPurchase, currentPurchase]);
 
   const style = StyleSheet.create({
     root: {
       flex: 1,
       backgroundColor: colors.primary,
-      justifyContent: 'flex-end',
-      alignItems: 'center',
       paddingBottom: 45,
+    },
+    contentRoot: {
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     button: {
       marginVertical: 10,
       opacity: 0.75,
     },
     contentButton: {
-      width: Dimensions.get('window').width * 0.8,
+      width: Dimensions.get('window').width * 0.85,
       paddingVertical: 12.5,
       alignItems: 'center',
       backgroundColor: colors.accent,
@@ -49,42 +93,43 @@ const DonateScreen: React.FC = () => {
       flex: 1,
       justifyContent: 'flex-start',
     },
+    img: {
+      width: Dimensions.get('window').width * 0.85,
+    },
+    text: {
+      textAlign: 'justify',
+      width: Dimensions.get('window').width * 0.85,
+      paddingBottom: 15,
+    },
   });
 
-  const getPayment = useCallback(async (value: string) => {}, []);
-
   return (
-    <View style={style.root}>
+    <ScrollView style={style.root} contentContainerStyle={style.contentRoot}>
       <View style={style.container}>
-        <Subheading>sdfkvna laksdvna lkvsn</Subheading>
+        <Image
+          source={require('../../assets/about/haribo_amg.webp')}
+          resizeMode={'contain'}
+          style={style.img}
+        />
+        <Subheading>{translations.donation.greeting}</Subheading>
+        <Paragraph style={style.text}>
+          {translations.donation.message}
+        </Paragraph>
       </View>
       <View>
-        <Button
-          style={style.button}
-          contentStyle={style.contentButton}
-          icon="coffee"
-          mode="contained"
-          onPress={() => getPayment('0.01')}>
-          Buy me a Coffee!
-        </Button>
-        <Button
-          style={style.button}
-          contentStyle={style.contentButton}
-          icon="baguette"
-          mode="contained"
-          onPress={() => getPayment('0.02')}>
-          Buy me a Baguette!
-        </Button>
-        <Button
-          style={style.button}
-          contentStyle={style.contentButton}
-          icon="hamburger"
-          mode="contained"
-          onPress={() => getPayment('0.03')}>
-          Buy me a Hamburger!
-        </Button>
+        {products.map((product) => (
+          <Button
+            key={`donate-${product.productId}`}
+            style={style.button}
+            contentStyle={style.contentButton}
+            mode="contained"
+            onPress={() => requestPurchase(product.productId)}>
+            {product.title.split('(')[0]} - {product.price}
+            {product.currency}
+          </Button>
+        ))}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
