@@ -1,91 +1,66 @@
-import React, {useEffect, useState} from 'react';
-import {ImageBackground, StyleSheet, Image} from 'react-native';
+import React from 'react';
+import {StyleSheet, Image, ImageBackground} from 'react-native';
 import Logo from '../../assets/logos/Logo';
 import Banner from '../../assets/banners/Banner';
-import {useRaceContext} from '../../store/RaceContext';
-
-interface Layout {
-  Id: number;
-  MaxNumberOfVehicles: number;
-  Name: string;
-  Track: number;
-}
+import useTrackInfo from '../../hooks/useTrackInfo';
+import {Card} from 'react-native-paper';
 
 interface TrackImageProps {
-  logo?: boolean;
+  type?: 'logo' | 'background';
   size?: number;
-  trackId: number;
-  logoImage?: number;
+  layoutId: number;
 }
 
 const TrackImageComponent: React.FC<TrackImageProps> = props => {
-  const [state] = useRaceContext();
-  const {tracks} = state.r3e_data;
-  const [image, setImage] = useState({
-    Track: 0,
-    MaxNumberOfVehicles: 0,
-    Name: '',
-    Id: 0,
-  } as Layout);
+  const {layout} = useTrackInfo(props.layoutId);
 
   const componentStyle = StyleSheet.create({
-    image: {
-      height: 125,
-      resizeMode: 'cover',
-      backgroundColor: '#2f2f2f',
-    },
     backgroundContainer: {
       width: '100%',
       height: 125,
       overflow: 'hidden',
     },
     logo: {
-      marginTop: props.logo ? 0 : 25,
-      marginStart: props.logo ? 0 : 25,
-      backgroundColor: props.logoImage ? 'transparent' : 'white',
+      backgroundColor: 'white',
       padding: 10,
       width: props.size || 75,
       height: props.size || 75,
     },
+    cover: {
+      width: '100%',
+      height: 130,
+    },
+    logoMargin: {
+      marginTop: 25,
+      marginStart: 25,
+    },
   });
 
-  useEffect(() => {
-    let trackData: Layout | undefined;
-
-    for (const track in tracks) {
-      if (tracks.hasOwnProperty(track)) {
-        //@ts-ignore
-        const {layouts} = tracks[track] as Track;
-
-        trackData = layouts.find((value: Layout) => value.Id === props.trackId);
-        if (trackData !== undefined) {
-          break;
-        }
-      }
-    }
-
-    setImage(trackData as Layout);
-  }, [props.trackId, tracks]);
-
-  if (props.logo) {
-    return <Image style={componentStyle.logo} source={Logo(image.Track)} />;
+  switch (props.type) {
+    case 'logo':
+      return <Image style={componentStyle.logo} source={Logo(layout.Track)} />;
+    case 'background':
+      return (
+        <Card.Cover
+          source={Banner(layout.Track)}
+          resizeMode={'cover'}
+          style={componentStyle.cover}
+        />
+      );
+    default:
+      return (
+        <React.Fragment>
+          <ImageBackground
+            style={componentStyle.backgroundContainer}
+            source={Banner(layout.Track)}>
+            <Image
+              style={[componentStyle.logo, componentStyle.logoMargin]}
+              source={Logo(layout.Track)}
+            />
+          </ImageBackground>
+        </React.Fragment>
+      );
   }
-
-  const banner = props.logoImage
-    ? {
-        uri: `https://game.raceroom.com/store/image_redirect?id=${props.logoImage}&amp;size=small`,
-      }
-    : Logo(image.Track);
-
-  return (
-    <React.Fragment>
-      <ImageBackground
-        style={componentStyle.backgroundContainer}
-        source={Banner(image.Track)}>
-        <Image style={componentStyle.logo} source={banner} />
-      </ImageBackground>
-    </React.Fragment>
-  );
 };
 
 const TrackImage = React.memo(TrackImageComponent);

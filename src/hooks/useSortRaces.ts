@@ -4,6 +4,7 @@ import {useCallback, useEffect, useState} from 'react';
 import {ReducerActions} from '../store/StoreReducer';
 import axiosInstanceGenerator from './useAxiosMock';
 import axios from 'axios';
+import * as _ from 'lodash';
 
 const useSortRaces = () => {
   const [state, dispatch] = useRaceContext();
@@ -18,20 +19,16 @@ const useSortRaces = () => {
       });
 
       const data = state.region.length
-        ? res.data.result
-            .filter((server: ServerInterface) =>
+        ? _.sortBy(
+            res.data.result.filter((server: ServerInterface) =>
               server.Server.Settings.ServerName.includes(state.region),
-            )
-            .sort(
-              //@ts-ignore
-              (a: ServerInterface, b: ServerInterface) =>
-                b.Server.PlayersOnServer > a.Server.PlayersOnServer,
-            )
-        : res.data.result.sort(
-            //@ts-ignore
-            (a: ServerInterface, b: ServerInterface) =>
-              b.Server.PlayersOnServer > a.Server.PlayersOnServer,
-          );
+            ),
+            (o: ServerInterface) => o.Server.PlayersOnServer,
+          ).reverse()
+        : _.sortBy(
+            res.data.result,
+            (o: ServerInterface) => o.Server.PlayersOnServer,
+          ).reverse();
 
       setRaces(data);
 

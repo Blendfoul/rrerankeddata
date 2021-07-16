@@ -137,4 +137,22 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
   );
 };
 
+/**
+ * <DrawerItem
+ label={'Login'}
+ labelStyle={drawerStyle.textColor}
+ icon={({size}) => (
+              <MaterialCommunityIcon
+                name={'google-controller'}
+                color={'#fff'}
+                size={size}
+                direction={'ltr'}
+              />
+            )}
+ onPress={() => {
+              RNGooglePlayGameServices.signInIntent();
+            }}
+ />
+ */
+
 export default DrawerContent;

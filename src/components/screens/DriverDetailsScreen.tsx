@@ -22,7 +22,7 @@ const DriverDetailsScreen: React.FC<DriverDetailsScreenProps> = ({route}) => {
   const onDismissSnackBar = () =>
     dispatch({type: ReducerActions.SET_NOTIFICATION, payload: false});
   return (
-    <>
+    <React.Fragment>
       <DriverComponent username={route.params.data} />
       <Snackbar
         visible={state.notifyDefaultDriver || false}
@@ -33,7 +33,7 @@ const DriverDetailsScreen: React.FC<DriverDetailsScreenProps> = ({route}) => {
         }}>
         {translations.messages.driverSet}
       </Snackbar>
-    </>
+    </React.Fragment>
   );
 };
 

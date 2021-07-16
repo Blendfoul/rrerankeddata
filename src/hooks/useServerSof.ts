@@ -3,6 +3,7 @@ import axios, {AxiosRequestConfig} from 'axios';
 import {useRaceContext} from '../store/RaceContext';
 import {useCallback, useEffect, useState} from 'react';
 import axiosInstanceGenerator from './useAxiosMock';
+import * as _ from 'lodash';
 
 const useServerSof = (driversId: number[]) => {
   const [state] = useRaceContext();
@@ -44,8 +45,7 @@ const useServerSof = (driversId: number[]) => {
       }),
     );
 
-    //@ts-ignore
-    setDrivers(ratings.sort((a, b) => a.Rating < b.Rating));
+    setDrivers(_.sortBy(ratings, a => a.Rating).reverse());
 
     if (ratings.length) {
       setSof(

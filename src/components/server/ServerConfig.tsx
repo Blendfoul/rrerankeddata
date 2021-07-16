@@ -17,7 +17,6 @@ const ServerConfig: React.FC<ConfigProps> = ({item}) => {
   const {colors} = useTheme();
   const {translations} = useContext(LocalizationContext);
   const [state] = useRaceContext();
-  const {layouts} = state.r3e_data;
   const {session} = useRaceSession(item.CurrentSession);
 
   const style = StyleSheet.create({
@@ -33,12 +32,6 @@ const ServerConfig: React.FC<ConfigProps> = ({item}) => {
   });
   return (
     <Card style={style.root} elevation={3}>
-      <Card.Content style={style.content}>
-        <TextContainer
-          title={translations.raceDetails.layout}
-          text={layouts[item.Settings.TrackLayoutId[0]].Name}
-        />
-      </Card.Content>
       <Card.Content style={style.content}>
         <TextContainer
           title={translations.raceDetails.session}

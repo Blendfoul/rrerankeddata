@@ -44,7 +44,7 @@ const RaceComponent: React.FC<RaceProps> = ({data, driver}) => {
         data.Settings.MinRating > driver.rating
         ? colors.error
         : data.Players.includes(driver.id)
-        ? colors.accent
+        ? 'gray'
         : colors.primary
       : colors.primary;
 
@@ -58,50 +58,71 @@ const RaceComponent: React.FC<RaceProps> = ({data, driver}) => {
       justifyContent: 'space-between',
       alignItems: 'center',
     },
+    classContent: {
+      justifyContent: 'center',
+      flex: 1,
+      marginTop: 5,
+    },
     label: {
       backgroundColor: raceType.color || colors.primary,
       height: 10,
+    },
+    image: {
+      width: 55,
+      height: 'auto',
+      marginRight: 12,
+    },
+    session: {
+      flex: 1.5,
+      justifyContent: 'center',
+      height: 20,
+      alignItems: 'center',
+      textAlign: 'center',
+    },
+    rest: {
+      flex: 0.5,
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
     },
   });
 
   return (
     <Card style={style.root} onPress={onRacePress} elevation={3}>
-      <TrackImage trackId={data.Settings.TrackLayoutId[0]} size={55} />
+      <TrackImage layoutId={data.Settings.TrackLayoutId[0]} size={55} />
       <View style={style.label} />
       <Card.Title
-        style={style.content}
         title={name}
         right={() => (
           <Image
             source={raceType.image}
-            style={{
-              width: 75,
-              height: 25,
-              marginRight: 12,
-            }}
+            style={style.image}
             resizeMode={'contain'}
+            height={25}
           />
         )}
       />
       <Card.Content style={style.content}>
+        <Caption style={style.rest}>
+          <AntDesign name={'car'} size={15} /> {data.PlayersOnServer}
+        </Caption>
+        <Caption style={style.session}>
+          <AntDesign name={'clockcircleo'} size={15} /> {session}
+        </Caption>
+        <View style={style.rest}>
+          <CountDown
+            until={data.TimeLeft / 1000}
+            timeToShow={['H', 'M', 'S']}
+            timeLabels={{m: null, s: null}}
+            size={10}
+          />
+        </View>
+      </Card.Content>
+      <Card.Content style={style.classContent}>
         <CarClass
           liveries={data.Settings.LiveryId}
           size={25}
           imgSize={'small'}
-        />
-      </Card.Content>
-      <Card.Content style={style.content}>
-        <Caption>
-          <AntDesign name={'car'} size={15} /> {data.PlayersOnServer}
-        </Caption>
-        <Caption>
-          <AntDesign name={'clockcircleo'} size={15} /> {session}
-        </Caption>
-        <CountDown
-          until={data.TimeLeft / 1000}
-          timeToShow={['H', 'M', 'S']}
-          timeLabels={{m: null, s: null}}
-          size={10}
         />
       </Card.Content>
     </Card>

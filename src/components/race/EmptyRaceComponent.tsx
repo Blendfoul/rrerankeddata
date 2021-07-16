@@ -1,8 +1,7 @@
 import React, {useContext} from 'react';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {Subheading, useTheme} from 'react-native-paper';
-import {Dimensions, StyleSheet, View} from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
+import {Dimensions, Image, StyleSheet, View} from 'react-native';
 
 const EmptyRaceComponent: React.FC = () => {
   const {translations} = useContext(LocalizationContext);
@@ -18,11 +17,19 @@ const EmptyRaceComponent: React.FC = () => {
     text: {
       color: colors.text,
     },
+    image: {
+      width: Dimensions.get('window').width * 0.85,
+    },
   });
 
   return (
     <View style={style.root}>
-      <Icon name={'car'} color={colors.text} size={55} />
+      <Image
+        source={require('../../assets/nosServers.png')}
+        resizeMode={'contain'}
+        resizeMethod={'scale'}
+        style={style.image}
+      />
       <Subheading style={style.text}>{translations.noServers}</Subheading>
     </View>
   );

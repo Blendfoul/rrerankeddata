@@ -7,6 +7,7 @@ import QualificationRow from './qualification/QualificationRow';
 import LoadingActivity from '../utils/LoadingActivity';
 import RaceRow from './race/RaceRow';
 import useSessionClasses from '../../hooks/useSessionClasses';
+import * as _ from 'lodash';
 
 type Route = {key: string; title: string; target: number};
 
@@ -35,14 +36,8 @@ const ResultsTable: React.FC<TableGeneratorProps> = ({data, type}) => {
   const routeGenerator = ({route}: {route: Route}) => {
     const sort: QualiResult[] | RaceResult[] =
       type === 'quali'
-        ? values[route.target]?.sort(
-            //@ts-ignore
-            (a, b) => a.StartPosition > b.StartPosition,
-          ) || []
-        : values[route.target]?.sort(
-            //@ts-ignore
-            (a, b) => a.FinishPositionInClass > b.FinishPositionInClass,
-          ) || [];
+        ? _.sortBy(values[route.target], o => o.StartPosition) || []
+        : _.sortBy(values[route.target], o => o.FinishPositionInClass) || [];
     return (
       <FlatList
         style={styles.backgroundColorTarget}
@@ -54,8 +49,8 @@ const ResultsTable: React.FC<TableGeneratorProps> = ({data, type}) => {
             <RaceRow data={item as RaceResult} />
           )
         }
-        keyExtractor={(item, index) =>
-          `Table-${type}-${item.PerformanceIndex}-${index}`
+        keyExtractor={(item, index1) =>
+          `Table-${type}-${item.PerformanceIndex}-${index1}`
         }
       />
     );
@@ -73,7 +68,7 @@ const ResultsTable: React.FC<TableGeneratorProps> = ({data, type}) => {
 
     const filtered: Route[] = routes1.filter(function (el) {
       return el != null;
-    });
+    }) as Route[];
 
     setRoutes(filtered);
   }, [names, values.length]);

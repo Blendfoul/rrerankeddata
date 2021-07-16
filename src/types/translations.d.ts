@@ -151,6 +151,7 @@ export interface Translations {
     copied: string;
   };
   loading: {
+    drivers: string;
     start: string;
     servers: string;
     driver: string;

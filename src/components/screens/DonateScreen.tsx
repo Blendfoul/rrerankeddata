@@ -117,7 +117,7 @@ const DonateScreen: React.FC = () => {
         </Paragraph>
       </View>
       <View>
-        {products.map((product) => (
+        {products.map(product => (
           <Button
             key={`donate-${product.productId}`}
             style={style.button}

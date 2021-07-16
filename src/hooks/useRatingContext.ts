@@ -23,6 +23,7 @@ const useRatingContext = () => {
         payload: res.data,
       });
     } catch (error) {
+      console.error(error);
       await dispatch({
         type: ReducerActions.ERROR,
         payload: error,

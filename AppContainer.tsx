@@ -3,6 +3,7 @@ import React from 'react';
 import App from './App';
 import {LocalizationProvider} from './src/components/translations/LocalizationContext';
 import {DefaultTheme, Provider} from 'react-native-paper';
+import RatingProvider from './src/store/RatingProvider';
 
 const theme: ReactNativePaper.Theme = {
   ...DefaultTheme,
@@ -22,7 +23,9 @@ const AppContainer = () => {
     <Provider theme={theme}>
       <LocalizationProvider>
         <RaceProvider>
-          <App />
+          <RatingProvider>
+            <App />
+          </RatingProvider>
         </RaceProvider>
       </LocalizationProvider>
     </Provider>

@@ -52,7 +52,7 @@ const HistoryRowComponent: React.FC<HistoryProps> = ({race}) => {
       style={style.root}
       onPress={() => racePress(race.RaceHash, race.TrackLayoutId)}
       elevation={3}>
-      <TrackImage trackId={race.TrackLayoutId.Id} size={55} />
+      <TrackImage layoutId={race.TrackLayoutId.Id} size={55} />
       <Card.Content style={style.content}>
         <CarClass classId={classId} size={35} imgSize={'small'} />
       </Card.Content>
