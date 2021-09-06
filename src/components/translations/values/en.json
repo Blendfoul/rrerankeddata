@@ -14,7 +14,8 @@
     "result": "Result",
     "race": "Race",
     "qualification": "Qualification",
-    "donate": "Donate"
+    "donate": "Donate",
+    "settings": "Settings"
   },
   "race": {
     "regions": [
@@ -190,5 +191,10 @@
   "noConnection": "No connection available!",
   "noDrivers": "No drivers on Server!",
   "exitApp": "Exit",
-  "noServers": "Pit lane currently closed..."
+  "noServers": "Pit lane currently closed...",
+  "settings": {
+    "theme": "Theme",
+    "general": "General",
+    "language": "Language"
+  }
 }

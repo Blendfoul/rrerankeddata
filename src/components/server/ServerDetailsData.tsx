@@ -41,7 +41,7 @@ const ServerDetailsData: React.FC<DetailsProps> = ({data}) => {
 
   return (
     <ScrollView
-      style={[styles.column, styles.backgroundColorTarget]}
+      style={styles.column}
       refreshControl={
         <RefreshControl refreshing={state.refresh} onRefresh={handleRefresh} />
       }>

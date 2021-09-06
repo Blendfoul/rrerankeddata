@@ -15,7 +15,7 @@ const ServerRaceConfig: React.FC<ConfigProps> = ({item}) => {
 
   const style = StyleSheet.create({
     root: {
-      backgroundColor: colors.primary,
+      
       margin: 5,
     },
     content: {

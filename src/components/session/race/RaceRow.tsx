@@ -15,6 +15,7 @@ import {styles} from '../../utils/Theme';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcon from 'react-native-paper/src/components/MaterialCommunityIcon';
 import useSectorTimes from '../../../hooks/useSectorTimes';
+import {useRaceContext} from "../../../store/RaceContext";
 
 interface RaceRowProps {
   data: RaceResult;
@@ -22,6 +23,7 @@ interface RaceRowProps {
 
 const RaceRow: React.FC<RaceRowProps> = ({data}) => {
   const navigation = useNavigation();
+  const raceStore = useRaceContext();
   const {translations} = useContext(LocalizationContext);
   const {colors} = useTheme();
   const [hidden, setHidden] = useState<boolean>(true);
@@ -29,7 +31,7 @@ const RaceRow: React.FC<RaceRowProps> = ({data}) => {
 
   const componentStyle = StyleSheet.create({
     root: {
-      backgroundColor: colors.primary,
+      
       margin: 5,
     },
     rep: {
@@ -98,12 +100,12 @@ const RaceRow: React.FC<RaceRowProps> = ({data}) => {
           <View style={[styles.row, styles.justifyEvenly, styles.alignCenter]}>
             <View
               style={[styles.row, styles.justifyCenter, styles.alignCenter]}>
-              <AntIcon name={'clockcircleo'} size={15} color={'#fff'} />
+              <AntIcon name={'clockcircleo'} size={15} />
               <Paragraph style={{paddingHorizontal: 10}}>{lapTime}</Paragraph>
             </View>
             <View
               style={[styles.row, styles.justifyCenter, styles.alignCenter]}>
-              <AntIcon name={'user'} size={15} color={'#fff'} />
+              <AntIcon name={'user'} size={15} />
               <Paragraph style={[{paddingHorizontal: 10}]}>
                 {data.FinishPositionInClass || data.FinishPosition}
               </Paragraph>
@@ -117,11 +119,11 @@ const RaceRow: React.FC<RaceRowProps> = ({data}) => {
               styles.paddingTop15,
             ]}>
             <Paragraph style={componentStyle.rat}>
-              <AntIcon name={'solution1'} size={15} color={'white'} />{' '}
+              <AntIcon name={'solution1'} size={15}  />{' '}
               {data.RatingChange}
             </Paragraph>
             <Paragraph style={componentStyle.rep}>
-              <AntIcon name={'exception1'} size={15} color={'white'} />{' '}
+              <AntIcon name={'exception1'} size={15}  />{' '}
               {data.ReputationChange}
             </Paragraph>
           </View>
@@ -131,11 +133,11 @@ const RaceRow: React.FC<RaceRowProps> = ({data}) => {
         <Card.Content style={styles.paddingTop15}>
           <View style={[styles.row, styles.justifyEvenly, styles.alignCenter]}>
             <Paragraph style={componentStyle.rat}>
-              <AntIcon name={'solution1'} size={15} color={'white'} />{' '}
+              <AntIcon name={'solution1'} size={15}  />{' '}
               {data.RatingAfter}
             </Paragraph>
             <Paragraph style={componentStyle.rep}>
-              <AntIcon name={'exception1'} size={15} color={'white'} />{' '}
+              <AntIcon name={'exception1'} size={15}  />{' '}
               {data.ReputationAfter}
             </Paragraph>
           </View>

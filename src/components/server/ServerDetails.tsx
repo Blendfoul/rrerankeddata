@@ -3,21 +3,29 @@ import {LocalizationContext} from '../translations/LocalizationContext';
 import DriverList from './DriverList';
 import RaceDetailsData from './ServerDetailsData';
 import {TabBar, TabView} from 'react-native-tab-view';
-import {styles} from '../utils/Theme';
 import {Dimensions} from 'react-native';
 import {useRaceContext} from '../../store/RaceContext';
+import {Subheading, useTheme} from 'react-native-paper';
 
 interface DetailsProps {
   serverName: string;
 }
 
-const renderTabBar: React.FC<any> = props => (
-  <TabBar
-    {...props}
-    indicatorStyle={{backgroundColor: 'gray'}}
-    style={styles.backgroundColorTarget}
-  />
-);
+function renderTabBar(
+  props: any,
+  color: ReactNativePaper.ThemeColors,
+): JSX.Element {
+  return (
+    <TabBar
+      {...props}
+      indicatorStyle={{backgroundColor: color.text}}
+      renderLabel={props => (
+        <Subheading {...props}>{props.route.title}</Subheading>
+      )}
+      style={{backgroundColor: color.background, color: color.text}}
+    />
+  );
+}
 
 const initialLayout = {
   height: 0,
@@ -27,6 +35,7 @@ const initialLayout = {
 const ServerDetails: React.FC<DetailsProps> = ({serverName}) => {
   const {translations} = useContext(LocalizationContext);
   const [state] = useRaceContext();
+  const {colors} = useTheme();
   const [index, setIndex] = useState<number>(0);
   const [routes] = useState([
     {key: 'data', title: translations.raceDetails.general},
@@ -48,7 +57,7 @@ const ServerDetails: React.FC<DetailsProps> = ({serverName}) => {
 
   return (
     <TabView
-      renderTabBar={renderTabBar}
+      renderTabBar={props => renderTabBar(props, colors)}
       onIndexChange={setIndex}
       renderScene={renderScene}
       navigationState={{index, routes}}

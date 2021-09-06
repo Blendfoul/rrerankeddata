@@ -1,18 +1,16 @@
 import React, {useContext} from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import SettingsComponent from '../settings/SettingsComponent';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
-import {Button} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {IconButton} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/core';
+import SettingsComponent from '../settings/SettingsComponent';
+import SettingsDetails from '../settings/SettingsDetails';
+import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-interface SettingsNavigatorProps {
-  navigation: DrawerNavigationProp<any>;
-}
-
-const SettingsNavigator: React.FC<SettingsNavigatorProps> = ({navigation}) => {
+const SettingsNavigator: React.FC = () => {
+  const navigation = useNavigation<DrawerNavigationProp<any>>();
   const {translations} = useContext(LocalizationContext);
 
   return (
@@ -21,17 +19,15 @@ const SettingsNavigator: React.FC<SettingsNavigatorProps> = ({navigation}) => {
         name={translations.navigation.settings}
         component={SettingsComponent}
         options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
           headerLeft: () => (
-            <Button onPress={() => navigation.toggleDrawer()}>
-              <Icon name="menu" size={25} color="white" />
-            </Button>
+            <IconButton
+              icon={'menu'}
+              onPress={() => navigation.toggleDrawer()}
+            />
           ),
         }}
       />
+      <Stack.Screen name={'setting-details'} component={SettingsDetails} />
     </Stack.Navigator>
   );
 };

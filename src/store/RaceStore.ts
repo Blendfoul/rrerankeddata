@@ -2,6 +2,7 @@ import {RaceStore} from '../types/raceStore';
 
 export const createRaceStore = (): RaceStore => {
   return {
+    theme: 'dark',
     username: '',
     races: [],
     regionRaces: [],

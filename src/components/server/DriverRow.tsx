@@ -1,27 +1,31 @@
 import React, {useContext} from 'react';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {useRaceStore} from '../../store/RaceContext';
 import {StyleSheet, TouchableOpacity, View, Image} from 'react-native';
 import {styles} from '../utils/Theme';
 import {Caption, Paragraph} from 'react-native-paper';
 //@ts-ignore sem types
 import Flag from 'react-native-flags';
 import AntIcon from 'react-native-vector-icons/AntDesign';
-import {NavigationProp} from '@react-navigation/core';
 import {Rating} from '../../types/rating';
+import {useRaceContext} from '../../store/RaceContext';
+import {useNavigation} from '@react-navigation/core';
 
 interface DriverRowProps {
   driver: Rating;
-  navigation: NavigationProp<any>;
 }
 
-const DriverRow: React.FC<DriverRowProps> = ({driver, navigation}) => {
+const DriverRow: React.FC<DriverRowProps> = ({driver}) => {
   const {translations} = useContext(LocalizationContext);
-  const raceStore = useRaceStore();
+  const [state] = useRaceContext();
+  const navigation = useNavigation();
 
   const driverPress = () => {
-    raceStore.setSearchDriver(driver.Username);
-    navigation.navigate(translations.navigation.driverDetails, driver.Username);
+    console.log('update');
+
+    navigation.navigate({
+      name: translations.navigation.driverDetails,
+      params: {username: driver.Username},
+    });
   };
 
   const rowStyle = StyleSheet.create({
@@ -30,7 +34,7 @@ const DriverRow: React.FC<DriverRowProps> = ({driver, navigation}) => {
       flex: 1,
       flexDirection: 'row',
       backgroundColor:
-        raceStore.DefaultDriver === driver.Username ? 'darkgray' : 'gray',
+        state.defaultDriver === driver.Username ? 'darkgray' : 'gray',
       borderBottomWidth: 0.5,
       borderBottomColor: 'white',
       borderTopWidth: 0.5,
@@ -83,13 +87,13 @@ const DriverRow: React.FC<DriverRowProps> = ({driver, navigation}) => {
       </View>
       <View style={rowStyle.dataContainer}>
         <View style={rowStyle.data}>
-          <AntIcon size={15} name={'solution1'} color={'#fff'} />
+          <AntIcon size={15} name={'solution1'} />
           <Paragraph style={styles.paddingHorizontal5}>
             {driver.Rating}
           </Paragraph>
         </View>
         <View style={rowStyle.data}>
-          <AntIcon size={15} name={'exception1'} color={'#fff'} />
+          <AntIcon size={15} name={'exception1'} />
           <Paragraph style={styles.paddingHorizontal5}>
             {driver.Reputation}
           </Paragraph>

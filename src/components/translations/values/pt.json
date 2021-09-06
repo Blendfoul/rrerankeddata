@@ -11,7 +11,8 @@
     "driverDetails": "Detalhes do Piloto",
     "myDriver": "Meu Piloto",
     "race": "Corrida",
-    "qualification": "Qualificação"
+    "qualification": "Qualificação",
+    "donate": "Donação"
   },
   "race": {
     "regions": [

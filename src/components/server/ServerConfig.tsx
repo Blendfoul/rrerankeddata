@@ -1,10 +1,9 @@
 import React, {useContext} from 'react';
 import {ServerData} from '../../types/server';
-import {Card, useTheme} from 'react-native-paper';
+import {Card} from 'react-native-paper';
 import {StyleSheet} from 'react-native';
 import TextContainer from '../utils/TextContainer';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {useRaceContext} from '../../store/RaceContext';
 import useRaceSession from '../../hooks/useRaceSession';
 //@ts-ignore
 import CountDown from 'react-native-countdown-component';
@@ -14,14 +13,11 @@ interface ConfigProps {
 }
 
 const ServerConfig: React.FC<ConfigProps> = ({item}) => {
-  const {colors} = useTheme();
   const {translations} = useContext(LocalizationContext);
-  const [state] = useRaceContext();
   const {session} = useRaceSession(item.CurrentSession);
 
   const style = StyleSheet.create({
     root: {
-      backgroundColor: colors.primary,
       margin: 5,
     },
     content: {

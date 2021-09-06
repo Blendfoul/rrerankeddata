@@ -1,7 +1,6 @@
 import {LapData} from '../../../types/raceData';
 import React from 'react';
-import {DataTable} from 'react-native-paper';
-import {Text} from 'react-native';
+import {DataTable, Text} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 interface LapProps {

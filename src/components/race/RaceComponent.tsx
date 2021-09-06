@@ -5,13 +5,13 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 //@ts-ignore component sem types
 import CountDown from 'react-native-countdown-component';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {ServerData} from '../../types/Server';
 import {useNavigation} from '@react-navigation/core';
 import {Caption, Card, useTheme} from 'react-native-paper';
 import useRaceSession from '../../hooks/useRaceSession';
-import {User} from '../../hooks/useDrawerContent';
 import useRaceType from '../../hooks/useRaceType';
 import TrackImage from '../utils/TrackImage';
+import {User} from '../../hooks/useDrawerContent';
+import {ServerData} from '../../types/server';
 
 interface RaceProps {
   data: ServerData;
@@ -45,8 +45,8 @@ const RaceComponent: React.FC<RaceProps> = ({data, driver}) => {
         ? colors.error
         : data.Players.includes(driver.id)
         ? 'gray'
-        : colors.primary
-      : colors.primary;
+        : colors.background
+      : colors.background;
 
   const style = StyleSheet.create({
     root: {
@@ -64,7 +64,7 @@ const RaceComponent: React.FC<RaceProps> = ({data, driver}) => {
       marginTop: 5,
     },
     label: {
-      backgroundColor: raceType.color || colors.primary,
+      backgroundColor: raceType.color || colors.backdrop,
       height: 10,
     },
     image: {

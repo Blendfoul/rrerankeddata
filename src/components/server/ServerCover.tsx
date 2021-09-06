@@ -21,7 +21,7 @@ const ServerCover: React.FC<CoverProps> = ({item}) => {
 
   const style = StyleSheet.create({
     root: {
-      backgroundColor: colors.primary,
+      
       margin: 5,
     },
     container: {

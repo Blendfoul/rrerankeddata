@@ -1,6 +1,5 @@
 import React, {useContext, useState} from 'react';
 import {FlatList, Text} from 'react-native';
-import {styles} from '../../utils/Theme';
 import {DataTable, Title} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {LocalizationContext} from '../../translations/LocalizationContext';
@@ -37,7 +36,7 @@ const RaceLapsTable: React.FC<RaceLapsProps> = ({laps, best}) => {
           <Title>{translations.lapTable.lap}</Title>
         </DataTable.Title>
         <DataTable.Title>
-          <AntDesign name={'user'} color={'#fff'} />
+          <AntDesign name={'user'} />
         </DataTable.Title>
         <DataTable.Title>
           <Title>{translations.lapTable.sector1}</Title>
@@ -75,7 +74,7 @@ const RaceLapsTable: React.FC<RaceLapsProps> = ({laps, best}) => {
         }
         onPageChange={page => setPage(page)}
         label={
-          <Text style={styles.text}>
+          <Text>
             {from1 + 1}-{to < laps.length ? to : laps.length} of {laps.length}
           </Text>
         }

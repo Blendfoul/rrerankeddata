@@ -10,7 +10,7 @@ const HomeScreen: React.FC = () => {
 
   return (
     <React.Fragment>
-      <StatusBar backgroundColor={colors.primary} />
+      <StatusBar backgroundColor={colors.backdrop} />
       <RaceContainer />
       <ScheduleComponent />
       <RateModalComponent />

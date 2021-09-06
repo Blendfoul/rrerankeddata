@@ -22,7 +22,13 @@ const RatingScreen: React.FC = () => {
     <DataTable style={[styles.column, styles.backgroundColorTarget]}>
       <FlatList
         data={data}
-        renderItem={({item}) => <FriendCard item={item} />}
+        renderItem={({item, index}) => (
+          <FriendCard
+            item={item}
+            rating
+            ratingPosition={itemsPerPage * page + index + 1}
+          />
+        )}
         keyExtractor={(item, index) => `ranking-row-${index}`}
       />
       <DataTable.Pagination

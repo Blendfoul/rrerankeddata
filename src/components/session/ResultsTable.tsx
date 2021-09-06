@@ -1,6 +1,5 @@
 import {StyleSheet, View, FlatList, Dimensions} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {styles} from '../utils/Theme';
 import {QualiResult, RaceResult} from '../../types/resultData';
 import {TabBar, TabView} from 'react-native-tab-view';
 import QualificationRow from './qualification/QualificationRow';
@@ -8,6 +7,7 @@ import LoadingActivity from '../utils/LoadingActivity';
 import RaceRow from './race/RaceRow';
 import useSessionClasses from '../../hooks/useSessionClasses';
 import * as _ from 'lodash';
+import {useTheme} from 'react-native-paper';
 
 type Route = {key: string; title: string; target: number};
 
@@ -20,6 +20,7 @@ const ResultsTable: React.FC<TableGeneratorProps> = ({data, type}) => {
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState<Route[]>([]);
   const {values, names, loading} = useSessionClasses(data);
+  const {colors} = useTheme();
 
   const renderTabBar: React.FC<any> = props => {
     const tabStyle = {backgroundColor: 'gray'};
@@ -28,7 +29,7 @@ const ResultsTable: React.FC<TableGeneratorProps> = ({data, type}) => {
       <TabBar
         {...props}
         indicatorStyle={tabStyle}
-        style={styles.backgroundColorTarget}
+        style={{backgroundColor: colors.background}}
       />
     );
   };
@@ -40,7 +41,6 @@ const ResultsTable: React.FC<TableGeneratorProps> = ({data, type}) => {
         : _.sortBy(values[route.target], o => o.FinishPositionInClass) || [];
     return (
       <FlatList
-        style={styles.backgroundColorTarget}
         data={sort}
         renderItem={({item}) =>
           type === 'quali' ? (
@@ -86,7 +86,9 @@ const ResultsTable: React.FC<TableGeneratorProps> = ({data, type}) => {
     <View style={style.tab}>
       <TabView
         scrollEnabled
-        renderTabBar={renderTabBar}
+        renderTabBar={props =>
+          renderTabBar(props, {backgroundColor: colors.background})
+        }
         navigationState={{index, routes}}
         renderScene={routeGenerator}
         onIndexChange={setIndex}
@@ -99,7 +101,6 @@ const ResultsTable: React.FC<TableGeneratorProps> = ({data, type}) => {
 const style = StyleSheet.create({
   tab: {
     flex: 2,
-    backgroundColor: '#2f2f2f',
   },
 });
 

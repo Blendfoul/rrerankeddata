@@ -13,9 +13,9 @@ interface DriverProps {
 const DriverData: React.FC<DriverProps> = ({data}) => {
   const {translations} = useContext(LocalizationContext);
   const {colors} = useTheme();
+
   const style = StyleSheet.create({
     root: {
-      backgroundColor: colors.primary,
       margin: 5,
     },
     content: {
@@ -37,14 +37,14 @@ const DriverData: React.FC<DriverProps> = ({data}) => {
         <TextContainer
           titleSize={14}
           title={translations.profile.rating}
-          icon={<AntIcon name={'solution1'} color={'#fff'} />}
+          icon={<AntIcon name={'solution1'} color={colors.text} />}
           text={data.rating.Rating || 1500}
         />
         <Divider />
         <TextContainer
           titleSize={14}
           title={translations.profile.reputation}
-          icon={<AntIcon name={'exception1'} color={'#fff'} />}
+          icon={<AntIcon name={'exception1'} color={colors.text} />}
           text={data.rating.Reputation || 70}
         />
       </Card.Content>

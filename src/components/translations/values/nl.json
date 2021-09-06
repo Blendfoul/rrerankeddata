@@ -11,7 +11,8 @@
     "driverDetails": "Coureur Details",
     "myDriver": "Mijn bestuurder",
     "race": "Race",
-    "qualification": "kwalificatie"
+    "qualification": "kwalificatie",
+    "donate": "Doneren"
   },
   "race": {
     "regions": [

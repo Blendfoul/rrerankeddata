@@ -24,11 +24,7 @@ const DriverMostUsed: React.FC<DriverProps> = ({item}) => {
   const {colors} = useTheme();
   const style = StyleSheet.create({
     root: {
-      backgroundColor: colors.primary,
       margin: 5,
-    },
-    image: {
-      backgroundColor: colors.primary,
     },
     content: {
       flexDirection: 'row',
@@ -41,8 +37,10 @@ const DriverMostUsed: React.FC<DriverProps> = ({item}) => {
       <Card.Cover
         resizeMethod={'scale'}
         resizeMode={'contain'}
+        style={{
+          backgroundColor: 'transparent',
+        }}
         source={{uri: item.data?.overview.most_used_cars[0]?.image?.scaled}}
-        style={style.image}
       />
       <Card.Content style={style.content}>
         {item.data.overview.most_used_tracks.map(renderLogo)}

@@ -7,6 +7,8 @@ import {LocalizationContext} from '../../translations/LocalizationContext';
 import MaterialCommunityIcon from 'react-native-paper/src/components/MaterialCommunityIcon';
 import TextContainer from '../../utils/TextContainer';
 import useSectorTimes from '../../../hooks/useSectorTimes';
+import {useRaceContext} from '../../../store/RaceContext';
+import {useNavigation} from '@react-navigation/core';
 
 interface QualificationRowProps {
   item: QualiResult;
@@ -14,13 +16,15 @@ interface QualificationRowProps {
 
 const QualificationRow: React.FC<QualificationRowProps> = ({item}) => {
   const {translations} = useContext(LocalizationContext);
+  const [state, dispatch] = useRaceContext();
+  const navigation = useNavigation();
   const {colors} = useTheme();
   const [hidden, setHidden] = useState<boolean>(true);
   const {sectors, lapTime, loading} = useSectorTimes(item.Laps);
 
   const componentStyle = StyleSheet.create({
     root: {
-      backgroundColor: colors.primary,
+      
       margin: 5,
     },
     actions: {

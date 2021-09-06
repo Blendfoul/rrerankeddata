@@ -72,7 +72,6 @@ const DonateScreen: React.FC = () => {
   const style = StyleSheet.create({
     root: {
       flex: 1,
-      backgroundColor: colors.primary,
       paddingBottom: 45,
     },
     contentRoot: {

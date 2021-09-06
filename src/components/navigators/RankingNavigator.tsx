@@ -1,6 +1,6 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React, {useContext} from 'react';
-import {Button} from 'react-native-paper';
+import {Button, IconButton} from 'react-native-paper';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import DriverDetailsScreen from '../screens/DriverDetailsScreen';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -26,14 +26,11 @@ const RankingNavigator: React.FC<RankingProp> = ({navigation}) => {
         name={translations.navigation.ranking}
         component={RatingScreen}
         options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
           headerLeft: () => (
-            <Button onPress={() => navigation.toggleDrawer()}>
-              <Icon name="menu" size={25} color="white" />
-            </Button>
+            <IconButton
+              icon={'menu'}
+              onPress={() => navigation.toggleDrawer()}
+            />
           ),
         }}
       />
@@ -41,10 +38,6 @@ const RankingNavigator: React.FC<RankingProp> = ({navigation}) => {
         name={translations.search.title.details}
         component={DriverDetailsScreen}
         options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
           headerRight: () => (
             <Button
               onPress={() => {
@@ -53,7 +46,7 @@ const RankingNavigator: React.FC<RankingProp> = ({navigation}) => {
                   payload: state.searchDriver,
                 });
               }}>
-              <Icon name={'account-plus'} size={25} color={'#fff'} />
+              <Icon name={'account-plus'} size={25} />
             </Button>
           ),
         }}

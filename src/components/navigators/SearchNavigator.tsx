@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import SearchScreen from '../screens/SearchScreen';
 import DriverDetailsScreen from '../screens/DriverDetailsScreen';
-import {Button} from 'react-native-paper';
+import {Button, IconButton} from 'react-native-paper';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {RouteProp} from '@react-navigation/core';
@@ -30,14 +30,11 @@ const SearchNavigator: React.FC<SearchProps> = ({route, navigation}) => {
         component={SearchScreen}
         initialParams={{id: route?.params?.id}}
         options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
           headerLeft: () => (
-            <Button onPress={() => navigation.toggleDrawer()}>
-              <Icon name="menu" size={25} color="white" />
-            </Button>
+            <IconButton
+              icon={'menu'}
+              onPress={() => navigation.toggleDrawer()}
+            />
           ),
         }}
       />
@@ -45,42 +42,26 @@ const SearchNavigator: React.FC<SearchProps> = ({route, navigation}) => {
         name={translations.search.title.details}
         component={DriverDetailsScreen}
         options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
           headerRight: () => (
-            <Button
+            <IconButton
+              icon={'account-plus'}
               onPress={() => {
                 dispatch({
                   type: ReducerActions.SET_DEFAULT_DRIVER,
                   payload: state.searchDriver,
                 });
-              }}>
-              <Icon name="account-plus" size={25} color="white" />
-            </Button>
+              }}
+            />
           ),
         }}
       />
       <Stack.Screen
         name={translations.search.title.sessionDetails}
         component={SessionDetailsScreen}
-        options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
-        }}
       />
       <Stack.Screen
         name={translations.navigation.race}
         component={RaceComponent}
-        options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
-        }}
       />
     </Stack.Navigator>
   );

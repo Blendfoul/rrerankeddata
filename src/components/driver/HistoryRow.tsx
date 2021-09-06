@@ -15,7 +15,6 @@ interface HistoryProps {
 const HistoryRowComponent: React.FC<HistoryProps> = ({race}) => {
   const {translations} = useContext(LocalizationContext);
   const navigation = useNavigation();
-  const {colors} = useTheme();
 
   const racePress = (raceId: String, trackLayout: GenericIdData) => {
     navigation.navigate({
@@ -29,7 +28,6 @@ const HistoryRowComponent: React.FC<HistoryProps> = ({race}) => {
   const classId = race.CarClasses.map((classes: {Id: number}) => classes.Id);
   const style = StyleSheet.create({
     root: {
-      backgroundColor: colors.primary,
       margin: 5,
     },
     content: {
@@ -58,12 +56,10 @@ const HistoryRowComponent: React.FC<HistoryProps> = ({race}) => {
       </Card.Content>
       <Card.Content style={style.content}>
         <Caption style={style.caption}>
-          <AntIcon name={'user'} size={15} color={'white'} />{' '}
-          {race.FinishPositionInClass}
+          <AntIcon name={'user'} size={15} /> {race.FinishPositionInClass}
         </Caption>
         <Caption style={style.caption}>
-          <AntIcon name={'team'} size={15} color={'white'} />{' '}
-          {race.PlayersCount}
+          <AntIcon name={'team'} size={15} /> {race.PlayersCount}
         </Caption>
         <Paragraph
           style={[
@@ -74,8 +70,7 @@ const HistoryRowComponent: React.FC<HistoryProps> = ({race}) => {
               padding: 5,
             },
           ]}>
-          <AntIcon name={'solution1'} size={15} color={'white'} />{' '}
-          {race.RatingChange}
+          <AntIcon name={'solution1'} size={15} /> {race.RatingChange}
         </Paragraph>
         <Paragraph
           style={[
@@ -87,8 +82,7 @@ const HistoryRowComponent: React.FC<HistoryProps> = ({race}) => {
               padding: 5,
             },
           ]}>
-          <AntIcon name={'exception1'} size={15} color={'white'} />{' '}
-          {race.ReputationChange}
+          <AntIcon name={'exception1'} size={15} /> {race.ReputationChange}
         </Paragraph>
       </Card.Content>
     </Card>

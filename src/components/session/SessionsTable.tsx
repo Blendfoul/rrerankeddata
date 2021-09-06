@@ -2,22 +2,26 @@ import React, {useContext, useState} from 'react';
 import {TabBar, TabView} from 'react-native-tab-view';
 import {Dimensions, StyleSheet, View} from 'react-native';
 import ResultsTable from './ResultsTable';
-import {styles} from '../utils/Theme';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {MpRaceResult} from '../../types/resultData';
 import SessionDataInfo from './SessionDataInfo';
+import {Subheading, useTheme} from 'react-native-paper';
 
-const renderTabBar: React.FC<any> = props => {
-  const tabStyle = {backgroundColor: 'gray'};
-
+function renderTabBar(
+  props: any,
+  color: ReactNativePaper.ThemeColors,
+): JSX.Element {
   return (
     <TabBar
       {...props}
-      indicatorStyle={tabStyle}
-      style={styles.backgroundColorTarget}
+      indicatorStyle={{backgroundColor: color.text}}
+      renderLabel={labelProps => (
+        <Subheading {...labelProps}>{labelProps.route.title}</Subheading>
+      )}
+      style={{backgroundColor: color.background, color: color.text}}
     />
   );
-};
+}
 
 interface SessionsTableProps {
   info: MpRaceResult;
@@ -26,6 +30,8 @@ interface SessionsTableProps {
 
 const SessionsTable: React.FC<SessionsTableProps> = ({info}) => {
   const {translations} = useContext(LocalizationContext);
+  const {colors} = useTheme();
+
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     {key: 'data', title: translations.session.general},
@@ -56,8 +62,7 @@ const SessionsTable: React.FC<SessionsTableProps> = ({info}) => {
       <TabView
         lazy
         lazyPreloadDistance={1}
-        scrollEnabled
-        renderTabBar={renderTabBar}
+        renderTabBar={props => renderTabBar(props, colors)}
         navigationState={{index, routes}}
         renderScene={renderScene}
         onIndexChange={setIndex}
@@ -70,8 +75,7 @@ const SessionsTable: React.FC<SessionsTableProps> = ({info}) => {
 const style = StyleSheet.create({
   tab: {
     flex: 2,
-    backgroundColor: '#2f2f2f',
-  },
+},
 });
 
 export default SessionsTable;

@@ -3,7 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import AboutComponent from '../about/AboutComponent';
-import {Button} from 'react-native-paper';
+import {Button, IconButton} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Stack = createStackNavigator();
@@ -20,14 +20,11 @@ const AboutNavigator: React.FC<AboutNavigatorProps> = ({navigation}) => {
         name={translations.navigation.about}
         component={AboutComponent}
         options={{
-          headerStyle: {
-            backgroundColor: '#2f2f2f',
-          },
-          headerTintColor: '#fff',
           headerLeft: () => (
-            <Button onPress={() => navigation.toggleDrawer()}>
-              <Icon name="menu" size={25} color="white" />
-            </Button>
+            <IconButton
+              icon={'menu'}
+              onPress={() => navigation.toggleDrawer()}
+            />
           ),
         }}
       />

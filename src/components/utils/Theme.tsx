@@ -31,18 +31,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2f2f2f',
   },
   title: {
     fontWeight: 'bold',
     fontSize: 16,
-    color: '#f2f2f2',
-  },
-  text: {
-    color: '#f2f2f2',
-  },
-  backgroundColorTarget: {
-    backgroundColor: '#2f2f2f',
   },
   paddingHorizontal5: {
     paddingHorizontal: 5,
@@ -89,7 +81,7 @@ export const styles = StyleSheet.create({
   root: {
     borderRadius: 4,
     elevation: 3,
-    backgroundColor: '#2f2f2f',
+
     shadowOffset: {
       width: 1,
       height: 1,

@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {Text} from 'react-native-paper';
 
 interface TextContainerProps {
   titleSize?: number;
@@ -21,13 +22,11 @@ const TextContainer: React.FC<TextContainerProps> = props => {
     title: {
       fontSize: props.titleSize || 15,
       fontWeight: 'bold',
-      color: '#fff',
       textAlign: 'center',
     },
     text: {
       fontWeight: 'normal',
       fontSize: props.textSize || 14,
-      color: '#fff',
       textAlign: 'center',
     },
     icon: {

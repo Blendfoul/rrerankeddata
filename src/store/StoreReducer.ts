@@ -22,6 +22,11 @@ export const storeReducer: React.Reducer<RaceStore, Action> = (
         ...state,
         ratings: action.payload,
       };
+    case ReducerActions.READ_DEFAULT_DRIVER:
+      return {
+        ...state,
+        defaultDriver: action.payload,
+      };
     case ReducerActions.SET_DEFAULT_DRIVER:
       storeData(action.payload);
       return {
@@ -78,6 +83,11 @@ export const storeReducer: React.Reducer<RaceStore, Action> = (
         rateModal: action.payload,
       };
     }
+    case ReducerActions.SET_THEME:
+      return {
+        ...state,
+        theme: action.payload,
+      };
     default:
       throw new Error(`Action ${action.type} not supported!`);
   }
@@ -97,6 +107,8 @@ export enum ReducerActions {
   REFRESH_SERVERS,
   SET_R3E_DATA,
   SET_RATE_ACTION,
+  READ_DEFAULT_DRIVER,
+  SET_THEME,
 }
 
 const storeData = async (value: string) => {

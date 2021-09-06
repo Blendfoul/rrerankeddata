@@ -57,7 +57,7 @@ const RaceComponent: React.FC<RaceProps> = ({route}) => {
   };
 
   return (
-    <ScrollView style={{backgroundColor: theme.colors.primary}}>
+    <ScrollView>
       <View style={[styles.row, styles.alignCenter, styles.justifyCenter]}>
         <Image
           source={{

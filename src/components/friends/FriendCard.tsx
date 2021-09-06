@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {Rating} from '../../types/rating';
 import {useNavigation} from '@react-navigation/core';
 import {StyleSheet} from 'react-native';
-import {Avatar, Card, Paragraph} from 'react-native-paper';
+import {Avatar, Card, Paragraph, useTheme} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {LocalizationContext} from '../translations/LocalizationContext';
 //@ts-ignore
@@ -12,12 +12,15 @@ import {ReducerActions} from '../../store/StoreReducer';
 
 interface FriendCardProps {
   item: Rating;
+  rating?: boolean;
+  ratingPosition?: number;
 }
 
-const Friend: React.FC<FriendCardProps> = ({item}) => {
+const Friend: React.FC<FriendCardProps> = ({item, rating, ratingPosition}) => {
   const {translations} = useContext(LocalizationContext);
   const [state, dispatch] = useRaceContext();
   const navigation = useNavigation();
+  const {colors} = useTheme();
 
   const driverPress = () => {
     dispatch({
@@ -33,14 +36,13 @@ const Friend: React.FC<FriendCardProps> = ({item}) => {
   const friendCardStyle = StyleSheet.create({
     root: {
       backgroundColor:
-        state.defaultDriver === item.Username ? '#646464' : '#2f2f2f',
+        state.defaultDriver === item.Username ? '#646464' : colors.background,
       margin: 5,
     },
     caption: {
       alignItems: 'center',
       justifyContent: 'center',
       fontSize: 12,
-      color: '#dbdbdb',
       marginHorizontal: 7.5,
     },
     containerRow: {
@@ -72,6 +74,11 @@ const Friend: React.FC<FriendCardProps> = ({item}) => {
         )}
       />
       <Card.Content style={friendCardStyle.containerRow}>
+        {rating ? (
+          <Paragraph style={[[friendCardStyle.caption, {flex: 0}]]}>
+            #{ratingPosition}
+          </Paragraph>
+        ) : null}
         <Paragraph style={friendCardStyle.caption}>
           <AntDesign name={'solution1'} size={15} /> {item.Rating}
         </Paragraph>

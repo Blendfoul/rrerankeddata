@@ -11,7 +11,8 @@
     "driverDetails": "Detalles del conductor",
     "myDriver": "Mi conductor",
     "race": "Carrera",
-    "qualification": "Calificación"
+    "qualification": "Calificación",
+    "donation": "Donación"
   },
   "race": {
     "regions": [
@@ -161,9 +162,6 @@
     "greeting": "Hola chicos!",
     "message": "Si te gusta la aplicación y tienes ganas de apoyarme en el desarrollo de la aplicación no dudes en seguir adelante. Todo el apoyo es muy apreciado!"
   },
-  "noConnection": "No hay conexión disponible!",
-  "noDrivers": "¡No hay controladores en el servidor!",
-  "exitApp": "Salir",
   "loading": {
     "start": "Formateo de cuadrículas",
     "servers": "Cargando carreras disponibles",
@@ -175,5 +173,9 @@
     "leaderboard": "Cargando tabla de clasificación",
     "search": "Quién es ese compañero?",
     "details": "Analizando datos de la carrera"
-  }
+  },
+  "noConnection": "No hay conexión disponible!",
+  "noDrivers": "¡No hay controladores en el servidor!",
+  "exitApp": "Salir",
+  "noServers": ""
 }

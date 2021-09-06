@@ -7,14 +7,15 @@ import {
   View,
 } from 'react-native';
 import {styles} from './Theme';
-import {Button} from 'react-native-paper';
-import AntIcon from 'react-native-vector-icons/AntDesign';
+import {IconButton, useTheme} from 'react-native-paper';
 import React from 'react';
 import {useRaceContext} from '../../store/RaceContext';
 import {ReducerActions} from '../../store/StoreReducer';
 
 const ScheduleComponent: React.FC = () => {
   const [state, dispatch] = useRaceContext();
+  const {colors} = useTheme();
+
   const date = new Date();
   const handleSchedule = () => {
     dispatch({
@@ -34,18 +35,9 @@ const ScheduleComponent: React.FC = () => {
           styles.column,
           styles.justifyCenter,
           styles.alignCenter,
-          styles.backgroundColorTarget,
+          {backgroundColor: colors.background},
         ]}>
-        <Button
-          onPress={handleSchedule}
-          style={[
-            styles.column,
-            styles.closeButton,
-            styles.alignCenter,
-            {flex: 0},
-          ]}>
-          <AntIcon color={'white'} name={'close'} size={25} />
-        </Button>
+        <IconButton onPress={handleSchedule} icon={'close'} />
         <View style={[styles.column]}>
           <ScrollView horizontal>
             <Image

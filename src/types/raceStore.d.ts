@@ -17,6 +17,7 @@ interface RateModal {
 }
 
 export interface RaceStore {
+  theme: string;
   searchDriver: string;
   ratings: Rating[];
   races: any[];

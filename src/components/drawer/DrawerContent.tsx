@@ -13,9 +13,6 @@ import DriverAvatar from './DriverAvatar';
 import {useRaceContext} from '../../store/RaceContext';
 
 const drawerStyle = StyleSheet.create({
-  textColor: {
-    color: '#fff',
-  },
   bottomDrawerSection: {
     marginBottom: 15,
     borderTopWidth: 1,
@@ -24,7 +21,7 @@ const drawerStyle = StyleSheet.create({
   rowSection: {
     paddingTop: 15,
   },
-  content: {flex: 1, backgroundColor: '#2f2f2f'},
+  content: {flex: 1},
 });
 
 const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
@@ -38,82 +35,81 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
         <Drawer.Section style={drawerStyle.rowSection}>
           <DrawerItem
             label={translations.navigation.server}
-            labelStyle={drawerStyle.textColor}
-            icon={({size}) => (
-              <Icon name={'car-traction-control'} color={'#fff'} size={size} />
+            icon={iconProps => (
+              <Icon name={'car-traction-control'} {...iconProps} />
             )}
             onPress={() =>
-              props.navigation.navigate(translations.navigation.server)
+              props.navigation.navigate(
+                `${translations.navigation.server}-drawer`,
+              )
             }
           />
           <DrawerItem
             label={translations.navigation.user}
-            labelStyle={drawerStyle.textColor}
-            icon={({size}) => (
-              <Icon name={'account'} color={'#fff'} size={size} />
-            )}
+            icon={iconProps => <Icon name={'account'} {...iconProps} />}
             onPress={() =>
-              props.navigation.navigate(translations.navigation.user)
+              props.navigation.navigate(
+                `${translations.navigation.user}-drawer`,
+              )
             }
           />
           {state.defaultDriver !== '' ? (
             <DrawerItem
               label={translations.navigation.friends}
-              labelStyle={drawerStyle.textColor}
-              icon={({size}) => (
-                <Icon name={'account-group'} color={'#fff'} size={size} />
-              )}
+              icon={iconProps => <Icon name={'account-group'} {...iconProps} />}
               onPress={() =>
-                props.navigation.navigate(translations.navigation.friends)
+                props.navigation.navigate(
+                  `${translations.navigation.friends}-drawer`,
+                )
               }
             />
           ) : null}
           <DrawerItem
             label={translations.navigation.search}
-            labelStyle={drawerStyle.textColor}
-            icon={({size}) => (
-              <Icon name={'account-search'} color={'#fff'} size={size} />
-            )}
+            icon={iconProps => <Icon name={'account-search'} {...iconProps} />}
             onPress={() =>
-              props.navigation.navigate(translations.navigation.search)
+              props.navigation.navigate(
+                `${translations.navigation.search}-drawer`,
+              )
             }
           />
           <DrawerItem
             label={translations.navigation.ranking}
-            labelStyle={drawerStyle.textColor}
-            icon={({size}) => <Icon name={'text'} color={'#fff'} size={size} />}
+            icon={iconProps => <Icon name={'text'} {...iconProps} />}
             onPress={() =>
-              props.navigation.navigate(translations.navigation.ranking)
+              props.navigation.navigate(
+                `${translations.navigation.ranking}-drawer`,
+              )
             }
           />
           <DrawerItem
             label={translations.navigation.about}
-            labelStyle={drawerStyle.textColor}
-            icon={({size}) => (
+            icon={iconProps => (
               <MaterialCommunityIcon
                 name={'information-outline'}
-                color={'#fff'}
-                size={size}
+                {...iconProps}
                 direction={'ltr'}
               />
             )}
             onPress={() =>
-              props.navigation.navigate(translations.navigation.about)
+              props.navigation.navigate(
+                `${translations.navigation.about}-drawer`,
+              )
             }
           />
           <DrawerItem
             label={translations.navigation.donate}
-            labelStyle={drawerStyle.textColor}
-            icon={({size}) => (
+            icon={iconProps => (
               <MaterialCommunityIcon
                 name={'hand-heart'}
-                color={'#fff'}
-                size={size}
+                {...iconProps}
                 direction={'ltr'}
               />
             )}
             onPress={() =>
-              props.navigation.navigate(translations.navigation.donate)
+              props.navigation.navigate(
+                `${translations.navigation.donate}-drawer`,
+              )
             }
           />
         </Drawer.Section>
@@ -121,11 +117,10 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
       <Drawer.Section style={drawerStyle.bottomDrawerSection}>
         <DrawerItem
           label={translations.exitApp}
-          labelStyle={drawerStyle.textColor}
           icon={({size}) => (
             <MaterialCommunityIcon
               name={'exit-to-app'}
-              color={'pink'}
+              color={'red'}
               size={size}
               direction={'ltr'}
             />
@@ -137,22 +132,22 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
   );
 };
 
-/**
- * <DrawerItem
- label={'Login'}
- labelStyle={drawerStyle.textColor}
- icon={({size}) => (
+export default DrawerContent;
+
+/*
+ <DrawerItem
+            label={translations.navigation.settings}
+            icon={iconProps => (
               <MaterialCommunityIcon
-                name={'google-controller'}
-                color={'#fff'}
-                size={size}
+                name={'cog'}
+                {...iconProps}
                 direction={'ltr'}
               />
             )}
- onPress={() => {
-              RNGooglePlayGameServices.signInIntent();
-            }}
- />
+            onPress={() =>
+              props.navigation.navigate(
+                `${translations.navigation.settings}-drawer`,
+              )
+            }
+          />
  */
-
-export default DrawerContent;

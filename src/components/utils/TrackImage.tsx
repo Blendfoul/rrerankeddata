@@ -16,7 +16,8 @@ const TrackImageComponent: React.FC<TrackImageProps> = props => {
 
   const componentStyle = StyleSheet.create({
     backgroundContainer: {
-      width: '100%',
+      display: 'flex',
+      flex: 1,
       height: 125,
       overflow: 'hidden',
     },

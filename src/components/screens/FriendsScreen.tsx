@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import {View, FlatList} from 'react-native';
 import LoadingActivity from '../utils/LoadingActivity';
 import FriendCard from '../friends/FriendCard';
-import {styles} from '../utils/Theme';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import useFriends from '../../hooks/useFriends';
 
@@ -19,7 +18,6 @@ const FriendsScreen: React.FC = () => {
       <React.Fragment>
         <View style={{flex: 0}} />
         <FlatList
-          style={styles.backgroundColorTarget}
           data={friends}
           renderItem={({item}) => <FriendCard item={item} />}
           keyExtractor={(item, index: number) => `friend-${index}-2`}

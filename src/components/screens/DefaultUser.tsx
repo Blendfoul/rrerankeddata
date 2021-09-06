@@ -36,7 +36,6 @@ const DefaultUser: React.FC<DefaultUserProps> = ({navigation}) => {
       flexGrow: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: colors.primary,
     },
     information: {
       flexDirection: 'row',
@@ -61,7 +60,6 @@ const DefaultUser: React.FC<DefaultUserProps> = ({navigation}) => {
     setButton: {
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: colors.text,
       width: '82.5%',
       marginHorizontal: 10,
       height: 50,
@@ -75,7 +73,7 @@ const DefaultUser: React.FC<DefaultUserProps> = ({navigation}) => {
   return (
     <View style={componentStyle.root}>
       <View style={componentStyle.information}>
-        <Icon name={'person'} color={colors.text} size={55} />
+        <Icon name={'account'} color={colors.text} size={55} />
         <Subheading>{translations.user.message}</Subheading>
       </View>
       <View style={componentStyle.tutorial}>
@@ -93,12 +91,11 @@ const DefaultUser: React.FC<DefaultUserProps> = ({navigation}) => {
         </Caption>
       </View>
       <Button
-        icon={() => <Icon name={'person'} size={25} color={colors.primary} />}
+        icon={() => <Icon name={'account'} size={25} color={colors.text} />}
         style={componentStyle.setButton}
+        contentStyle={{backgroundColor: colors.accent}}
         onPress={redirectSearch}>
-        <Paragraph style={{color: colors.primary, fontSize: 12}}>
-          {translations.user.search}
-        </Paragraph>
+        <Paragraph style={{fontSize: 12}}>{translations.user.search}</Paragraph>
       </Button>
     </View>
   );

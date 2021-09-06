@@ -21,13 +21,13 @@ const LanguagePicker = () => {
 
 const componentStyle = StyleSheet.create({
   dropdown: {
-    backgroundColor: '#2f2f2f',
+    
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
     borderWidth: 0,
   },
   picker: {
-    backgroundColor: '#2f2f2f',
+    
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
     borderBottomLeftRadius: 0,

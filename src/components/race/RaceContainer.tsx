@@ -4,11 +4,10 @@ import RaceComponent from './RaceComponent';
 import {FlatList, RefreshControl, StyleSheet, View} from 'react-native';
 import useSortRaces from '../../hooks/useSortRaces';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {Button, useTheme} from 'react-native-paper';
+import {useTheme} from 'react-native-paper';
 import {ReducerActions} from '../../store/StoreReducer';
 import {useRaceContext} from '../../store/RaceContext';
 import AreaPicker from './AreaPicker';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import useDrawerContent from '../../hooks/useDrawerContent';
 import EmptyRaceComponent from './EmptyRaceComponent';
 
@@ -28,23 +27,11 @@ const RaceContainer: React.FC = () => {
     [dispatch, state.refresh],
   );
 
-  const handleScheduleViewer = useCallback(
-    () =>
-      dispatch({
-        type: ReducerActions.SET_SCHEDULE,
-        payload: !state.schedule,
-      }),
-    [dispatch, state.schedule],
-  );
-
   if (state.refresh && loading) {
     return <LoadingActivity title={translations.loading.servers} />;
   }
 
   const style = StyleSheet.create({
-    root: {
-      backgroundColor: colors.primary,
-    },
     headerBar: {
       display: 'flex',
       flexDirection: 'row',
@@ -53,26 +40,20 @@ const RaceContainer: React.FC = () => {
     schedule: {
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: colors.primary,
       flex: 0,
+      backgroundColor: colors.background,
     },
     areaPicker: {flex: 3},
   });
 
   return (
     <FlatList
-      style={style.root}
       data={races}
       ListHeaderComponent={
         <React.Fragment>
           <View style={style.headerBar}>
             <View style={style.areaPicker}>
               <AreaPicker />
-            </View>
-            <View style={style.schedule}>
-              <Button onPress={handleScheduleViewer}>
-                <AntDesign name="calendar" size={25} color="white" />
-              </Button>
             </View>
           </View>
         </React.Fragment>

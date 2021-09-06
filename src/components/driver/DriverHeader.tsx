@@ -1,6 +1,6 @@
 import React from 'react';
 import {Driver} from '../../hooks/useDriver';
-import {Avatar, Card, useTheme} from 'react-native-paper';
+import {Avatar, Card} from 'react-native-paper';
 import {StyleSheet, View} from 'react-native';
 //@ts-ignore
 import Flag from 'react-native-flags';
@@ -10,15 +10,13 @@ export interface DriverProps {
 }
 
 const DriverHeader: React.FC<DriverProps> = ({item}) => {
-  const {colors} = useTheme();
   const style = StyleSheet.create({
     root: {
-      backgroundColor: colors.primary,
       margin: 5,
     },
     image: {
       height: 125,
-      backgroundColor: colors.primary,
+      backgroundColor: 'transparent',
     },
     flag: {
       paddingHorizontal: 10,

@@ -42,7 +42,7 @@ const DriverHistory: React.FC<DriverProps> = ({username}) => {
     };
 
     return (
-      <DataTable style={[styles.column, styles.backgroundColorTarget]}>
+      <DataTable style={styles.column}>
         <FlatList
           data={races()}
           renderItem={({item}) => <HistoryRow race={item} />}
@@ -63,7 +63,7 @@ const DriverHistory: React.FC<DriverProps> = ({username}) => {
           }
           onPageChange={page => setPage(page)}
           label={
-            <Text style={styles.text}>
+            <Text>
               {from1 + 1}-{data.Entries.length < to ? data.Entries.length : to}{' '}
               of {data.Entries.length}
             </Text>

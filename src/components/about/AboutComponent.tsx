@@ -4,14 +4,12 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Text,
   View,
   Image,
 } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from '../utils/Theme';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {Button} from 'react-native-paper';
+import {IconButton, Text} from 'react-native-paper';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 
 interface AboutProps {
@@ -35,19 +33,17 @@ const AboutComponent: React.FC<AboutProps> = () => {
 
   return (
     <React.Fragment>
-      <ScrollView style={[styles.column, styles.backgroundColorTarget]}>
+      <ScrollView style={styles.column}>
         <Image source={image()} style={componentStyle.hariboTrain} />
         <View style={styles.alignCenter}>
           <Text style={componentStyle.donationText}>
             {translations.license.somethingWrong}
           </Text>
-          <View style={componentStyle.donationButton}>
-            <Button
-              onPress={() =>
-                Linking.openURL('mailto:rrerankedstats@gmail.com')
-              }>
-              <MaterialCommunityIcons name={'email'} size={25} color={'#fff'} />
-            </Button>
+          <View>
+            <IconButton
+              icon={'email'}
+              onPress={() => Linking.openURL('mailto:rrestatsranked@gmail.com')}
+            />
           </View>
         </View>
         <View style={styles.alignCenter}>
@@ -83,17 +79,12 @@ const AboutComponent: React.FC<AboutProps> = () => {
 
 const componentStyle = StyleSheet.create({
   donationText: {
-    color: '#fff',
     marginVertical: 10,
     fontSize: 16,
-  },
-  donationButton: {
-    width: '40%',
   },
   disclaimerText: {
     textAlign: 'center',
     width: '90%',
-    color: '#fff',
     marginVertical: 20,
     fontSize: 16,
   },

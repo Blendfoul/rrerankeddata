@@ -13,7 +13,8 @@
     "myDriver": "Mon chauffeur",
     "result": "Résultat",
     "race": "Course",
-    "qualification": "Qualification"
+    "qualification": "Qualification",
+    "donate": "Donner"
   },
   "race": {
     "regions": [

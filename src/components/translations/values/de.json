@@ -11,7 +11,8 @@
     "driverDetails": "Fahrerdetails",
     "myDriver": "Mein Fahrer",
     "race": "Rennen",
-    "qualification": "Qualifikation"
+    "qualification": "Qualifikation",
+    "donate": "Spenden"
   },
   "race": {
     "regions": [
@@ -54,13 +55,13 @@
     "tutorial": {
       "message_1": "Bei der Suche nach einem Benutzer...",
       "message_2": "Tippen Sie auf die ",
-      "message_3": "In der oberen rechten Ecke, um Ihren Standardtreiber einzustellen!"
+      "message_3": "In der oberen rechten Ecke, um Ihren Standard-Rennfahrersatz einzustellen!"
     },
     "message": "Kein Treiberset!",
     "search": "Suche"
   },
   "search": {
-    "placeholder": "Treiber-Benutzername",
+    "placeholder": "Fahrer-Benutzername",
     "search": "Suche",
     "title": {
       "search": "Suche",
@@ -149,7 +150,7 @@
     "wrongWay": "Falsche Weg"
   },
   "messages": {
-    "driverSet": "Standardtreibersatz!",
+    "driverSet": "Standard-Rennfahrersatz!",
     "copied": "Benutzername in Zwischenablage kopiert."
   },
   "license": {
@@ -158,7 +159,31 @@
     "mvp": "Ein besonderer Dank geht an DavidsAppStudio für die Bereitstellung der detaillierten Statistiken für den Sitzungsverlauf.",
     "somethingWrong": "Haben Sie etwas falsches gefunden?"
   },
+  "loading": {
+    "start": "Gehe in die Startaufstellung",
+    "servers": "Verfügbare Rennen werden geladen",
+    "driver": "Rennwagenreifen wechseln",
+    "session": "Rennergebnisse drucken",
+    "server": "Verbindung zum Rennserver",
+    "history": "Trophäe Fall öffnen",
+    "friends": "Es ist alles Spaß und Spiel!",
+    "leaderboard": "Rangliste wird geladen",
+    "search": "Wer ist dieser Rennfahrer?",
+    "details": "\nKnirschende Renndaten"
+  },
+  "rateModal": {
+    "title": "Gefällt Ihnen die Erfahrung?",
+    "paragraph": "Bitte erwägen Sie, eine Bewertung im Shop zu hinterlassen.",
+    "rate": "Bewertung",
+    "later": "Erinnere dich später",
+    "never": "Nicht mehr anzeigen"
+  },
+  "donation": {
+    "greeting": "Hallo Leute!",
+    "message": "Wenn Ihnen die App gefällt und Sie mich bei der Entwicklung der App unterstützen möchten, können Sie gerne fortfahren. Alle Unterstützung wird sehr geschätzt!"
+  },
   "noConnection": "Keine Verbindung vorhanden!",
   "noDrivers": "Keine Fahrer auf dem Server!",
-  "exitApp": "Exit"
+  "exitApp": "Exit",
+  "noServers": "Boxengasse derzeit geschlossen..."
 }

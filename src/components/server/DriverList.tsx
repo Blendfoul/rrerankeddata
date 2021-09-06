@@ -36,7 +36,7 @@ const DriverList: React.FC<DriverListProps> = ({data}) => {
 
   const componentStyle = StyleSheet.create({
     root: {
-      backgroundColor: colors.primary,
+      
     },
     image: {
       flex: 1,
@@ -53,7 +53,7 @@ const DriverList: React.FC<DriverListProps> = ({data}) => {
     return (
       <View style={[styles.loadingContainer]}>
         <TextContainer
-          title={<AntIcon name={'car'} color={'#fff'} size={100} />}
+          title={<AntIcon name={'car'} size={100} />}
           text={translations.noDrivers}
         />
       </View>

@@ -174,4 +174,9 @@ export interface Translations {
   noDrivers: string;
   exitApp: string;
   noServers: string;
+  settings: {
+    general: string;
+    theme: string;
+    language: string;
+  };
 }

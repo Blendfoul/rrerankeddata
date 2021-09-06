@@ -46,7 +46,7 @@ const useInitApp = () => {
       }
       if (value !== null) {
         dispatch({
-          type: ReducerActions.SET_DEFAULT_DRIVER,
+          type: ReducerActions.READ_DEFAULT_DRIVER,
           payload: value,
         });
       }

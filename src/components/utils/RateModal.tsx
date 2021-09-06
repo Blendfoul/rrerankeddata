@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect} from 'react';
-import {Button, Caption, Modal, Title, useTheme} from 'react-native-paper';
+import {Button, Caption, Modal, Text, Title, useTheme} from 'react-native-paper';
 import {useRaceContext} from '../../store/RaceContext';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {ReducerActions} from '../../store/StoreReducer';
@@ -31,15 +31,15 @@ const RateModalComponent: React.FC = () => {
       borderRadius: 5,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: colors.primary,
       padding: 10,
       margin: 30,
-      color: colors.text,
+      backgroundColor: colors.background,
     },
     button: {
       width: '100%',
-      backgroundColor: colors.text,
       margin: 7.5,
+      backgroundColor: colors.accent,
+      color: colors.text,
     },
     textContainer: {
       flex: 0.5,
@@ -51,9 +51,6 @@ const RateModalComponent: React.FC = () => {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-    },
-    textColor: {
-      color: colors.text,
     },
   });
 
@@ -100,19 +97,17 @@ const RateModalComponent: React.FC = () => {
       onDismiss={handleRememberLater}>
       <View style={style.textContainer}>
         <Title>{translations.rateModal.title}</Title>
-        <Caption style={style.textColor}>
-          {translations.rateModal.paragraph}
-        </Caption>
+        <Caption>{translations.rateModal.paragraph}</Caption>
       </View>
       <View style={style.buttonContainer}>
         <Button style={style.button} onPress={handleYoureAwesome}>
-          {translations.rateModal.rate}
+          <Text>{translations.rateModal.rate}</Text>
         </Button>
         <Button style={style.button} onPress={handleRememberLater}>
-          {translations.rateModal.later}
+          <Text>{translations.rateModal.later}</Text>
         </Button>
         <Button style={style.button} onPress={handleYouSuck}>
-          {translations.rateModal.never}
+          <Text>{translations.rateModal.never}</Text>
         </Button>
       </View>
     </Modal>

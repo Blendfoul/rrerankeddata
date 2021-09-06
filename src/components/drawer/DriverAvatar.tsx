@@ -7,18 +7,14 @@ import useDrawerContent from '../../hooks/useDrawerContent';
 import {LocalizationContext} from '../translations/LocalizationContext';
 
 const drawerStyle = StyleSheet.create({
-  content: {flex: 1, backgroundColor: '#2f2f2f'},
+  content: {flex: 1},
   userInfo: {paddingLeft: 20},
   row: {marginTop: 20, flexDirection: 'row'},
-  textColor: {
-    color: '#fff',
-  },
+  textColor: {},
   title: {
-    color: '#fff',
     marginLeft: 10,
   },
   caption: {
-    color: '#f8f8f8',
     marginLeft: 15,
     flexWrap: 'wrap',
   },
@@ -56,13 +52,11 @@ const DriverAvatar: React.FC<any> = () => {
           </View>
         </View>
         <View style={drawerStyle.rankedRow}>
-          <Paragraph style={drawerStyle.textColor}>
-            <AntDesign name={'solution1'} color={'#fff'} size={15} />{' '}
-            {driver.rating}
+          <Paragraph>
+            <AntDesign name={'solution1'} size={15} /> {driver.rating}
           </Paragraph>
-          <Paragraph style={drawerStyle.textColor}>
-            <AntDesign name={'exception1'} color={'#fff'} size={15} />{' '}
-            {driver.reputation}
+          <Paragraph>
+            <AntDesign name={'exception1'} size={15} /> {driver.reputation}
           </Paragraph>
         </View>
       </View>

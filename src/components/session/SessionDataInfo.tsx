@@ -23,7 +23,7 @@ const SessionDataInfo: React.FC<SessionDataProps> = ({data}) => {
 
   const styles = StyleSheet.create({
     root: {
-      backgroundColor: colors.primary,
+      
       margin: 5,
     },
     trackImage: {
