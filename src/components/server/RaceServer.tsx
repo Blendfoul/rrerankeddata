@@ -8,11 +8,11 @@ interface RaceServerProps {
 }
 
 const RaceServer: React.FC<RaceServerProps> = ({route}) => {
-  const {data, timeLeft}: {data: string; timeLeft: number} = route.params;
+  const {data}: {data: string} = route.params;
 
   return (
     <View style={styles.column}>
-      <ServerDetails serverName={data} timeLeft={timeLeft} />
+      <ServerDetails serverName={data} />
     </View>
   );
 };

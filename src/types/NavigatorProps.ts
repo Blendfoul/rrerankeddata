@@ -3,3 +3,9 @@ export type SettingsScreenParams = {
     title: string;
   };
 };
+
+export type RaceScreenParams = {
+  race: {
+    data: string;
+  };
+};

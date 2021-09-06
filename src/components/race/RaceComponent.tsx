@@ -12,15 +12,19 @@ import useRaceType from '../../hooks/useRaceType';
 import TrackImage from '../utils/TrackImage';
 import {User} from '../../hooks/useDrawerContent';
 import {ServerData} from '../../types/server';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RaceScreenParams} from '../../types/NavigatorProps';
 
 interface RaceProps {
   data: ServerData;
   driver: User | null;
 }
 
+type Props = StackNavigationProp<RaceScreenParams, 'race'>;
+
 const RaceComponent: React.FC<RaceProps> = ({data, driver}) => {
   const {translations} = useContext(LocalizationContext);
-  const navigation = useNavigation();
+  const navigation = useNavigation<Props['route']>();
   const {name, raceType} = useRaceType(data.Settings);
   const {session} = useRaceSession(data.CurrentSession);
   const {colors} = useTheme();
