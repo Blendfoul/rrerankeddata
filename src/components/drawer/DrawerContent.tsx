@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {BackHandler, StyleSheet, View} from 'react-native';
+import {BackHandler, Platform, StyleSheet, View} from 'react-native';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
@@ -97,37 +97,41 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
               )
             }
           />
+          {Platform.OS === 'android' ? (
+            <DrawerItem
+              label={translations.navigation.donate}
+              icon={iconProps => (
+                <MaterialCommunityIcon
+                  name={'hand-heart'}
+                  {...iconProps}
+                  direction={'ltr'}
+                />
+              )}
+              onPress={() =>
+                props.navigation.navigate(
+                  `${translations.navigation.donate}-drawer`,
+                )
+              }
+            />
+          ) : null}
+        </Drawer.Section>
+      </DrawerContentScrollView>
+      {Platform.OS === 'android' ? (
+        <Drawer.Section style={drawerStyle.bottomDrawerSection}>
           <DrawerItem
-            label={translations.navigation.donate}
-            icon={iconProps => (
+            label={translations.exitApp}
+            icon={({size}) => (
               <MaterialCommunityIcon
-                name={'hand-heart'}
-                {...iconProps}
+                name={'exit-to-app'}
+                color={'red'}
+                size={size}
                 direction={'ltr'}
               />
             )}
-            onPress={() =>
-              props.navigation.navigate(
-                `${translations.navigation.donate}-drawer`,
-              )
-            }
+            onPress={() => BackHandler.exitApp()}
           />
         </Drawer.Section>
-      </DrawerContentScrollView>
-      <Drawer.Section style={drawerStyle.bottomDrawerSection}>
-        <DrawerItem
-          label={translations.exitApp}
-          icon={({size}) => (
-            <MaterialCommunityIcon
-              name={'exit-to-app'}
-              color={'red'}
-              size={size}
-              direction={'ltr'}
-            />
-          )}
-          onPress={() => BackHandler.exitApp()}
-        />
-      </Drawer.Section>
+      ) : null}
     </View>
   );
 };

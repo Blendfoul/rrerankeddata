@@ -18,6 +18,7 @@
     "settings": "Settings"
   },
   "race": {
+    "cancel": "Cancel",
     "regions": [
       {
         "name": "All",

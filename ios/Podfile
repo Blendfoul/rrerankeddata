@@ -12,13 +12,9 @@ target 'rrerankeddata' do
     :hermes_enabled => true
   )
 
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
 
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
-  pod 'RNIap', :path => '../node_modules/react-native-iap'
 
   target 'rrerankeddataTests' do
     inherit! :complete

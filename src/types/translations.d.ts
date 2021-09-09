@@ -16,6 +16,7 @@ export interface Translations {
     donate: string;
   };
   race: {
+    cancel: string;
     all: string;
     regions: {
       name: string;

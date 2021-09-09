@@ -37,7 +37,11 @@ const ScheduleComponent: React.FC = () => {
           styles.alignCenter,
           {backgroundColor: colors.background},
         ]}>
-        <IconButton onPress={handleSchedule} icon={'close'} />
+        <IconButton
+          onPress={handleSchedule}
+          icon={'close'}
+          style={{marginTop: 35}}
+        />
         <View style={[styles.column]}>
           <ScrollView horizontal>
             <Image
