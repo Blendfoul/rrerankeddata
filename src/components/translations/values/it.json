@@ -16,24 +16,27 @@
     "qualification": "Qualificazione",
     "donate": "donare"
   },
-  "regions": [
-    {
-      "name": "tutto",
-      "value": ""
-    },
-    {
-      "name": "Europa",
-      "value": "Europe"
-    },
-    {
-      "name": "America",
-      "value": "America"
-    },
-    {
-      "name": "Oceania",
-      "value": "Oceania"
-    }
-  ],
+  "race": {
+    "cancel": "Annulla",
+    "regions": [
+      {
+        "name": "tutto",
+        "value": ""
+      },
+      {
+        "name": "Europa",
+        "value": "Europe"
+      },
+      {
+        "name": "America",
+        "value": "America"
+      },
+      {
+        "name": "Oceania",
+        "value": "Oceania"
+      }
+    ]
+  },
   "raceDetails": {
     "lowReputation": "Non hai abbastanza reputazione/valutazione per questa gara!",
     "general": "Generale",

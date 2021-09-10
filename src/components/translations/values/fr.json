@@ -17,6 +17,7 @@
     "donate": "Donner"
   },
   "race": {
+    "cancel": "Annuler",
     "regions": [
       {
         "name": "tout",

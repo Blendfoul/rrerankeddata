@@ -15,6 +15,7 @@
     "donation": "Donación"
   },
   "race": {
+    "cancel": "Cancelar",
     "regions": [
       {
         "name": "Todos",
