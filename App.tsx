@@ -27,8 +27,6 @@ import {
   DefaultTheme as PaperDefaultTheme,
 } from 'react-native-paper';
 import {useRaceContext} from './src/store/RaceContext';
-import {ReducerActions} from './src/store/StoreReducer';
-import SettingsNavigator from './src/components/navigators/SettingsNavigator';
 
 const CustomDefaultTheme: ReactNativePaper.Theme = {
   ...PaperDefaultTheme,
@@ -61,17 +59,11 @@ const drawerNavigator = createDrawerNavigator();
 const App: React.FC<any> = () => {
   const {translations, initializeAppLanguage} = useContext(LocalizationContext);
   const {loading, isConnected} = useInitApp();
-  const scheme = useColorScheme();
-  const [state, dispatch] = useRaceContext();
+  const [state] = useRaceContext();
 
   const appStart = useCallback(async () => {
     await initializeAppLanguage();
-
-    dispatch({
-      type: ReducerActions.SET_THEME,
-      payload: scheme,
-    });
-  }, [dispatch, initializeAppLanguage, scheme]);
+  }, [initializeAppLanguage]);
 
   useEffect(() => {
     appStart();

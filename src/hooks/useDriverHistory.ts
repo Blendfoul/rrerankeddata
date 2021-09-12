@@ -11,7 +11,7 @@ interface History {
 
 const useDriverHistory = (username: string) => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [data, setData] = useState<History | null>(null);
+  const [data, setData] = useState<History>({Entries: [], TotalEntries: 0});
 
   const refetch = () => setLoading(true);
 

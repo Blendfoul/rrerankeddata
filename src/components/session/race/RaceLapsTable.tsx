@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {FlatList, Text} from 'react-native';
+import {Dimensions, FlatList, Text} from 'react-native';
 import {DataTable, Title} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {LocalizationContext} from '../../translations/LocalizationContext';
@@ -13,10 +13,21 @@ interface RaceLapsProps {
 
 const RaceLapsTable: React.FC<RaceLapsProps> = ({laps, best}) => {
   const {translations} = useContext(LocalizationContext);
+
+  const isPortrait = () => {
+    const dim = Dimensions.get('screen');
+    return dim.height >= dim.width;
+  };
+
+  const [orientation, setOrientation] = useState(isPortrait());
   const itemsPerPage = 15;
   const [page, setPage] = useState(0);
   const from1 = page * itemsPerPage;
   const to = (page + 1) * itemsPerPage;
+
+  Dimensions.addEventListener('change', () => {
+    setOrientation(isPortrait());
+  });
 
   const data = (): LapData[] => {
     const temp = [];
@@ -38,15 +49,31 @@ const RaceLapsTable: React.FC<RaceLapsProps> = ({laps, best}) => {
         <DataTable.Title>
           <AntDesign name={'user'} />
         </DataTable.Title>
-        <DataTable.Title>
-          <Title>{translations.lapTable.sector1}</Title>
-        </DataTable.Title>
-        <DataTable.Title>
-          <Title>{translations.lapTable.sector2}</Title>
-        </DataTable.Title>
-        <DataTable.Title>
-          <Title>{translations.lapTable.sector3}</Title>
-        </DataTable.Title>
+        {orientation ? (
+          <>
+            <DataTable.Title>
+              <Title>S1</Title>
+            </DataTable.Title>
+            <DataTable.Title>
+              <Title>S2</Title>
+            </DataTable.Title>
+            <DataTable.Title>
+              <Title>S3</Title>
+            </DataTable.Title>
+          </>
+        ) : (
+          <>
+            <DataTable.Title>
+              <Title>{translations.lapTable.sector1}</Title>
+            </DataTable.Title>
+            <DataTable.Title>
+              <Title>{translations.lapTable.sector2}</Title>
+            </DataTable.Title>
+            <DataTable.Title>
+              <Title>{translations.lapTable.sector3}</Title>
+            </DataTable.Title>
+          </>
+        )}
         <DataTable.Title>
           <Title>{translations.lapTable.valid}</Title>
         </DataTable.Title>

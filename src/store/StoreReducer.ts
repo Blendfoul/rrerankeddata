@@ -84,6 +84,7 @@ export const storeReducer: React.Reducer<RaceStore, Action> = (
       };
     }
     case ReducerActions.SET_THEME:
+      storeTheme(action.payload);
       return {
         ...state,
         theme: action.payload,
@@ -110,6 +111,14 @@ export enum ReducerActions {
   READ_DEFAULT_DRIVER,
   SET_THEME,
 }
+
+const storeTheme = async (value: string) => {
+  try {
+    await AsyncStorage.setItem('theme', value);
+  } catch (e) {
+    console.error(`[Store Theme] ${e.message}`);
+  }
+};
 
 const storeData = async (value: string) => {
   try {

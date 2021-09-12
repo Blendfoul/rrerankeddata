@@ -11,6 +11,7 @@ import MaterialCommunityIcon from 'react-native-paper/src/components/MaterialCom
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import DriverAvatar from './DriverAvatar';
 import {useRaceContext} from '../../store/RaceContext';
+import {ReducerActions} from '../../store/StoreReducer';
 
 const drawerStyle = StyleSheet.create({
   bottomDrawerSection: {
@@ -26,7 +27,14 @@ const drawerStyle = StyleSheet.create({
 
 const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
   const {translations} = useContext(LocalizationContext);
-  const [state] = useRaceContext();
+  const [state, dispatch] = useRaceContext();
+
+  const setCurrentTheme = () => {
+    dispatch({
+      type: ReducerActions.SET_THEME,
+      payload: state.theme === 'dark' ? 'light' : 'dark',
+    });
+  };
 
   return (
     <View style={drawerStyle.content}>
@@ -116,8 +124,19 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
           ) : null}
         </Drawer.Section>
       </DrawerContentScrollView>
-      {Platform.OS === 'android' ? (
-        <Drawer.Section style={drawerStyle.bottomDrawerSection}>
+      <Drawer.Section style={drawerStyle.bottomDrawerSection}>
+        <DrawerItem
+          icon={props => (
+            <MaterialCommunityIcon
+              name={'invert-colors'}
+              {...props}
+              direction={'ltr'}
+            />
+          )}
+          label={state.theme.charAt(0).toUpperCase() + state.theme.slice(1)}
+          onPress={setCurrentTheme}
+        />
+        {Platform.OS === 'android' ? (
           <DrawerItem
             label={translations.exitApp}
             icon={({size}) => (
@@ -130,8 +149,8 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
             )}
             onPress={() => BackHandler.exitApp()}
           />
-        </Drawer.Section>
-      ) : null}
+        ) : null}
+      </Drawer.Section>
     </View>
   );
 };

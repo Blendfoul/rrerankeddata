@@ -5,11 +5,13 @@ import SplashScreen from 'react-native-splash-screen';
 import {useRaceContext} from '../store/RaceContext';
 import {useNetInfo} from '@react-native-community/netinfo';
 import useR3EData from './useR3EData';
+import {useColorScheme} from 'react-native';
 
 const useInitApp = () => {
   const [state, dispatch] = useRaceContext();
   const {loading} = useR3EData();
   const isConnected = useNetInfo();
+  const scheme = useColorScheme();
 
   const getRatings = useCallback(async () => {
     try {
@@ -17,6 +19,7 @@ const useInitApp = () => {
       const open = await AsyncStorage.getItem('opens');
       const rated = await AsyncStorage.getItem('rated');
       const region = await AsyncStorage.getItem('selectedRegion');
+      const theme = await AsyncStorage.getItem('theme');
 
       if (open !== null && rated !== null) {
         let nOpens = parseInt(open);
@@ -48,6 +51,17 @@ const useInitApp = () => {
         dispatch({
           type: ReducerActions.READ_DEFAULT_DRIVER,
           payload: value,
+        });
+      }
+      if (theme !== null) {
+        dispatch({
+          type: ReducerActions.SET_THEME,
+          payload: theme,
+        });
+      } else {
+        dispatch({
+          type: ReducerActions.SET_THEME,
+          payload: scheme,
         });
       }
     } catch (e) {
