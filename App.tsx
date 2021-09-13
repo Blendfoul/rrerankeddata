@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import ServerNavigator from './src/components/navigators/ServerNavigator';
 import RaceLink from './RaceLink';
 import {LocalizationContext} from './src/components/translations/LocalizationContext';
-import {useColorScheme, View} from 'react-native';
+import {View} from 'react-native';
 import {styles} from './src/components/utils/Theme';
 import TextContainer from './src/components/utils/TextContainer';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -28,20 +28,22 @@ import {
 } from 'react-native-paper';
 import {useRaceContext} from './src/store/RaceContext';
 
-const CustomDefaultTheme: ReactNativePaper.Theme = {
+const CustomDefaultTheme = {
   ...PaperDefaultTheme,
   colors: {
     ...PaperDefaultTheme.colors,
     primary: 'transparent',
+    error: 'rebeccapurple',
     accent: '#CC2328',
   },
 };
 
-const CustomDarkTheme: ReactNativePaper.Theme = {
+const CustomDarkTheme = {
   ...PaperDarkTheme,
   colors: {
     ...PaperDarkTheme.colors,
     primary: 'transparent',
+    error: 'rebeccapurple',
     accent: '#CC2328',
   },
 };

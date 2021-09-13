@@ -2,17 +2,15 @@ import React, {useCallback, useContext} from 'react';
 import HomeScreen from '../screens/HomeScreen';
 import {createStackNavigator} from '@react-navigation/stack';
 import DriverDetailsScreen from '../screens/DriverDetailsScreen';
-import {Button, IconButton} from 'react-native-paper';
+import {IconButton} from 'react-native-paper';
 import {useRaceContext} from '../../store/RaceContext';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ReducerActions} from '../../store/StoreReducer';
 import RaceServer from '../server/RaceServer';
 import RaceComponent from '../session/race/RaceComponent';
 import {useNavigation} from '@react-navigation/core';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Stack = createStackNavigator();
 
@@ -58,17 +56,21 @@ const ServerNavigator: React.FC = () => {
         name={translations.navigation.driverDetails}
         component={DriverDetailsScreen}
         options={{
-          headerRight: () => (
-            <Button
-              onPress={() => {
-                dispatch({
-                  type: ReducerActions.SET_DEFAULT_DRIVER,
-                  payload: state.searchDriver,
-                });
-              }}>
-              <Icon name="account-plus" size={25} color="white" />
-            </Button>
-          ),
+          headerRight: () => {
+            return state.defaultDriver === state.searchDriver ? (
+              <IconButton icon={'account-check'} />
+            ) : (
+              <IconButton
+                icon={'account-plus'}
+                onPress={() => {
+                  dispatch({
+                    type: ReducerActions.SET_DEFAULT_DRIVER,
+                    payload: state.searchDriver,
+                  });
+                }}
+              />
+            );
+          },
         }}
       />
       <Stack.Screen

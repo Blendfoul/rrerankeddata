@@ -2,9 +2,9 @@ import {
   Dimensions,
   Image,
   Modal,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
-  View,
 } from 'react-native';
 import {styles} from './Theme';
 import {IconButton, useTheme} from 'react-native-paper';
@@ -26,37 +26,31 @@ const ScheduleComponent: React.FC = () => {
 
   return (
     <Modal
-      animationType="slide"
-      transparent={true}
+      animationType="fade"
+      transparent
       visible={state.schedule}
       onRequestClose={handleSchedule}>
-      <View
+      <SafeAreaView
         style={[
           styles.column,
           styles.justifyCenter,
           styles.alignCenter,
           {backgroundColor: colors.background},
         ]}>
-        <IconButton
-          onPress={handleSchedule}
-          icon={'close'}
-          style={{marginTop: 35}}
-        />
-        <View style={[styles.column]}>
-          <ScrollView horizontal>
-            <Image
-              source={{
-                uri: `https://evosupport.raceroom.com/index.php/apps/files_sharing/publicpreview/xgT5EjNqkiiM8C3?x=1920&y=1080&a=true&file=schedule%2520post.png&scalingup=0&c=${date.getDate()}_${
-                  date.getHours() > 12 ? '1' : '0'
-                }`,
-                cache: 'reload',
-              }}
-              resizeMode={'contain'}
-              style={componentStyle.schedule}
-            />
-          </ScrollView>
-        </View>
-      </View>
+        <IconButton onPress={handleSchedule} icon={'close'} />
+        <ScrollView horizontal>
+          <Image
+            source={{
+              uri: `https://evosupport.raceroom.com/index.php/apps/files_sharing/publicpreview/xgT5EjNqkiiM8C3?x=1920&y=1080&a=true&file=schedule%2520post.png&scalingup=0&c=${date.getDate()}_${
+                date.getHours() > 12 ? '1' : '0'
+              }`,
+              cache: 'reload',
+            }}
+            resizeMode={'contain'}
+            style={componentStyle.schedule}
+          />
+        </ScrollView>
+      </SafeAreaView>
     </Modal>
   );
 };

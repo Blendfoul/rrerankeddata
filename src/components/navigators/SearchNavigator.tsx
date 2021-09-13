@@ -2,11 +2,10 @@ import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import SearchScreen from '../screens/SearchScreen';
 import DriverDetailsScreen from '../screens/DriverDetailsScreen';
-import {Button, IconButton} from 'react-native-paper';
+import {IconButton} from 'react-native-paper';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {RouteProp} from '@react-navigation/core';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {useRaceContext} from '../../store/RaceContext';
 import {ReducerActions} from '../../store/StoreReducer';
@@ -42,17 +41,21 @@ const SearchNavigator: React.FC<SearchProps> = ({route, navigation}) => {
         name={translations.search.title.details}
         component={DriverDetailsScreen}
         options={{
-          headerRight: () => (
-            <IconButton
-              icon={'account-plus'}
-              onPress={() => {
-                dispatch({
-                  type: ReducerActions.SET_DEFAULT_DRIVER,
-                  payload: state.searchDriver,
-                });
-              }}
-            />
-          ),
+          headerRight: () => {
+            return state.defaultDriver === state.searchDriver ? (
+              <IconButton icon={'account-check'} />
+            ) : (
+              <IconButton
+                icon={'account-plus'}
+                onPress={() => {
+                  dispatch({
+                    type: ReducerActions.SET_DEFAULT_DRIVER,
+                    payload: state.searchDriver,
+                  });
+                }}
+              />
+            );
+          },
         }}
       />
       <Stack.Screen

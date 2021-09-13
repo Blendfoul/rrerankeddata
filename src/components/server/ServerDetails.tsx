@@ -11,16 +11,13 @@ interface DetailsProps {
   serverName: string;
 }
 
-function renderTabBar(
-  props: any,
-  color: ReactNativePaper.ThemeColors,
-): JSX.Element {
+function renderTabBar(props: any, color: any) {
   return (
     <TabBar
       {...props}
       indicatorStyle={{backgroundColor: color.text}}
-      renderLabel={props => (
-        <Subheading {...props}>{props.route.title}</Subheading>
+      renderLabel={labelProps => (
+        <Subheading {...labelProps}>{labelProps.route.title}</Subheading>
       )}
       style={{backgroundColor: color.background, color: color.text}}
     />

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Card, useTheme} from 'react-native-paper';
+import {Card} from 'react-native-paper';
 import TrackImage from '../utils/TrackImage';
 import useServerSof from '../../hooks/useServerSof';
 import CarClass from '../utils/CarClass';
@@ -16,12 +16,10 @@ interface CoverProps {
 const ServerCover: React.FC<CoverProps> = ({item}) => {
   const {translations} = useContext(LocalizationContext);
   const {sof, rep, loading} = useServerSof(item.Players);
-  const {colors} = useTheme();
   const {layout, trackInfo} = useTrackInfo(item.Settings.TrackLayoutId[0]);
 
   const style = StyleSheet.create({
     root: {
-      
       margin: 5,
     },
     container: {
