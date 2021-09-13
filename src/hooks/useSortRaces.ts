@@ -18,7 +18,7 @@ const useSortRaces = () => {
         cancelToken: source.token,
       });
 
-      const data = state.region.length
+      const data: ServerInterface[] = state.region.length
         ? _.sortBy(
             res.data.result.filter((server: ServerInterface) =>
               server.Server.Settings.ServerName.includes(state.region),
@@ -29,6 +29,10 @@ const useSortRaces = () => {
             res.data.result,
             (o: ServerInterface) => o.Server.PlayersOnServer,
           ).reverse();
+
+      data.forEach(
+        race => (race.Server.TimeLeft = race.Server.TimeLeft / 1000),
+      );
 
       setRaces(data);
 

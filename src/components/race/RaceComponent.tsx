@@ -116,7 +116,7 @@ const RaceComponent: React.FC<RaceProps> = ({data, driver}) => {
         </Caption>
         <View style={style.rest}>
           <CountDown
-            until={data.TimeLeft / 1000}
+            until={data.TimeLeft}
             timeToShow={['H', 'M', 'S']}
             timeLabels={{m: null, s: null}}
             size={10}
