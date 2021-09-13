@@ -1,13 +1,13 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Platform, StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-paper';
 
 interface TextContainerProps {
   titleSize?: number;
   textSize?: number;
-  icon?: Element;
-  title: Element | string;
-  text?: Element | string | number;
+  icon?: React.ReactElement;
+  title: React.ReactElement | string;
+  text?: React.ReactElement | string | number;
 }
 
 const TextContainer: React.FC<TextContainerProps> = props => {
@@ -25,6 +25,7 @@ const TextContainer: React.FC<TextContainerProps> = props => {
       textAlign: 'center',
     },
     text: {
+      marginTop: Platform.OS === 'ios' ? 10 : undefined,
       fontWeight: 'normal',
       fontSize: props.textSize || 14,
       textAlign: 'center',
