@@ -24,6 +24,7 @@ type Props = StackNavigationProp<RaceScreenParams, 'race'>;
 
 const RaceComponent: React.FC<RaceProps> = ({data, driver}) => {
   const {translations} = useContext(LocalizationContext);
+  //@ts-ignore
   const navigation = useNavigation<Props['route']>();
   const {name, raceType} = useRaceType(data.Settings);
   const {session} = useRaceSession(data.CurrentSession);
@@ -119,6 +120,7 @@ const RaceComponent: React.FC<RaceProps> = ({data, driver}) => {
             timeToShow={['H', 'M', 'S']}
             timeLabels={{m: null, s: null}}
             size={10}
+            onChange={(value: number) => (data.TimeLeft = value)}
           />
         </View>
       </Card.Content>

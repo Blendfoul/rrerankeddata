@@ -37,7 +37,7 @@ const ServerConfig: React.FC<ConfigProps> = ({item}) => {
           title={translations.raceDetails.time}
           text={
             <CountDown
-              until={item.TimeLeft / 1000}
+              until={item.TimeLeft}
               timeToShow={['H', 'M', 'S']}
               timeLabels={{m: null, s: null}}
               size={15}

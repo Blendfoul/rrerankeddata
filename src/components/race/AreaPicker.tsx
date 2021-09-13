@@ -1,4 +1,4 @@
-import React, {useCallback, useContext} from 'react';
+import React, {useCallback, useContext, useState} from 'react';
 import {Picker} from '@react-native-picker/picker';
 import {
   ActionSheetIOS,
@@ -16,6 +16,11 @@ const AreaPicker: React.FC<any> = () => {
   const [state, dispatch] = useRaceContext();
   const {translations} = useContext(LocalizationContext);
   const {colors} = useTheme();
+  const [regionIndex, setRegionIndex] = useState<number>(
+    translations.race.regions.findIndex(
+      region => region.value === state.region,
+    ),
+  );
 
   const handleRegionChange = useCallback(
     (region: string) => {
@@ -64,16 +69,19 @@ const AreaPicker: React.FC<any> = () => {
         ],
         cancelButtonIndex: 0,
       },
-      index =>
-        index !== 0
+      index => {
+        index !== 0 ? setRegionIndex(index - 1) : null;
+
+        return index !== 0
           ? handleRegionChange(translations.race.regions[index - 1].value)
-          : null,
+          : null;
+      },
     );
   }, [handleRegionChange, translations.race.cancel, translations.race.regions]);
 
   return Platform.OS === 'ios' ? (
     <TouchableOpacity style={pickerStyle.barIos} onPress={createActionSheet}>
-      <Paragraph>{state.region}</Paragraph>
+      <Paragraph>{translations.race.regions[regionIndex].name}</Paragraph>
       <MaterialCommunityIcon
         name={'chevron-down'}
         color={colors.text}
