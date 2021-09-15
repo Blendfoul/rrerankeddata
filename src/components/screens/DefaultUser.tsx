@@ -26,7 +26,7 @@ const DefaultUser: React.FC<DefaultUserProps> = ({navigation}) => {
   useEffect(() => {}, [state.defaultDriver]);
 
   const redirectSearch = useCallback(
-    () => navigation.navigate(translations.user.search),
+    () => navigation.navigate(`${translations.user.search}-drawer`),
     [navigation, translations.user.search],
   );
 
