@@ -1,10 +1,9 @@
-import React, {useCallback, useContext} from 'react';
+import React, {useCallback} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import CarClass from '../utils/CarClass';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 //@ts-ignore component sem types
 import CountDown from 'react-native-countdown-component';
-import {LocalizationContext} from '../translations/LocalizationContext';
 import {useNavigation} from '@react-navigation/core';
 import {Caption, Card, useTheme} from 'react-native-paper';
 import useRaceSession from '../../hooks/useRaceSession';
@@ -12,18 +11,17 @@ import useRaceType from '../../hooks/useRaceType';
 import TrackImage from '../utils/TrackImage';
 import {User} from '../../hooks/useDrawerContent';
 import {ServerData} from '../../types/server';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {RaceScreenParams} from '../../types/NavigatorProps';
+import {RaceStackList} from '../../types/NavigatorProps';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 interface RaceProps {
   data: ServerData;
   driver: User | null;
 }
 
-type Props = StackNavigationProp<RaceScreenParams, 'race'>;
+type Props = NativeStackNavigationProp<RaceStackList, 'race'>;
 
 const RaceComponent: React.FC<RaceProps> = ({data, driver}) => {
-  const {translations} = useContext(LocalizationContext);
   //@ts-ignore
   const navigation = useNavigation<Props['route']>();
   const {name, raceType} = useRaceType(data.Settings);
@@ -32,16 +30,12 @@ const RaceComponent: React.FC<RaceProps> = ({data, driver}) => {
 
   const onRacePress = useCallback(() => {
     navigation.navigate({
-      name: translations.navigation.raceDetails,
+      name: 'raceDetails',
       params: {
         data: data.Settings.ServerName,
       },
     });
-  }, [
-    data.Settings.ServerName,
-    navigation,
-    translations.navigation.raceDetails,
-  ]);
+  }, [data.Settings.ServerName, navigation]);
 
   const color =
     driver !== null

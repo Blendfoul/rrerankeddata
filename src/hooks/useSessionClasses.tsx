@@ -12,8 +12,8 @@ const useSessionClasses = (data: QualiResult[] | RaceResult[]) => {
       .map(driver => driver.PerformanceIndex)
       .filter((value, index, array) => array.indexOf(value) === index);
 
-    const classNames = data.map(driver => driver.CarClass.Name);
-    const classIds = data.map(driver => driver.CarClass.Id);
+    const classNames: string[] = data.map(driver => driver.CarClass.Name);
+    const classIds: number[] = data.map(driver => driver.CarClass.Id);
 
     setNames([...new Set(classNames)]);
     setIds([...new Set(classIds)]);
@@ -28,6 +28,8 @@ const useSessionClasses = (data: QualiResult[] | RaceResult[]) => {
 
   useEffect(() => {
     filterClasses();
+
+    return () => undefined;
   }, [filterClasses]);
 
   return {values, names, ids, loading};

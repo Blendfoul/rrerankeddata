@@ -9,16 +9,17 @@ import FriendCard from '../friends/FriendCard';
 import useServerSof from '../../hooks/useServerSof';
 import {ServerInterface} from '../../types/server';
 import LoadingActivity from '../utils/LoadingActivity';
-import {useTheme} from 'react-native-paper';
 import {ReducerActions} from '../../store/StoreReducer';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {ServerTabsStackList} from '../../types/NavigatorProps';
+import {useRoute} from '@react-navigation/core';
 
-interface DriverListProps {
-  data: string;
-}
+type Props = NativeStackNavigationProp<ServerTabsStackList, 'data'>;
 
-const DriverList: React.FC<DriverListProps> = ({data}) => {
+const DriverList: React.FC = () => {
   const [state, dispatch] = useRaceContext();
-  const {colors} = useTheme();
+  // @ts-ignore
+  const {params} = useRoute<Props['route']>();
 
   const handleRefresh = () => {
     dispatch({
@@ -28,16 +29,15 @@ const DriverList: React.FC<DriverListProps> = ({data}) => {
   };
 
   const {Server}: ServerInterface = state.races.find(
-    (server: ServerInterface) => server.Server.Settings.ServerName === data,
+    (server: ServerInterface) =>
+      server.Server.Settings.ServerName === params.serverName,
   );
 
   const {loading, drivers} = useServerSof(Server.Players);
   const {translations} = useContext(LocalizationContext);
 
   const componentStyle = StyleSheet.create({
-    root: {
-      
-    },
+    root: {},
     image: {
       flex: 1,
       width: 25,

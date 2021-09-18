@@ -1,6 +1,5 @@
 import React, {useCallback, useContext} from 'react';
 import HomeScreen from '../screens/HomeScreen';
-import {createStackNavigator} from '@react-navigation/stack';
 import DriverDetailsScreen from '../screens/DriverDetailsScreen';
 import {IconButton} from 'react-native-paper';
 import {useRaceContext} from '../../store/RaceContext';
@@ -11,13 +10,16 @@ import RaceServer from '../server/RaceServer';
 import RaceComponent from '../session/race/RaceComponent';
 import {useNavigation} from '@react-navigation/core';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {RaceStackList} from '../../types/NavigatorProps';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator<RaceStackList>();
 
 const ServerNavigator: React.FC = () => {
   const [state, dispatch] = useRaceContext();
   const {translations} = useContext(LocalizationContext);
-  const navigation = useNavigation<DrawerNavigationProp<any>>();
+  const navigation =
+    useNavigation<DrawerNavigationProp<RaceStackList, 'race'>>();
 
   const handleScheduleViewer = useCallback(
     () =>
@@ -31,9 +33,10 @@ const ServerNavigator: React.FC = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={'Raceroom Ranked'}
+        name={'raceViewer'}
         component={HomeScreen}
         options={{
+          title: 'Raceroom Ranked',
           headerLeft: () => (
             <IconButton
               icon={'menu'}
@@ -49,13 +52,17 @@ const ServerNavigator: React.FC = () => {
         }}
       />
       <Stack.Screen
-        name={translations.navigation.raceDetails}
+        name={'raceDetails'}
+        options={{
+          title: translations.navigation.raceDetails,
+        }}
         component={RaceServer}
       />
       <Stack.Screen
-        name={translations.navigation.driverDetails}
+        name={'driverDetails'}
         component={DriverDetailsScreen}
         options={{
+          title: translations.navigation.driverDetails,
           headerRight: () => {
             return state.defaultDriver === state.searchDriver ? (
               <IconButton icon={'account-check'} />
@@ -74,11 +81,17 @@ const ServerNavigator: React.FC = () => {
         }}
       />
       <Stack.Screen
-        name={translations.navigation.sessionDetails}
+        name={'sessionDetails'}
+        options={{
+          title: translations.navigation.sessionDetails,
+        }}
         component={SessionDetailsScreen}
       />
       <Stack.Screen
-        name={translations.navigation.race}
+        name={'race'}
+        options={{
+          title: translations.navigation.race,
+        }}
         component={RaceComponent}
       />
     </Stack.Navigator>

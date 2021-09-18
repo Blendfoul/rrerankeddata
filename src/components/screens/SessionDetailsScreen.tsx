@@ -26,7 +26,7 @@ const SessionDetailsScreen: React.FC<SessionDetailsProps> = ({route}) => {
 
   return (
     response && (
-      <View style={[styles.column, styles.backgroundColorTarget]}>
+      <View style={styles.column}>
         <SessionsTable info={response} layoutId={route.params.track} />
       </View>
     )

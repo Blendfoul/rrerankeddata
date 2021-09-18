@@ -9,6 +9,9 @@ import {LocalizationContext} from '../translations/LocalizationContext';
 import Flag from 'react-native-flags';
 import {useRaceContext} from '../../store/RaceContext';
 import {ReducerActions} from '../../store/StoreReducer';
+import {CompositeScreenProps} from '@react-navigation/native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RaceStackList, RankingStackList} from '../../types/NavigatorProps';
 
 interface FriendCardProps {
   item: Rating;
@@ -16,10 +19,15 @@ interface FriendCardProps {
   ratingPosition?: number;
 }
 
+type FriendCardCompositeProp = CompositeScreenProps<
+  NativeStackScreenProps<RaceStackList, 'driverDetails'>,
+  NativeStackScreenProps<RankingStackList, 'rankingList'>
+>;
+
 const Friend: React.FC<FriendCardProps> = ({item, rating, ratingPosition}) => {
   const {translations} = useContext(LocalizationContext);
   const [state, dispatch] = useRaceContext();
-  const navigation = useNavigation();
+  const navigation = useNavigation<FriendCardCompositeProp['navigation']>();
   const {colors} = useTheme();
 
   const driverPress = () => {
@@ -28,8 +36,10 @@ const Friend: React.FC<FriendCardProps> = ({item, rating, ratingPosition}) => {
       payload: item.Username,
     });
     navigation.navigate({
-      name: translations.navigation.driverDetails,
-      params: {data: item.Username},
+      name: 'driverDetails',
+      params: {
+        data: item.Username,
+      },
     });
   };
 

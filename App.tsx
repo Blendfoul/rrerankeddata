@@ -4,6 +4,7 @@ import {
   DefaultTheme,
   NavigationContainer,
   Theme,
+  useNavigationContainerRef,
 } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ServerNavigator from './src/components/navigators/ServerNavigator';
@@ -27,6 +28,8 @@ import {
   DefaultTheme as PaperDefaultTheme,
 } from 'react-native-paper';
 import {useRaceContext} from './src/store/RaceContext';
+import {useFlipper} from '@react-navigation/devtools';
+import {DrawerStackList} from './src/types/NavigatorProps';
 
 const CustomDefaultTheme = {
   ...PaperDefaultTheme,
@@ -56,9 +59,13 @@ const RnDarkTheme: Theme = {
   },
 };
 
-const drawerNavigator = createDrawerNavigator();
+const drawerNavigator = createDrawerNavigator<DrawerStackList>();
 
-const App: React.FC<any> = () => {
+const App: React.FC = () => {
+  const navigationRef = useNavigationContainerRef<DrawerStackList>();
+
+  useFlipper(navigationRef);
+
   const {translations, initializeAppLanguage} = useContext(LocalizationContext);
   const {loading, isConnected} = useInitApp();
   const [state] = useRaceContext();
@@ -87,56 +94,37 @@ const App: React.FC<any> = () => {
   }
 
   return (
-    <Provider
-      theme={state.theme === 'dark' ? CustomDarkTheme : CustomDefaultTheme}>
-      <NavigationContainer
-        linking={RaceLink}
-        theme={state.theme === 'dark' ? RnDarkTheme : DefaultTheme}>
+    <NavigationContainer
+      ref={navigationRef}
+      linking={RaceLink}
+      theme={state.theme === 'dark' ? RnDarkTheme : DefaultTheme}>
+      <Provider
+        theme={state.theme === 'dark' ? CustomDarkTheme : CustomDefaultTheme}>
         <drawerNavigator.Navigator
           screenOptions={{
             headerShown: false,
           }}
           drawerContent={props => <DrawerContent {...props} />}>
+          <drawerNavigator.Screen name={'home'} component={ServerNavigator} />
+          <drawerNavigator.Screen name={'user'} component={UserNavigator} />
           <drawerNavigator.Screen
-            name={`${translations.navigation.server}-drawer`}
-            component={ServerNavigator}
-          />
-          <drawerNavigator.Screen
-            name={`${translations.navigation.user}-drawer`}
-            component={UserNavigator}
-          />
-          <drawerNavigator.Screen
-            name={`${translations.navigation.search}-drawer`}
+            name={'searchDrawer'}
             component={SearchNavigator}
           />
           <drawerNavigator.Screen
-            name={`${translations.navigation.friends}-drawer`}
+            name={'friends'}
             component={FriendsNavigator}
           />
           <drawerNavigator.Screen
-            name={`${translations.navigation.ranking}-drawer`}
+            name={'ranking'}
             component={RankingNavigator}
           />
-          <drawerNavigator.Screen
-            name={`${translations.navigation.about}-drawer`}
-            component={AboutNavigator}
-          />
-          <drawerNavigator.Screen
-            name={`${translations.navigation.donate}-drawer`}
-            component={DonateNavigator}
-          />
+          <drawerNavigator.Screen name={'about'} component={AboutNavigator} />
+          <drawerNavigator.Screen name={'donate'} component={DonateNavigator} />
         </drawerNavigator.Navigator>
-      </NavigationContainer>
-    </Provider>
+      </Provider>
+    </NavigationContainer>
   );
 };
 
 export default App;
-
-/*
-
-          <drawerNavigator.Screen
-            name={`${translations.navigation.settings}-drawer`}
-            component={SettingsNavigator}
-          />
- */

@@ -3,8 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import AboutComponent from '../about/AboutComponent';
-import {Button, IconButton} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {IconButton} from 'react-native-paper';
 
 const Stack = createStackNavigator();
 

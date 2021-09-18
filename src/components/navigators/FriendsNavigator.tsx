@@ -1,27 +1,25 @@
 import React, {useContext} from 'react';
-import {Button, IconButton} from 'react-native-paper';
+import {IconButton} from 'react-native-paper';
 import {createStackNavigator} from '@react-navigation/stack';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import DriverDetailsScreen from '../screens/DriverDetailsScreen';
 import FriendsScreen from '../screens/FriendsScreen';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useNavigation} from '@react-navigation/core';
+import {DrawerStackList, FriendsStackList} from '../../types/NavigatorProps';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<FriendsStackList>();
 
-interface FriendsProps {
-  navigation: DrawerNavigationProp<any>;
-}
-
-const FriendsNavigator: React.FC<FriendsProps> = ({navigation}) => {
+const FriendsNavigator: React.FC = () => {
   const {translations} = useContext(LocalizationContext);
-
+  const navigation = useNavigation<DrawerNavigationProp<DrawerStackList>>();
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={translations.navigation.friends}
+        name={'friendsList'}
         component={FriendsScreen}
         options={{
+          title: translations.navigation.friends,
           headerLeft: () => (
             <IconButton
               icon={'menu'}
@@ -31,7 +29,10 @@ const FriendsNavigator: React.FC<FriendsProps> = ({navigation}) => {
         }}
       />
       <Stack.Screen
-        name={translations.navigation.driverDetails}
+        name={'driverDetails'}
+        options={{
+          title: translations.navigation.driverDetails,
+        }}
         component={DriverDetailsScreen}
       />
     </Stack.Navigator>

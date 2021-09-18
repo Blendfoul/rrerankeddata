@@ -46,49 +46,29 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
             icon={iconProps => (
               <Icon name={'car-traction-control'} {...iconProps} />
             )}
-            onPress={() =>
-              props.navigation.navigate(
-                `${translations.navigation.server}-drawer`,
-              )
-            }
+            onPress={() => props.navigation.navigate('home')}
           />
           <DrawerItem
             label={translations.navigation.user}
             icon={iconProps => <Icon name={'account'} {...iconProps} />}
-            onPress={() =>
-              props.navigation.navigate(
-                `${translations.navigation.user}-drawer`,
-              )
-            }
+            onPress={() => props.navigation.navigate('user')}
           />
           {state.defaultDriver !== '' ? (
             <DrawerItem
               label={translations.navigation.friends}
               icon={iconProps => <Icon name={'account-group'} {...iconProps} />}
-              onPress={() =>
-                props.navigation.navigate(
-                  `${translations.navigation.friends}-drawer`,
-                )
-              }
+              onPress={() => props.navigation.navigate('friends')}
             />
           ) : null}
           <DrawerItem
             label={translations.navigation.search}
             icon={iconProps => <Icon name={'account-search'} {...iconProps} />}
-            onPress={() =>
-              props.navigation.navigate(
-                `${translations.navigation.search}-drawer`,
-              )
-            }
+            onPress={() => props.navigation.navigate('searchDrawer')}
           />
           <DrawerItem
             label={translations.navigation.ranking}
             icon={iconProps => <Icon name={'text'} {...iconProps} />}
-            onPress={() =>
-              props.navigation.navigate(
-                `${translations.navigation.ranking}-drawer`,
-              )
-            }
+            onPress={() => props.navigation.navigate('ranking')}
           />
           <DrawerItem
             label={translations.navigation.about}
@@ -99,11 +79,7 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
                 direction={'ltr'}
               />
             )}
-            onPress={() =>
-              props.navigation.navigate(
-                `${translations.navigation.about}-drawer`,
-              )
-            }
+            onPress={() => props.navigation.navigate('about')}
           />
           {Platform.OS === 'android' ? (
             <DrawerItem
@@ -115,11 +91,7 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
                   direction={'ltr'}
                 />
               )}
-              onPress={() =>
-                props.navigation.navigate(
-                  `${translations.navigation.donate}-drawer`,
-                )
-              }
+              onPress={() => props.navigation.navigate('donate')}
             />
           ) : null}
         </Drawer.Section>
@@ -156,21 +128,3 @@ const DrawerContent: React.FC<DrawerContentComponentProps> = props => {
 };
 
 export default DrawerContent;
-
-/*
- <DrawerItem
-            label={translations.navigation.settings}
-            icon={iconProps => (
-              <MaterialCommunityIcon
-                name={'cog'}
-                {...iconProps}
-                direction={'ltr'}
-              />
-            )}
-            onPress={() =>
-              props.navigation.navigate(
-                `${translations.navigation.settings}-drawer`,
-              )
-            }
-          />
- */

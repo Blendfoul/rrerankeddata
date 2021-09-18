@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import {Incident, RaceResult} from '../../../types/resultData';
-import {useTheme} from 'react-native-paper';
 import {Image, ScrollView, View} from 'react-native';
 import RaceLapsTable from './RaceLapsTable';
 import {styles} from '../../utils/Theme';
@@ -17,7 +16,6 @@ const RaceComponent: React.FC<RaceProps> = ({route}) => {
   const {data}: {data: RaceResult} = route.params;
   const {translations} = useContext(LocalizationContext);
   const {lapTime, avgTime, sectors} = useSectorTimes(data.Laps);
-  const theme = useTheme();
 
   const renderIncidentCounts = (IncidentDetails: Incident[]) => {
     const elements = [];

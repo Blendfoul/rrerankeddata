@@ -17,9 +17,9 @@ interface DriverDataProp {
 const useDriver = (username: string): DriverDataProp => {
   const [loading, setLoading] = useState<boolean>(true);
   const [driver, setDriver] = useState<Driver | null>(null);
+  const source = axios.CancelToken.source();
 
   const getData = useCallback(async () => {
-    const source = axios.CancelToken.source();
     try {
       const profile = await axiosInstanceGenerator(`users/${username}/?json`, {
         cancelToken: source.token,
@@ -59,6 +59,8 @@ const useDriver = (username: string): DriverDataProp => {
 
   useEffect(() => {
     getData();
+
+    return () => source.cancel();
   }, [getData]);
 
   return {driver, loading};

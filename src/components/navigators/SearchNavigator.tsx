@@ -1,34 +1,37 @@
 import React, {useContext} from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {StackNavigationProp} from '@react-navigation/stack';
 import SearchScreen from '../screens/SearchScreen';
 import DriverDetailsScreen from '../screens/DriverDetailsScreen';
 import {IconButton} from 'react-native-paper';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {RouteProp} from '@react-navigation/core';
+import {useNavigation, useRoute} from '@react-navigation/core';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {useRaceContext} from '../../store/RaceContext';
 import {ReducerActions} from '../../store/StoreReducer';
 import RaceComponent from '../session/race/RaceComponent';
+import {DrawerStackList, SearchStackList} from '../../types/NavigatorProps';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator<SearchStackList>();
 
-interface SearchProps {
-  route: RouteProp<any, any>;
-  navigation: DrawerNavigationProp<any>;
-}
+type Props = StackNavigationProp<SearchStackList, 'search'>;
 
-const SearchNavigator: React.FC<SearchProps> = ({route, navigation}) => {
+const SearchNavigator: React.FC = () => {
   const [state, dispatch] = useRaceContext();
   const {translations} = useContext(LocalizationContext);
+  // @ts-ignore
+  const {params} = useRoute<Props['route']>();
+  const navigation = useNavigation<DrawerNavigationProp<DrawerStackList>>();
 
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={translations.search.title.search}
+        name={'search'}
         component={SearchScreen}
-        initialParams={{id: route?.params?.id}}
+        initialParams={{id: params?.id}}
         options={{
+          title: translations.search.title.search,
           headerLeft: () => (
             <IconButton
               icon={'menu'}
@@ -38,9 +41,10 @@ const SearchNavigator: React.FC<SearchProps> = ({route, navigation}) => {
         }}
       />
       <Stack.Screen
-        name={translations.search.title.details}
+        name={'driverDetails'}
         component={DriverDetailsScreen}
         options={{
+          title: translations.search.title.details,
           headerRight: () => {
             return state.defaultDriver === state.searchDriver ? (
               <IconButton icon={'account-check'} />
@@ -59,11 +63,17 @@ const SearchNavigator: React.FC<SearchProps> = ({route, navigation}) => {
         }}
       />
       <Stack.Screen
-        name={translations.search.title.sessionDetails}
+        name={'sessionDetails'}
+        options={{
+          title: translations.search.title.sessionDetails,
+        }}
         component={SessionDetailsScreen}
       />
       <Stack.Screen
-        name={translations.navigation.race}
+        name={'raceHistory'}
+        options={{
+          title: translations.navigation.race,
+        }}
         component={RaceComponent}
       />
     </Stack.Navigator>

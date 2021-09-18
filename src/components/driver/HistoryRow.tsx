@@ -1,5 +1,4 @@
-import React, {useContext} from 'react';
-import {LocalizationContext} from '../translations/LocalizationContext';
+import React from 'react';
 import {Caption, Card, Paragraph} from 'react-native-paper';
 import CarClass from '../utils/CarClass';
 import TrackImage from '../utils/TrackImage';
@@ -7,19 +6,19 @@ import {StyleSheet} from 'react-native';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/core';
 import {GenericIdData, Result} from '../../types/results';
-import {StackNavigationProp} from '@react-navigation/stack';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RaceStackList} from '../../types/NavigatorProps';
 
 interface HistoryProps {
   race: Result;
 }
 
 const HistoryRowComponent: React.FC<HistoryProps> = ({race}) => {
-  const {translations} = useContext(LocalizationContext);
-  const navigation = useNavigation<StackNavigationProp<any>>();
+  const navigation = useNavigation<NativeStackNavigationProp<RaceStackList>>();
 
-  const racePress = (raceId: String, trackLayout: GenericIdData) => {
+  const racePress = (raceId: string, trackLayout: GenericIdData) => {
     navigation.navigate({
-      name: translations.navigation.sessionDetails,
+      name: 'sessionDetails',
       params: {
         hash: raceId,
         track: trackLayout,

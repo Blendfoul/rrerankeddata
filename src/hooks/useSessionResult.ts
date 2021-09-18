@@ -6,10 +6,9 @@ import {MpRaceResult} from '../types/resultData';
 const useSessionResult = (sessionId: string) => {
   const [response, setResponse] = useState<MpRaceResult | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const source = axios.CancelToken.source();
 
   const fetchResult = useCallback(async () => {
-    const source = axios.CancelToken.source();
-
     try {
       const response1 = await axiosInstanceGenerator(
         `multiplayer/results/${sessionId}`,
@@ -43,6 +42,8 @@ const useSessionResult = (sessionId: string) => {
 
   useEffect(() => {
     fetchResult();
+
+    return () => source.cancel();
   }, [fetchResult]);
 
   return {response, loading};
