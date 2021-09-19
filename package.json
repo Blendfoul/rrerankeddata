@@ -7,7 +7,9 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "rm -rf dist/ && webpack --mode=production --config webpack.config.js",
+    "web": "webpack serve --mode=development --config webpack.config.js"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.14.1",
