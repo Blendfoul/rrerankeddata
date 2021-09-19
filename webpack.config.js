@@ -20,7 +20,7 @@ const babelLoaderConfiguration = {
   // Add every directory that needs to be compiled by Babel during the build.
   include: [
     path.resolve(__dirname, 'index.web.js'), // Entry to your application
-    path.resolve(__dirname, 'AppContainer.tsx'), // Change this to your main App file
+    path.resolve(__dirname, 'App.web.tsx'), // Change this to your main App file
     path.resolve(__dirname, 'src'),
     path.resolve(__dirname, 'node_modules'),
   ],
@@ -83,6 +83,9 @@ module.exports = {
     new webpack.DefinePlugin({
       // See: https://github.com/necolas/react-native-web/issues/349
       __DEV__: JSON.stringify(true),
+    }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
     }),
   ],
 };
