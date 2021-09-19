@@ -11,9 +11,9 @@ const useServerSof = (driversId: number[]) => {
   const [rep, setRep] = useState<number>(0);
   const [drivers, setDrivers] = useState<Rating[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const source = axios.CancelToken.source();
 
   const calculate = useCallback(async () => {
-    const source = axios.CancelToken.source();
     const ratings: Rating[] = await Promise.all(
       driversId.map(async id => {
         const driver: Rating | undefined = state.ratings.find(
@@ -67,6 +67,8 @@ const useServerSof = (driversId: number[]) => {
 
   useEffect(() => {
     calculate();
+
+    return () => source.cancel();
   }, [calculate]);
 
   return {sof, rep, drivers, loading};

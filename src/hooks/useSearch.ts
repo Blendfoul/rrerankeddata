@@ -14,11 +14,10 @@ const useSearch = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [users, setUsers] = useState<User[]>([]);
   const [state] = useRaceContext();
+  const source = axios.CancelToken.source();
 
   const getDrivers = useCallback(async () => {
     try {
-      const source = axios.CancelToken.source();
-
       const response = await axiosInstanceGenerator(
         `search?query=${state.searchDriver}`,
         {
@@ -57,9 +56,11 @@ const useSearch = () => {
 
   useEffect(() => {
     getDrivers();
+
+    return () => source.cancel();
   }, [getDrivers]);
 
-  return {loading, users};
+  return {loading, users, source};
 };
 
 export default useSearch;

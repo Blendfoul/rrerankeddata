@@ -7,10 +7,9 @@ import axiosInstanceGenerator from './useAxiosMock';
 const useRatingContext = () => {
   const [state, dispatch] = useRaceContext();
   const [loadingRatings, setLoading] = useState<boolean>(true);
+  const source = axios.CancelToken.source();
 
   const getRatings = useCallback(async () => {
-    const source = axios.CancelToken.source();
-
     try {
       const res = await axiosInstanceGenerator(
         'multiplayer-rating/ratings.json',
@@ -37,7 +36,9 @@ const useRatingContext = () => {
 
   useEffect(() => {
     getRatings();
-  }, []);
+
+    return () => source.cancel();
+  }, [getRatings]);
 
   return {loadingRatings};
 };

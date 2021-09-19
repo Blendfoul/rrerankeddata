@@ -6,10 +6,9 @@ import {ReducerActions} from '../store/StoreReducer';
 const useR3EData = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [state, dispatch] = useRaceContext();
+  const source: CancelTokenSource = axios.CancelToken.source();
 
   const fetchData = useCallback(async () => {
-    const source: CancelTokenSource = axios.CancelToken.source();
-
     try {
       const response = await axios(
         'https://raw.githubusercontent.com/sector3studios/r3e-spectator-overlay/master/r3e-data.json',
@@ -30,6 +29,8 @@ const useR3EData = () => {
 
   useEffect(() => {
     fetchData();
+
+    return () => source.cancel();
   }, [fetchData]);
 
   return {loading};

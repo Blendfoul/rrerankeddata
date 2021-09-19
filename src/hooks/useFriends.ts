@@ -9,10 +9,9 @@ const useFriends = () => {
   const [friends, setFriends] = useState<Rating[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [state] = useRaceContext();
+  const source = axios.CancelToken.source();
 
   const getFriends = useCallback(async () => {
-    const source = axios.CancelToken.source();
-
     try {
       const response = await axiosInstanceGenerator(
         `users/${state.defaultDriver}/contacts?json`,
@@ -51,6 +50,8 @@ const useFriends = () => {
     if (state.defaultDriver) {
       getFriends();
     }
+
+    return () => source.cancel();
   }, [getFriends, state.defaultDriver]);
 
   return {friends, loading};

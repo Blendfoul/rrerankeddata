@@ -7,13 +7,15 @@ import {LocalizationContext} from '../translations/LocalizationContext';
 import DriverHeader from './DriverHeader';
 import DriverMostUsed from './DriverMostUsed';
 import DriverPlots from './DriverPlots';
+import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
+import {DriverMaterialStackList} from '../../types/NavigatorProps';
+import {useRoute} from '@react-navigation/core';
 
-interface DriverDetailsProps {
-  username: string;
-}
+type Props = MaterialTopTabScreenProps<DriverMaterialStackList, 'data'>;
 
-const DriverDetails: React.FC<DriverDetailsProps> = ({username}) => {
-  const {driver, loading} = useDriver(username);
+const DriverDetails: React.FC = () => {
+  const {params} = useRoute<Props['route']>();
+  const {driver, loading} = useDriver(params.username);
   const {translations} = useContext(LocalizationContext);
 
   if (loading) {

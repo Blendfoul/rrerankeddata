@@ -12,12 +12,11 @@ interface History {
 const useDriverHistory = (username: string) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<History>({Entries: [], TotalEntries: 0});
+  const source = axios.CancelToken.source();
 
   const refetch = () => setLoading(true);
 
   const getHistoryData = useCallback(async () => {
-    const source = axios.CancelToken.source();
-
     try {
       const response = await axiosInstanceGenerator(
         `users/${username}/career/?json`,
@@ -43,8 +42,6 @@ const useDriverHistory = (username: string) => {
           response.data.context.c.raceList.GetUserMpRatingProgressResult
             .TotalEntries,
       });
-
-      return () => source.cancel();
     } catch (e) {
     } finally {
       setLoading(false);
@@ -55,6 +52,8 @@ const useDriverHistory = (username: string) => {
     if (loading) {
       getHistoryData();
     }
+
+    return () => source.cancel();
   }, [loading, getHistoryData]);
 
   return {loading, data, refetch};

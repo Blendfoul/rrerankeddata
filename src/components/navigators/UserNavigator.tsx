@@ -1,28 +1,27 @@
 import React, {useContext} from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
 import DefaultUser from '../screens/DefaultUser';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {Button, IconButton} from 'react-native-paper';
-import {DrawerNavigationProp} from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {IconButton} from 'react-native-paper';
 import RaceComponent from '../session/race/RaceComponent';
+import {DrawerStackList, UserStackList} from '../../types/NavigatorProps';
+import {useNavigation} from '@react-navigation/core';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator<UserStackList>();
 
-interface UserProps {
-  navigation: DrawerNavigationProp<any>;
-}
-
-const UserNavigator: React.FC<UserProps> = ({navigation}) => {
+const UserNavigator: React.FC = () => {
   const {translations} = useContext(LocalizationContext);
+  const navigation = useNavigation<DrawerNavigationProp<DrawerStackList>>();
 
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={translations.navigation.myDriver}
+        name={'driver'}
         component={DefaultUser}
         options={{
+          title: translations.navigation.myDriver,
           headerLeft: () => (
             <IconButton
               icon={'menu'}
@@ -32,11 +31,17 @@ const UserNavigator: React.FC<UserProps> = ({navigation}) => {
         }}
       />
       <Stack.Screen
-        name={translations.navigation.sessionDetails}
+        name={'sessionDetails'}
+        options={{
+          title: translations.navigation.sessionDetails,
+        }}
         component={SessionDetailsScreen}
       />
       <Stack.Screen
-        name={translations.navigation.race}
+        name={'raceHistory'}
+        options={{
+          title: translations.navigation.race,
+        }}
         component={RaceComponent}
       />
     </Stack.Navigator>

@@ -11,10 +11,9 @@ import {Card, useTheme} from 'react-native-paper';
 import ServerCover from './ServerCover';
 import ServerConfig from './ServerConfig';
 import ServerRaceConfig from './ServerRaceConfig';
-
-interface DetailsProps {
-  data: string;
-}
+import {useRoute} from '@react-navigation/core';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {ServerTabsStackList} from '../../types/NavigatorProps';
 
 type PermissionProps = {
   driver: User | null;
@@ -52,12 +51,17 @@ const ServerPermission: React.FC<PermissionProps> = ({driver, server}) => {
   return null;
 };
 
-const ServerDetailsData: React.FC<DetailsProps> = ({data}) => {
+type Props = NativeStackNavigationProp<ServerTabsStackList, 'data'>;
+
+const ServerDetailsData: React.FC = () => {
+  // @ts-ignore
+  const {params} = useRoute<Props['route']>();
   const [state, dispatch] = useRaceContext();
   const {driver} = useDrawerContent();
 
   const {Server}: ServerInterface = state.races.find(
-    (server: ServerInterface) => server.Server.Settings.ServerName === data,
+    (server: ServerInterface) =>
+      server.Server.Settings.ServerName === params.serverName,
   );
 
   const handleRefresh = () => {

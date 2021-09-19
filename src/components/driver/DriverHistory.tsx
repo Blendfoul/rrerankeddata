@@ -6,13 +6,15 @@ import HistoryRow from './HistoryRow';
 import {Result} from '../../types/results';
 import useDriverHistory from '../../hooks/useDriverHistory';
 import EmptyRaceComponent from '../race/EmptyRaceComponent';
+import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
+import {DriverMaterialStackList} from '../../types/NavigatorProps';
+import {useRoute} from '@react-navigation/core';
 
-interface DriverProps {
-  username: string;
-}
+type Props = MaterialTopTabScreenProps<DriverMaterialStackList, 'data'>;
 
-const DriverHistory: React.FC<DriverProps> = ({username}) => {
-  const {loading, data, refetch} = useDriverHistory(username);
+const DriverHistory: React.FC = () => {
+  const {params} = useRoute<Props['route']>();
+  const {loading, data, refetch} = useDriverHistory(params.username);
   const [page, setPage] = useState(0);
 
   const itemsPerPage = 20;

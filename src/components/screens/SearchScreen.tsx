@@ -1,12 +1,11 @@
 import React, {useCallback, useContext} from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import {FlatList, RefreshControl, StyleSheet} from 'react-native';
 import {LocalizationContext} from '../translations/LocalizationContext';
 import {Avatar, Card, Searchbar} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/core';
 import {useRaceContext} from '../../store/RaceContext';
 import {ReducerActions} from '../../store/StoreReducer';
 import useSearch from '../../hooks/useSearch';
-import LoadingActivity from '../utils/LoadingActivity';
 import {SearchResult} from '../../types/resultData';
 import {StackNavigationProp} from '@react-navigation/stack';
 
@@ -17,7 +16,6 @@ interface UserItemProps {
 const UserItem: React.FC<UserItemProps> = ({data}) => {
   const [state, dispatch] = useRaceContext();
   const navigation = useNavigation<StackNavigationProp<any>>();
-  const {translations} = useContext(LocalizationContext);
 
   const selectUser = useCallback(() => {
     dispatch({
@@ -25,17 +23,12 @@ const UserItem: React.FC<UserItemProps> = ({data}) => {
       payload: data.meta_data.slug,
     });
     navigation.navigate({
-      name: translations.search.title.details,
+      name: 'driverDetails',
       params: {
         data: data.meta_data.slug,
       },
     });
-  }, [
-    data.meta_data.slug,
-    dispatch,
-    navigation,
-    translations.search.title.details,
-  ]);
+  }, [data.meta_data.slug, dispatch, navigation]);
 
   return (
     <Card style={cardStyle.root} onPress={selectUser}>
@@ -54,14 +47,12 @@ const UserItem: React.FC<UserItemProps> = ({data}) => {
 const SearchScreen: React.FC = () => {
   const {translations} = useContext(LocalizationContext);
   const [state, dispatch] = useRaceContext();
-  const {users, loading} = useSearch();
+  const {users, loading, source} = useSearch();
 
-  const handleChange = (text: string) =>
+  const handleChange = (text: string) => {
+    source.cancel();
     dispatch({type: ReducerActions.SET_SEARCH_DRIVER, payload: text});
-
-  if (loading) {
-    return <LoadingActivity title={translations.loading.search} />;
-  }
+  };
 
   return (
     <>
@@ -74,7 +65,9 @@ const SearchScreen: React.FC = () => {
         selectionColor={'gray'}
       />
       <FlatList
+        refreshing={loading}
         data={users}
+        refreshControl={<RefreshControl refreshing={loading} />}
         numColumns={2}
         keyExtractor={(item, index) => `key-${index}`}
         renderItem={({item}) =>

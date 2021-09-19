@@ -9,10 +9,9 @@ import * as _ from 'lodash';
 const useSortRaces = () => {
   const [state, dispatch] = useRaceContext();
   const [races, setRaces] = useState<ServerInterface[]>([]);
+  const source = axios.CancelToken.source();
 
   const filterRaces = useCallback(async () => {
-    const source = axios.CancelToken.source();
-
     try {
       const res = await axiosInstanceGenerator('multiplayer-rating/servers/', {
         cancelToken: source.token,
@@ -52,12 +51,14 @@ const useSortRaces = () => {
         payload: !state.refresh,
       });
     }
-  }, [dispatch, state.region, state.refresh, races]);
+  }, [state.region, state.refresh, dispatch, races]);
 
   useEffect(() => {
     if (state.refresh) {
       filterRaces();
     }
+
+    return () => source.cancel();
   }, [filterRaces, state.refresh, state.defaultDriver]);
 
   return {races};

@@ -1,29 +1,29 @@
 import React, {useContext} from 'react';
 import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {LocalizationContext} from '../translations/LocalizationContext';
-import {Card, useTheme} from 'react-native-paper';
-import {MpRaceResult} from '../../types/resultData';
+import {Card} from 'react-native-paper';
 import TextContainer from '../utils/TextContainer';
 import useSessionClasses from '../../hooks/useSessionClasses';
 import CarClass from '../utils/CarClass';
 import {useRaceContext} from '../../store/RaceContext';
+import {useRoute} from '@react-navigation/core';
+import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
+import {SessionMaterialStackList} from '../../types/NavigatorProps';
 
-interface SessionDataProps {
-  data: MpRaceResult;
-}
+type Props = MaterialTopTabScreenProps<SessionMaterialStackList, 'data'>;
 
-const SessionDataInfo: React.FC<SessionDataProps> = ({data}) => {
+const SessionDataInfo: React.FC = () => {
   const {translations} = useContext(LocalizationContext);
-  const {colors} = useTheme();
+  const {params} = useRoute<Props['route']>();
+
   const [state] = useRaceContext();
-  const {ids} = useSessionClasses(data.QualiResult);
-  const driverData = data.RaceResult.find(
+  const {ids} = useSessionClasses(params.data.QualiResult);
+  const driverData = params.data.RaceResult.find(
     driver => driver.Username === state.defaultDriver,
   );
 
   const styles = StyleSheet.create({
     root: {
-      
       margin: 5,
     },
     trackImage: {
@@ -46,16 +46,16 @@ const SessionDataInfo: React.FC<SessionDataProps> = ({data}) => {
       <Card style={styles.root}>
         <Card.Cover
           source={{
-            uri: `https://game.raceroom.com/store/image_redirect?id=${data.TrackId.Id}&amp;size=full`,
+            uri: `https://game.raceroom.com/store/image_redirect?id=${params.data.TrackId.Id}&amp;size=full`,
           }}
         />
         <Card.Title
-          title={data.TrackId.Name}
-          subtitle={data.TrackLayoutId.Name}
+          title={params.data.TrackId.Name}
+          subtitle={params.data.TrackLayoutId.Name}
           right={props => (
             <Image
               source={{
-                uri: `https://game.raceroom.com/store/image_redirect?id=${data.TrackLayoutId.Id}&amp;size=small`,
+                uri: `https://game.raceroom.com/store/image_redirect?id=${params.data.TrackLayoutId.Id}&amp;size=small`,
               }}
               {...props}
               style={styles.trackImage}
@@ -69,27 +69,27 @@ const SessionDataInfo: React.FC<SessionDataProps> = ({data}) => {
           <View style={styles.contentRoot}>
             <TextContainer
               title={translations.session.drivers}
-              text={data.RaceInfos.Drivers}
+              text={params.data.RaceInfos.Drivers}
             />
             <TextContainer
               title={translations.session.fastest}
-              text={data.RaceInfos.BestLaptimeOverallText}
+              text={params.data.RaceInfos.BestLaptimeOverallText}
             />
           </View>
           <View style={styles.contentRoot}>
             <TextContainer
               title={translations.session.averageLap}
-              text={data.RaceInfos.AvgLaptimeOverallText}
+              text={params.data.RaceInfos.AvgLaptimeOverallText}
             />
             <TextContainer
               title={translations.session.diffTimer}
-              text={data.RaceInfos.AvgDiffFastestLapMillisecounds}
+              text={params.data.RaceInfos.AvgDiffFastestLapMillisecounds}
             />
           </View>
           <View style={styles.contentRoot}>
             <TextContainer
               title={'Total Incidents'}
-              text={data.RaceInfos.IncidentsOverall}
+              text={params.data.RaceInfos.IncidentsOverall}
             />
           </View>
           {driverData !== undefined ? (

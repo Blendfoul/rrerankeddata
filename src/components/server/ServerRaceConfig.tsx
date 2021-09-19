@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {ServerData} from '../../types/server';
-import {Card, useTheme} from 'react-native-paper';
+import {Card} from 'react-native-paper';
 import {StyleSheet} from 'react-native';
 import TextContainer from '../utils/TextContainer';
 import {LocalizationContext} from '../translations/LocalizationContext';
@@ -10,12 +10,10 @@ interface ConfigProps {
 }
 
 const ServerRaceConfig: React.FC<ConfigProps> = ({item}) => {
-  const {colors} = useTheme();
   const {translations} = useContext(LocalizationContext);
 
   const style = StyleSheet.create({
     root: {
-      
       margin: 5,
     },
     content: {

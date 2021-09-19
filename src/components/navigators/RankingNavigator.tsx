@@ -1,4 +1,3 @@
-import {createStackNavigator} from '@react-navigation/stack';
 import React, {useContext} from 'react';
 import {Button, IconButton} from 'react-native-paper';
 import {LocalizationContext} from '../translations/LocalizationContext';
@@ -8,24 +7,24 @@ import {useRaceContext} from '../../store/RaceContext';
 import {ReducerActions} from '../../store/StoreReducer';
 import RatingScreen from '../screens/RatingScreen';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
-import {ParamListBase} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import {DrawerStackList, RankingStackList} from '../../types/NavigatorProps';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator<RankingStackList>();
 
-interface RankingProp {
-  navigation: DrawerNavigationProp<ParamListBase>;
-}
-
-const RankingNavigator: React.FC<RankingProp> = ({navigation}) => {
+const RankingNavigator: React.FC = () => {
   const {translations} = useContext(LocalizationContext);
   const [state, dispatch] = useRaceContext();
+  const navigation = useNavigation<DrawerNavigationProp<DrawerStackList>>();
 
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={translations.navigation.ranking}
+        name={'rankingList'}
         component={RatingScreen}
         options={{
+          title: translations.navigation.ranking,
           headerLeft: () => (
             <IconButton
               icon={'menu'}
@@ -35,9 +34,10 @@ const RankingNavigator: React.FC<RankingProp> = ({navigation}) => {
         }}
       />
       <Stack.Screen
-        name={translations.search.title.details}
+        name={'driverDetails'}
         component={DriverDetailsScreen}
         options={{
+          title: translations.search.title.details,
           headerRight: () => (
             <Button
               onPress={() => {
