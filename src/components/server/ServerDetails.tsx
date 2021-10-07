@@ -1,36 +1,26 @@
-import React, {useContext} from 'react';
-import {LocalizationContext} from '../translations/LocalizationContext';
-import DriverList from './DriverList';
-import RaceDetailsData from './ServerDetailsData';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {ServerTabsStackList} from '../../types/NavigatorProps';
+import React from 'react';
+import {useRaceSelector} from '../../store/hooks';
+import {selectedServerSelector} from '../../store/slices/Server';
+import {useRoute} from '@react-navigation/core';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {ServerTabStackList} from '../../models/navigation/Navigation';
+import {SafeAreaView} from 'react-native';
+import Server from './Server';
+import ServerInformation from './details/ServerInformation';
+import ServerSettings from './details/ServerSettings';
 
-interface DetailsProps {
-  serverName: string;
-}
+type RouteProps = NativeStackScreenProps<ServerTabStackList, 'Info'>;
 
-const MaterialTabs = createMaterialTopTabNavigator<ServerTabsStackList>();
-
-const ServerDetails: React.FC<DetailsProps> = ({serverName}) => {
-  const {translations} = useContext(LocalizationContext);
+const ServerDetails: React.FC = () => {
+  const {params} = useRoute<RouteProps['route']>();
+  const server = useRaceSelector(selectedServerSelector(params.id));
 
   return (
-    <MaterialTabs.Navigator>
-      <MaterialTabs.Screen
-        name={'data'}
-        options={{
-          title: translations.raceDetails.general,
-        }}
-        component={RaceDetailsData}
-        initialParams={{serverName}}
-      />
-      <MaterialTabs.Screen
-        name={'drivers'}
-        component={DriverList}
-        initialParams={{serverName}}
-        options={{title: translations.raceDetails.drivers}}
-      />
-    </MaterialTabs.Navigator>
+    <SafeAreaView>
+      <Server data={server} />
+      <ServerInformation data={server} />
+      <ServerSettings data={server} />
+    </SafeAreaView>
   );
 };
 
