@@ -4,12 +4,9 @@ export type User = {
     code: string;
     name: string;
   };
-  most_used_cars: MostUsed[];
-  most_used_tracks: MostUsed[];
-  basic_statistics: {value: number; label: string}[];
   header: string;
   avatar: string;
-  user_id: number;
+  id: number;
   team: string;
 };
 
@@ -64,4 +61,13 @@ export type Result = {
   };
   ReputationBefore: number;
   PerformanceIndex: number;
+};
+
+export type SearchUser = {
+  name: string;
+  image: string;
+  meta_data: {
+    slug: string;
+  };
+  type: string;
 };

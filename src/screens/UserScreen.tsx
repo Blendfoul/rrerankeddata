@@ -10,8 +10,9 @@ import {
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import UserDetails from '../components/User/UserDetails';
 import UserRaces from '../components/User/UserRaces';
-import {useSelector} from 'react-redux';
-import {userNameSelector} from '../store/slices/User';
+import {useDispatch, useSelector} from 'react-redux';
+import {actions, userNameSelector} from '../store/slices/User';
+import {userDataSelector, fetchUser} from '../store/slices/User';
 
 type RouteProps = NativeStackScreenProps<ServerStackList, UserRoutes.USER>;
 
@@ -20,20 +21,32 @@ const TabStack = createMaterialTopTabNavigator<UserTabStackList>();
 const UserScreen: React.FC = () => {
   const {params} = useRoute<RouteProps['route']>();
   const navigation = useNavigation();
-  const user = useSelector(userNameSelector);
+  const {name, isLoading} = useSelector(userNameSelector);
+  const {user} = useSelector(userDataSelector);
+  const dispatch = useDispatch();
+
+  useEffect(() => {}, [user]);
 
   useEffect(() => {
+    dispatch(fetchUser(params.id));
+  }, [params.id]);
+
+  useEffect(() => {
+    dispatch(actions.setSearchId(params.id));
     navigation.setOptions({
-      title: user,
+      title: !isLoading ? name : 'User',
     });
-  }, [user]);
+  }, [name]);
 
   return (
     <TabStack.Navigator>
       <TabStack.Screen
         name={UserTabRoutes.INFO}
         component={UserDetails}
-        initialParams={{id: params.id}}
+        initialParams={{
+          id: params.id,
+          type: 'User',
+        }}
       />
       <TabStack.Screen
         name={UserTabRoutes.RACES}

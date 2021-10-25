@@ -11,11 +11,11 @@ import {R3eData} from '../../models/data/General';
 export const fetchR3eData = createAsyncThunk<R3eData>(
   'general/r3e-data',
   async () => {
-    const reponse = await axios(
+    const response = await axios(
       'https://raw.githubusercontent.com/sector3studios/r3e-spectator-overlay/master/r3e-data.json',
     );
 
-    return reponse.data;
+    return response.data;
   },
 );
 
@@ -38,6 +38,15 @@ type GeneralState = {
 
 const initialState = {
   ratings: [],
+  r3eData: {
+    cars: {},
+    classes: {},
+    layouts: {},
+    liveries: {},
+    manufacturers: {},
+    teams: {},
+    tracks: {},
+  },
   isLoading: false,
 } as Partial<GeneralState>;
 
@@ -88,7 +97,7 @@ export const dataSelector = createDraftSafeSelector(
 
 export const driverSelector = (driverId: number) => {
   return createDraftSafeSelector(generalSelector, state =>
-    state.ratings?.find(driver => driver.UserId === driverId),
+    state.ratings?.find((driver: Rating) => driver.UserId === driverId),
   );
 };
 

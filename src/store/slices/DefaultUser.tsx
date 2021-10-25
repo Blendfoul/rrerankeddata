@@ -4,7 +4,7 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {RaceHistory, User} from '../../models/data/User';
+import {RaceHistory, Result, User} from '../../models/data/User';
 import {reverse} from 'lodash';
 import {RootState} from '../Store';
 
@@ -12,31 +12,10 @@ export const fetchUser = createAsyncThunk<User, number>(
   'default-user/driver-info',
   async driverId => {
     const response = await axios(
-      `https://game.raceroom.com/users/${driverId}?json`,
+      `https://game.raceroom.com/utils/user-info/${driverId}`,
     );
 
-    const {
-      name,
-      most_used_cars,
-      country,
-      most_used_tracks,
-      basic_statistics,
-      header,
-      avatar,
-      team,
-    } = response.data.context.c.overview;
-
-    return {
-      name,
-      most_used_cars,
-      country,
-      most_used_tracks,
-      basic_statistics,
-      header,
-      avatar,
-      team,
-      user_id: response.data.context.c.user_id,
-    };
+    return response.data as User;
   },
 );
 
@@ -66,6 +45,7 @@ type UserState = {
 };
 
 const initialState = {
+  userId: -1,
   isLoading: true,
   isLoadingRaces: true,
 } as UserState;
@@ -107,15 +87,48 @@ const DefaultUserSlice = createSlice({
 
 const userSelector = (state: RootState) => state.defaultUser;
 
+export const userNameSelector = createDraftSafeSelector(
+  userSelector,
+  state => ({
+    name: state?.user?.name,
+  }),
+);
+
 export const idSelector = createDraftSafeSelector(
   userSelector,
-  state => state.userId,
+  state => state.userId as number,
 );
 
 export const dataSelector = createDraftSafeSelector(userSelector, state => ({
   user: state.user,
   isLoading: state.isLoading,
 }));
+
+type RatingData = {
+  data: {
+    rating: number[];
+    reputation: number[];
+  };
+  isLoading: boolean;
+};
+
+export const ratingSelector = createDraftSafeSelector<
+  RatingData,
+  UserState,
+  RootState
+>(userSelector, state => {
+  return {
+    data: {
+      rating: state?.races?.Entries.map(
+        (race: Result) => race.RatingAfter,
+      ).reverse(),
+      reputation: state?.races?.Entries.map(
+        (race: Result) => race.ReputationAfter,
+      ).reverse(),
+    },
+    isLoading: state.isLoadingRaces,
+  } as RatingData;
+});
 
 export const userRacesSelector = createDraftSafeSelector(
   userSelector,

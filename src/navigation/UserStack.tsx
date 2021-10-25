@@ -6,12 +6,12 @@ import {
   UserRoutes,
   UserStackList,
 } from '../models/navigation/Navigation';
-import UserScreen from '../screens/UserScreen';
 import {useNavigation} from '@react-navigation/core';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {IconButton} from 'react-native-paper';
-import {useSelector} from 'react-redux';
-import {userIdSelector} from '../store/slices/User';
+import SessionScreen from '../screens/SessionScreen';
+import DefaultUserScreen from '../screens/DefaultUserScreen';
+import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 
 const Stack = createNativeStackNavigator<UserStackList>();
 
@@ -19,15 +19,13 @@ type RouteProps = DrawerNavigationProp<DrawerStackList, DrawerRoutes.USER>;
 
 const UserStack: React.FC = () => {
   const navigation = useNavigation<RouteProps>();
-  const user = useSelector(userIdSelector);
 
   return (
     <Stack.Navigator>
       <Stack.Group>
         <Stack.Screen
           name={UserRoutes.USER}
-          component={UserScreen}
-          initialParams={{id: user}}
+          component={DefaultUserScreen}
           options={{
             headerLeft: props => (
               <IconButton
@@ -37,6 +35,11 @@ const UserStack: React.FC = () => {
               />
             ),
           }}
+        />
+        <Stack.Screen name={UserRoutes.RESULT} component={SessionScreen} />
+        <Stack.Screen
+          name={UserRoutes.DETAILS}
+          component={SessionDetailsScreen}
         />
       </Stack.Group>
     </Stack.Navigator>

@@ -10,7 +10,7 @@ type Props = {
 };
 
 const UserStatistics: React.FC<Props> = ({user}) => {
-  const {rating} = useRanked(user.user_id);
+  const {rating} = useRanked(user.id);
   const {t} = useTranslation();
 
   return (
@@ -27,26 +27,6 @@ const UserStatistics: React.FC<Props> = ({user}) => {
         <View style={styles.container}>
           <Paragraph>{t('profile.races')}</Paragraph>
           <Caption>{rating?.RacesCompleted}</Caption>
-        </View>
-      </Card.Content>
-      <Card.Content style={styles.content}>
-        <View style={styles.container}>
-          <Paragraph>{user.basic_statistics[0].label}</Paragraph>
-          <Caption>{user.basic_statistics[0].value}</Caption>
-        </View>
-        <View style={styles.container}>
-          <Paragraph>{user.basic_statistics[1].label}</Paragraph>
-          <Caption>{user.basic_statistics[1].value}</Caption>
-        </View>
-      </Card.Content>
-      <Card.Content style={styles.content}>
-        <View style={styles.container}>
-          <Paragraph>{user.basic_statistics[2].label}</Paragraph>
-          <Caption>{user.basic_statistics[2].value}</Caption>
-        </View>
-        <View style={styles.container}>
-          <Paragraph>{user.basic_statistics[3].label}</Paragraph>
-          <Caption>{user.basic_statistics[3].value}</Caption>
         </View>
       </Card.Content>
     </Card>

@@ -1,5 +1,6 @@
 import {Rating} from '../data/Ranked';
-import { QualiResult, RaceResult } from "../data/Result";
+import {QualiResult, RaceResult} from '../data/Result';
+import {User} from '../data/User';
 
 export type DrawerStackList = {
   ServerDrawer: undefined;
@@ -20,12 +21,19 @@ export type ServerStackList = {
   Schedule: undefined;
 } & UserStackList;
 
+export type SearchStackList = {
+  Search: undefined;
+} & UserStackList;
+
 export type UserStackList = {
   User: {
     id: number;
   };
   Result: {
     hash: string;
+  };
+  Details: {
+    data: RaceResult;
   };
 };
 
@@ -51,6 +59,7 @@ export type ServerTabStackList = {
 export type UserTabStackList = {
   Info: {
     id: number;
+    type: 'User' | 'Default';
   };
   Races: {
     id: number;
@@ -83,11 +92,20 @@ export enum ServerRoutes {
   SERVER = 'Server',
   USER = 'User',
   RESULT = 'Result',
+  DETAILS = 'Details',
+}
+
+export enum SearchRoutes {
+  SEARCH = 'Search',
+  USER = 'User',
+  RESULT = 'Result',
+  DETAILS = 'Details',
 }
 
 export enum UserRoutes {
   USER = 'User',
-  RACE = 'Result',
+  RESULT = 'Result',
+  DETAILS = 'Details',
 }
 
 export enum ServerTabRoutes {

@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSelector, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {RaceResult, Result} from '../../models/data/Result';
 import {RootState} from '../Store';
@@ -40,5 +40,15 @@ const SessionSlice = createSlice({
 });
 
 export const resultSelector = (state: RootState) => state.result;
+
+export const qualiSelector = createSelector(
+  resultSelector,
+  state => state.QualiResult,
+);
+
+export const raceSelector = createSelector(
+  resultSelector,
+  state => state.RaceResult,
+);
 
 export default SessionSlice.reducer;

@@ -99,7 +99,9 @@
     "StartPosition": "Start Position",
     "FinishPosition": "Finish Position",
     "RatingAfter": "Rating After",
-    "ReputationAfter": "Reputation After"
+    "ReputationAfter": "Reputation After",
+    "Incidents": "Incidents",
+    "Drivers": "Drivers"
   },
   "qualificationModal": {
     "fastest": "Fastest Lap",

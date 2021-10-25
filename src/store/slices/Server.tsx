@@ -82,7 +82,7 @@ const selectServers = (state: RootState) => state.server;
 export const selectedServerSelector = (serverId: string) => {
   return createDraftSafeSelector(selectServers, state => {
     return state.server.find(
-      server => server.Server.Settings.ServerName === serverId,
+      (server: RankedServer) => server.Server.Settings.ServerName === serverId,
     ) as RankedServer;
   });
 };
@@ -92,14 +92,16 @@ export const selectRegionSelector = createDraftSafeSelector(
   state => {
     let server =
       state.region.length > 0
-        ? state.server.filter(server =>
+        ? state.server.filter((server: RankedServer) =>
             server.Server.Settings.ServerName.includes(state.region),
           )
         : state.server;
 
     server =
       state.session !== -1
-        ? server.filter(a => a.Server.CurrentSession === state.session)
+        ? server.filter(
+            (a: RankedServer) => a.Server.CurrentSession === state.session,
+          )
         : server;
 
     server = sortBy(server, (o: RankedServer) => o.Server.PlayersOnServer);

@@ -1,9 +1,9 @@
 import React from 'react';
-import {Avatar, Card} from 'react-native-paper';
+import {Card} from 'react-native-paper';
 import CustomCardCover from '../../shared/CustomCardCover';
 import Country from '../../shared/Country';
 import {User} from '../../../models/data/User';
-import {StyleSheet} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 
 type Props = {
   user: User;
@@ -20,7 +20,7 @@ const UserInformation: React.FC<Props> = ({user}) => {
             user.header ||
             'https://prod.r3eassets.com/static/img/banners/r3e.jpg',
         }}>
-        <Avatar.Image source={{uri: user.avatar}} size={100} />
+        <Image source={{uri: user.avatar}} style={styles.hero} />
       </CustomCardCover>
       <Card.Title
         title={user.name}
@@ -38,6 +38,10 @@ const styles = StyleSheet.create({
   },
   img: {
     height: 125,
+  },
+  hero: {
+    width: 100,
+    height: 100,
   },
 });
 

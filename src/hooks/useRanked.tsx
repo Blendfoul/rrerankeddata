@@ -17,7 +17,7 @@ const useRanked = (id: number) => {
 
   useEffect(() => {
     fetchRating();
-  }, []);
+  }, [id]);
 
   return {rating};
 };

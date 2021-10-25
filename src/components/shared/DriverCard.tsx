@@ -1,6 +1,6 @@
 import React from 'react';
-import {Avatar, Caption, Card} from 'react-native-paper';
-import {StyleSheet} from 'react-native';
+import {Avatar, Caption, Card, Paragraph} from 'react-native-paper';
+import {StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {
@@ -32,7 +32,7 @@ const DriverCard: React.FC<Props> = ({driver}) => {
     <Card style={styles.root} onPress={navigateToDriver}>
       <Card.Title
         title={driver.Fullname}
-        subtitle={driver?.Team}
+        subtitle={driver?.Team || 'Privateer'}
         left={props => (
           <Avatar.Image
             source={{
@@ -44,9 +44,18 @@ const DriverCard: React.FC<Props> = ({driver}) => {
         right={props => <Country country={driver.Country} {...props} />}
       />
       <Card.Content style={styles.container}>
-        <Caption>{driver.Rating}</Caption>
-        <Caption>{driver.Reputation}</Caption>
-        <Caption>{driver.RacesCompleted}</Caption>
+        <View style={styles.content}>
+          <Paragraph>Rating</Paragraph>
+          <Caption>{driver.Rating}</Caption>
+        </View>
+        <View style={styles.content}>
+          <Paragraph>Reputation</Paragraph>
+          <Caption>{driver.Reputation}</Caption>
+        </View>
+        <View style={styles.content}>
+          <Paragraph>Races</Paragraph>
+          <Caption>{driver.RacesCompleted}</Caption>
+        </View>
       </Card.Content>
     </Card>
   );
@@ -61,6 +70,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  content: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

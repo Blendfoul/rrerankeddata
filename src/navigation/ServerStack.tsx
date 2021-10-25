@@ -9,23 +9,31 @@ import {
 import HomeScreen from '../screens/HomeScreen';
 import ServerScreen from '../screens/ServerScreen';
 import {IconButton} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/core';
-import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {useNavigation, useRoute} from '@react-navigation/core';
+import {
+  DrawerNavigationProp,
+  DrawerScreenProps,
+} from '@react-navigation/drawer';
 import CalendarComponent from '../components/calendar/CalendarComponent';
 import UserScreen from '../screens/UserScreen';
 import {defaultUserActions} from '../store/slices/DefaultUser';
 import {useDispatch, useSelector} from 'react-redux';
 import {userIdSelector} from '../store/slices/User';
 import SessionScreen from '../screens/SessionScreen';
+import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 
 const Stack = createNativeStackNavigator<ServerStackList>();
 
 type NavigationProps = DrawerNavigationProp<DrawerStackList>;
+type ScreenProps = DrawerScreenProps<DrawerStackList, 'UserDrawer'>['route'];
 
 const ServerStack: React.FC = () => {
   const navigation = useNavigation<NavigationProps>();
   const dispatch = useDispatch();
   const searchId = useSelector(userIdSelector);
+  const {params} = useRoute<ScreenProps>();
+
+  console.log(params);
 
   return (
     <Stack.Navigator>
@@ -73,6 +81,11 @@ const ServerStack: React.FC = () => {
         }}
       />
       <Stack.Screen name={ServerRoutes.RESULT} component={SessionScreen} />
+      <Stack.Screen
+        name={ServerRoutes.DETAILS}
+        component={SessionDetailsScreen}
+      />
+
       <Stack.Group screenOptions={{presentation: 'modal'}}>
         <Stack.Screen
           name={DrawerRoutes.SCHEDULE}

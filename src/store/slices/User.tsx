@@ -12,31 +12,10 @@ export const fetchUser = createAsyncThunk<User, number>(
   'user/driver-info',
   async driverId => {
     const response = await axios(
-      `https://game.raceroom.com/users/${driverId}?json`,
+      `https://game.raceroom.com/utils/user-info/${driverId}`,
     );
 
-    const {
-      name,
-      most_used_cars,
-      country,
-      most_used_tracks,
-      basic_statistics,
-      header,
-      avatar,
-      team,
-    } = response.data.context.c.overview;
-
-    return {
-      name,
-      most_used_cars,
-      country,
-      most_used_tracks,
-      basic_statistics,
-      header,
-      avatar,
-      team,
-      user_id: response.data.context.c.user_id,
-    };
+    return response.data as User;
   },
 );
 
@@ -58,6 +37,7 @@ export const fetchRaces = createAsyncThunk<RaceHistory, number>(
 );
 
 type UserState = {
+  searchId: number;
   user: User;
   isLoading: boolean;
   isLoadingRaces: boolean;
@@ -72,7 +52,12 @@ const initialState = {
 const UserSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchId: (state, action) => ({
+      ...state,
+      searchId: action.payload,
+    }),
+  },
   extraReducers: builder => {
     builder.addCase(fetchUser.pending, state => ({
       ...state,
@@ -99,22 +84,51 @@ const UserSlice = createSlice({
   },
 });
 
-const userSelector = (state: RootState) => state.user;
+const userSelector = (state: RootState) => state.user as UserState;
 
 export const userNameSelector = createDraftSafeSelector(
   userSelector,
-  state => state?.user?.name,
+  state => ({
+    name: state?.user?.name,
+    isLoading: state.isLoading,
+  }),
 );
 
 export const userIdSelector = createDraftSafeSelector(
   userSelector,
-  state => state?.user?.user_id,
+  state => state.searchId,
 );
 
 export const userDataSelector = createDraftSafeSelector(
   userSelector,
   state => ({user: state.user, isLoading: state.isLoading}),
 );
+
+type RatingData = {
+  data: {
+    rating: number[];
+    reputation: number[];
+  };
+  isLoading: boolean;
+};
+
+export const userRatingSelector = createDraftSafeSelector<
+  RatingData,
+  UserState,
+  RootState
+>(userSelector, state => {
+  return {
+    data: {
+      rating: state?.races?.Entries.map(
+        (race: Result) => race.RatingAfter,
+      ).reverse(),
+      reputation: state?.races?.Entries.map(
+        (race: Result) => race.ReputationAfter,
+      ).reverse(),
+    },
+    isLoading: state.isLoadingRaces,
+  } as RatingData;
+});
 
 export const userRacesSelector = createDraftSafeSelector(
   userSelector,
@@ -127,5 +141,7 @@ export const resultSelector = (hash: string) => {
     state => state.races.Entries.find(race => race.RaceHash === hash) as Result,
   );
 };
+
+export const {actions} = UserSlice;
 
 export default UserSlice.reducer;

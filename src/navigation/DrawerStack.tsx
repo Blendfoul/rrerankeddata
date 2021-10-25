@@ -4,7 +4,9 @@ import React, {useEffect} from 'react';
 import ServerStack from './ServerStack';
 import UserStack from './UserStack';
 import {batch, useDispatch} from 'react-redux';
-import {fetchR3eData, fetchRatings} from '../store/slices/General';
+import {fetchRatings} from '../store/slices/General';
+import DrawerComponent from '../components/drawer/DrawerComponent';
+import SearchStack from './SearchStack';
 
 const DrawerNavigator = createDrawerNavigator<DrawerStackList>();
 
@@ -14,7 +16,6 @@ const DrawerStack: React.FC = () => {
   useEffect(() => {
     batch(() => {
       dispatch(fetchRatings());
-      dispatch(fetchR3eData());
     });
   }, []);
 
@@ -22,12 +23,17 @@ const DrawerStack: React.FC = () => {
     <DrawerNavigator.Navigator
       screenOptions={{
         headerShown: false,
-      }}>
+      }}
+      drawerContent={props => <DrawerComponent {...props} />}>
       <DrawerNavigator.Screen
         name={DrawerRoutes.SERVER}
         component={ServerStack}
       />
       <DrawerNavigator.Screen name={DrawerRoutes.USER} component={UserStack} />
+      <DrawerNavigator.Screen
+        name={DrawerRoutes.SEARCH}
+        component={SearchStack}
+      />
     </DrawerNavigator.Navigator>
   );
 };
