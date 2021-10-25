@@ -9,7 +9,7 @@ import {useRoute} from '@react-navigation/core';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchSession, resultSelector} from '../store/slices/Session';
-import LoadingComponent from '../components/User/LoadingComponent';
+import LoadingComponent from '../components/shared/LoadingComponent';
 import SessionInformation from '../components/session/SessionInformation';
 import QualiComponent from '../components/session/QualiComponent';
 import RaceComponent from '../components/session/RaceComponent';

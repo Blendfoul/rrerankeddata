@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {fetchRaces, userRacesSelector} from '../../store/slices/User';
 import {FlatList, ListRenderItem} from 'react-native';
 import RaceResult from './RaceResult';
-import LoadingComponent from './LoadingComponent';
+import LoadingComponent from '../shared/LoadingComponent';
 import {Result} from '../../models/data/User';
 
 type Props = MaterialTopTabScreenProps<UserTabStackList, 'Races'>;

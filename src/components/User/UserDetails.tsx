@@ -2,7 +2,7 @@ import React from 'react';
 import {useRoute} from '@react-navigation/core';
 import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
 import {UserTabStackList} from '../../models/navigation/Navigation';
-import LoadingComponent from './LoadingComponent';
+import LoadingComponent from '../shared/LoadingComponent';
 import UserInformation from './details/UserInformation';
 import UserStatistics from './details/UserStatistics';
 import {useSelector} from 'react-redux';

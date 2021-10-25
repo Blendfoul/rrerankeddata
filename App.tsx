@@ -15,9 +15,9 @@ import {
   DefaultTheme as NavDefault,
 } from '@react-navigation/native';
 import {PersistGate} from 'redux-persist/integration/react';
-import LoadingComponent from './src/components/User/LoadingComponent';
 import {fetchR3eData} from './src/store/slices/General';
 import {useColorScheme} from 'react-native';
+import LoadingAppComponent from './src/components/shared/LoadingAppComponent';
 
 const App: React.FC = () => {
   const navRef = createNavigationContainerRef<ServerStackList>();
@@ -35,7 +35,7 @@ const App: React.FC = () => {
 
   return (
     <StoreProvider store={store}>
-      <PersistGate loading={<LoadingComponent />} persistor={persists}>
+      <PersistGate loading={<LoadingAppComponent />} persistor={persists}>
         <Provider theme={colorScheme === 'light' ? DefaultTheme : DarkTheme}>
           <NavigationContainer
             ref={navRef}
