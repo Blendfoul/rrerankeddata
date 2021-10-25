@@ -9,14 +9,11 @@ import {
 import HomeScreen from '../screens/HomeScreen';
 import ServerScreen from '../screens/ServerScreen';
 import {IconButton} from 'react-native-paper';
-import {useNavigation, useRoute} from '@react-navigation/core';
-import {
-  DrawerNavigationProp,
-  DrawerScreenProps,
-} from '@react-navigation/drawer';
+import {useNavigation} from '@react-navigation/core';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
 import CalendarComponent from '../components/calendar/CalendarComponent';
 import UserScreen from '../screens/UserScreen';
-import {defaultUserActions} from '../store/slices/DefaultUser';
+import {defaultUserActions, idSelector} from '../store/slices/DefaultUser';
 import {useDispatch, useSelector} from 'react-redux';
 import {userIdSelector} from '../store/slices/User';
 import SessionScreen from '../screens/SessionScreen';
@@ -25,15 +22,12 @@ import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 const Stack = createNativeStackNavigator<ServerStackList>();
 
 type NavigationProps = DrawerNavigationProp<DrawerStackList>;
-type ScreenProps = DrawerScreenProps<DrawerStackList, 'UserDrawer'>['route'];
 
 const ServerStack: React.FC = () => {
   const navigation = useNavigation<NavigationProps>();
   const dispatch = useDispatch();
   const searchId = useSelector(userIdSelector);
-  const {params} = useRoute<ScreenProps>();
-
-  console.log(params);
+  const id = useSelector(idSelector);
 
   return (
     <Stack.Navigator>
@@ -72,7 +66,11 @@ const ServerStack: React.FC = () => {
           headerRight: props => (
             <IconButton
               {...props}
-              icon={'account-plus-outline'}
+              icon={
+                id === searchId
+                  ? 'account-check-outline'
+                  : 'account-plus-outline'
+              }
               onPress={() => {
                 dispatch(defaultUserActions.setUserId(searchId));
               }}

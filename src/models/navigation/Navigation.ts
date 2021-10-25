@@ -7,6 +7,9 @@ export type DrawerStackList = {
   UserDrawer: {
     id: number;
   };
+  FriendsDrawer: {
+    id: number;
+  };
   SearchDrawer: undefined;
   RankingDrawer: undefined;
   AboutDrawer: undefined;
@@ -36,6 +39,10 @@ export type UserStackList = {
     data: RaceResult;
   };
 };
+
+export type FriendsStackList = {
+  Friends: undefined;
+} & UserStackList;
 
 export type ServerTabStackList = {
   Info: {
@@ -84,6 +91,7 @@ export enum DrawerRoutes {
   SEARCH = 'SearchDrawer',
   RANKING = 'RankingDrawer',
   ABOUT = 'AboutDrawer',
+  FRIENDS = 'FriendsDrawer',
   SCHEDULE = 'Schedule',
 }
 
@@ -103,6 +111,13 @@ export enum SearchRoutes {
 }
 
 export enum UserRoutes {
+  USER = 'User',
+  RESULT = 'Result',
+  DETAILS = 'Details',
+}
+
+export enum FriendsRoutes {
+  FRIENDS = 'Friends',
   USER = 'User',
   RESULT = 'Result',
   DETAILS = 'Details',

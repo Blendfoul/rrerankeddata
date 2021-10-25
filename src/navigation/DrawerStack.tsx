@@ -7,6 +7,7 @@ import {batch, useDispatch} from 'react-redux';
 import {fetchRatings} from '../store/slices/General';
 import DrawerComponent from '../components/drawer/DrawerComponent';
 import SearchStack from './SearchStack';
+import FriendsStack from './FriendsStack';
 
 const DrawerNavigator = createDrawerNavigator<DrawerStackList>();
 
@@ -32,6 +33,14 @@ const DrawerStack: React.FC = () => {
       <DrawerNavigator.Screen name={DrawerRoutes.USER} component={UserStack} />
       <DrawerNavigator.Screen
         name={DrawerRoutes.SEARCH}
+        component={SearchStack}
+      />
+      <DrawerNavigator.Screen
+        name={DrawerRoutes.FRIENDS}
+        component={FriendsStack}
+      />
+      <DrawerNavigator.Screen
+        name={DrawerRoutes.ABOUT}
         component={SearchStack}
       />
     </DrawerNavigator.Navigator>

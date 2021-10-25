@@ -1,7 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import InAppReview from 'react-native-in-app-review';
 
-const AppReviewProvider: React.FC = ({children}) => {
+type Props = {
+  requested: boolean;
+  setRequested: Dispatch<SetStateAction<boolean>>;
+};
+
+const AppReviewProvider: React.FC<Props> = ({
+  children,
+  requested,
+  setRequested,
+}) => {
   const [isAvailable, setAvailable] = useState<boolean>(false);
 
   useEffect(() => {
@@ -14,6 +23,7 @@ const AppReviewProvider: React.FC = ({children}) => {
 
       if (flow) {
         console.log(flow);
+        setRequested(false);
       }
     } catch (e) {
       console.error(e);
@@ -21,11 +31,11 @@ const AppReviewProvider: React.FC = ({children}) => {
   };
 
   useEffect(() => {
-    if (isAvailable) {
+    if (isAvailable && requested) {
       console.warn(isAvailable);
       requestReview();
     }
-  }, []);
+  }, [requested]);
 
   return <>{children}</>;
 };

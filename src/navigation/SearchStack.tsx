@@ -10,7 +10,7 @@ import UserScreen from '../screens/UserScreen';
 import {IconButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/core';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
-import {defaultUserActions} from '../store/slices/DefaultUser';
+import {defaultUserActions, idSelector} from '../store/slices/DefaultUser';
 import SessionScreen from '../screens/SessionScreen';
 import {useDispatch, useSelector} from 'react-redux';
 import {userIdSelector} from '../store/slices/User';
@@ -24,6 +24,7 @@ const SearchStack: React.FC = () => {
   const navigation = useNavigation<NavigationProps>();
   const dispatch = useDispatch();
   const searchId = useSelector(userIdSelector);
+  const id = useSelector(idSelector);
 
   return (
     <Stack.Navigator>
@@ -47,7 +48,11 @@ const SearchStack: React.FC = () => {
           headerRight: props => (
             <IconButton
               {...props}
-              icon={'account-plus-outline'}
+              icon={
+                id === searchId
+                  ? 'account-check-outline'
+                  : 'account-plus-outline'
+              }
               onPress={() => {
                 dispatch(defaultUserActions.setUserId(searchId));
               }}
