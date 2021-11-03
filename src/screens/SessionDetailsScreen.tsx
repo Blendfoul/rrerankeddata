@@ -7,6 +7,7 @@ import CustomCardCover from '../components/shared/CustomCardCover';
 import {FlatList, ListRenderItem, StyleSheet, View} from 'react-native';
 import {Incident} from '../models/data/Result';
 import useSectorTimes from '../hooks/useSectorTimes';
+import {useTranslation} from 'react-i18next';
 
 type Props = NativeStackScreenProps<UserStackList, 'Details'>['route'];
 
@@ -15,11 +16,12 @@ const SessionDetailsScreen: React.FC = () => {
     params: {data},
   } = useRoute<Props>();
   const {lapTime} = useSectorTimes(data.Laps);
+  const {t} = useTranslation();
 
   const renderIncidents: ListRenderItem<Incident> = ({item}) => {
     return (
       <View style={styles.incidentContainer}>
-        <Paragraph>{item.Type}</Paragraph>
+        <Paragraph>{t(`incidents.${item.Type}`)}</Paragraph>
         <Caption>{item.Count}x</Caption>
       </View>
     );

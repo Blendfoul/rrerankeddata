@@ -7,35 +7,42 @@ import {useEffect, useState} from 'react';
 
 const useSearch = (name: string) => {
   const [users, setUsers] = useState<SearchUser[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const ratings = useSelector(ratingSelector);
   const token = axios.CancelToken.source();
   const fetchUsers = async () => {
-    const response: AxiosResponse<SearchUser[]> = await axios(
-      `https://game.raceroom.com/search?query=${name}`,
-      {
-        cancelToken: token.token,
-      },
-    );
-
-    if (response.data.length !== 0) {
-      setUsers(response.data);
-    } else {
-      const data = ratings.find(
-        (driver: Rating) =>
-          driver.Username.toLowerCase() === name.toLowerCase() ||
-          driver.Fullname.toLowerCase() === name.toLowerCase(),
+    try {
+      setLoading(true);
+      const response: AxiosResponse<SearchUser[]> = await axios(
+        `https://game.raceroom.com/search?query=${name}`,
+        {
+          cancelToken: token.token,
+        },
       );
 
-      if (data !== undefined) {
-        setUsers([
-          {
-            name: data.Fullname,
-            image: `https://game.raceroom.com/game/user_avatar/${data.UserId}`,
-            meta_data: {slug: data.Username},
-            type: 'user',
-          },
-        ]);
+      if (response.data.length !== 0) {
+        setUsers(response.data);
+      } else {
+        const data = ratings.find(
+          (driver: Rating) =>
+            driver.Username.toLowerCase() === name.toLowerCase() ||
+            driver.Fullname.toLowerCase() === name.toLowerCase(),
+        );
+
+        if (data !== undefined) {
+          setUsers([
+            {
+              name: data.Fullname,
+              image: `https://game.raceroom.com/game/user_avatar/${data.UserId}`,
+              meta_data: {slug: data.Username},
+              type: 'user',
+            },
+          ]);
+        }
       }
+    } catch (e) {
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,7 +52,7 @@ const useSearch = (name: string) => {
     return () => token.cancel();
   }, [name]);
 
-  return {users};
+  return {users, loading};
 };
 
 export default useSearch;

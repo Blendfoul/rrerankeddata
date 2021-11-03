@@ -1,18 +1,27 @@
-import React, {useState} from 'react';
-import {Searchbar} from 'react-native-paper';
-import {FlatList, ListRenderItem, StyleSheet} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {Searchbar, TextInput} from 'react-native-paper';
+import {
+  FlatList,
+  ListRenderItem,
+  RefreshControl,
+  StyleSheet,
+} from 'react-native';
 import SearchCard from '../components/shared/SearchCard';
 import useSearch from '../hooks/useSearch';
 
 const SearchScreen: React.FC = () => {
   const [value, setValue] = useState<string>('');
-  const {users} = useSearch(value);
-
+  const {users, loading} = useSearch(value);
+  const ref = useRef<typeof TextInput>(null);
   const searchForUser = (text: string) => setValue(text);
 
   const renderItem: ListRenderItem<any> = ({item}) => (
     <SearchCard item={item} />
   );
+
+  useEffect(() => {
+    ref?.focus();
+  }, []);
 
   return (
     <>
@@ -20,9 +29,12 @@ const SearchScreen: React.FC = () => {
         onChangeText={searchForUser}
         style={styles.bar}
         value={value}
+        ref={ref}
       />
       <FlatList
         data={users}
+        refreshing={loading}
+        refreshControl={<RefreshControl refreshing={loading} />}
         renderItem={renderItem}
         numColumns={2}
         contentContainerStyle={styles.container}

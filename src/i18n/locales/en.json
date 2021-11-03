@@ -14,8 +14,7 @@
     "result": "Result",
     "race": "Race",
     "qualification": "Qualification",
-    "donate": "Donate",
-    "settings": "Settings"
+    "donate": "Donate"
   },
   "race": {
     "cancel": "Cancel",
@@ -40,87 +39,49 @@
       "practice": "Practice",
       "qualification": "Qualification",
       "race": "Race"
-    }
-  },
-  "user": {
-    "message": "No driver set!",
-    "search": "Search",
-    "tutorial": {
-      "message_1": "When searching a user...",
-      "message_2": "Tap the ",
-      "message_3": "On the top right corner to set your default driver!"
+    },
+    "rules": {
+      "1": "Slow Down",
+      "2": "Full",
+      "3": "None"
     }
   },
   "search": {
-    "placeholder": "Driver Username",
-    "search": "Search",
-    "title": {
-      "search": "Search",
-      "details": "Details",
-      "sessionDetails": "Session Details"
-    }
+    "placeholder": "Driver Username"
   },
   "profile": {
     "ranking": "Ranking",
     "info": "Info",
-    "laps": "Laps",
-    "distance": "Distance",
-    "lapsCompleted": "Laps Completed",
     "races": "Races",
-    "name": "Name",
-    "team": "Team",
-    "country": "Country",
     "rating": "Rating",
     "reputation": "Reputation",
-    "track": "Favourite Track",
-    "car": "Favourite Car",
-    "privateer": "Privateer",
-    "timeInGame": "Time in Game",
-    "joined": "Joined"
+    "privateer": "Privateer"
   },
   "session": {
-    "general": "General",
-    "all": "All",
-    "practice": "Practice",
     "qualification": "Qualify",
     "race": "Race",
     "layout": "Layout",
     "drivers": "Drivers",
     "positions": "Positions",
-    "average": "average",
-    "overall": "overall",
-    "fastest": "Fastest Lap",
-    "averageLap": "avg. Laptime",
-    "diffTimer": "Diff. average",
     "noTimeSet": "No time set",
-    "UserResults": "User Results",
-    "CarClass": "Car Class",
     "LapsCompleted": "Laps Completed",
     "StartPosition": "Start Position",
     "FinishPosition": "Finish Position",
     "RatingAfter": "Rating After",
     "ReputationAfter": "Reputation After",
-    "Incidents": "Incidents",
-    "Drivers": "Drivers"
+    "Incidents": "Incidents"
   },
-  "qualificationModal": {
+  "qualifySession": {
     "fastest": "Fastest Lap",
     "position": "Position",
     "sector": "Sector ",
     "optimal": "Optimal Lap",
     "incidents": "Incidents"
   },
-  "raceModal": {
-    "name": "Name",
-    "team": "Team",
+  "raceSession": {
     "bestLap": "Best Lap",
-    "worstLap": "Worst Lap",
-    "averageLap": "Average Lap",
     "rating": "Rating Change",
     "reputation": "Reputation Change",
-    "optimalLap": "Optimal Lap",
-    "consistency": "Consistency",
-    "diff": "Diff",
     "start": "Start",
     "finish": "Finish",
     "incidents": "Incidents"
@@ -144,7 +105,7 @@
     "trackCollision": "Track Collision",
     "vehicleCollision": "Vehicle Collision",
     "disconnect": "Disconnect",
-    "unservedPenalty": "Unserved Penalty",
+    "unservedPenalty": "Un-served Penalty",
     "wrongWay": "Wrong Way"
   },
   "messages": {
@@ -154,39 +115,10 @@
   "license": {
     "license": "",
     "disclaimer": "R3E Ranked statistics is a 3rd party app and is not affiliated in anyway with Sector 3.",
-    "mvp": "A special thanks to DavidsAppStudio for providing the in-depth statistics for the session history.",
     "somethingWrong": "Found something wrong?"
-  },
-  "loading": {
-    "start": "Formatting grids",
-    "servers": "Loading Available Races",
-    "driver": "Changing Driver Tires",
-    "session": "Printing race results",
-    "server": "Connecting to server",
-    "history": "Spying on the competition",
-    "friends": "It's all fun and games!",
-    "leaderboard": "Loading leaderboard",
-    "search": "Who's that mate?",
-    "details": "Crunching race data"
-  },
-  "rateModal": {
-    "title": "Liking the Experience?",
-    "paragraph": "Please consider leaving a review on the store.",
-    "rate": "Rate",
-    "later": "Remember later",
-    "never": "Don't show again"
   },
   "donation": {
     "greeting": "Hello Guys!",
     "message": "If you like the app and feel like supporting me developing the app feel free to go ahead. All the support is greatly appreciated!"
-  },
-  "noConnection": "No connection available!",
-  "noDrivers": "No drivers on Server!",
-  "exitApp": "Exit",
-  "noServers": "Pit lane currently closed...",
-  "settings": {
-    "theme": "Theme",
-    "general": "General",
-    "language": "Language"
   }
 }

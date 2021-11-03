@@ -36,7 +36,7 @@ const ServerSettings: React.FC<Props> = ({data}) => {
         </View>
         <View style={styles.container}>
           <Paragraph>{t('raceDetails.cutRules')}</Paragraph>
-          <Caption>{CutRules}</Caption>
+          <Caption>{t(`raceDetails.rules.${CutRules}`)}</Caption>
         </View>
       </Card.Content>
     </Card>
