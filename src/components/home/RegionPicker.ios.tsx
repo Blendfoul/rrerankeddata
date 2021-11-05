@@ -2,7 +2,7 @@ import React from 'react';
 import {IconButton, useTheme} from 'react-native-paper';
 import {ActionSheetIOS} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {serverActions} from '../../store/slices/Server';
+import {generalActions} from '../../store/slices/General';
 
 const RegionPicker: React.FC = () => {
   const {colors} = useTheme();
@@ -18,9 +18,9 @@ const RegionPicker: React.FC = () => {
       buttonIndex => {
         if (buttonIndex !== 0) {
           if (buttonIndex === 1) {
-            dispatch(serverActions.setRegion(''));
+            dispatch(generalActions.setRegion(''));
           } else {
-            dispatch(serverActions.setRegion(options[buttonIndex]));
+            dispatch(generalActions.setRegion(options[buttonIndex]));
           }
         }
       },

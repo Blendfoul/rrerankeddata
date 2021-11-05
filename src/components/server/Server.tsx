@@ -17,6 +17,7 @@ import FastImage from 'react-native-fast-image';
 import CustomCardCover from '../shared/CustomCardCover';
 import useRaceType from '../../hooks/useRaceType';
 import AntIcon from 'react-native-vector-icons/AntDesign';
+import useServerColor from '../../hooks/useServerColor';
 
 type Props = {
   data: RankedServer;
@@ -34,6 +35,7 @@ const Server: React.FC<Props> = ({data}) => {
   const {session} = useSession(server.CurrentSession);
   const {name, raceType} = useRaceType(data.Server.Settings);
   const {colors} = useTheme();
+  const {color} = useServerColor(data.Server.Settings, data.Server.Players);
 
   const navigateToServer = () => {
     navigate({
@@ -45,7 +47,9 @@ const Server: React.FC<Props> = ({data}) => {
   };
 
   return (
-    <Card style={styles.root} onPress={navigateToServer}>
+    <Card
+      style={[styles.root, {backgroundColor: color}]}
+      onPress={navigateToServer}>
       <CustomCardCover
         resizeMode={'cover'}
         source={{

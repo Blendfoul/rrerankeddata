@@ -4,7 +4,7 @@ import {selectedServerSelector} from '../../store/slices/Server';
 import {useRoute} from '@react-navigation/core';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ServerTabStackList} from '../../models/navigation/Navigation';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, ScrollView} from 'react-native';
 import Server from './Server';
 import ServerInformation from './details/ServerInformation';
 import ServerSettings from './details/ServerSettings';
@@ -17,9 +17,11 @@ const ServerDetails: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <Server data={server} />
-      <ServerInformation data={server} />
-      <ServerSettings data={server} />
+      <ScrollView>
+        <Server data={server} />
+        <ServerInformation data={server} />
+        <ServerSettings data={server} />
+      </ScrollView>
     </SafeAreaView>
   );
 };

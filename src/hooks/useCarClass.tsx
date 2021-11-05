@@ -1,14 +1,31 @@
 import {useCallback, useEffect, useState} from 'react';
 import {useRaceSelector} from '../store/hooks';
 import {dataSelector} from '../store/slices/General';
+import {Livery} from '../models/data/General';
 
 const useCarClass = (classId?: number[], liveries?: number[]) => {
-  const [classes, setClasses] = useState<number[]>([]);
+  const [carClasses, setClasses] = useState<number[]>([]);
   const {cars} = useRaceSelector(dataSelector);
+
+  const wellKnownClasses = (value: number) => {
+    switch (value) {
+      case 1703:
+      case 7278:
+      case 7767:
+      case 4516:
+      case 2922:
+      case 3375:
+        return 1703;
+      default:
+        return value;
+    }
+  };
 
   const handleClasses = useCallback(() => {
     if (classId !== undefined) {
-      setClasses(classId);
+      const values = classId.map(id => wellKnownClasses(id));
+      const classAvailable = new Set(values);
+      setClasses([...classAvailable] as number[]);
     } else {
       const liveryArray = liveries;
       const classAvailable = new Set();
@@ -17,11 +34,11 @@ const useCarClass = (classId?: number[], liveries?: number[]) => {
           for (const key in cars) {
             if (cars.hasOwnProperty(key)) {
               //@ts-ignore
-              const data = cars[key].liveries.find(
+              const data: Livery = cars[key].liveries.find(
                 (val: {Id: number}) => value === val.Id,
               );
               if (data !== undefined) {
-                classAvailable.add(data.Class);
+                classAvailable.add(wellKnownClasses(data.Class));
               }
             }
           }
@@ -36,7 +53,7 @@ const useCarClass = (classId?: number[], liveries?: number[]) => {
     handleClasses();
   }, [handleClasses]);
 
-  return {classes};
+  return {classes: carClasses};
 };
 
 export default useCarClass;

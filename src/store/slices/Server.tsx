@@ -23,43 +23,18 @@ export const fetchServers = createAsyncThunk<RankedServer[]>(
 
 type ServerState = {
   server: RankedServer[];
-  region: string;
-  session: number;
-  order: boolean;
   isLoading: boolean;
 };
 
 const initialState = {
   server: [],
-  region: '',
-  session: -1,
-  order: false,
   isLoading: false,
 } as ServerState;
 
 const ServerSlice = createSlice({
   name: 'server',
   initialState,
-  reducers: {
-    setRegion: (state, action) => {
-      return {
-        ...state,
-        region: action.payload,
-      };
-    },
-    setSession: (state, action) => {
-      return {
-        ...state,
-        session: action.payload,
-      };
-    },
-    setOrder: (state, action) => {
-      return {
-        ...state,
-        order: action.payload,
-      };
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder.addCase(fetchServers.pending, state => {
       return {
@@ -88,47 +63,31 @@ export const selectedServerSelector = (serverId: string) => {
 };
 
 export const selectRegionSelector = createDraftSafeSelector(
-  selectServers,
-  state => {
-    let server =
-      state.region.length > 0
-        ? state.server.filter((server: RankedServer) =>
-            server.Server.Settings.ServerName.includes(state.region),
+  (state: RootState) => state,
+  ({general: {region, session, order}, server}) => {
+    let servers =
+      region.length > 0
+        ? server.server.filter((server: RankedServer) =>
+            server.Server.Settings.ServerName.includes(region),
           )
-        : state.server;
+        : server.server;
 
-    server =
-      state.session !== -1
-        ? server.filter(
-            (a: RankedServer) => a.Server.CurrentSession === state.session,
+    servers =
+      session !== -1
+        ? servers.filter(
+            (a: RankedServer) => a.Server.CurrentSession === session,
           )
-        : server;
+        : servers;
 
-    server = sortBy(server, (o: RankedServer) => o.Server.PlayersOnServer);
+    servers = sortBy(servers, (o: RankedServer) => o.Server.PlayersOnServer);
 
-    server = state.order ? server : server.reverse();
+    servers = order ? servers : servers.reverse();
 
     return {
-      ...state,
-      server,
+      ...server,
+      server: servers,
     };
   },
 );
 
-export const orderSelector = createDraftSafeSelector(
-  selectServers,
-  state => state.order,
-);
-
-export const regionSelector = createDraftSafeSelector(
-  selectServers,
-  state => state.region,
-);
-
-export const sessionSelector = createDraftSafeSelector(
-  selectServers,
-  state => state.session,
-);
-
 export default ServerSlice.reducer;
-export const serverActions = ServerSlice.actions;

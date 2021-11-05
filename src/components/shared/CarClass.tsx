@@ -28,12 +28,7 @@ const CarClass: React.FC<Props> = ({data, classId, ...props}) => {
   );
 
   return (
-    <FlatList
-      {...props}
-      horizontal
-      data={classId ? classId : classes}
-      renderItem={renderItem}
-    />
+    <FlatList {...props} horizontal data={classes} renderItem={renderItem} />
   );
 };
 

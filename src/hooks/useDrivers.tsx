@@ -1,9 +1,9 @@
 import {useSelector} from 'react-redux';
-import {ratingSelector} from '../store/slices/General';
 import {useCallback, useEffect, useState} from 'react';
 import {Rating} from '../models/data/Ranked';
 import axios, {AxiosRequestConfig} from 'axios';
 import {sortBy} from 'lodash';
+import {ratingSelector} from '../store/slices/Ratings';
 
 const useDrivers = (driversId: number[]) => {
   const ratings = useSelector(ratingSelector);

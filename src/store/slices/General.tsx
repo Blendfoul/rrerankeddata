@@ -4,7 +4,6 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {Rating} from '../../models/data/Ranked';
 import {RootState} from '../Store';
 import {R3eData} from '../../models/data/General';
 
@@ -19,25 +18,15 @@ export const fetchR3eData = createAsyncThunk<R3eData>(
   },
 );
 
-export const fetchRatings = createAsyncThunk<Rating[]>(
-  'general/ratings',
-  async () => {
-    const response = await axios(
-      'https://game.raceroom.com/multiplayer-rating/ratings.json',
-    );
-
-    return response.data;
-  },
-);
-
 type GeneralState = {
   r3eData: R3eData;
-  ratings: Rating[];
+  region: string;
+  session: number;
+  order: boolean;
   isLoading: boolean;
 };
 
 const initialState = {
-  ratings: [],
   r3eData: {
     cars: {},
     classes: {},
@@ -47,21 +36,37 @@ const initialState = {
     teams: {},
     tracks: {},
   },
+  region: '',
+  session: -1,
+  order: false,
   isLoading: false,
 } as Partial<GeneralState>;
 
 const GeneralSlice = createSlice({
   name: 'general',
   initialState,
-  reducers: {},
-  extraReducers: builder => {
-    builder.addCase(fetchR3eData.pending, state => {
+  reducers: {
+    setRegion: (state, action) => {
       return {
         ...state,
-        isLoading: true,
+        region: action.payload,
       };
-    });
-    builder.addCase(fetchRatings.pending, state => {
+    },
+    setSession: (state, action) => {
+      return {
+        ...state,
+        session: action.payload,
+      };
+    },
+    setOrder: (state, action) => {
+      return {
+        ...state,
+        order: action.payload,
+      };
+    },
+  },
+  extraReducers: builder => {
+    builder.addCase(fetchR3eData.pending, state => {
       return {
         ...state,
         isLoading: true,
@@ -74,31 +79,30 @@ const GeneralSlice = createSlice({
         isLoading: false,
       };
     });
-    builder.addCase(fetchRatings.fulfilled, (state, action) => {
-      return {
-        ...state,
-        ratings: action.payload,
-        isLoading: false,
-      };
-    });
   },
 });
 
 const generalSelector = (state: RootState) => state.general;
 
-export const ratingSelector = createDraftSafeSelector(
-  generalSelector,
-  state => state.ratings,
-);
 export const dataSelector = createDraftSafeSelector(
   generalSelector,
   state => state.r3eData as R3eData,
 );
 
-export const driverSelector = (driverId: number) => {
-  return createDraftSafeSelector(generalSelector, state =>
-    state.ratings?.find((driver: Rating) => driver.UserId === driverId),
-  );
-};
+export const orderSelector = createDraftSafeSelector(
+  generalSelector,
+  state => state.order,
+);
+
+export const regionSelector = createDraftSafeSelector(
+  generalSelector,
+  state => state.region,
+);
+
+export const sessionSelector = createDraftSafeSelector(
+  generalSelector,
+  state => state.session,
+);
 
 export default GeneralSlice.reducer;
+export const generalActions = GeneralSlice.actions;

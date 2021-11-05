@@ -2,8 +2,8 @@ import axios, {AxiosResponse} from 'axios';
 import {SearchUser} from '../models/data/User';
 import {Rating} from '../models/data/Ranked';
 import {useSelector} from 'react-redux';
-import {ratingSelector} from '../store/slices/General';
 import {useEffect, useState} from 'react';
+import {ratingSelector} from '../store/slices/Ratings';
 
 const useSearch = (name: string) => {
   const [users, setUsers] = useState<SearchUser[]>([]);

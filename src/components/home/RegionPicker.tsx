@@ -7,8 +7,8 @@ import {
   RadioButton,
 } from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
-import {regionSelector, serverActions} from '../../store/slices/Server';
 import {useTranslation} from 'react-i18next';
+import {generalActions, regionSelector} from '../../store/slices/General';
 
 const RegionPicker: React.FC = () => {
   const {t} = useTranslation();
@@ -32,7 +32,7 @@ const RegionPicker: React.FC = () => {
           <Dialog.Content>
             <RadioButton.Group
               onValueChange={value => {
-                dispatch(serverActions.setRegion(value));
+                dispatch(generalActions.setRegion(value));
                 hideDialog();
               }}
               value={region}>

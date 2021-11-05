@@ -1,8 +1,8 @@
 import React from 'react';
 import {IconButton, useTheme} from 'react-native-paper';
 import {batch, useDispatch} from 'react-redux';
-import {orderSelector, serverActions} from '../../store/slices/Server';
 import {useRaceSelector} from '../../store/hooks';
+import {generalActions, orderSelector} from '../../store/slices/General';
 
 const RegionPicker: React.FC = () => {
   const {colors} = useTheme();
@@ -11,7 +11,7 @@ const RegionPicker: React.FC = () => {
 
   const openPicker = () => {
     batch(() => {
-      dispatch(serverActions.setOrder(!state));
+      dispatch(generalActions.setOrder(!state));
     });
   };
 

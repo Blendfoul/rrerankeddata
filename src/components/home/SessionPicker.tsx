@@ -5,10 +5,10 @@ import {
   RadioButton,
   useTheme,
 } from 'react-native-paper';
-import {serverActions, sessionSelector} from '../../store/slices/Server';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
+import {generalActions, sessionSelector} from '../../store/slices/General';
 
 const SessionPicker: React.FC = () => {
   const {t} = useTranslation();
@@ -32,7 +32,7 @@ const SessionPicker: React.FC = () => {
           <Dialog.Content>
             <RadioButton.Group
               onValueChange={value => {
-                dispatch(serverActions.setSession(+value));
+                dispatch(generalActions.setSession(+value));
                 hideDialog();
               }}
               value={session.toString()}>

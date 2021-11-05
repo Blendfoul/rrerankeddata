@@ -1,5 +1,6 @@
 import {combineReducers, configureStore, Middleware} from '@reduxjs/toolkit';
 import ServerReducer from './slices/Server';
+import RatingsReducer from './slices/Ratings';
 import GeneralReducer from './slices/General';
 import UserReducer from './slices/User';
 import thunk from 'redux-thunk';
@@ -36,12 +37,13 @@ const persistConfig: PersistConfig<any> = {
   key: 'root',
   version: 1,
   storage: AsyncStorage,
-  blacklist: ['result', 'user'],
+  blacklist: ['result', 'user', 'ratings', 'server'],
   timeout: 0,
 };
 
 const rootReducer = combineReducers({
   general: GeneralReducer,
+  ratings: RatingsReducer,
   server: ServerReducer,
   user: UserReducer,
   defaultUser: DefaultUserReducer,

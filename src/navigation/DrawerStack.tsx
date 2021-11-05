@@ -1,13 +1,14 @@
+import React, {useEffect} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {DrawerRoutes, DrawerStackList} from '../models/navigation/Navigation';
-import React, {useEffect} from 'react';
+import {batch, useDispatch} from 'react-redux';
 import ServerStack from './ServerStack';
 import UserStack from './UserStack';
-import {batch, useDispatch} from 'react-redux';
-import {fetchRatings} from '../store/slices/General';
 import DrawerComponent from '../components/drawer/DrawerComponent';
 import SearchStack from './SearchStack';
 import FriendsStack from './FriendsStack';
+import AboutStack from './AboutStack';
+import {fetchRatings} from '../store/slices/Ratings';
 
 const DrawerNavigator = createDrawerNavigator<DrawerStackList>();
 
@@ -41,7 +42,7 @@ const DrawerStack: React.FC = () => {
       />
       <DrawerNavigator.Screen
         name={DrawerRoutes.ABOUT}
-        component={SearchStack}
+        component={AboutStack}
       />
     </DrawerNavigator.Navigator>
   );

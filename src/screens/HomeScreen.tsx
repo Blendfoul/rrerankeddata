@@ -6,7 +6,6 @@ import {fetchServers, selectRegionSelector} from '../store/slices/Server';
 import {useDispatch} from 'react-redux';
 import PickersComponent from '../components/home/PickersComponent';
 import {RankedServer} from '../models/data/Ranked';
-import AppReviewProvider from '../components/shared/AppReviewProvider';
 
 const HomeScreen: React.FC = () => {
   const {server, isLoading} = useRaceSelector(selectRegionSelector);
@@ -21,22 +20,20 @@ const HomeScreen: React.FC = () => {
   );
 
   return (
-    <AppReviewProvider>
-      <FlatList
-        data={server}
-        ListHeaderComponent={<PickersComponent />}
-        stickyHeaderIndices={[0]}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => `${item.Server.ServerIp}-${index}`}
-        refreshing={isLoading}
-        refreshControl={
-          <RefreshControl
-            refreshing={isLoading}
-            onRefresh={() => dispatch(fetchServers())}
-          />
-        }
-      />
-    </AppReviewProvider>
+    <FlatList
+      data={server}
+      ListHeaderComponent={<PickersComponent />}
+      stickyHeaderIndices={[0]}
+      renderItem={renderItem}
+      keyExtractor={(item, index) => `${item.Server.ServerIp}-${index}`}
+      refreshing={isLoading}
+      refreshControl={
+        <RefreshControl
+          refreshing={isLoading}
+          onRefresh={() => dispatch(fetchServers())}
+        />
+      }
+    />
   );
 };
 

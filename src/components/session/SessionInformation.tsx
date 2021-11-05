@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux';
 import {resultSelector} from '../../store/slices/User';
 import {Caption, Card, Paragraph} from 'react-native-paper';
 import useTrack from '../../hooks/useTrack';
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import ResultCover from '../shared/ResultCover';
 import ContentImage from '../shared/ContentImage';
 import FastImage from 'react-native-fast-image';
@@ -24,7 +24,7 @@ const SessionInformation: React.FC = () => {
   const timeFinish = new Date(data.RaceFinishTime * 1000);
 
   return (
-    <>
+    <ScrollView>
       <Card style={styles.root}>
         <ResultCover trackInfo={trackInfo} classes={classes} />
         <Card.Title
@@ -50,7 +50,7 @@ const SessionInformation: React.FC = () => {
         </Card.Content>
       </Card>
       <ResultInformation data={data} />
-    </>
+    </ScrollView>
   );
 };
 
