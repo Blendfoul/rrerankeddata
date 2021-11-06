@@ -13,6 +13,7 @@ import UserRaces from '../components/User/UserRaces';
 import {useDispatch, useSelector} from 'react-redux';
 import {actions, userNameSelector} from '../store/slices/User';
 import {userDataSelector, fetchUser} from '../store/slices/User';
+import {useTranslation} from 'react-i18next';
 
 type RouteProps = NativeStackScreenProps<ServerStackList, UserRoutes.USER>;
 
@@ -24,6 +25,7 @@ const UserScreen: React.FC = () => {
   const {name, isLoading} = useSelector(userNameSelector);
   const {user} = useSelector(userDataSelector);
   const dispatch = useDispatch();
+  const {t} = useTranslation();
 
   useEffect(() => {}, [user]);
 
@@ -43,6 +45,9 @@ const UserScreen: React.FC = () => {
       <TabStack.Screen
         name={UserTabRoutes.INFO}
         component={UserDetails}
+        options={{
+          title: t('user.info'),
+        }}
         initialParams={{
           id: params.id,
           type: 'User',
@@ -51,6 +56,9 @@ const UserScreen: React.FC = () => {
       <TabStack.Screen
         name={UserTabRoutes.RACES}
         component={UserRaces}
+        options={{
+          title: t('user.races'),
+        }}
         initialParams={{id: params.id}}
       />
     </TabStack.Navigator>

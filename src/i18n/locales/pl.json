@@ -1,0 +1,106 @@
+{
+  "drawer": {
+    "server": "Serwer",
+    "user": "Użytkownik",
+    "search": "Szukaj",
+    "ranking": "Ranking",
+    "about": "O programie",
+    "friends": "Przyjaciele",
+    "donate": "Wesprzyj",
+    "rate": "Oceń"
+  },
+  "picker": {
+    "cancel": "Anuluj",
+    "region": {
+      "all": "Wszystkie",
+      "europe": "Europa",
+      "america": "Ameryka",
+      "oceania": "Oceania"
+    },
+    "session": {
+      "all": "Wszystkie",
+      "practice": "Trening",
+      "qualification": "Kwalifikacje",
+      "race": "Wyścig"
+    }
+  },
+  "driver": {
+    "card": {
+      "privateer": "Prywatny",
+      "rating": "Ocena",
+      "reputation": "Reputacja",
+      "races": "Wyścigi"
+    },
+    "plot": {
+      "rating": "Ocena",
+      "reputation": "Reputacja"
+    }
+  },
+  "server": {
+    "lowReputation": "Nie masz wystarczająco Reputacji/Oceny na ten wyścig!",
+    "enabled": "Włączony",
+    "disabled": "Wyłączony",
+    "tireWear": "Zużycie opon",
+    "fuel": "Zużycie paliwa",
+    "mandatoryPit": "Wymagany zjazd do boksu",
+    "cutRules": "Zasady cięcia",
+    "field": "Siła stawki",
+    "reputation": "Reputacja",
+    "session": {
+      "practice": "Trening",
+      "qualification": "Kwalifikacje",
+      "race": "Wyścig"
+    },
+    "rules": {
+      "1": "Zwolnienie",
+      "2": "Pełne",
+      "3": "Żadne"
+    }
+  },
+  "search": {
+    "placeholder": "Nazwa użytkownika albo imię"
+  },
+  "result": {
+    "privateer": "Prywatny",
+    "position": "Pozycja",
+    "laptime": "Czas okrążenia",
+    "rating": "Ocena po",
+    "reputation": "Reputacja po",
+    "qualification": {
+      "sector1": "Sektor 1",
+      "sector2": "Sektor 2",
+      "sector3": "Sektor 3"
+    },
+    "information": {
+      "start": "Pozycja startowa",
+      "finish": "Pozycja na mecie",
+      "incidents": "Incydenty",
+      "drivers": "Kierowcy"
+    },
+    "table": {
+      "lap": "Okrążenie",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "Prawidłowe",
+      "lapTime": "Czas okrążenia"
+    },
+    "incidents": {
+      "InvalidLap": "Invalid Lap",
+      "LosingControl": "Utrata kontroli",
+      "Track": "Kolizje z otoczeniem",
+      "Vehicle": "Kolizje z innymi samochodami",
+      "Disconnect": "Rozłączony",
+      "UnservedPenalty": "Nieobsługiwany błąd",
+      "WrongWay": "Jazda w złą stronę"
+    }
+  },
+  "about": {
+    "disclaimer": "R3E Ranked statistics jest aplikacją innej firmy i nie jest w żaden sposób powiązana z Sector 3.",
+    "somethingWrong": "Znalazłeś błąd?"
+  },
+  "donation": {
+    "greeting": "Cześć!",
+    "message": "Jeśli podoba Ci się aplikacja i masz ochotę wesprzeć mnie w jej rozwoju, nie krępuj się. Każde wsparcie będzie docenione!"
+  }
+}

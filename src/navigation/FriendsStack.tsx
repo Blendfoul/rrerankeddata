@@ -12,12 +12,14 @@ import SessionScreen from '../screens/SessionScreen';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import FriendsScreen from '../models/navigation/FriendsScreen';
 import UserScreen from '../screens/UserScreen';
+import {useTranslation} from 'react-i18next';
 type NavigationProps = DrawerNavigationProp<DrawerStackList>;
 
 const Stack = createNativeStackNavigator<FriendsStackList>();
 
 const FriendsStack: React.FC = () => {
   const navigation = useNavigation<NavigationProps>();
+  const {t} = useTranslation();
 
   return (
     <Stack.Navigator>
@@ -25,6 +27,7 @@ const FriendsStack: React.FC = () => {
         name={FriendsRoutes.FRIENDS}
         component={FriendsScreen}
         options={{
+          title: t('drawer.friends'),
           headerLeft: props => (
             <IconButton
               {...props}

@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect} from 'react';
 import {
-  Dimensions,
   FlatList,
   ListRenderItem,
   Platform,
@@ -17,7 +16,6 @@ import {
   consumePurchaseAndroid,
   Product,
 } from 'react-native-iap';
-import ContentImage from '../components/shared/ContentImage';
 import {useTranslation} from 'react-i18next';
 
 const productIds = Platform.select({
@@ -72,8 +70,8 @@ const DonateScreen: React.FC = () => {
   const renderProducts: ListRenderItem<Product> = ({item}) => {
     return (
       <Button
-        style={style.button}
-        contentStyle={style.contentButton}
+        style={styles.button}
+        contentStyle={styles.buttonContent}
         mode="contained"
         onPress={() => requestPurchase(item.productId)}>
         {item.title.split('(')[0]} - {item.price}
@@ -84,45 +82,35 @@ const DonateScreen: React.FC = () => {
 
   return (
     <ScrollView>
-      <View style={style.container}>
+      <View style={styles.content}>
         <Subheading>{t('donation.greeting')}</Subheading>
-        <Paragraph style={style.text}>{t('donation.message')}</Paragraph>
+        <Paragraph>{t('donation.message')}</Paragraph>
       </View>
       <FlatList
+        scrollEnabled={false}
         data={products}
         renderItem={renderProducts}
         keyExtractor={item => `donate-${item.productId}`}
       />
-      <View style={style.container}>
-        <ContentImage itemId={6401} resizeMode={'contain'} style={style.img} />
-      </View>
     </ScrollView>
   );
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   button: {
-    marginVertical: 10,
-    opacity: 0.75,
+    marginHorizontal: 10,
+    marginVertical: 5,
   },
-  contentButton: {
-    width: Dimensions.get('window').width * 0.85,
-    paddingVertical: 12.5,
-    alignItems: 'center',
+  buttonContent: {
+    paddingVertical: 10,
     backgroundColor: 'red',
   },
-  container: {
+  content: {
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  img: {
-    width: Dimensions.get('window').width * 0.85,
-    height: '100%',
-  },
-  text: {
+    marginHorizontal: 10,
+    marginVertical: 20,
     textAlign: 'justify',
-    width: Dimensions.get('window').width * 0.85,
-    paddingBottom: 15,
   },
 });
 

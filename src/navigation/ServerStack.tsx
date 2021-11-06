@@ -18,6 +18,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {userIdSelector} from '../store/slices/User';
 import SessionScreen from '../screens/SessionScreen';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
+import {useTranslation} from 'react-i18next';
 
 const Stack = createNativeStackNavigator<ServerStackList>();
 
@@ -28,6 +29,7 @@ const ServerStack: React.FC = () => {
   const dispatch = useDispatch();
   const searchId = useSelector(userIdSelector);
   const id = useSelector(idSelector);
+  const {t} = useTranslation();
 
   return (
     <Stack.Navigator>
@@ -36,6 +38,7 @@ const ServerStack: React.FC = () => {
           name={ServerRoutes.HOME}
           component={HomeScreen}
           options={{
+            title: t('drawer.server'),
             headerLeft: props => (
               <IconButton
                 {...props}

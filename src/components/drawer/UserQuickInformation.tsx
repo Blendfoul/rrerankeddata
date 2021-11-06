@@ -31,11 +31,11 @@ const UserQuickInformation: React.FC = () => {
       />
       <Card.Content style={styles.content}>
         <View style={styles.container}>
-          <Paragraph>{t('profile.rating')}</Paragraph>
+          <Paragraph>{t('driver.card.rating')}</Paragraph>
           <Caption>{rating?.Rating}</Caption>
         </View>
         <View style={styles.container}>
-          <Paragraph>{t('profile.reputation')}</Paragraph>
+          <Paragraph>{t('driver.card.reputation')}</Paragraph>
           <Caption>{rating?.Reputation}</Caption>
         </View>
       </Card.Content>

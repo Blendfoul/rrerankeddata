@@ -17,7 +17,7 @@ const useSession = (sessionId: number) => {
         setSession(t('server.session.race'));
         break;
     }
-  }, []);
+  }, [sessionId]);
 
   return {session};
 };

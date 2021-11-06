@@ -10,6 +10,8 @@ const useServerColor = (settings: ServerDataSettings, drivers: number[]) => {
   const [color, setColor] = useState<string>('');
 
   const getServerColor = () => {
+    console.warn('Server Color', user);
+
     if (!user) {
       return;
     }
@@ -29,7 +31,7 @@ const useServerColor = (settings: ServerDataSettings, drivers: number[]) => {
 
   useEffect(() => {
     getServerColor();
-  }, [user]);
+  }, [rating]);
 
   return {color};
 };

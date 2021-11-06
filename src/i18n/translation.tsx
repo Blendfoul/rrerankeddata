@@ -9,6 +9,7 @@ import fr from './locales/fr.json';
 import it from './locales/it.json';
 import nl from './locales/nl.json';
 import pt from './locales/pt.json';
+import pl from './locales/pl.json';
 
 const languageDetector = {
   type: 'languageDetector',
@@ -45,6 +46,9 @@ i18n
       },
       pt: {
         translation: pt,
+      },
+      pl: {
+        translation: pl,
       },
     },
     fallbackLng: 'en',

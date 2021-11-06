@@ -54,14 +54,22 @@ const ServerSlice = createSlice({
 const selectServers = (state: RootState) => state.server;
 
 export const selectedServerSelector = (serverId: string) => {
-  return createDraftSafeSelector(selectServers, state => {
-    return state.server.find(
-      (server: RankedServer) => server.Server.Settings.ServerName === serverId,
-    ) as RankedServer;
-  });
+  return createDraftSafeSelector<RootState, ServerState, RankedServer>(
+    selectServers,
+    state => {
+      return state.server.find(
+        (server: RankedServer) =>
+          server.Server.Settings.ServerName === serverId,
+      ) as RankedServer;
+    },
+  );
 };
 
-export const selectRegionSelector = createDraftSafeSelector(
+export const selectRegionSelector = createDraftSafeSelector<
+  RootState,
+  RootState,
+  ServerState
+>(
   (state: RootState) => state,
   ({general: {region, session, order}, server}) => {
     let servers =

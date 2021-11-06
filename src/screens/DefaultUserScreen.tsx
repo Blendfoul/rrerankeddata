@@ -10,6 +10,7 @@ import {
   fetchUser,
   idSelector,
 } from '../store/slices/DefaultUser';
+import {useTranslation} from 'react-i18next';
 
 const TabStack = createMaterialTopTabNavigator<UserTabStackList>();
 
@@ -18,6 +19,7 @@ const DefaultUserScreen: React.FC = () => {
   const navigation = useNavigation();
   const {name} = useSelector(userNameSelector);
   const dispatch = useDispatch();
+  const {t} = useTranslation();
 
   useEffect(() => {
     dispatch(fetchUser(user));
@@ -34,6 +36,9 @@ const DefaultUserScreen: React.FC = () => {
       <TabStack.Screen
         name={UserTabRoutes.INFO}
         component={UserDetails}
+        options={{
+          title: t('user.info'),
+        }}
         initialParams={{
           id: user,
           type: 'Default',
@@ -42,6 +47,9 @@ const DefaultUserScreen: React.FC = () => {
       <TabStack.Screen
         name={UserTabRoutes.RACES}
         component={UserRaces}
+        options={{
+          title: t('user.races'),
+        }}
         initialParams={{id: user}}
       />
     </TabStack.Navigator>
