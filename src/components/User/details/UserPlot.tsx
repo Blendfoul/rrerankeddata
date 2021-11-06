@@ -23,6 +23,10 @@ const UserPlot: React.FC<Props> = ({type}) => {
     return null;
   }
 
+  if (!data.rating.length && !data.reputation.length) {
+    return null;
+  }
+
   return (
     <>
       <Card

@@ -1,6 +1,5 @@
 import {Rating} from '../data/Ranked';
 import {QualiResult, RaceResult} from '../data/Result';
-import {User} from '../data/User';
 
 export type DrawerStackList = {
   ServerDrawer: undefined;
@@ -27,6 +26,10 @@ export type ServerStackList = {
 
 export type SearchStackList = {
   Search: undefined;
+} & UserStackList;
+
+export type RankingStackList = {
+  Ranking: undefined;
 } & UserStackList;
 
 export type UserStackList = {
@@ -107,6 +110,13 @@ export enum ServerRoutes {
 
 export enum SearchRoutes {
   SEARCH = 'Search',
+  USER = 'User',
+  RESULT = 'Result',
+  DETAILS = 'Details',
+}
+
+export enum RankingRoutes {
+  RANKING = 'Ranking',
   USER = 'User',
   RESULT = 'Result',
   DETAILS = 'Details',

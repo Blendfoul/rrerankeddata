@@ -1,32 +1,47 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import RankingScreen from '../screens/RankingScreen';
+import {useTranslation} from 'react-i18next';
 import {
-  DrawerRoutes,
   DrawerStackList,
-  UserRoutes,
-  UserStackList,
+  RankingRoutes,
+  RankingStackList,
 } from '../models/navigation/Navigation';
+import {IconButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/core';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
-import {IconButton} from 'react-native-paper';
 import SessionScreen from '../screens/SessionScreen';
-import DefaultUserScreen from '../screens/DefaultUserScreen';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
-import {useTranslation} from 'react-i18next';
+import UserScreen from '../screens/UserScreen';
 
-const Stack = createNativeStackNavigator<UserStackList>();
+type Props = {};
 
-type RouteProps = DrawerNavigationProp<DrawerStackList, DrawerRoutes.USER>;
+const Stack = createNativeStackNavigator<RankingStackList>();
 
-const UserStack: React.FC = () => {
-  const navigation = useNavigation<RouteProps>();
+const RankingStack: React.FC<Props> = () => {
   const {t} = useTranslation();
+  const navigation = useNavigation<DrawerNavigationProp<DrawerStackList>>();
+
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name={RankingRoutes.RANKING}
+        component={RankingScreen}
+        options={{
+          title: t('drawer.ranking'),
+          headerLeft: props => (
+            <IconButton
+              {...props}
+              icon={'menu'}
+              onPress={() => navigation.openDrawer()}
+            />
+          ),
+        }}
+      />
       <Stack.Group>
         <Stack.Screen
-          name={UserRoutes.USER}
-          component={DefaultUserScreen}
+          name={RankingRoutes.USER}
+          component={UserScreen}
           options={{
             headerLeft: props => (
               <IconButton
@@ -38,14 +53,14 @@ const UserStack: React.FC = () => {
           }}
         />
         <Stack.Screen
-          name={UserRoutes.RESULT}
+          name={RankingRoutes.RESULT}
           component={SessionScreen}
           options={{
             title: t('drawer.result'),
           }}
         />
         <Stack.Screen
-          name={UserRoutes.DETAILS}
+          name={RankingRoutes.DETAILS}
           component={SessionDetailsScreen}
         />
       </Stack.Group>
@@ -53,4 +68,4 @@ const UserStack: React.FC = () => {
   );
 };
 
-export default UserStack;
+export default RankingStack;

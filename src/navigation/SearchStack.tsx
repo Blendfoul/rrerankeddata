@@ -63,7 +63,13 @@ const SearchStack: React.FC = () => {
           ),
         }}
       />
-      <Stack.Screen name={SearchRoutes.RESULT} component={SessionScreen} />
+      <Stack.Screen
+        name={SearchRoutes.RESULT}
+        component={SessionScreen}
+        options={{
+          title: t('drawer.result'),
+        }}
+      />
       <Stack.Screen
         name={SearchRoutes.DETAILS}
         component={SessionDetailsScreen}

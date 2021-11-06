@@ -1,6 +1,7 @@
 import {
   createAsyncThunk,
   createDraftSafeSelector,
+  createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -112,23 +113,22 @@ type RatingData = {
   isLoading: boolean;
 };
 
-export const ratingSelector = createDraftSafeSelector<
-  RatingData,
-  UserState,
-  RootState
->(userSelector, state => {
-  return {
-    data: {
-      rating: state?.races?.Entries.map(
-        (race: Result) => race.RatingAfter,
-      ).reverse(),
-      reputation: state?.races?.Entries.map(
-        (race: Result) => race.ReputationAfter,
-      ).reverse(),
-    },
-    isLoading: state.isLoadingRaces,
-  } as RatingData;
-});
+export const ratingSelector = createSelector<RootState, UserState, RatingData>(
+  userSelector,
+  state => {
+    return {
+      data: {
+        rating: state?.races?.Entries.map(
+          (race: Result) => race.RatingAfter,
+        ).reverse(),
+        reputation: state?.races?.Entries.map(
+          (race: Result) => race.ReputationAfter,
+        ).reverse(),
+      },
+      isLoading: state.isLoadingRaces,
+    };
+  },
+);
 
 export const userRacesSelector = createDraftSafeSelector(
   userSelector,

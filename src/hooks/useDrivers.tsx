@@ -3,10 +3,10 @@ import {useCallback, useEffect, useState} from 'react';
 import {Rating} from '../models/data/Ranked';
 import axios, {AxiosRequestConfig} from 'axios';
 import {sortBy} from 'lodash';
-import {ratingSelector} from '../store/slices/Ratings';
+import {ratingsComplete} from '../store/slices/Ratings';
 
 const useDrivers = (driversId: number[]) => {
-  const ratings = useSelector(ratingSelector);
+  const ratings = useSelector(ratingsComplete);
   const [drivers, setDrivers] = useState<Rating[]>([]);
   const source = axios.CancelToken.source();
 

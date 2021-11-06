@@ -1,6 +1,7 @@
 import {
   createAsyncThunk,
   createDraftSafeSelector,
+  createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
 import {Rating} from '../../models/data/Ranked';
@@ -18,7 +19,7 @@ export const fetchRatings = createAsyncThunk<Rating[]>(
   },
 );
 
-type GeneralState = {
+type RatingState = {
   ratings: Rating[];
   isLoading: boolean;
 };
@@ -26,7 +27,7 @@ type GeneralState = {
 const initialState = {
   ratings: [],
   isLoading: false,
-} as Partial<GeneralState>;
+} as Partial<RatingState>;
 
 const ratingsSlice = createSlice({
   name: 'ratings',
@@ -49,9 +50,23 @@ const ratingsSlice = createSlice({
   },
 });
 
-const ratSelector = (state: RootState) => state.ratings;
+const ratSelector: (state: RootState) => RatingState = state => state.ratings;
 
-export const ratingSelector = createDraftSafeSelector(
+export const ratingSelector = (from: number, to: number) => {
+  return createSelector<RootState, RatingState, Rating[]>(
+    ratSelector,
+    state => {
+      return state.ratings.slice(from, to);
+    },
+  );
+};
+
+export const ratingsLength = createSelector<RootState, RatingState, number>(
+  ratSelector,
+  state => state.ratings.length,
+);
+
+export const ratingsComplete = createSelector<RootState, RatingState, Rating[]>(
   ratSelector,
   state => state.ratings,
 );

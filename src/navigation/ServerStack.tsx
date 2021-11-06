@@ -81,7 +81,13 @@ const ServerStack: React.FC = () => {
           ),
         }}
       />
-      <Stack.Screen name={ServerRoutes.RESULT} component={SessionScreen} />
+      <Stack.Screen
+        name={ServerRoutes.RESULT}
+        component={SessionScreen}
+        options={{
+          title: t('drawer.result'),
+        }}
+      />
       <Stack.Screen
         name={ServerRoutes.DETAILS}
         component={SessionDetailsScreen}
@@ -91,6 +97,9 @@ const ServerStack: React.FC = () => {
         <Stack.Screen
           name={DrawerRoutes.SCHEDULE}
           component={CalendarComponent}
+          options={{
+            title: t('drawer.schedule'),
+          }}
         />
       </Stack.Group>
     </Stack.Navigator>

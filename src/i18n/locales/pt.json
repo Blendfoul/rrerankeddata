@@ -7,7 +7,10 @@
     "about": "Acerca",
     "friends": "Amigos",
     "donate": "Doar",
-    "rate": "Classificar"
+    "rate": "Classificar",
+    "result": "Resultado",
+    "schedule": "Calendário",
+    "details": "Detalhes"
   },
   "user": {
     "info": "Perfil",

@@ -40,6 +40,11 @@ const DrawerComponent: React.FC<DrawerContentComponentProps> = ({
         icon: 'account-search',
       },
       {
+        label: t('drawer.ranking'),
+        route: DrawerRoutes.RANKING,
+        icon: 'format-list-bulleted-square',
+      },
+      {
         label: t('drawer.about'),
         route: DrawerRoutes.ABOUT,
         icon: 'information',

@@ -7,7 +7,14 @@
     "about": "About",
     "friends": "Friends",
     "donate": "Donate",
-    "rate": "Rate"
+    "rate": "Rate",
+    "result": "Result",
+    "schedule": "Schedule",
+    "details": "Details"
+  },
+  "user": {
+    "info": "Profile",
+    "races": "Races"
   },
   "picker": {
     "cancel": "Cancel",
@@ -84,6 +91,11 @@
       "sector3": "S3",
       "valid": "Valid",
       "lapTime": "Lap Time"
+    },
+    "tabs": {
+      "info": "General",
+      "qualification": "Qualification",
+      "race": "Race"
     },
     "incidents": {
       "InvalidLap": "Invalid Lap",

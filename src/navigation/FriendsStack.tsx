@@ -38,10 +38,19 @@ const FriendsStack: React.FC = () => {
         }}
       />
       <Stack.Screen name={FriendsRoutes.USER} component={UserScreen} />
-      <Stack.Screen name={FriendsRoutes.RESULT} component={SessionScreen} />
+      <Stack.Screen
+        name={FriendsRoutes.RESULT}
+        component={SessionScreen}
+        options={{
+          title: t('drawer.result'),
+        }}
+      />
       <Stack.Screen
         name={FriendsRoutes.DETAILS}
         component={SessionDetailsScreen}
+        options={{
+          title: t('drawer.details'),
+        }}
       />
     </Stack.Navigator>
   );
