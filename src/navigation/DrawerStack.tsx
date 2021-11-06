@@ -9,6 +9,7 @@ import SearchStack from './SearchStack';
 import FriendsStack from './FriendsStack';
 import AboutStack from './AboutStack';
 import {fetchRatings} from '../store/slices/Ratings';
+import DonateStack from './DonateStack';
 
 const DrawerNavigator = createDrawerNavigator<DrawerStackList>();
 
@@ -43,6 +44,10 @@ const DrawerStack: React.FC = () => {
       <DrawerNavigator.Screen
         name={DrawerRoutes.ABOUT}
         component={AboutStack}
+      />
+      <DrawerNavigator.Screen
+        name={DrawerRoutes.DONATE}
+        component={DonateStack}
       />
     </DrawerNavigator.Navigator>
   );

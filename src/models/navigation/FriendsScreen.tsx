@@ -14,8 +14,6 @@ const FriendsScreen: React.FC = () => {
     return <LoadingComponent />;
   }
 
-  console.log(friends);
-
   return (
     <FlatList
       data={friends}

@@ -4,12 +4,15 @@ import CustomCardCover from '../../shared/CustomCardCover';
 import Country from '../../shared/Country';
 import {User} from '../../../models/data/User';
 import {Image, StyleSheet} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
   user: User;
 };
 
 const UserInformation: React.FC<Props> = ({user}) => {
+  const {t} = useTranslation();
+
   return (
     <Card style={styles.root}>
       <CustomCardCover
@@ -24,7 +27,7 @@ const UserInformation: React.FC<Props> = ({user}) => {
       </CustomCardCover>
       <Card.Title
         title={user.name}
-        subtitle={user.team}
+        subtitle={user.team || t('driver.card.privateer')}
         right={props => <Country country={user.country.code} {...props} />}
       />
     </Card>

@@ -13,6 +13,7 @@ import LoadingComponent from '../components/shared/LoadingComponent';
 import SessionInformation from '../components/session/SessionInformation';
 import QualiComponent from '../components/session/QualiComponent';
 import RaceComponent from '../components/session/RaceComponent';
+import {StyleSheet} from 'react-native';
 
 const Tab = createMaterialTopTabNavigator<SessionTabStackList>();
 
@@ -32,7 +33,10 @@ const SessionScreen: React.FC = () => {
   }
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarLabelStyle: styles.label,
+      }}>
       <Tab.Screen
         name={SessionTabRoutes.INFO}
         component={SessionInformation}
@@ -51,5 +55,11 @@ const SessionScreen: React.FC = () => {
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  label: {
+    fontSize: 12,
+  },
+});
 
 export default SessionScreen;

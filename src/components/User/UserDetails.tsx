@@ -5,12 +5,13 @@ import {UserTabStackList} from '../../models/navigation/Navigation';
 import LoadingComponent from '../shared/LoadingComponent';
 import UserInformation from './details/UserInformation';
 import UserStatistics from './details/UserStatistics';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {userDataSelector} from '../../store/slices/User';
 import {dataSelector} from '../../store/slices/DefaultUser';
 import UserTwitchStreamer from './details/UserTwitchStreamer';
-import {ScrollView} from 'react-native';
+import {RefreshControl, ScrollView} from 'react-native';
 import UserPlot from './details/UserPlot';
+import {fetchServers} from '../../store/slices/Server';
 
 type Props = MaterialTopTabScreenProps<UserTabStackList, 'Info'>;
 
@@ -19,13 +20,20 @@ const UserDetails: React.FC = () => {
   const {isLoading, user} = useSelector(
     params.type === 'User' ? userDataSelector : dataSelector,
   );
+  const dispatch = useDispatch();
 
   if (isLoading) {
     return <LoadingComponent />;
   }
 
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={isLoading}
+          onRefresh={() => dispatch(fetchServers())}
+        />
+      }>
       <UserInformation user={user} />
       <UserStatistics user={user} />
       <UserTwitchStreamer user={user} />

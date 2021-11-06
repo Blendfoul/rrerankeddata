@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector} from 'react-redux';
 import {idSelector} from '../../store/slices/DefaultUser';
 import AppReviewProvider from '../shared/AppReviewProvider';
+import {useTranslation} from 'react-i18next';
 
 type MenuItem = {
   label: string;
@@ -22,14 +23,32 @@ const DrawerComponent: React.FC<DrawerContentComponentProps> = ({
   const {navigate} = useNavigation();
   const userId = useSelector(idSelector);
   const [requested, setRequested] = useState<boolean>(false);
+  const {t} = useTranslation();
 
   const routes = useMemo(
     () => [
-      {label: 'Server', route: DrawerRoutes.SERVER, icon: 'steering'},
-      {label: 'User', route: DrawerRoutes.USER, icon: 'account'},
-      {label: 'Friends', route: DrawerRoutes.FRIENDS, icon: 'account-multiple'},
-      {label: 'Search', route: DrawerRoutes.SEARCH, icon: 'account-search'},
-      {label: 'About', route: DrawerRoutes.ABOUT, icon: 'information'},
+      {label: t('drawer.server'), route: DrawerRoutes.SERVER, icon: 'steering'},
+      {label: t('drawer.user'), route: DrawerRoutes.USER, icon: 'account'},
+      {
+        label: t('drawer.friends'),
+        route: DrawerRoutes.FRIENDS,
+        icon: 'account-multiple',
+      },
+      {
+        label: t('drawer.search'),
+        route: DrawerRoutes.SEARCH,
+        icon: 'account-search',
+      },
+      {
+        label: t('drawer.about'),
+        route: DrawerRoutes.ABOUT,
+        icon: 'information',
+      },
+      {
+        label: t('drawer.donate'),
+        route: DrawerRoutes.DONATE,
+        icon: 'hand-heart',
+      },
     ],
     [],
   );
@@ -70,7 +89,7 @@ const DrawerComponent: React.FC<DrawerContentComponentProps> = ({
             keyExtractor={item => item.label}
           />
           <Drawer.Item
-            label={'Rate'}
+            label={t('drawer.rate')}
             onPress={() => setRequested(true)}
             right={props => <Icon name={'star'} {...props} size={20} />}
           />

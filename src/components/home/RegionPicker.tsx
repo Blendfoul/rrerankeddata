@@ -36,17 +36,17 @@ const RegionPicker: React.FC = () => {
                 hideDialog();
               }}
               value={region}>
-              <RadioButton.Item label={t('race.regions.all')} value="" />
+              <RadioButton.Item label={t('picker.region.all')} value="" />
               <RadioButton.Item
-                label={t('race.regions.europe')}
+                label={t('picker.region.europe')}
                 value="Europe"
               />
               <RadioButton.Item
-                label={t('race.regions.america')}
+                label={t('picker.region.america')}
                 value="America"
               />
               <RadioButton.Item
-                label={t('race.regions.oceania')}
+                label={t('picker.region.oceania')}
                 value="Oceania"
               />
             </RadioButton.Group>

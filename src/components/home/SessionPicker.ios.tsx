@@ -3,11 +3,19 @@ import {IconButton, useTheme} from 'react-native-paper';
 import {ActionSheetIOS, Platform} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {generalActions} from '../../store/slices/General';
+import {useTranslation} from 'react-i18next';
 
 const RegionPicker: React.FC = () => {
   const {colors} = useTheme();
   const dispatch = useDispatch();
-  const options = ['Cancel', 'All', 'Practice', 'Qualification', 'Race'];
+  const {t} = useTranslation();
+  const options = [
+    t('picker.cancel'),
+    t('picker.session.all'),
+    t('picker.session.practice'),
+    t('picker.session.qualification'),
+    t('picker.session.race'),
+  ];
   const values = [-1, 0, 256, 768];
 
   const openPicker = () => {

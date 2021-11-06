@@ -8,10 +8,10 @@ import {
 import {IconButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/core';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
-import DefaultUserScreen from '../screens/DefaultUserScreen';
 import SessionScreen from '../screens/SessionScreen';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import FriendsScreen from '../models/navigation/FriendsScreen';
+import UserScreen from '../screens/UserScreen';
 type NavigationProps = DrawerNavigationProp<DrawerStackList>;
 
 const Stack = createNativeStackNavigator<FriendsStackList>();
@@ -34,7 +34,7 @@ const FriendsStack: React.FC = () => {
           ),
         }}
       />
-      <Stack.Screen name={FriendsRoutes.USER} component={DefaultUserScreen} />
+      <Stack.Screen name={FriendsRoutes.USER} component={UserScreen} />
       <Stack.Screen name={FriendsRoutes.RESULT} component={SessionScreen} />
       <Stack.Screen
         name={FriendsRoutes.DETAILS}

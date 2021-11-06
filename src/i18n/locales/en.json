@@ -1,31 +1,42 @@
 {
-  "navigation": {
+  "drawer": {
     "server": "Servers",
     "user": "User",
     "search": "Search",
     "ranking": "Ranking",
     "about": "About",
     "friends": "Friends",
-    "raceDetails": "Race Details",
-    "sessionDetails": "Session Details",
-    "driverDetails": "Driver Details",
-    "leaderboard": "Leaderboard",
-    "myDriver": "My driver",
-    "result": "Result",
-    "race": "Race",
-    "qualification": "Qualification",
-    "donate": "Donate"
+    "donate": "Donate",
+    "rate": "Rate"
   },
-  "race": {
+  "picker": {
     "cancel": "Cancel",
-    "regions": {
+    "region": {
       "all": "All",
       "europe": "Europe",
       "america": "America",
       "oceania": "Oceania"
+    },
+    "session": {
+      "all": "All",
+      "practice": "Practice",
+      "qualification": "Qualification",
+      "race": "Race"
     }
   },
-  "raceDetails": {
+  "driver": {
+    "card": {
+      "privateer": "Privateer",
+      "rating": "Rating",
+      "reputation": "Reputation",
+      "races": "Races"
+    },
+    "plot": {
+      "rating": "Rating",
+      "reputation": "Reputation"
+    }
+  },
+  "server": {
     "lowReputation": "You do not have enough Reputation/Rating for this race!",
     "enabled": "Enabled",
     "disabled": "Disabled",
@@ -47,73 +58,44 @@
     }
   },
   "search": {
-    "placeholder": "Driver Username"
+    "placeholder": "Driver Username or name"
   },
-  "profile": {
-    "ranking": "Ranking",
-    "info": "Info",
-    "races": "Races",
-    "rating": "Rating",
-    "reputation": "Reputation",
-    "privateer": "Privateer"
-  },
-  "session": {
-    "qualification": "Qualify",
-    "race": "Race",
-    "layout": "Layout",
-    "drivers": "Drivers",
-    "positions": "Positions",
-    "noTimeSet": "No time set",
-    "LapsCompleted": "Laps Completed",
-    "StartPosition": "Start Position",
-    "FinishPosition": "Finish Position",
-    "RatingAfter": "Rating After",
-    "ReputationAfter": "Reputation After",
-    "Incidents": "Incidents"
-  },
-  "qualifySession": {
-    "fastest": "Fastest Lap",
+  "result": {
+    "privateer": "Privateer",
     "position": "Position",
-    "sector": "Sector ",
-    "optimal": "Optimal Lap",
-    "incidents": "Incidents"
+    "laptime": "Lap Time",
+    "rating": "Rating After",
+    "reputation": "Reputation After",
+    "qualification": {
+      "sector1": "Sector 1",
+      "sector2": "Sector 2",
+      "sector3": "Sector 3"
+    },
+    "information": {
+      "start": "Start Position",
+      "finish": "Finish Position",
+      "incidents": "Incidents",
+      "drivers": "Drivers"
+    },
+    "table": {
+      "lap": "Lap",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "Valid",
+      "lapTime": "Lap Time"
+    },
+    "incidents": {
+      "InvalidLap": "Invalid Lap",
+      "LosingControl": "Losing Control",
+      "Track": "Track Collision",
+      "Vehicle": "Vehicle Collision",
+      "Disconnect": "Disconnect",
+      "UnservedPenalty": "Un served Penalty",
+      "WrongWay": "Wrong Way"
+    }
   },
-  "raceSession": {
-    "bestLap": "Best Lap",
-    "rating": "Rating Change",
-    "reputation": "Reputation Change",
-    "start": "Start",
-    "finish": "Finish",
-    "incidents": "Incidents"
-  },
-  "lapTable": {
-    "lap": "Lap",
-    "sector1": "Sector 1",
-    "sector2": "Sector 2",
-    "sector3": "Sector 3",
-    "valid": "Valid",
-    "lapTime": "Lap Time"
-  },
-  "sessions": {
-    "practice": "Practice",
-    "qualification": "Qualification",
-    "race": "Race"
-  },
-  "incidents": {
-    "invalidLap": "Invalid Lap",
-    "losingControl": "Losing Control",
-    "trackCollision": "Track Collision",
-    "vehicleCollision": "Vehicle Collision",
-    "disconnect": "Disconnect",
-    "unservedPenalty": "Un-served Penalty",
-    "wrongWay": "Wrong Way"
-  },
-  "messages": {
-    "driverSet": "Default driver set!",
-    "copied": "Username copied to clipboard."
-  },
-  "license": {
-    "license": "",
+  "about": {
     "disclaimer": "R3E Ranked statistics is a 3rd party app and is not affiliated in anyway with Sector 3.",
     "somethingWrong": "Found something wrong?"
   },

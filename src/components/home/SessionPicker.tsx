@@ -36,13 +36,16 @@ const SessionPicker: React.FC = () => {
                 hideDialog();
               }}
               value={session.toString()}>
-              <RadioButton.Item label={t('session.all')} value={'-1'} />
-              <RadioButton.Item label={t('session.practice')} value={'0'} />
+              <RadioButton.Item label={t('picker.session.all')} value={'-1'} />
               <RadioButton.Item
-                label={t('session.qualification')}
+                label={t('picker.session.practice')}
+                value={'0'}
+              />
+              <RadioButton.Item
+                label={t('picker.session.qualification')}
                 value="256"
               />
-              <RadioButton.Item label={t('session.race')} value="768" />
+              <RadioButton.Item label={t('picker.session.race')} value="768" />
             </RadioButton.Group>
           </Dialog.Content>
         </Dialog>

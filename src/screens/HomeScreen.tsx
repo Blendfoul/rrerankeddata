@@ -11,8 +11,10 @@ const HomeScreen: React.FC = () => {
   const {server, isLoading} = useRaceSelector(selectRegionSelector);
   const dispatch = useDispatch();
 
+  const getServers = async () => await dispatch(fetchServers());
+
   useEffect(() => {
-    dispatch(fetchServers());
+    getServers();
   }, []);
 
   const renderItem: ListRenderItem<RankedServer> = ({item}) => (
@@ -30,7 +32,7 @@ const HomeScreen: React.FC = () => {
       refreshControl={
         <RefreshControl
           refreshing={isLoading}
-          onRefresh={() => dispatch(fetchServers())}
+          onRefresh={async () => await dispatch(fetchServers())}
         />
       }
     />

@@ -4,9 +4,9 @@ import {raceSelector} from '../../store/slices/Session';
 import {FlatList, ListRenderItem, StyleSheet} from 'react-native';
 import {RaceResult} from '../../models/data/Result';
 import useSessionClasses from '../../hooks/useSessionClasses';
-import QualiResultComponent from './quali/QualiResultComponent';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import ContentImage from '../shared/ContentImage';
+import RaceResultComponent from './race/RaceResultComponent';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -23,7 +23,7 @@ const RaceComponent: React.FC = () => {
   );
 
   const renderItem: ListRenderItem<RaceResult> = ({item}) => (
-    <QualiResultComponent data={item} />
+    <RaceResultComponent data={item} />
   );
 
   if (!classes.length) {

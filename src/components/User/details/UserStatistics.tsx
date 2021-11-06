@@ -17,15 +17,15 @@ const UserStatistics: React.FC<Props> = ({user}) => {
     <Card style={styles.root}>
       <Card.Content style={styles.content}>
         <View style={styles.container}>
-          <Paragraph>{t('profile.rating')}</Paragraph>
+          <Paragraph>{t('driver.card.rating')}</Paragraph>
           <Caption>{rating?.Rating}</Caption>
         </View>
         <View style={styles.container}>
-          <Paragraph>{t('profile.reputation')}</Paragraph>
+          <Paragraph>{t('driver.card.reputation')}</Paragraph>
           <Caption>{rating?.Reputation}</Caption>
         </View>
         <View style={styles.container}>
-          <Paragraph>{t('profile.races')}</Paragraph>
+          <Paragraph>{t('driver.card.races')}</Paragraph>
           <Caption>{rating?.RacesCompleted}</Caption>
         </View>
       </Card.Content>

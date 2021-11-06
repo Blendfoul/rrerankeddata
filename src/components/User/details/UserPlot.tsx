@@ -5,6 +5,7 @@ import {LineChart} from 'react-native-chart-kit';
 import {useSelector} from 'react-redux';
 import {userRatingSelector} from '../../../store/slices/User';
 import {ratingSelector} from '../../../store/slices/DefaultUser';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
   type: 'User' | 'Default';
@@ -16,8 +17,7 @@ const UserPlot: React.FC<Props> = ({type}) => {
   const {data, isLoading} = useSelector(
     type === 'User' ? userRatingSelector : ratingSelector,
   );
-
-  console.log(type, data);
+  const {t} = useTranslation();
 
   if (isLoading) {
     return null;
@@ -36,7 +36,7 @@ const UserPlot: React.FC<Props> = ({type}) => {
                 data: data.rating,
               },
             ],
-            legend: ['Rating'],
+            legend: [t('driver.plot.rating')],
           }}
           height={200}
           width={width - 10}
@@ -65,7 +65,7 @@ const UserPlot: React.FC<Props> = ({type}) => {
                 data: data.reputation,
               },
             ],
-            legend: ['Reputation'],
+            legend: [t('driver.plot.reputation')],
           }}
           height={200}
           width={width - 10}

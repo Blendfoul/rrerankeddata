@@ -21,7 +21,6 @@ const useServerColor = (settings: ServerDataSettings, drivers: number[]) => {
       setColor('#BA74EF');
     } else {
       const inRace = drivers.find(us => us === user);
-
       if (inRace) {
         setColor('grey');
       }

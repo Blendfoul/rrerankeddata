@@ -9,6 +9,7 @@ import {
 } from '../../models/navigation/Navigation';
 import {Rating} from '../../models/data/Ranked';
 import Country from './Country';
+import {useTranslation} from 'react-i18next';
 
 type Props = {
   driver: Rating;
@@ -18,6 +19,7 @@ type NavigationProps = NativeStackNavigationProp<ServerStackList, 'Server'>;
 
 const DriverCard: React.FC<Props> = ({driver}) => {
   const navigation = useNavigation<NavigationProps>();
+  const {t} = useTranslation();
 
   const navigateToDriver = () => {
     navigation.navigate({
@@ -32,7 +34,7 @@ const DriverCard: React.FC<Props> = ({driver}) => {
     <Card style={styles.root} onPress={navigateToDriver}>
       <Card.Title
         title={driver.Fullname}
-        subtitle={driver?.Team || 'Privateer'}
+        subtitle={driver?.Team || t('driver.card.privateer')}
         left={props => (
           <Avatar.Image
             source={{
@@ -45,15 +47,15 @@ const DriverCard: React.FC<Props> = ({driver}) => {
       />
       <Card.Content style={styles.container}>
         <View style={styles.content}>
-          <Paragraph>Rating</Paragraph>
+          <Paragraph>{t('driver.card.rating')}</Paragraph>
           <Caption>{driver.Rating}</Caption>
         </View>
         <View style={styles.content}>
-          <Paragraph>Reputation</Paragraph>
+          <Paragraph>{t('driver.card.reputation')}</Paragraph>
           <Caption>{driver.Reputation}</Caption>
         </View>
         <View style={styles.content}>
-          <Paragraph>Races</Paragraph>
+          <Paragraph>{t('driver.card.races')}</Paragraph>
           <Caption>{driver.RacesCompleted}</Caption>
         </View>
       </Card.Content>

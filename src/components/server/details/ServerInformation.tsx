@@ -19,25 +19,25 @@ const ServerInformation: React.FC<Props> = ({data}) => {
     <Card style={styles.root}>
       <Card.Content style={styles.content}>
         <View style={styles.container}>
-          <Paragraph>{t('raceDetails.field')}</Paragraph>
+          <Paragraph>{t('server.field')}</Paragraph>
           <Caption>{sof}</Caption>
         </View>
         <View style={styles.container}>
-          <Paragraph>{t('raceDetails.reputation')}</Paragraph>
+          <Paragraph>{t('server.reputation')}</Paragraph>
           <Caption style={{flex: 1}}>{rep}</Caption>
         </View>
       </Card.Content>
       <Card.Content style={styles.content}>
         <View style={styles.container}>
-          <Paragraph>{t('raceDetails.session.practice')}</Paragraph>
+          <Paragraph>{t('server.session.practice')}</Paragraph>
           <Caption>{PracticeDuration} min</Caption>
         </View>
         <View style={styles.container}>
-          <Paragraph>{t('raceDetails.session.qualification')}</Paragraph>
+          <Paragraph>{t('server.session.qualification')}</Paragraph>
           <Caption>{QualifyDuration} min</Caption>
         </View>
         <View style={styles.container}>
-          <Paragraph>{t('raceDetails.session.race')}</Paragraph>
+          <Paragraph>{t('server.session.race')}</Paragraph>
           <Caption>{Race1Duration} min</Caption>
         </View>
       </Card.Content>

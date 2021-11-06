@@ -1,6 +1,6 @@
 import React from 'react';
 import {RaceResult} from '../../../models/data/Result';
-import {Avatar, Caption, Card, Paragraph} from 'react-native-paper';
+import {Avatar, Caption, Card, IconButton, Paragraph} from 'react-native-paper';
 import {StyleSheet, View} from 'react-native';
 import useSectorTimes from '../../../hooks/useSectorTimes';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -20,6 +20,7 @@ const RaceResultComponent: React.FC<Props> = ({data}) => {
   const {t} = useTranslation();
 
   const navigateToDetails = () => {
+    console.warn('Pressed' + data.UserId);
     navigation.navigate({
       name: UserRoutes.DETAILS,
       params: {
@@ -29,10 +30,13 @@ const RaceResultComponent: React.FC<Props> = ({data}) => {
   };
 
   return (
-    <Card style={styles.root} onPress={navigateToDetails}>
+    <Card style={styles.root}>
       <Card.Title
         title={data.FullName}
-        subtitle={data.Team || 'Privateer'}
+        subtitle={data.Team || t('result.privateer')}
+        right={props => (
+          <IconButton icon={'plus'} onPress={navigateToDetails} {...props} />
+        )}
         left={props => (
           <Avatar.Image
             source={{
@@ -44,18 +48,18 @@ const RaceResultComponent: React.FC<Props> = ({data}) => {
       />
       <Card.Content style={styles.content}>
         <View style={styles.container}>
-          <Paragraph>Position</Paragraph>
+          <Paragraph>{t('result.position')}</Paragraph>
           <Caption>{data.FinishPositionInClass}</Caption>
         </View>
         <View style={styles.container}>
-          <Paragraph>Lap time</Paragraph>
+          <Paragraph>{t('result.laptime')}</Paragraph>
           <Caption>{lapTime}</Caption>
         </View>
       </Card.Content>
       <Card.Content style={styles.content}>
         <View style={styles.container}>
           <View style={styles.content}>
-            <Paragraph>{t('session.RatingAfter')}</Paragraph>
+            <Paragraph>{t('result.rating')}</Paragraph>
             <Icon
               name={
                 data.RatingChange >= 0
@@ -70,7 +74,7 @@ const RaceResultComponent: React.FC<Props> = ({data}) => {
         </View>
         <View style={styles.container}>
           <View style={styles.content}>
-            <Paragraph>{t('session.ReputationAfter')}</Paragraph>
+            <Paragraph>{t('result.reputation')}</Paragraph>
             <Icon
               name={
                 data.ReputationChange >= 0

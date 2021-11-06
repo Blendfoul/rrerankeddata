@@ -3,11 +3,19 @@ import {IconButton, useTheme} from 'react-native-paper';
 import {ActionSheetIOS} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {generalActions} from '../../store/slices/General';
+import {useTranslation} from 'react-i18next';
 
 const RegionPicker: React.FC = () => {
   const {colors} = useTheme();
   const dispatch = useDispatch();
-  const options = ['Cancel', 'All', 'Europe', 'Oceania', 'America'];
+  const {t} = useTranslation();
+  const options = [
+    t('picker.cancel'),
+    t('picker.region.all'),
+    t('picker.region.europe'),
+    t('picker.region.oceania'),
+    t('picker.region.america'),
+  ];
 
   const openPicker = () => {
     ActionSheetIOS.showActionSheetWithOptions(

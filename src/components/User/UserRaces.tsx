@@ -4,7 +4,7 @@ import {UserTabStackList} from '../../models/navigation/Navigation';
 import {useRoute} from '@react-navigation/core';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchRaces, userRacesSelector} from '../../store/slices/User';
-import {FlatList, ListRenderItem} from 'react-native';
+import {FlatList, ListRenderItem, RefreshControl} from 'react-native';
 import RaceResult from './RaceResult';
 import LoadingComponent from '../shared/LoadingComponent';
 import {Result} from '../../models/data/User';
@@ -30,6 +30,13 @@ const UserRaces: React.FC = () => {
 
   return (
     <FlatList
+      refreshControl={
+        <RefreshControl
+          refreshing={isLoading}
+          onRefresh={() => dispatch(fetchRaces(params.id))}
+        />
+      }
+      refreshing={isLoading}
       data={races.Entries}
       renderItem={renderItem}
       keyExtractor={item => `${item.RaceHash}`}

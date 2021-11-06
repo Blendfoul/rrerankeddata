@@ -8,13 +8,13 @@ const useSession = (sessionId: number) => {
   useEffect(() => {
     switch (sessionId) {
       case 0:
-        setSession(t('raceDetails.session.practice'));
+        setSession(t('server.session.practice'));
         break;
       case 256:
-        setSession(t('raceDetails.session.qualification'));
+        setSession(t('server.session.qualification'));
         break;
       case 768:
-        setSession(t('raceDetails.session.race'));
+        setSession(t('server.session.race'));
         break;
     }
   }, []);

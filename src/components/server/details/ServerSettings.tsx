@@ -17,26 +17,24 @@ const ServerSettings: React.FC<Props> = ({data}) => {
     <Card style={styles.root}>
       <Card.Content style={styles.content}>
         <View style={styles.container}>
-          <Paragraph>{t('raceDetails.tireWear')}</Paragraph>
+          <Paragraph>{t('server.tireWear')}</Paragraph>
           <Caption>{TireWear}x</Caption>
         </View>
         <View style={styles.container}>
-          <Paragraph>{t('raceDetails.fuel')}</Paragraph>
+          <Paragraph>{t('server.fuel')}</Paragraph>
           <Caption>{FuelUsage}x</Caption>
         </View>
       </Card.Content>
       <Card.Content style={styles.content}>
         <View style={styles.container}>
-          <Paragraph>{t('raceDetails.mandatoryPit')}</Paragraph>
+          <Paragraph>{t('server.mandatoryPit')}</Paragraph>
           <Caption>
-            {MandatoryPitStop
-              ? t('raceDetails.enabled')
-              : t('raceDetails.disabled')}
+            {MandatoryPitStop ? t('server.enabled') : t('server.disabled')}
           </Caption>
         </View>
         <View style={styles.container}>
-          <Paragraph>{t('raceDetails.cutRules')}</Paragraph>
-          <Caption>{t(`raceDetails.rules.${CutRules}`)}</Caption>
+          <Paragraph>{t('server.cutRules')}</Paragraph>
+          <Caption>{t(`server.rules.${CutRules}`)}</Caption>
         </View>
       </Card.Content>
     </Card>

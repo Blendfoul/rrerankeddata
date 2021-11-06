@@ -8,10 +8,12 @@ import {
 } from 'react-native';
 import SearchCard from '../components/shared/SearchCard';
 import useSearch from '../hooks/useSearch';
+import {useTranslation} from 'react-i18next';
 
 const SearchScreen: React.FC = () => {
   const [value, setValue] = useState<string>('');
   const {users, loading} = useSearch(value);
+  const {t} = useTranslation();
   const searchForUser = (text: string) => setValue(text);
 
   const renderItem: ListRenderItem<any> = ({item}) => (
@@ -24,6 +26,7 @@ const SearchScreen: React.FC = () => {
         onChangeText={searchForUser}
         style={styles.bar}
         value={value}
+        placeholder={t('search.placeholder')}
         autoFocus
       />
       <FlatList

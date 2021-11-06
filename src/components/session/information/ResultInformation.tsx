@@ -18,12 +18,12 @@ const ResultInformation: React.FC<Props> = ({data}) => {
     <Card style={styles.root}>
       <Card.Content style={styles.content}>
         <View style={styles.container}>
-          <Paragraph>{t('session.StartPosition')}</Paragraph>
+          <Paragraph>{t('result.information.start')}</Paragraph>
           <Caption>{data.StartPositionInClass}</Caption>
         </View>
         <View style={styles.container}>
           <View style={styles.content}>
-            <Paragraph>{t('session.FinishPosition')}</Paragraph>
+            <Paragraph>{t('result.information.finish')}</Paragraph>
             {data.FinishPositionInClass !== data.StartPositionInClass ? (
               <Icon
                 name={
@@ -47,7 +47,7 @@ const ResultInformation: React.FC<Props> = ({data}) => {
       <Card.Content style={styles.content}>
         <View style={styles.container}>
           <View style={styles.content}>
-            <Paragraph>{t('session.RatingAfter')}</Paragraph>
+            <Paragraph>{t('result.rating')}</Paragraph>
             <Icon
               name={
                 data.RatingChange >= 0
@@ -62,7 +62,7 @@ const ResultInformation: React.FC<Props> = ({data}) => {
         </View>
         <View style={styles.container}>
           <View style={styles.content}>
-            <Paragraph>{t('session.ReputationAfter')}</Paragraph>
+            <Paragraph>{t('result.reputation')}</Paragraph>
             <Icon
               name={
                 data.ReputationChange >= 0

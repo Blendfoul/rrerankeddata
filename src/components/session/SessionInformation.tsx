@@ -40,11 +40,11 @@ const SessionInformation: React.FC = () => {
         />
         <Card.Content style={styles.content}>
           <View style={styles.container}>
-            <Paragraph>{t('session.Incidents')}</Paragraph>
+            <Paragraph>{t('result.information.incidents')}</Paragraph>
             <Caption>{data.IncidentPoints}</Caption>
           </View>
           <View style={styles.container}>
-            <Paragraph>{t('session.Drivers')}</Paragraph>
+            <Paragraph>{t('result.information.drivers')}</Paragraph>
             <Caption>{data.PlayersCount}</Caption>
           </View>
         </Card.Content>

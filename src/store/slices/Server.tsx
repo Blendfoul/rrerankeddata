@@ -44,7 +44,6 @@ const ServerSlice = createSlice({
     });
     builder.addCase(fetchServers.fulfilled, (state, action) => {
       return {
-        ...state,
         server: action.payload,
         isLoading: false,
       };
