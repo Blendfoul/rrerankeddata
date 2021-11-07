@@ -8,6 +8,7 @@
     "friends": "Przyjaciele",
     "donate": "Wesprzyj",
     "rate": "Oceń",
+    "result": "Wynik",
     "schedule": "Harmonogram",
     "details": "Detale"
   },
@@ -99,6 +100,11 @@
       "Disconnect": "Rozłączony",
       "UnservedPenalty": "Nieobsługiwany błąd",
       "WrongWay": "Jazda w złą stronę"
+    },
+    "tabs": {
+      "info": "Ogólny",
+      "qualification": "Kwalifikacje",
+      "race": "Wyścig"
     }
   },
   "about": {
