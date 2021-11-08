@@ -45,7 +45,10 @@ const SessionScreen: React.FC = () => {
         options={{
           title: t('result.tabs.info'),
         }}
-        initialParams={{hash: params.hash}}
+        initialParams={{
+          hash: params.hash,
+          type: params.type,
+        }}
       />
       <Tab.Screen
         name={SessionTabRoutes.QUALIFICATION}

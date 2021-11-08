@@ -59,7 +59,10 @@ const UserScreen: React.FC = () => {
         options={{
           title: t('user.races'),
         }}
-        initialParams={{id: params.id}}
+        initialParams={{
+          id: params.id,
+          type: 'User',
+        }}
       />
     </TabStack.Navigator>
   );

@@ -8,16 +8,26 @@ import {FlatList, ListRenderItem, RefreshControl} from 'react-native';
 import RaceResult from './RaceResult';
 import LoadingComponent from '../shared/LoadingComponent';
 import {Result} from '../../models/data/User';
+import {
+  defaultUserRacesSelector,
+  fetchDefaultRaces,
+} from '../../store/slices/DefaultUser';
 
 type Props = MaterialTopTabScreenProps<UserTabStackList, 'Races'>;
 
-const UserRaces: React.FC = () => {
+type RaceProps = {};
+
+const UserRaces: React.FC<RaceProps> = () => {
   const {params} = useRoute<Props['route']>();
-  const {races, isLoading} = useSelector(userRacesSelector);
+  const {races, isLoading} = useSelector(
+    params.type === 'User' ? userRacesSelector : defaultUserRacesSelector,
+  );
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchRaces(params.id));
+    params.type === 'User'
+      ? dispatch(fetchRaces(params.id))
+      : dispatch(fetchDefaultRaces(params.id));
   }, []);
 
   if (isLoading) {
@@ -25,7 +35,7 @@ const UserRaces: React.FC = () => {
   }
 
   const renderItem: ListRenderItem<Result> = ({item}) => (
-    <RaceResult data={item} />
+    <RaceResult data={item} type={params.type} />
   );
 
   return (

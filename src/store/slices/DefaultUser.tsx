@@ -9,7 +9,7 @@ import {RaceHistory, Result, User} from '../../models/data/User';
 import {reverse} from 'lodash';
 import {RootState} from '../Store';
 
-export const fetchUser = createAsyncThunk<User, number>(
+export const fetchDefaultUser = createAsyncThunk<User, number>(
   'default-user/driver-info',
   async driverId => {
     const response = await axios(
@@ -20,7 +20,7 @@ export const fetchUser = createAsyncThunk<User, number>(
   },
 );
 
-export const fetchRaces = createAsyncThunk<RaceHistory, number>(
+export const fetchDefaultRaces = createAsyncThunk<RaceHistory, number>(
   'default-user/driver-races',
   async driverId => {
     const response = await axios(
@@ -61,22 +61,22 @@ const DefaultUserSlice = createSlice({
     }),
   },
   extraReducers: builder => {
-    builder.addCase(fetchUser.pending, state => ({
+    builder.addCase(fetchDefaultUser.pending, state => ({
       ...state,
       isLoading: true,
     }));
-    builder.addCase(fetchUser.fulfilled, (state, action) => {
+    builder.addCase(fetchDefaultUser.fulfilled, (state, action) => {
       return {
         ...state,
         isLoading: false,
         user: action.payload,
       };
     });
-    builder.addCase(fetchRaces.pending, state => ({
+    builder.addCase(fetchDefaultRaces.pending, state => ({
       ...state,
       isLoadingRaces: true,
     }));
-    builder.addCase(fetchRaces.fulfilled, (state, action) => {
+    builder.addCase(fetchDefaultRaces.fulfilled, (state, action) => {
       return {
         ...state,
         isLoadingRaces: false,
@@ -116,6 +116,8 @@ type RatingData = {
 export const ratingSelector = createSelector<RootState, UserState, RatingData>(
   userSelector,
   state => {
+    console.log(state);
+
     return {
       data: {
         rating: state?.races?.Entries.map(
@@ -130,10 +132,17 @@ export const ratingSelector = createSelector<RootState, UserState, RatingData>(
   },
 );
 
-export const userRacesSelector = createDraftSafeSelector(
+export const defaultUserRacesSelector = createDraftSafeSelector(
   userSelector,
   state => ({races: state.races, isLoading: state.isLoadingRaces}),
 );
+
+export const defaultUserResultSelector = (hash: string) => {
+  return createDraftSafeSelector(
+    userSelector,
+    state => state.races.Entries.find(race => race.RaceHash === hash) as Result,
+  );
+};
 
 export const defaultUserActions = DefaultUserSlice.actions;
 

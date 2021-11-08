@@ -14,11 +14,12 @@ import ResultCover from '../shared/ResultCover';
 
 type Props = {
   data: Result;
+  type: 'Default' | 'User';
 };
 
 type NavProps = NativeStackNavigationProp<ServerStackList, 'User'>;
 
-const RaceResult: React.FC<Props> = ({data}) => {
+const RaceResult: React.FC<Props> = ({data, type}) => {
   const {trackInfo} = useTrack(data.TrackLayoutId.Id);
   const classes = data.CarClasses.map(c => c.Id);
   const navigation = useNavigation<NavProps>();
@@ -29,6 +30,7 @@ const RaceResult: React.FC<Props> = ({data}) => {
       name: ServerRoutes.RESULT,
       params: {
         hash: data.RaceHash,
+        type,
       },
     });
   };

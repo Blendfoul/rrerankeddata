@@ -12,13 +12,18 @@ import ContentImage from '../shared/ContentImage';
 import FastImage from 'react-native-fast-image';
 import ResultInformation from './information/ResultInformation';
 import {useTranslation} from 'react-i18next';
+import {defaultUserResultSelector} from '../../store/slices/DefaultUser';
 
 type Props = NativeStackScreenProps<SessionTabStackList, 'Info'>['route'];
 
 const SessionInformation: React.FC = () => {
   const {t} = useTranslation();
   const {params} = useRoute<Props>();
-  const data = useSelector(resultSelector(params.hash));
+  const data = useSelector(
+    params.type === 'Default'
+      ? defaultUserResultSelector(params.hash)
+      : resultSelector(params.hash),
+  );
   const {trackInfo} = useTrack(data.TrackLayoutId.Id);
   const classes = data.CarClasses.map(c => c.Id);
   const timeFinish = new Date(data.RaceFinishTime * 1000);

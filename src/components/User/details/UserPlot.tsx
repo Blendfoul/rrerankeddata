@@ -3,8 +3,8 @@ import {Card, useTheme} from 'react-native-paper';
 import {StyleSheet} from 'react-native';
 import {LineChart} from 'react-native-chart-kit';
 import {useSelector} from 'react-redux';
-import {userRatingSelector} from '../../../store/slices/User';
 import {ratingSelector} from '../../../store/slices/DefaultUser';
+import {userRatingSelector} from '../../../store/slices/User';
 import {useTranslation} from 'react-i18next';
 
 type Props = {

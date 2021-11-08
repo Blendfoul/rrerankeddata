@@ -38,6 +38,7 @@ export type UserStackList = {
   };
   Result: {
     hash: string;
+    type: 'Default' | 'User';
   };
   Details: {
     data: RaceResult;
@@ -74,12 +75,14 @@ export type UserTabStackList = {
   };
   Races: {
     id: number;
+    type: 'User' | 'Default';
   };
 };
 
 export type SessionTabStackList = {
   Info: {
     hash: string;
+    type: 'User' | 'Default';
   };
   Qualification: {
     data: QualiResult[];

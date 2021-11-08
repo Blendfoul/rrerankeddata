@@ -7,8 +7,8 @@ import UserRaces from '../components/User/UserRaces';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   userNameSelector,
-  fetchUser,
   idSelector,
+  fetchDefaultUser,
 } from '../store/slices/DefaultUser';
 import {useTranslation} from 'react-i18next';
 
@@ -22,7 +22,7 @@ const DefaultUserScreen: React.FC = () => {
   const {t} = useTranslation();
 
   useEffect(() => {
-    dispatch(fetchUser(user));
+    dispatch(fetchDefaultUser(user));
   }, [user]);
 
   useEffect(() => {
@@ -50,7 +50,10 @@ const DefaultUserScreen: React.FC = () => {
         options={{
           title: t('user.races'),
         }}
-        initialParams={{id: user}}
+        initialParams={{
+          id: user,
+          type: 'Default',
+        }}
       />
     </TabStack.Navigator>
   );

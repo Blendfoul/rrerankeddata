@@ -1,190 +1,114 @@
 {
-  "navigation": {
+  "drawer": {
     "server": "Server",
-    "user": "Benutzer",
+    "user": "Nutzer",
     "search": "Suche",
-    "ranking": "Ranking",
+    "ranking": "Tabelle",
     "about": "Über",
     "friends": "Freunde",
-    "raceDetails": "Renndetails",
-    "sessionDetails": "Sessiondetails",
-    "driverDetails": "Fahrerdetails",
-    "myDriver": "Mein Fahrer",
-    "race": "Rennen",
-    "qualification": "Qualifikation",
-    "donate": "Spenden"
+    "donate": "Spenden",
+    "rate": "Bewerten",
+    "details": "Details",
+    "result": "Ergebnis",
+    "schedule": "Zeitplan"
   },
-  "race": {
-    "cancel": "Abbrechen",
-    "regions": [
-      {
-        "name": "Alle",
-        "value": ""
-      },
-      {
-        "name": "Europa",
-        "value": "Europe"
-      },
-      {
-        "name": "Amerika",
-        "value": "America"
-      },
-      {
-        "name": "Ozeanien",
-        "value": "Oceania"
-      }
-    ]
-  },
-  "raceDetails": {
-    "lowReputation": "Du hast nicht genug Reputation/Wertung für dieses Rennen!",
-    "enabled": "Aktiviert",
-    "disabled": "Behindert",
-    "general": "Allgemein",
-    "drivers": "Fahrer",
-    "layout": "Streckenvariante",
-    "session": "Sitzung",
-    "time": "Zeit",
-    "tireWear": "Reifenverschleiß",
-    "fuel": "Kraftstoffverbrauch",
-    "mandatoryPit": "Pflichtboxenstopp",
-    "cutRules": "Streckenbegrenzung",
-    "players": "Spieler",
-    "sof": "S.o.F",
-    "reputation": "Ruf"
-  },
-  "user": {
-    "tutorial": {
-      "message_1": "Bei der Suche nach einem Benutzer...",
-      "message_2": "Tippen Sie auf die ",
-      "message_3": "In der oberen rechten Ecke, um Ihren Standard-Rennfahrersatz einzustellen!"
+  "picker": {
+    "cancel": "Abbruch",
+    "region": {
+      "all": "Alle",
+      "europe": "Europa",
+      "america": "Amerika",
+      "oceania": "Ozeanien"
     },
-    "message": "Kein Treiberset!",
-    "search": "Suche"
-  },
-  "search": {
-    "placeholder": "Fahrer-Benutzername",
-    "search": "Suche",
-    "title": {
-      "search": "Suche",
-      "details": "Details",
-      "sessionDetails": "Sitzungsdetails"
+    "session": {
+      "all": "Alle",
+      "practice": "Training",
+      "qualification": "Qualifikation",
+      "race": "Rennen"
     }
   },
-  "profile": {
-    "info": "Informationen",
-    "laps": "Runden",
-    "distance": "Entfernung",
-    "lapsCompleted": "Runden abgeschlossen",
-    "races": "Rennen",
-    "name": "Name",
-    "team": "Team",
-    "country": "Land",
-    "rating": "Bewertung",
+  "driver": {
+    "card": {
+      "privateer": "Privateer",
+      "rating": "Wertung",
+      "reputation": "Ruf",
+      "races": "Rennen"
+    },
+    "plot": {
+      "rating": "Wertung",
+      "reputation": "Ruf"
+    }
+  },
+  "server": {
+    "lowReputation": "Deine Wertung / dein Ruf reichen für dieses Rennen nicht aus.",
+    "enabled": "ein",
+    "disabled": "aus",
+    "tireWear": "Reifenabnutzung",
+    "fuel": "Benzinverbrauch",
+    "mandatoryPit": "Pflichtstopp",
+    "cutRules": "Abkürzen",
+    "field": "Stärke Fahrerfeld",
     "reputation": "Ruf",
-    "track": "Lieblingsstrecke",
-    "car": "Lieblingsauto",
-    "privateer": "Privateer"
+    "session": {
+      "practice": "Training",
+      "qualification": "Qualifikation",
+      "race": "Rennen"
+    },
+    "rules": {
+      "1": "langsamer",
+      "2": "voll",
+      "3": "keine"
+    }
   },
-  "session": {
-    "general": "Allgemein",
-    "qualification": "Qualfikation",
-    "race": "Rennen",
-    "layout": "Streckenvariante",
-    "drivers": "Fahrer",
-    "positions": "Positionen",
-    "average": "Durchschnittliche",
-    "overall": "Insgesamt",
-    "fastest": "Schnellste Runde",
-    "averageLap": "Durchschn. Rundenzeit",
-    "diffTimer": "Diff. Durchschnitt",
-    "noTimeSet": "Keine Zeit einstellung",
-    "UserResults": "Benutzerergebnisse",
-    "CarClass": "Autoklasse",
-    "LapsCompleted": "Abgeschlossene Runden",
-    "StartPosition": "Startposition",
-    "FinishPosition": "Zielposition",
-    "RatingAfter": "Bewertung nach",
-    "ReputationAfter": "Reputation nach"
+  "search": {
+    "placeholder": "Fahrername / Nutzername"
   },
-  "qualificationModal": {
-    "fastest": "Schnellste Runde",
+  "result": {
+    "privateer": "Privateer",
     "position": "Position",
-    "sector": "Sektor ",
-    "optimal": "Optimale Runde",
-    "incidents": "Vorfälle"
+    "laptime": "Rundenzeit",
+    "rating": "Wertung nach Rennen",
+    "reputation": "Ruf nach Rennen",
+    "qualification": {
+      "sector1": "Sektor 1",
+      "sector2": "Sektor 2",
+      "sector3": "Sektor 3"
+    },
+    "information": {
+      "start": "Start Position",
+      "finish": "Ziel Position",
+      "incidents": "Vorfälle",
+      "drivers": "Fahrer"
+    },
+    "table": {
+      "lap": "Runde",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "gültig",
+      "lapTime": "Rundenzeit"
+    },
+    "incidents": {
+      "InvalidLap": "ungültige Runde",
+      "LosingControl": "Kontrolle verloren",
+      "Track": "Streckenbegrenzung",
+      "Vehicle": "Fahrzeugkollision",
+      "Disconnect": "Verbindungsabbruch",
+      "UnservedPenalty": "Strafe nicht abgesessen",
+      "WrongWay": "Falsche Fahrtrichtung"
+    },
+    "tabs": {
+      "info": "allgemein",
+      "qualification": "Qualifikation",
+      "race": "Rennen"
+    }
   },
-  "raceModal": {
-    "name": "Namen",
-    "team": "Team",
-    "bestLap": "Beste Runde",
-    "worstLap": "Schlechteste Runde",
-    "averageLap": "Durchschnittliche Runde",
-    "rating": "Veränderung des Ratings",
-    "reputation": "Veränderung des Rufs",
-    "optimalLap": "Optimale Runde",
-    "consistency": "Konstanz",
-    "diff": "Unterschiede",
-    "start": "Starten",
-    "finish": "Beenden",
-    "incidents": "Vorfälle"
-  },
-  "lapTable": {
-    "lap": "Runde",
-    "sector1": "Sektor 1",
-    "sector2": "Sektor 2",
-    "sector3": "Sektor 3",
-    "valid": "Gültig",
-    "lapTime": "Runde Zeit"
-  },
-  "sessions": {
-    "practice": "Training",
-    "qualification": "Qualifikation",
-    "race": "Rennen"
-  },
-  "incidents": {
-    "invalidLap": "Ungültige Runde",
-    "losingControl": "Kontrollverlust",
-    "trackCollision": "Streckenkollision",
-    "vehicleCollision": "Fahrzeugkollision",
-    "disconnect": "Verbindungsabbruch",
-    "unservedPenalty": "Unverdiente Strafe",
-    "wrongWay": "Falsche Weg"
-  },
-  "messages": {
-    "driverSet": "Standard-Rennfahrersatz!",
-    "copied": "Benutzername in Zwischenablage kopiert."
-  },
-  "license": {
-    "license": "",
-    "disclaimer": "R3E Ranked Statistics ist eine App von Drittanbietern und ist ohnehin nicht mit Sektor 3 verbunden.",
-    "mvp": "Ein besonderer Dank geht an DavidsAppStudio für die Bereitstellung der detaillierten Statistiken für den Sitzungsverlauf.",
-    "somethingWrong": "Haben Sie etwas falsches gefunden?"
-  },
-  "loading": {
-    "start": "Gehe in die Startaufstellung",
-    "servers": "Verfügbare Rennen werden geladen",
-    "driver": "Rennwagenreifen wechseln",
-    "session": "Rennergebnisse drucken",
-    "server": "Verbindung zum Rennserver",
-    "history": "Trophäe Fall öffnen",
-    "friends": "Es ist alles Spaß und Spiel!",
-    "leaderboard": "Rangliste wird geladen",
-    "search": "Wer ist dieser Rennfahrer?",
-    "details": "\nKnirschende Renndaten"
-  },
-  "rateModal": {
-    "title": "Gefällt Ihnen die Erfahrung?",
-    "paragraph": "Bitte erwägen Sie, eine Bewertung im Shop zu hinterlassen.",
-    "rate": "Bewertung",
-    "later": "Erinnere dich später",
-    "never": "Nicht mehr anzeigen"
+  "about": {
+    "disclaimer": "R3E Ranked statistics ist eine Drittanbieter App und in keiner Weise mit Sector 3 assoziiert.",
+    "somethingWrong": "Fehler melden"
   },
   "donation": {
-    "greeting": "Hallo Leute!",
-    "message": "Wenn Ihnen die App gefällt und Sie mich bei der Entwicklung der App unterstützen möchten, können Sie gerne fortfahren. Alle Unterstützung wird sehr geschätzt!"
-  },
-  "noConnection": "Keine Verbindung vorhanden!",
-  "noDrivers": "Keine Fahrer auf dem Server!",
-  "exitApp": "Exit",
-  "noServers": "Boxengasse derzeit geschlossen..."
+    "greeting": "Hallo Leute,",
+    "message": "wenn euch die App gefällt und ihr mich bei der weiteren Entwicklung unterstützen wollt, könnt ihr gerne fortfahren. Jede Hilfe ist wertvoll!"
+  }
 }
