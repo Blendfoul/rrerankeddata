@@ -58,7 +58,7 @@ jobs:
         with:
           serviceAccountJson: ${{ secrets.ANDROID_SERVICE_ACCOUNT }}
           packageName: com.rrerankeddata
-          releaseFile: a${{steps.sign_app.outputs.signedReleaseFile}}
+          releaseFile: ${{steps.sign_app.outputs.signedReleaseFile}}
           track: internal
           inAppUpdatePriority: 3
           userFraction: 0.5
