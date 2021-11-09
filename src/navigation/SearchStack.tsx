@@ -73,6 +73,9 @@ const SearchStack: React.FC = () => {
       <Stack.Screen
         name={SearchRoutes.DETAILS}
         component={SessionDetailsScreen}
+        options={{
+          title: t('drawer.details'),
+        }}
       />
     </Stack.Navigator>
   );

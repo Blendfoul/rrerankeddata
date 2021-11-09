@@ -86,7 +86,7 @@ const DefaultUserSlice = createSlice({
   },
 });
 
-const userSelector = (state: RootState) => state.defaultUser;
+const userSelector = (state: RootState) => state.defaultUser as UserState;
 
 export const userNameSelector = createDraftSafeSelector(
   userSelector,
@@ -138,9 +138,8 @@ export const defaultUserRacesSelector = createDraftSafeSelector(
 );
 
 export const defaultUserResultSelector = (hash: string) => {
-  return createDraftSafeSelector(
-    userSelector,
-    state => state.races.Entries.find(race => race.RaceHash === hash) as Result,
+  return createSelector<RootState, UserState, Result>(userSelector, state =>
+    state.races.Entries.find((race: Result) => race.RaceHash === hash),
   );
 };
 

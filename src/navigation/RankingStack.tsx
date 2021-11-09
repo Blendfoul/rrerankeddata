@@ -62,6 +62,9 @@ const RankingStack: React.FC<Props> = () => {
         <Stack.Screen
           name={RankingRoutes.DETAILS}
           component={SessionDetailsScreen}
+          options={{
+            title: t('drawer.details'),
+          }}
         />
       </Stack.Group>
     </Stack.Navigator>

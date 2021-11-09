@@ -91,6 +91,9 @@ const ServerStack: React.FC = () => {
       <Stack.Screen
         name={ServerRoutes.DETAILS}
         component={SessionDetailsScreen}
+        options={{
+          title: t('drawer.details'),
+        }}
       />
 
       <Stack.Group screenOptions={{presentation: 'modal'}}>

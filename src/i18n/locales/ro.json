@@ -7,7 +7,10 @@
     "about": "Despre",
     "friends": "Prieteni",
     "donate": "Donează",
-    "rate": "Rată"
+    "rate": "Evaluează",
+    "details": "Detalii",
+    "result": "Rezultat",
+    "schedule": "Program"
   },
   "picker": {
     "cancel": "Anulează",
@@ -93,6 +96,11 @@
       "Disconnect": "Deconectare",
       "UnservedPenalty": "Penalizare neservită",
       "WrongWay": "Sens opus"
+    },
+    "tabs": {
+      "info": "Informații",
+      "qualification": "Calificări",
+      "race": "Cursă"
     }
   },
   "about": {
@@ -102,5 +110,9 @@
   "donation": {
     "greeting": "Salutare tuturor!",
     "message": "Dacă vă place aplicația și doriți să mă susțineți în dezvoltarea acesteia, nu ezitați să o faceți. Tot suportul este foarte apreciat!"
+  },
+  "user": {
+    "profile": "Profil",
+    "races": "Curse"
   }
 }
