@@ -60,5 +60,5 @@ jobs:
           packageName: com.rrerankeddata
           releaseFiles: ${{steps.sign_app.outputs.signedReleaseFile}}
           track: internal
-          inAppUpdatePriority: 3
+          status: completed
           whatsNewDirectory: android/release-notes/
