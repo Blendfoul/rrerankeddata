@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - internal
+      - master
 
 jobs:
   test:
