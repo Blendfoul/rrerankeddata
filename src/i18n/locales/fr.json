@@ -1,193 +1,118 @@
 {
-  "navigation": {
+  "drawer": {
     "server": "Serveurs",
     "user": "Utilisateur",
     "search": "Rechercher",
     "ranking": "Classement",
     "about": "Environ",
     "friends": "Amis",
-    "raceDetails": "Détails de la course",
-    "sessionDetails": "Détails de la session",
-    "driverDetails": "Détails du pilote",
-    "leaderboard": "Classement",
-    "myDriver": "Mon chauffeur",
+    "donate": "Donner",
+    "rate": "Taux",
     "result": "Résultat",
-    "race": "Course",
-    "qualification": "Qualification",
-    "donate": "Donner"
+    "schedule": "Horaire",
+    "details": "Détails"
   },
-  "race": {
+  "user": {
+    "info": "Profil",
+    "races": "Courses"
+  },
+  "picker": {
     "cancel": "Annuler",
-    "regions": [
-      {
-        "name": "tout",
-        "value": ""
-      },
-      {
-        "name": "Europe",
-        "value": "Europe"
-      },
-      {
-        "name": "Amérique",
-        "value": "America"
-      },
-      {
-        "name": "Océanie",
-        "value": "Oceania"
-      }
-    ]
+    "region": {
+      "all": "Tout",
+      "europe": "Europe",
+      "america": "America",
+      "oceania": "Oceania"
+    },
+    "session": {
+      "all": "Tout",
+      "practice": "Pratique",
+      "qualification": "Qualification",
+      "race": "Course"
+    }
   },
-  "raceDetails": {
-    "lowReputation": "Vous n’avez pas assez de réputation / note pour cette course!",
-    "general": "Généralités",
+  "driver": {
+    "card": {
+      "privateer": "Corsaire",
+      "rating": "Notation",
+      "reputation": "Réputation",
+      "races": "Courses"
+    },
+    "plot": {
+      "rating": "Notation",
+      "reputation": "Réputation"
+    }
+  },
+  "server": {
+    "lowReputation": "Vous n’avez pas assez de réputation/notation pour cette course !",
     "enabled": "Activé",
-    "disabled": "handicapé",
-    "drivers": "Pilotes",
-    "layout": "Disposition des pistes",
-    "session": "Session",
-    "time": "Temps restant",
+    "disabled": "Handicapé",
     "tireWear": "Usure des pneus",
     "fuel": "Consommation de carburant",
     "mandatoryPit": "Fosse obligatoire",
     "cutRules": "Règles de coupe",
-    "players": "Joueurs",
-    "sof": "S.o.F",
-    "reputation": "réputation"
-  },
-  "user": {
-    "message": "Pas de driver set !",
-    "search": "rechercher",
-    "tutorial": {
-      "message_1": "Lors de la recherche d’un utilisateur...",
-      "message_2": "Appuyez sur le ",
-      "message_3": "Dans le coin supérieur droit pour définir votre pilote par défaut!"
+    "field": "Intensité du champ",
+    "reputation": "Réputation",
+    "session": {
+      "practice": "Pratique",
+      "qualification": "Qualification",
+      "race": "Course"
+    },
+    "rules": {
+      "1": "Plus lentement",
+      "2": "Plein",
+      "3": "Aucun"
     }
   },
   "search": {
-    "placeholder": "Driver Username",
-    "search": "Search",
-    "title": {
-      "search": "Search",
-      "details": "Details",
-      "sessionDetails": "Session Details"
+    "placeholder": "Nom d’utilisateur ou nom"
+  },
+  "result": {
+    "privateer": "Corsaire",
+    "position": "Position",
+    "laptime": "Temps au tour",
+    "rating": "Évaluation après",
+    "reputation": "Réputation après",
+    "qualification": {
+      "sector1": "Secteur 1",
+      "sector2": "Secteur 2",
+      "sector3": "Secteur 3"
+    },
+    "information": {
+      "start": "Position de départ",
+      "finish": "Position de finition",
+      "incidents": "Incidents",
+      "drivers": "Pilotes"
+    },
+    "table": {
+      "lap": "Lap",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "Valid",
+      "lapTime": "Temps au tour"
+    },
+    "tabs": {
+      "info": "Généralités",
+      "qualification": "Qualification",
+      "race": "Course"
+    },
+    "incidents": {
+      "InvalidLap": "Tour non valide",
+      "LosingControl": "Perdre le contrôle",
+      "Track": "Collision sur chenilles",
+      "Vehicle": "Collision de véhicule",
+      "Disconnect": "Déconnecter",
+      "UnservedPenalty": "Peine non purgée",
+      "WrongWay": "Mauvaise façon"
     }
   },
-  "profile": {
-    "ranking": "Classement",
-    "info": "Info",
-    "laps": "Tours",
-    "distance": "Distance",
-    "lapsCompleted": "Tours terminés",
-    "races": "Courses",
-    "name": "Nom",
-    "team": "Équipe",
-    "country": "Pays",
-    "rating": "Notation",
-    "reputation": "Réputation",
-    "track": "Piste préférée",
-    "car": "Voiture préférée",
-    "privateer": "Corsaire"
-  },
-  "session": {
-    "general": "Généralités",
-    "qualification": "Qualifier",
-    "race": "Course",
-    "layout": "Disposition",
-    "drivers": "Pilotes",
-    "positions": "Positions",
-    "average": "Moyenne",
-    "overall": "Total",
-    "fastest": "Tour le plus rapide",
-    "averageLap": "Avg. Temps au tour",
-    "diffTimer": "Moyenne diff.",
-    "noTimeSet": "Pas d’heure définie",
-    "UserResults": "Résultats utilisateur",
-    "CarClass": "Classe de voiture",
-    "LapsCompleted": "Tours terminés",
-    "StartPosition": "Position de départ",
-    "FinishPosition": "Position d’arrivée",
-    "RatingAfter": "Évaluation après",
-    "ReputationAfter": "Réputation après"
-  },
-  "qualificationModal": {
-    "fastest": "Tour le plus rapide",
-    "position": "position",
-    "sector": "Secteur ",
-    "optimal": "Tour optimal",
-    "incidents": "Incidents"
-  },
-  "raceModal": {
-    "name": "Nom",
-    "team": "Équipe",
-    "bestLap": "Meilleur tour",
-    "worstLap": "Pire tour",
-    "averageLap": "Tour moyen",
-    "rating": "Changement d’évaluation",
-    "reputation": "Changement de réputation",
-    "optimalLap": "Tour optimal",
-    "consistency": "consistance",
-    "diff": "Diff",
-    "start": "Commencer",
-    "finish": "Finir",
-    "incidents": "Incidents"
-  },
-  "lapTable": {
-    "lap": "giron",
-    "sector1": "Secteur 1",
-    "sector2": "Secteur 2",
-    "sector3": "Secteur 3",
-    "valid": "valable",
-    "lapTime": "Temps au tour"
-  },
-  "sessions": {
-    "practice": "pratique",
-    "qualification": "qualification",
-    "race": "course"
-  },
-  "incidents": {
-    "invalidLap": "Tour non valide",
-    "losingControl": "Perte de contrôle",
-    "trackCollision": "Collision sur la voie",
-    "vehicleCollision": "Collision de véhicule",
-    "disconnect": "Déconnecter",
-    "unservedPenalty": "Pénalité non servie",
-    "wrongWay": "Dans le mauvais sens"
-  },
-  "messages": {
-    "driverSet": "Jeu de pilotes par défaut!",
-    "copied": "Nom d’utilisateur copié dans le Presse-papiers."
-  },
-  "license": {
-    "license": "",
-    "disclaimer": "R3E Ranked statistics est une application de 3ème partie et n’est de toute façon pas affiliée au secteur 3.",
-    "mvp": "Un merci spécial à DavidsAppStudio pour avoir fourni les statistiques détaillées pour l’historique de la session.",
+  "about": {
+    "disclaimer": "R3E Ranked Statistics est une application de 3ème partie et n’est de toute façon pas affiliée au secteur 3.",
     "somethingWrong": "Vous avez trouvé quelque chose qui ne va pas?"
-  },
-  "loading": {
-    "start": "Mise en forme des grilles",
-    "servers": "Chargement des courses disponibles",
-    "driver": "Changer de pneus conducteur",
-    "session": "Impression des résultats de course",
-    "server": "Connexion au serveur",
-    "history": "Espionnage de la concurrence",
-    "friends": "C'est amusant!",
-    "leaderboard": "Classement de chargement",
-    "search": "Qui est ce compagnon?",
-    "details": "Croquant les données de course"
-  },
-  "rateModal": {
-    "title": "Vous aimant l’expérience?",
-    "paragraph": "S’il vous plaît envisager de laisser un commentaire sur le magasin.",
-    "rate": "Taux",
-    "later": "Rappelez-vous plus tard",
-    "never": "Ne plus afficher"
   },
   "donation": {
     "greeting": "Bonjour les gars!",
     "message": "Si vous aimez l’application et que vous avez envie de me soutenir dans le développement de l’application, n’hésitez pas à aller de l’avant. Tout le soutien est grandement apprécié!"
-  },
-  "noConnection": "Aucune connexion disponible!",
-  "noDrivers": "Pas de pilotes sur le serveur!",
-  "exitApp": "sortie",
-  "noServers": "Vitesse de la voie des stands seulement..."
+  }
 }

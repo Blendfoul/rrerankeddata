@@ -47,10 +47,15 @@ const useRaceType = (data: ServerDataSettings) => {
           value: 'Daily Sprint',
           image: require('../assets/sessions/am.png'),
         });
-      } else {
+      } else if (data.MinReputation < 85) {
         setRaceType({
           value: 'Daily Sprint',
           image: require('../assets/sessions/pro.png'),
+        });
+      } else {
+        setRaceType({
+          value: 'Daily Sprint',
+          image: require('../assets/sessions/elite.png'),
         });
       }
     }

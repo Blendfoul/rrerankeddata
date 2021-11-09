@@ -1,182 +1,117 @@
 {
-  "navigation": {
+  "drawer": {
     "server": "Servidores",
     "user": "Usuario",
     "search": "Buscar",
     "ranking": "Clasificación",
     "about": "Acerca de",
     "friends": "Amigos",
-    "raceDetails": "Detalles de la carrera",
-    "sessionDetails": "Detalles de la sesión",
-    "driverDetails": "Detalles del conductor",
-    "myDriver": "Mi conductor",
-    "race": "Carrera",
-    "qualification": "Calificación",
-    "donation": "Donación"
-  },
-  "race": {
-    "cancel": "Cancelar",
-    "regions": [
-      {
-        "name": "Todos",
-        "value": ""
-      },
-      {
-        "name": "Europa",
-        "value": "Europe"
-      },
-      {
-        "name": "América",
-        "value": "America"
-      },
-      {
-        "name": "Oceanía",
-        "value": "Oceania"
-      }
-    ]
-  },
-  "raceDetails": {
-    "lowReputation": "No tienes suficiente reputación / valoración para esta carrera!",
-    "general": "General",
-    "drivers": "Conductores",
-    "enabled": "Activado",
-    "disabled": "Desactivado",
-    "layout": "Diseño de pista",
-    "session": "Sesión",
-    "time": "Tiempo restante",
-    "tireWear": "Desgaste de neumáticos",
-    "fuel": "Uso de combustible",
-    "mandatoryPit": "Pit obligatorio",
-    "cutRules": "Reglas de corte",
-    "players": "Jugadores",
-    "sof": "SoF",
-    "reputation": "Reputación"
+    "donate": "Apoiar",
+    "rate": "Classificar",
+    "result": "Resultado",
+    "schedule": "Calendario",
+    "details": "Detalles"
   },
   "user": {
-    "tutorial": {
-      "message_1": "Al buscar en un usuario...",
-      "message_2": "Puntee en el botón ",
-      "message_3": "En la esquina superior derecha para establecer su piloto predeterminado!"
-    },
-    "message": "Ningún conductor configurado!",
-    "search": "Buscar"
+    "info": "Perfil",
+    "races": "Carreras"
   },
-  "search": {
-    "placeholder": "Nombre de usuario del conductor",
-    "search": "Buscar",
-    "title": {
-      "search": "Buscar",
-      "details": "Detalles",
-      "sessionDetails": "Detalles de la sesión"
+  "picker": {
+    "cancel": "Cancelar",
+    "region": {
+      "all": "Todos",
+      "europe": "Europa",
+      "america": "Ameríca",
+      "oceania": "Oceanía"
+    },
+    "session": {
+      "all": "Todos",
+      "practice": "Práctica",
+      "qualification": "Calificación",
+      "race": "Carrera"
     }
   },
-  "profile": {
-    "ranking": "Clasificación",
-    "info": "Información",
-    "races": "Carreras",
-    "name": "Nombre",
-    "laps": "Vueltas",
-    "distance": "Distância",
-    "lapsCompleted": "Vueltas Completadas",
-    "team": "Equipo",
-    "country": "País",
-    "rating": "Clasificación",
+  "driver": {
+    "card": {
+      "privateer": "Privado",
+      "rating": "Rating",
+      "reputation": "Reputacion",
+      "races": "Carreras"
+    },
+    "plot": {
+      "rating": "Rating",
+      "reputation": "Reputacion"
+    }
+  },
+  "server": {
+    "lowReputation": "¡No tienes suficiente Reputación/ Calificación para esta carrera!",
+    "enabled": "Activado",
+    "disabled": "Desactivado",
+    "tireWear": "Desgaste de los neumáticos",
+    "fuel": "Consumo",
+    "mandatoryPit": "Parada obligatoria",
+    "cutRules": "Reglas de corte",
+    "field": "Resistencia de la rejilla",
     "reputation": "Reputación",
-    "track": "Pista favorita",
-    "car": "Coche favorito",
-    "privateer": "Corsario"
+    "session": {
+      "practice": "Adiestramiento",
+      "qualification": "Calificación",
+      "race": "Carrera"
+    },
+    "rules": {
+      "1": "Tranquilo",
+      "2": "Completas",
+      "3": "Deshabilitado"
+    }
   },
-  "session": {
-    "general": "General",
-    "qualification": "Calificación",
-    "race": "Carrera",
-    "layout": "Diseño",
-    "drivers": "Pilotos",
-    "positions": "Posiciones",
-    "average": "promedio",
-    "overall": "general",
-    "fastest": "Vuelta más rápida",
-    "averageLap": "prom. Tiempo de vuelta",
-    "diffTimer": "Dif. promedio",
-    "noTimeSet": "Sin tiempo establecido",
-    "UserResults": "Resultados del usuario",
-    "CarClass": "Clase de coche",
-    "LapsCompleted": "Vueltas completadas",
-    "StartPosition": "Posición inicial",
-    "FinishPosition": "Posición final",
-    "RatingAfter": "Calificación después",
-    "ReputationAfter": "Reputación después"
+  "search": {
+    "placeholder": "Nombre ou username"
   },
-  "qualificationModal": {
-    "fastest": "Vuelta más rápida",
+  "result": {
+    "privateer": "Privado",
     "position": "Posición",
-    "sector": "Sector",
-    "optimal": "Vuelta óptima",
-    "incidents": "Incidentes"
+    "laptime": "Hora",
+    "rating": "Calificación después",
+    "reputation": "Reputación después",
+    "qualification": {
+      "sector1": "Sector 1",
+      "sector2": "Sector 2",
+      "sector3": "Sector 3"
+    },
+    "information": {
+      "start": "Posición inicial",
+      "finish": "Posición final",
+      "incidents": "Incidentes",
+      "drivers": "Pilotos"
+    },
+    "table": {
+      "lap": "Hora",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "Valida",
+      "lapTime": "Tiempo"
+    },
+    "incidents": {
+      "InvalidLap": "Vuelta no válida",
+      "LosingControl": "Perder el control",
+      "Track": "Colisión de pista",
+      "Vehicle": "Colisión de vehículo",
+      "Disconnect": "Desconectar",
+      "UnservedPenalty": "Penalización no atendida"
+    },
+    "tabs": {
+      "info": "General",
+      "qualification": "Calificación",
+      "race": "Carrera"
+    }
   },
-  "raceModal": {
-    "name": "Nombre",
-    "team": "Equipo",
-    "rating": "Cambio rating",
-    "reputation": "Cambio reputación",
-    "optimalLap": "Vuelta óptima",
-    "bestLap": "Mejor vuelta",
-    "worstLap": "Peor vuelta",
-    "averageLap": "Vuelta media",
-    "diff": "Diferencia",
-    "start": "Inicio",
-    "finish": "Llegada",
-    "incidents": "Incidentes"
-  },
-  "lapTable": {
-    "lap": "Vuelta",
-    "sector1": "Sector 1",
-    "sector2": "Sector 2",
-    "sector3": "Sector 3",
-    "valid": "Válido",
-    "lapTime": "Tiempo de vuelta"
-  },
-  "sessions": {
-    "practice": "Práctica",
-    "qualification": "Calificación",
-    "race": "Carrera"
-  },
-  "incidents": {
-    "invalidLap": "Vuelta no válida",
-    "losingControl": "Perder el control",
-    "trackCollision": "Colisión de pista",
-    "vehicleCollision": "Colisión de vehículo",
-    "disconnect": "Desconectar",
-    "unservedPenalty": "Penalización no atendida"
-  },
-  "messages": {
-    "driverSet": "Conductor predeterminado configurado!",
-    "copied": "Nombre de usuario copiado."
-  },
-  "license": {
-    "license": "",
+  "about": {
     "disclaimer": "Las estadísticas clasificadas de R3E son una aplicación de terceros y no están afiliadas de ninguna manera con el Sector 3.",
-    "mvp": "Un agradecimiento especial a DavidsAppStudio por proporcionar las estadísticas detalladas para el historial de sesiones",
     "somethingWrong": "Encontraste algo mal?"
   },
   "donation": {
     "greeting": "Hola chicos!",
     "message": "Si te gusta la aplicación y tienes ganas de apoyarme en el desarrollo de la aplicación no dudes en seguir adelante. Todo el apoyo es muy apreciado!"
-  },
-  "loading": {
-    "start": "Formateo de cuadrículas",
-    "servers": "Cargando carreras disponibles",
-    "driver": "Cambio de neumáticos",
-    "session": "Impresión de los resultados de la carrera",
-    "server": "Conectando al servidor",
-    "history": "Espiar a la competencia",
-    "friends": "Todo es diversión y juegos!",
-    "leaderboard": "Cargando tabla de clasificación",
-    "search": "Quién es ese compañero?",
-    "details": "Analizando datos de la carrera"
-  },
-  "noConnection": "No hay conexión disponible!",
-  "noDrivers": "¡No hay controladores en el servidor!",
-  "exitApp": "Salir",
-  "noServers": ""
+  }
 }

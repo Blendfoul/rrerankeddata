@@ -2,12 +2,13 @@ import React from 'react';
 import {
   FlatList,
   Image,
+  Linking,
   ListRenderItem,
   ScrollView,
   StyleSheet,
   View,
 } from 'react-native';
-import {Caption, Paragraph} from 'react-native-paper';
+import {Button, Caption, Paragraph} from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 
 interface Contribution {
@@ -41,6 +42,10 @@ const AboutScreen: React.FC = () => {
     },
   ];
 
+  const sendEmail = () => {
+    Linking.openURL('mailto:rrestatsranked@gmail.com');
+  };
+
   const renderItem: ListRenderItem<Contribution> = ({item}) => {
     return (
       <View style={styles.container}>
@@ -72,6 +77,15 @@ const AboutScreen: React.FC = () => {
         ListHeaderComponent={<Paragraph>Contributors</Paragraph>}
         keyExtractor={item => item.name}
       />
+      <Button
+        mode={'contained'}
+        style={styles.button}
+        contentStyle={styles.container}
+        icon={'mail'}
+        onPress={sendEmail}
+        color={'red'}>
+        {t('about.somethingWrong')}
+      </Button>
       <Paragraph>João Castanheira - {new Date().getFullYear()}</Paragraph>
     </ScrollView>
   );
@@ -90,6 +104,9 @@ const styles = StyleSheet.create({
   img: {
     width: 300,
     height: 200,
+  },
+  button: {
+    marginVertical: 10,
   },
 });
 

@@ -65,7 +65,7 @@
     }
   },
   "search": {
-    "placeholder": "Nome ou username do piloto"
+    "placeholder": "Nome ou username"
   },
   "result": {
     "privateer": "Privado",
@@ -109,10 +109,9 @@
   },
   "about": {
     "disclaimer": "R3E Ranked statistics é uma aplicação independente em nada relacionada com a Sector 3.",
-    "somethingWrong": "Encontrou um problema?"
+    "somethingWrong": "Encontrou um problema"
   },
   "donation": {
     "greeting": "Olá!",
-    "message": "If you like the app and feel like supporting me developing the app feel free to go ahead. All the support is greatly appreciated!"
-  }
+    "message": "Se gostas da aplicação e queres apoiar-me no desenvolvimento, não hesite em avançar. Todo o apoio é muito apreciado!"}
 }
