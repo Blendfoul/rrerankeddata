@@ -56,7 +56,7 @@ jobs:
       - name: Deploy to Play Store (INTERNAL)
         uses: r0adkll/upload-google-play@v1
         with:
-          serviceAccountJson: ${{ secrets.ANDROID_SERVICE_ACCOUNT }}
+          serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT }}
           packageName: com.rrerankeddata
           releaseFile: ${{steps.sign_app.outputs.signedReleaseFile}}
           track: internal
