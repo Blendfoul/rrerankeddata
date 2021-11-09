@@ -19,6 +19,3 @@ jobs:
       - name: Install node modules
         run: |
           yarn install
-      - name: Run test
-        run: |
-          yarn test-ci
