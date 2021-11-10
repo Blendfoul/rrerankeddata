@@ -27,6 +27,16 @@
       "race": "Rennen"
     }
   },
+  "user": {
+    "info": "Profil",
+    "races": "Rennen",
+    "tutorial": {
+      "header": "Dein Fahrer",
+      "step1": "Suche nach einem Nutzer",
+      "step2": "Tippe auf den Button oben rechts auf dem Screen",
+      "step3": "Ab jetzt kannst du deine Infos schnell abrufen"
+    }
+  },
   "driver": {
     "card": {
       "privateer": "Privateer",
