@@ -14,7 +14,13 @@
   },
   "user": {
     "info": "Perfil",
-    "races": "Carreras"
+    "races": "Carreras",
+    "tutorial": {
+      "header": "Su conductor",
+      "step1": "Buscar un usuario",
+      "step2": "Haga clic en el botón en la parte superior derecha de la pantalla",
+      "step3": "Ahora podrás comprobar tu conductor más rápido"
+    }
   },
   "picker": {
     "cancel": "Cancelar",

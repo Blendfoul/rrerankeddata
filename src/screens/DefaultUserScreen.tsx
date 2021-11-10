@@ -11,6 +11,7 @@ import {
   fetchDefaultUser,
 } from '../store/slices/DefaultUser';
 import {useTranslation} from 'react-i18next';
+import NoUserSelected from '../components/User/NoUserSelected';
 
 const TabStack = createMaterialTopTabNavigator<UserTabStackList>();
 
@@ -30,6 +31,10 @@ const DefaultUserScreen: React.FC = () => {
       title: name,
     });
   }, [name]);
+
+  if (user === -1) {
+    return <NoUserSelected />;
+  }
 
   return (
     <TabStack.Navigator>

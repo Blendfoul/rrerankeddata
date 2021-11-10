@@ -110,5 +110,15 @@
   "donation": {
     "greeting": "Ciao ragazzi!",
     "message": "Se vi piace l'app e vi va di supportarmi nello sviluppo, proseguite pure. Qualsiasi tipo di supporto é apprezzato!"
+  },
+  "user": {
+    "info": "Perfile",
+    "races": "Garas",
+    "tutorial": {
+      "header": "Il tuo pilota",
+      "step1": "Cerca un utente",
+      "step2": "Clicca sul pulsante in alto a destra",
+      "step3": "Ora potrai controllare il tuo pilota più rapidamente"
+    }
   }
 }

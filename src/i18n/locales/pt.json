@@ -14,7 +14,13 @@
   },
   "user": {
     "info": "Perfil",
-    "races": "Corridas"
+    "races": "Corridas",
+    "tutorial": {
+      "header": "O meu Piloto",
+      "step1": "Procurar um utilizador",
+      "step2": "Clicar no botão no topo direito do ecrã",
+      "step3": "Agora vai ser mais fácil seguir o progresso do teu piloto favorito"
+    }
   },
   "picker": {
     "cancel": "Cancelar",

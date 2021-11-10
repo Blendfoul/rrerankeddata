@@ -65,11 +65,7 @@ const DrawerComponent: React.FC<DrawerContentComponentProps> = ({
   };
 
   const renderItem: ListRenderItem<MenuItem> = ({item}) => {
-    if (
-      (item.route === DrawerRoutes.USER ||
-        item.route === DrawerRoutes.FRIENDS) &&
-      userId === -1
-    ) {
+    if (item.route === DrawerRoutes.FRIENDS && userId === -1) {
       return null;
     }
 

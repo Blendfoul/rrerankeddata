@@ -14,7 +14,13 @@
   },
   "user": {
     "info": "Profil",
-    "races": "Courses"
+    "races": "Courses",
+    "tutorial": {
+      "header": "Votre chauffeur",
+      "step1": "Rechercher un utilisateur",
+      "step2": "Cliquez sur le bouton en haut à droite de l’écran",
+      "step3": "Maintenant, vous serez en mesure de vérifier votre pilote plus rapidement"
+    }
   },
   "picker": {
     "cancel": "Annuler",

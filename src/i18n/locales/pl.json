@@ -14,7 +14,13 @@
   },
   "user": {
     "info": "przekrój",
-    "races": "Wyścigi"
+    "races": "Wyścigi",
+    "tutorial": {
+      "header": "Twój profil",
+      "step1": "Szukaj użytkownika",
+      "step2": "Kliknij przycisk na górze po prawej stronie ekranu",
+      "step3": "Teraz możesz szybciej sprawdzić swój profil"
+    }
   },
   "picker": {
     "cancel": "Anuluj",

@@ -1,180 +1,125 @@
 {
-  "navigation": {
+  "drawer": {
     "server": "Servers",
     "user": "Gebruiker",
     "search": "Zoek",
     "ranking": "Ranking",
     "about": "Over",
     "friends": "Vrienden",
-    "raceDetails": "Race Details",
-    "sessionDetails": "Sessie Details",
-    "driverDetails": "Coureur Details",
-    "myDriver": "Mijn bestuurder",
-    "race": "Race",
-    "qualification": "kwalificatie",
-    "donate": "Doneren"
+    "donate": "Doneren",
+    "rate": "Rate",
+    "result": "Result",
+    "schedule": "Schedule",
+    "details": "Details"
   },
-  "race": {
+  "user": {
+    "info": "Profile",
+    "races": "Races",
+    "tutorial": {
+      "header": "jouw gebruiker",
+      "step1": "Zoek naar een gebruiker",
+      "step2": "klik op de knop in de rechter bovenhoek van het scherm",
+      "step3": "nu is het mogelijk om je profiel sneller te bekijken"
+    }
+  },
+  "picker": {
     "cancel": "Annuleren",
-    "regions": [
-      {
-        "name": "Alles",
-        "value": ""
-      },
-      {
-        "name": "Europa",
-        "value": "Europe"
-      },
-      {
-        "name": "America",
-        "value": "America"
-      },
-      {
-        "name": "Oceania",
-        "value": "Oceania"
-      }
-    ]
+    "region": {
+      "all": "Alles",
+      "europe": "Europe",
+      "america": "America",
+      "oceania": "Oceania"
+    },
+    "session": {
+      "all": "Alles",
+      "practice": "Practice",
+      "qualification": "Kwalificatie",
+      "race": "Race"
+    }
   },
-  "raceDetails": {
+  "driver": {
+    "card": {
+      "privateer": "Privateer",
+      "rating": "Rating",
+      "reputation": "Reputatie",
+      "races": "Races"
+    },
+    "plot": {
+      "rating": "Rating",
+      "reputation": "Reputatie"
+    }
+  },
+  "server": {
+    "lowReputation": "You do not have enough Reputation/Rating for this race!",
+    "field": "K.v.V",
     "enabled": "Aktiviert",
     "disabled": "Gehandicapt",
-    "general": "Algemeen",
-    "drivers": "Coureurs",
-    "layout": "Circuit Layout",
-    "session": "Sessie",
-    "time": "Tijd Over",
     "tireWear": "Banden Slijtage",
     "fuel": "Benzine Vebruik",
     "mandatoryPit": "Verplichte Pit",
     "cutRules": "Cut Rules",
     "players": "Spelers",
-    "sof": "K.v.V",
-    "reputation": "Reputatie"
-  },
-  "user": {
-    "tutorial": {
-      "message_1": "Bij het zoeken naar een gebruiker...",
-      "message_2": "Tik op de knop ",
-      "message_3": "In de rechterbovenhoek om uw standaardstuurprogramma in te stellen!"
+    "reputation": "Reputatie",
+    "session": {
+      "practice": "Practice",
+      "qualification": "Kwalificatie",
+      "race": "Race"
     },
-    "message": "Geen coureur gekozen!",
-    "search": "Zoek"
-  },
-  "search": {
-    "placeholder": "Coureur Gebruikersnaam",
-    "search": "Zoek",
-    "title": {
-      "search": "Zoek",
-      "details": "Details",
-      "sessionDetails": "Sessie Details"
+    "rules": {
+      "1": "Slow Down",
+      "2": "Full",
+      "3": "None"
     }
   },
-  "profile": {
-    "info": "Info",
-    "races": "Races",
-    "name": "Naam",
-    "team": "Team",
-    "lapsCompleted": "Ronden voltooid",
-    "laps": "Ronden",
-    "distance": "Afstand",
-    "country": "Land",
-    "rating": "Rating",
-    "reputation": "Reputatie",
-    "track": "Favoriete Track",
-    "car": "Favoriete Auto",
-    "privateer": "Privateer"
+  "search": {
+    "placeholder": "Coureur Gebruikersnaam"
   },
-  "session": {
-    "general": "General",
-    "qualification": "kwalificatie",
-    "race": "Race",
-    "layout": "Layout",
-    "drivers": "Coureurs",
-    "positions": "Posities",
-    "average": "gemiddelde ",
-    "overall": "Globaal",
-    "fastest": "Snelste Ronde",
-    "averageLap": "gem. Ronde",
-    "diffTimer": "verschil gem.",
-    "noTimeSet": "Geen tijd ingesteld",
-    "UserResults": "Gebruikersresultaten",
-    "CarClass": "Autoklasse",
-    "LapsCompleted": "Ronden voltooid",
-    "StartPosition": "Startpositie",
-    "FinishPosition": "Finishpositie",
-    "RatingAfter": "Beoordeling na",
-    "ReputationAfter": "Reputatie na"
+  "result": {
+    "privateer": "Privateer",
+    "position": "Position",
+    "laptime": "Lap Time",
+    "rating": "Rating After",
+    "reputation": "Reputation After",
+    "qualification": {
+      "sector1": "Sector 1",
+      "sector2": "Sector 2",
+      "sector3": "Sector 3"
+    },
+    "information": {
+      "start": "Startpositie",
+      "finish": "Finishpositie",
+      "incidents": "Incidenten",
+      "drivers": "Coureurs"
+    },
+    "table": {
+      "lap": "Lap",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "Geldig",
+      "lapTime": "Rondetijd"
+    },
+    "tabs": {
+      "info": "General",
+      "qualification": "Kwalificatie",
+      "race": "Race"
+    },
+    "incidents": {
+      "InvalidLap": "Ongeldige Ronde",
+      "LosingControl": "Controleverlies",
+      "Track": "Circuit Botsing",
+      "Vehicle": "Voertuig Botsing",
+      "Disconnect": "Verbroken Verbinding",
+      "UnservedPenalty": "Straf die niet is uitgeoefend",
+      "WrongWay": "verkeerde weg"
+    }
   },
-  "qualificationModal": {
-    "fastest": "Snelse Ronde",
-    "position": "Poitie",
-    "sector": "Sector ",
-    "optimal": "Optimale Ronde",
-    "incidents": "Incidenten"
-  },
-  "raceModal": {
-    "name": "Naam",
-    "team": "Team",
-    "reputation": "Reputatiewijziging",
-    "optimalLap": "Optimale ronde",
-    "consistency": "Consistentie",
-    "bestLap": "Snelste Ronde",
-    "worstLap": "Traagste Ronde",
-    "averageLap": "Gem. Lap",
-    "diff": "Verschil",
-    "start": "Start",
-    "finish": "Finish",
-    "incidents": "Incidenten"
-  },
-  "lapTable": {
-    "lap": "Lap",
-    "sector1": "Sector 1",
-    "sector2": "Sector 2",
-    "sector3": "Sector 3",
-    "valid": "Geldig",
-    "lapTime": "Rondetijd"
-  },
-  "sessions": {
-    "practice": "Practice",
-    "qualification": "Kwalificatie",
-    "race": "Race"
-  },
-  "incidents": {
-    "invalidLap": "Ongeldige Ronde",
-    "losingControl": "Controleverlies",
-    "trackCollision": "Circuit Botsing",
-    "vehicleCollision": "Voertuig Botsing",
-    "disconnect": "Verbroken Verbinding",
-    "unservedPenalty": "Straf die niet is uitgeoefend",
-    "wrongWay": "verkeerde weg"
-  },
-  "messages": {
-    "driverSet": "Coureur is Gekozen!",
-    "copied": "Gebruikersnaam gekopieerd naar klembord."
-  },
-  "license": {
-    "license": "",
+  "about": {
     "disclaimer": "R3E-klassementsstatistieken is een app van derden en is in geen geval gelieerd aan Sector 3.",
-    "mvp": "Een speciale dank aan DavidsAppStudio voor het leveren van de diepgaande statistieken voor de sessiegeschiedenis.",
-    "somethingWrong": "Er is iets mis gevonden. ?"
+    "somethingWrong": "Er is iets mis gevonden"
   },
   "donation": {
     "greeting": "Hallo jongens!",
     "message": "Als je de app leuk vindt en zin hebt om me te ondersteunen bij het ontwikkelen van de app, voel je vrij om door te gaan. Alle steun wordt zeer op prijs gesteld!"
-  },
-  "noConnection": "Geen verbinding beschikbaar!",
-  "noDrivers": "Geen stuurprogramma's op server!",
-  "exitApp": "Afsluiten",
-  "loading": {
-    "start": "Grids aan het formatteren",
-    "servers": "Beschikbare races aan het laden",
-    "driver": "Banden aan het wisselen",
-    "session": "Race resultaten printen",
-    "server": "Verbinden met de server",
-    "history": "Regenstanders aan het bespioneren",
-    "friends": "Het is allemaal leuk en aardig!",
-    "leaderboard": "Leaderboard laden",
-    "search": "wie is dat?",
-    "details": "Crunching race data"
   }
 }

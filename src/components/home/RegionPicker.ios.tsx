@@ -17,6 +17,8 @@ const RegionPicker: React.FC = () => {
     t('picker.region.america'),
   ];
 
+  const values = ['', '', 'Europe', 'Oceania', 'America'];
+
   const openPicker = () => {
     ActionSheetIOS.showActionSheetWithOptions(
       {
@@ -28,7 +30,7 @@ const RegionPicker: React.FC = () => {
           if (buttonIndex === 1) {
             dispatch(generalActions.setRegion(''));
           } else {
-            dispatch(generalActions.setRegion(options[buttonIndex]));
+            dispatch(generalActions.setRegion(values[buttonIndex]));
           }
         }
       },

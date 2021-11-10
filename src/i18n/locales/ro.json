@@ -113,6 +113,12 @@
   },
   "user": {
     "profile": "Profil",
-    "races": "Curse"
+    "races": "Curse",
+    "tutorial": {
+      "header": "Profilul tău",
+      "step1": "Caută un utilizator",
+      "step2": "Apasă pe butonul din colțul din dreapta sus al ecranului",
+      "step3": "Acum vei putea să-ți verifici profilul mai repede"
+    }
   }
 }

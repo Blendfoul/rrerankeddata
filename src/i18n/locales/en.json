@@ -14,7 +14,13 @@
   },
   "user": {
     "info": "Profile",
-    "races": "Races"
+    "races": "Races",
+    "tutorial": {
+      "header": "Your Driver",
+      "step1": "Search for a user",
+      "step2": "Click on the button on the top right of the screen",
+      "step3": "Now you will be able to check your driver faster"
+    }
   },
   "picker": {
     "cancel": "Cancel",

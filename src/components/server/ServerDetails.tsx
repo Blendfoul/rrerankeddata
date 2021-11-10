@@ -8,6 +8,7 @@ import {SafeAreaView, ScrollView} from 'react-native';
 import Server from './Server';
 import ServerInformation from './details/ServerInformation';
 import ServerSettings from './details/ServerSettings';
+import ServerPermission from './details/ServerPermission';
 
 type RouteProps = NativeStackScreenProps<ServerTabStackList, 'Info'>;
 
@@ -18,6 +19,10 @@ const ServerDetails: React.FC = () => {
   return (
     <SafeAreaView>
       <ScrollView>
+        <ServerPermission
+          minRating={server.Server.Settings.MinRating}
+          minReputation={server.Server.Settings.MinReputation}
+        />
         <Server data={server} />
         <ServerInformation data={server} />
         <ServerSettings data={server} />
