@@ -13,6 +13,9 @@ import {DrawerNavigationProp} from '@react-navigation/drawer';
 import SessionScreen from '../screens/SessionScreen';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import UserScreen from '../screens/UserScreen';
+import {useDispatch, useSelector} from 'react-redux';
+import {userIdSelector, userLoadingSelector} from '../store/slices/User';
+import {defaultUserActions, idSelector} from '../store/slices/DefaultUser';
 
 type Props = {};
 
@@ -21,6 +24,10 @@ const Stack = createNativeStackNavigator<RankingStackList>();
 const RankingStack: React.FC<Props> = () => {
   const {t} = useTranslation();
   const navigation = useNavigation<DrawerNavigationProp<DrawerStackList>>();
+  const isLoading = useSelector(userLoadingSelector);
+  const searchId = useSelector(userIdSelector);
+  const id = useSelector(idSelector);
+  const dispatch = useDispatch();
 
   return (
     <Stack.Navigator>
@@ -43,11 +50,18 @@ const RankingStack: React.FC<Props> = () => {
           name={RankingRoutes.USER}
           component={UserScreen}
           options={{
-            headerLeft: props => (
+            headerRight: props => (
               <IconButton
                 {...props}
-                icon={'menu'}
-                onPress={() => navigation.openDrawer()}
+                disabled={isLoading}
+                icon={
+                  id === searchId
+                    ? 'account-check-outline'
+                    : 'account-plus-outline'
+                }
+                onPress={() => {
+                  dispatch(defaultUserActions.setUserId(searchId));
+                }}
               />
             ),
           }}

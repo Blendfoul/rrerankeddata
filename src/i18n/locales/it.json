@@ -40,6 +40,8 @@
     }
   },
   "server": {
+    "info": "Info",
+    "drivers": "Piloti",
     "lowReputation": "Non hai abbastanza Reputazione/Punteggio per questa gara!",
     "enabled": "Abilitato",
     "disabled": "Disabilitato",

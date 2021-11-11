@@ -50,6 +50,8 @@
     }
   },
   "server": {
+    "info": "Info",
+    "drivers": "Kierowcy",
     "lowReputation": "Nie masz wystarczająco Reputacji/Oceny na ten wyścig!",
     "enabled": "Włączony",
     "disabled": "Wyłączony",

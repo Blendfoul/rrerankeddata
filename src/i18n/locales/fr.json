@@ -50,6 +50,8 @@
     }
   },
   "server": {
+    "info": "Info",
+    "drivers": "Chauffers",
     "lowReputation": "Vous n’avez pas assez de réputation/notation pour cette course !",
     "enabled": "Activé",
     "disabled": "Handicapé",

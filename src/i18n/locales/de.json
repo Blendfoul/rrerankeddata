@@ -50,6 +50,8 @@
     }
   },
   "server": {
+    "info": "Info",
+    "drivers": "Fahrer",
     "lowReputation": "Deine Wertung / dein Ruf reichen für dieses Rennen nicht aus.",
     "enabled": "ein",
     "disabled": "aus",

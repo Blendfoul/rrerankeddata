@@ -37,6 +37,10 @@ const Server: React.FC<Props> = ({data}) => {
   const {colors} = useTheme();
   const {color} = useServerColor(data.Server.Settings, data.Server.Players);
 
+  const countdown = {
+    backgroundColor: colors.text === '#fff' ? '#000' : '#fff',
+  };
+
   const navigateToServer = () => {
     navigate({
       name: ServerRoutes.SERVER,
@@ -48,7 +52,10 @@ const Server: React.FC<Props> = ({data}) => {
 
   return (
     <Card
-      style={[styles.root, {backgroundColor: color}]}
+      style={[
+        styles.root,
+        color !== undefined ? {backgroundColor: color} : undefined,
+      ]}
       onPress={navigateToServer}>
       <CustomCardCover
         resizeMode={'cover'}
@@ -108,6 +115,7 @@ const Server: React.FC<Props> = ({data}) => {
           <CountDown
             until={server.TimeLeft / 1000}
             timeToShow={['H', 'M', 'S']}
+            digitStyle={countdown}
             timeLabels={{m: undefined, s: undefined}}
             size={10}
           />
@@ -120,7 +128,6 @@ const Server: React.FC<Props> = ({data}) => {
 const styles = StyleSheet.create({
   root: {
     margin: 5,
-    elevation: 3,
   },
   layout: {
     width: 75,

@@ -50,6 +50,8 @@
     }
   },
   "server": {
+    "info": "Info",
+    "drivers": "Usuarios",
     "lowReputation": "¡No tienes suficiente Reputación/ Calificación para esta carrera!",
     "enabled": "Activado",
     "disabled": "Desactivado",

@@ -40,6 +40,8 @@
     }
   },
   "server": {
+    "info": "Info",
+    "drivers": "Șoferi",
     "lowReputation": "Nu aveți suficientă reputație/rating pentru această cursă!",
     "enabled": "Activat",
     "disabled": "Dezactivat",

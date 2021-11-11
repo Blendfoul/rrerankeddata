@@ -87,6 +87,12 @@ const UserSlice = createSlice({
 
 const userSelector = (state: RootState) => state.user as UserState;
 
+export const userLoadingSelector = createSelector<
+  RootState,
+  UserState,
+  boolean
+>(userSelector, state => state.isLoading);
+
 export const userNameSelector = createDraftSafeSelector(
   userSelector,
   state => ({

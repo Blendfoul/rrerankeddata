@@ -50,6 +50,8 @@
     }
   },
   "server": {
+    "info": "Info",
+    "drivers": "Drivers",
     "lowReputation": "You do not have enough Reputation/Rating for this race!",
     "enabled": "Enabled",
     "disabled": "Disabled",

@@ -13,7 +13,7 @@ import {DrawerNavigationProp} from '@react-navigation/drawer';
 import {defaultUserActions, idSelector} from '../store/slices/DefaultUser';
 import SessionScreen from '../screens/SessionScreen';
 import {useDispatch, useSelector} from 'react-redux';
-import {userIdSelector} from '../store/slices/User';
+import {userIdSelector, userLoadingSelector} from '../store/slices/User';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import {useTranslation} from 'react-i18next';
 
@@ -27,6 +27,7 @@ const SearchStack: React.FC = () => {
   const searchId = useSelector(userIdSelector);
   const id = useSelector(idSelector);
   const {t} = useTranslation();
+  const isLoading = useSelector(userLoadingSelector);
 
   return (
     <Stack.Navigator>
@@ -51,6 +52,7 @@ const SearchStack: React.FC = () => {
           headerRight: props => (
             <IconButton
               {...props}
+              disabled={isLoading}
               icon={
                 id === searchId
                   ? 'account-check-outline'

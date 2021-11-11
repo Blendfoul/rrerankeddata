@@ -14,6 +14,7 @@ import {useNavigation, useRoute} from '@react-navigation/core';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import ServerDetails from '../components/server/ServerDetails';
 import DriverDetails from '../components/server/DriverDetails';
+import {useTranslation} from 'react-i18next';
 
 type RouteProps = NativeStackScreenProps<ServerStackList, ServerRoutes.SERVER>;
 
@@ -28,6 +29,7 @@ const ServerScreen: React.FC = () => {
   const {setOptions} = useNavigation<NavigationProps>();
   const {params} = useRoute<RouteProps['route']>();
   const {width} = useWindowDimensions();
+  const {t} = useTranslation();
 
   useEffect(() => {
     setOptions({
@@ -40,6 +42,9 @@ const ServerScreen: React.FC = () => {
       <TabStack.Screen
         name={ServerTabRoutes.INFO}
         component={ServerDetails}
+        options={{
+          title: t('server.info'),
+        }}
         initialParams={{
           id: params.id,
         }}
@@ -47,6 +52,9 @@ const ServerScreen: React.FC = () => {
       <TabStack.Screen
         name={ServerTabRoutes.DRIVERS}
         component={DriverDetails}
+        options={{
+          title: t('server.drivers'),
+        }}
         initialParams={{
           id: params.id,
         }}

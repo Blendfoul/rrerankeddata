@@ -50,6 +50,8 @@
     }
   },
   "server": {
+    "info": "Info",
+    "drivers": "Pilotos",
     "lowReputation": "You do not have enough Reputation/Rating for this race!",
     "enabled": "Ativado",
     "disabled": "Desativado",

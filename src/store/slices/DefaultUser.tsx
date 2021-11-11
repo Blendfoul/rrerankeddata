@@ -4,7 +4,7 @@ import {
   createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import {RaceHistory, Result, User} from '../../models/data/User';
 import {reverse} from 'lodash';
 import {RootState} from '../Store';
@@ -12,11 +12,11 @@ import {RootState} from '../Store';
 export const fetchDefaultUser = createAsyncThunk<User, number>(
   'default-user/driver-info',
   async driverId => {
-    const response = await axios(
+    const response: AxiosResponse<User> = await axios(
       `https://game.raceroom.com/utils/user-info/${driverId}`,
     );
 
-    return response.data as User;
+    return response.data;
   },
 );
 

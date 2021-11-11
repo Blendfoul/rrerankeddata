@@ -8,27 +8,21 @@
     "friends": "Vrienden",
     "donate": "Doneren",
     "rate": "Rate",
-    "result": "Result",
-    "schedule": "Schedule",
+    "result": "Resultaten",
+    "schedule": "Schema",
     "details": "Details"
   },
   "user": {
-    "info": "Profile",
-    "races": "Races",
-    "tutorial": {
-      "header": "jouw gebruiker",
-      "step1": "Zoek naar een gebruiker",
-      "step2": "klik op de knop in de rechter bovenhoek van het scherm",
-      "step3": "nu is het mogelijk om je profiel sneller te bekijken"
-    }
+    "info": "Profiel",
+    "races": "Races"
   },
   "picker": {
     "cancel": "Annuleren",
     "region": {
       "all": "Alles",
-      "europe": "Europe",
-      "america": "America",
-      "oceania": "Oceania"
+      "europe": "Europa",
+      "america": "Amerika",
+      "oceania": "Oceanië"
     },
     "session": {
       "all": "Alles",
@@ -50,14 +44,14 @@
     }
   },
   "server": {
-    "lowReputation": "You do not have enough Reputation/Rating for this race!",
+    "lowReputation": "Je hebt niet genoeg Reputatie/Rating voor deze race!",
     "field": "K.v.V",
-    "enabled": "Aktiviert",
-    "disabled": "Gehandicapt",
+    "enabled": "aan",
+    "disabled": "uit",
     "tireWear": "Banden Slijtage",
     "fuel": "Benzine Vebruik",
     "mandatoryPit": "Verplichte Pit",
-    "cutRules": "Cut Rules",
+    "cutRules": "Afsnij Regels",
     "players": "Spelers",
     "reputation": "Reputatie",
     "session": {
@@ -66,9 +60,9 @@
       "race": "Race"
     },
     "rules": {
-      "1": "Slow Down",
-      "2": "Full",
-      "3": "None"
+      "1": "Vertragen",
+      "2": "Volledig",
+      "3": "Geen"
     }
   },
   "search": {
@@ -76,10 +70,10 @@
   },
   "result": {
     "privateer": "Privateer",
-    "position": "Position",
-    "laptime": "Lap Time",
-    "rating": "Rating After",
-    "reputation": "Reputation After",
+    "position": "Positie",
+    "laptime": "Rondetijd",
+    "rating": "Rating Na",
+    "reputation": "Reputatie Na",
     "qualification": {
       "sector1": "Sector 1",
       "sector2": "Sector 2",
@@ -110,16 +104,16 @@
       "Track": "Circuit Botsing",
       "Vehicle": "Voertuig Botsing",
       "Disconnect": "Verbroken Verbinding",
-      "UnservedPenalty": "Straf die niet is uitgeoefend",
-      "WrongWay": "verkeerde weg"
+      "UnservedPenalty": "Straf die niet is uitgevoerd",
+      "WrongWay": "Verkeerde richting"
     }
   },
   "about": {
-    "disclaimer": "R3E-klassementsstatistieken is een app van derden en is in geen geval gelieerd aan Sector 3.",
-    "somethingWrong": "Er is iets mis gevonden"
+    "disclaimer": "R3E-klassementsstatistieken is een app van een derde partij en is op geen enkele manier verbonden aan Sector 3.",
+    "somethingWrong": "Er is iets mis gegaan"
   },
   "donation": {
-    "greeting": "Hallo jongens!",
-    "message": "Als je de app leuk vindt en zin hebt om me te ondersteunen bij het ontwikkelen van de app, voel je vrij om door te gaan. Alle steun wordt zeer op prijs gesteld!"
+    "greeting": "Hallo racers!",
+    "message": "Als je de app leuk vindt en mij graag wil ondersteunen bij het ontwikkelen van de app, voel je vrij om dat te doen. Alle steun wordt zeer op prijs gesteld!"
   }
 }

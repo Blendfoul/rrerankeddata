@@ -7,11 +7,9 @@ import {idSelector} from '../store/slices/DefaultUser';
 const useServerColor = (settings: ServerDataSettings, drivers: number[]) => {
   const user = useSelector(idSelector);
   const {rating} = useRanked(user);
-  const [color, setColor] = useState<string>('');
+  const [color, setColor] = useState<string>();
 
   const getServerColor = () => {
-    console.warn('Server Color', user);
-
     if (!user) {
       return;
     }
