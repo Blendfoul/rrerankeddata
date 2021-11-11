@@ -1,0 +1,126 @@
+{
+  "drawer": {
+    "server": "Servere",
+    "user": "Utilizator",
+    "search": "Caută",
+    "ranking": "Clasament",
+    "about": "Despre",
+    "friends": "Prieteni",
+    "donate": "Donează",
+    "rate": "Evaluează",
+    "details": "Detalii",
+    "result": "Rezultat",
+    "schedule": "Program"
+  },
+  "picker": {
+    "cancel": "Anulează",
+    "region": {
+      "all": "Tot",
+      "europe": "Europa",
+      "america": "America",
+      "oceania": "Oceania"
+    },
+    "session": {
+      "all": "Tot",
+      "practice": "Antrenamente",
+      "qualification": "Calificări",
+      "race": "Cursă"
+    }
+  },
+  "driver": {
+    "card": {
+      "privateer": "Pilot privat",
+      "rating": "Rating",
+      "reputation": "Reputație",
+      "races": "Curse"
+    },
+    "plot": {
+      "rating": "Rating",
+      "reputation": "Reputație"
+    }
+  },
+  "server": {
+    "info": "Info",
+    "drivers": "Șoferi",
+    "lowReputation": "Nu aveți suficientă reputație/rating pentru această cursă!",
+    "enabled": "Activat",
+    "disabled": "Dezactivat",
+    "tireWear": "Uzura pneurilor",
+    "fuel": "Consum de combustibil",
+    "mandatoryPit": "Pit-stop obligatoriu",
+    "cutRules": "Reguli de taiere a circuitului",
+    "field": "Puterea plutonului",
+    "reputation": "Reputație",
+    "session": {
+      "practice": "Antrenamente",
+      "qualification": "Calificări",
+      "race": "Cursă"
+    },
+    "rules": {
+      "1": "Încetinire",
+      "2": "Toate",
+      "3": "Niciuna"
+    }
+  },
+  "search": {
+    "placeholder": "Numele de utilizator sau numele șoferului"
+  },
+  "result": {
+    "privateer": "Pilot privat",
+    "position": "Poziție",
+    "laptime": "Timp pe tură",
+    "rating": "Rating După",
+    "reputation": "Reputație După",
+    "qualification": {
+      "sector1": "Sector 1",
+      "sector2": "Sector 2",
+      "sector3": "Sector 3"
+    },
+    "information": {
+      "start": "Poziție la start",
+      "finish": "Poziție la finish",
+      "incidents": "Incidente",
+      "drivers": "Șoferi"
+    },
+    "table": {
+      "lap": "Tură",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "Validă",
+      "lapTime": "Timp pe tură"
+    },
+    "incidents": {
+      "InvalidLap": "Tură invalidă",
+      "LosingControl": "Pierderea Controlului",
+      "Track": "Coliziune cu circuitul",
+      "Vehicle": "Coliziune cu un vehicul",
+      "Disconnect": "Deconectare",
+      "UnservedPenalty": "Penalizare neservită",
+      "WrongWay": "Sens opus"
+    },
+    "tabs": {
+      "info": "Informații",
+      "qualification": "Calificări",
+      "race": "Cursă"
+    }
+  },
+  "about": {
+    "disclaimer": "R3E Ranked statistics este o aplicație de tip 3rd party și nu este afiliată in nici un fel cu Sector 3.",
+    "somethingWrong": "Ai găsit ceva greșit?"
+  },
+  "donation": {
+    "greeting": "Salutare tuturor!",
+    "message": "Dacă vă place aplicația și doriți să mă susțineți în dezvoltarea acesteia, nu ezitați să o faceți. Tot suportul este foarte apreciat!"
+  },
+  "user": {
+    "profile": "Profil",
+    "races": "Curse",
+    "tutorial": {
+      "header": "Profilul tău",
+      "step1": "Caută un utilizator",
+      "step2": "Apasă pe butonul din colțul din dreapta sus al ecranului",
+      "step3": "Acum vei putea să-ți verifici profilul mai repede"
+    }
+  }
+}

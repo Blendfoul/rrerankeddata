@@ -1,0 +1,119 @@
+{
+  "drawer": {
+    "server": "Servers",
+    "user": "Gebruiker",
+    "search": "Zoek",
+    "ranking": "Ranking",
+    "about": "Over",
+    "friends": "Vrienden",
+    "donate": "Doneren",
+    "rate": "Rate",
+    "result": "Resultaten",
+    "schedule": "Schema",
+    "details": "Details"
+  },
+  "user": {
+    "info": "Profiel",
+    "races": "Races"
+  },
+  "picker": {
+    "cancel": "Annuleren",
+    "region": {
+      "all": "Alles",
+      "europe": "Europa",
+      "america": "Amerika",
+      "oceania": "Oceanië"
+    },
+    "session": {
+      "all": "Alles",
+      "practice": "Practice",
+      "qualification": "Kwalificatie",
+      "race": "Race"
+    }
+  },
+  "driver": {
+    "card": {
+      "privateer": "Privateer",
+      "rating": "Rating",
+      "reputation": "Reputatie",
+      "races": "Races"
+    },
+    "plot": {
+      "rating": "Rating",
+      "reputation": "Reputatie"
+    }
+  },
+  "server": {
+    "lowReputation": "Je hebt niet genoeg Reputatie/Rating voor deze race!",
+    "field": "K.v.V",
+    "enabled": "aan",
+    "disabled": "uit",
+    "tireWear": "Banden Slijtage",
+    "fuel": "Benzine Vebruik",
+    "mandatoryPit": "Verplichte Pit",
+    "cutRules": "Afsnij Regels",
+    "players": "Spelers",
+    "reputation": "Reputatie",
+    "session": {
+      "practice": "Practice",
+      "qualification": "Kwalificatie",
+      "race": "Race"
+    },
+    "rules": {
+      "1": "Vertragen",
+      "2": "Volledig",
+      "3": "Geen"
+    }
+  },
+  "search": {
+    "placeholder": "Coureur Gebruikersnaam"
+  },
+  "result": {
+    "privateer": "Privateer",
+    "position": "Positie",
+    "laptime": "Rondetijd",
+    "rating": "Rating Na",
+    "reputation": "Reputatie Na",
+    "qualification": {
+      "sector1": "Sector 1",
+      "sector2": "Sector 2",
+      "sector3": "Sector 3"
+    },
+    "information": {
+      "start": "Startpositie",
+      "finish": "Finishpositie",
+      "incidents": "Incidenten",
+      "drivers": "Coureurs"
+    },
+    "table": {
+      "lap": "Lap",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "Geldig",
+      "lapTime": "Rondetijd"
+    },
+    "tabs": {
+      "info": "General",
+      "qualification": "Kwalificatie",
+      "race": "Race"
+    },
+    "incidents": {
+      "InvalidLap": "Ongeldige Ronde",
+      "LosingControl": "Controleverlies",
+      "Track": "Circuit Botsing",
+      "Vehicle": "Voertuig Botsing",
+      "Disconnect": "Verbroken Verbinding",
+      "UnservedPenalty": "Straf die niet is uitgevoerd",
+      "WrongWay": "Verkeerde richting"
+    }
+  },
+  "about": {
+    "disclaimer": "R3E-klassementsstatistieken is een app van een derde partij en is op geen enkele manier verbonden aan Sector 3.",
+    "somethingWrong": "Er is iets mis gegaan"
+  },
+  "donation": {
+    "greeting": "Hallo racers!",
+    "message": "Als je de app leuk vindt en mij graag wil ondersteunen bij het ontwikkelen van de app, voel je vrij om dat te doen. Alle steun wordt zeer op prijs gesteld!"
+  }
+}

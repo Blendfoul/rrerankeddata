@@ -1,0 +1,126 @@
+{
+  "drawer": {
+    "server": "Servers",
+    "user": "User",
+    "search": "Search",
+    "ranking": "Ranking",
+    "about": "About",
+    "friends": "Friends",
+    "donate": "Donate",
+    "rate": "Rate",
+    "result": "Result",
+    "schedule": "Schedule",
+    "details": "Details"
+  },
+  "user": {
+    "info": "Profile",
+    "races": "Races",
+    "tutorial": {
+      "header": "Your Driver",
+      "step1": "Search for a user",
+      "step2": "Click on the button on the top right of the screen",
+      "step3": "Now you will be able to check your driver faster"
+    }
+  },
+  "picker": {
+    "cancel": "Cancel",
+    "region": {
+      "all": "All",
+      "europe": "Europe",
+      "america": "America",
+      "oceania": "Oceania"
+    },
+    "session": {
+      "all": "All",
+      "practice": "Practice",
+      "qualification": "Qualification",
+      "race": "Race"
+    }
+  },
+  "driver": {
+    "card": {
+      "privateer": "Privateer",
+      "rating": "Rating",
+      "reputation": "Reputation",
+      "races": "Races"
+    },
+    "plot": {
+      "rating": "Rating",
+      "reputation": "Reputation"
+    }
+  },
+  "server": {
+    "info": "Info",
+    "drivers": "Drivers",
+    "lowReputation": "You do not have enough Reputation/Rating for this race!",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "tireWear": "Tire Wear",
+    "fuel": "Fuel Usage",
+    "mandatoryPit": "Mandatory Pit",
+    "cutRules": "Cut Rules",
+    "field": "Field Strength",
+    "reputation": "Reputation",
+    "session": {
+      "practice": "Practice",
+      "qualification": "Qualification",
+      "race": "Race"
+    },
+    "rules": {
+      "1": "Slow Down",
+      "2": "Full",
+      "3": "None"
+    }
+  },
+  "search": {
+    "placeholder": "Driver Username or name"
+  },
+  "result": {
+    "privateer": "Privateer",
+    "position": "Position",
+    "laptime": "Lap Time",
+    "rating": "Rating After",
+    "reputation": "Reputation After",
+    "qualification": {
+      "sector1": "Sector 1",
+      "sector2": "Sector 2",
+      "sector3": "Sector 3"
+    },
+    "information": {
+      "start": "Start Position",
+      "finish": "Finish Position",
+      "incidents": "Incidents",
+      "drivers": "Drivers"
+    },
+    "table": {
+      "lap": "Lap",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "Valid",
+      "lapTime": "Lap Time"
+    },
+    "tabs": {
+      "info": "General",
+      "qualification": "Qualification",
+      "race": "Race"
+    },
+    "incidents": {
+      "InvalidLap": "Invalid Lap",
+      "LosingControl": "Losing Control",
+      "Track": "Track Collision",
+      "Vehicle": "Vehicle Collision",
+      "Disconnect": "Disconnect",
+      "UnservedPenalty": "Un served Penalty",
+      "WrongWay": "Wrong Way"
+    }
+  },
+  "about": {
+    "disclaimer": "R3E Ranked statistics is a 3rd party app and is not affiliated in anyway with Sector 3.",
+    "somethingWrong": "Found something wrong?"
+  },
+  "donation": {
+    "greeting": "Hello Guys!",
+    "message": "If you like the app and feel like supporting me developing the app feel free to go ahead. All the support is greatly appreciated!"
+  }
+}

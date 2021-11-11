@@ -1,0 +1,126 @@
+{
+  "drawer": {
+    "server": "Server",
+    "user": "Nutzer",
+    "search": "Suche",
+    "ranking": "Tabelle",
+    "about": "Über",
+    "friends": "Freunde",
+    "donate": "Spenden",
+    "rate": "Bewerten",
+    "details": "Details",
+    "result": "Ergebnis",
+    "schedule": "Zeitplan"
+  },
+  "picker": {
+    "cancel": "Abbruch",
+    "region": {
+      "all": "Alle",
+      "europe": "Europa",
+      "america": "Amerika",
+      "oceania": "Ozeanien"
+    },
+    "session": {
+      "all": "Alle",
+      "practice": "Training",
+      "qualification": "Qualifikation",
+      "race": "Rennen"
+    }
+  },
+  "user": {
+    "info": "Profil",
+    "races": "Rennen",
+    "tutorial": {
+      "header": "Dein Fahrer",
+      "step1": "Suche nach einem Nutzer",
+      "step2": "Tippe auf den Button oben rechts auf dem Screen",
+      "step3": "Ab jetzt kannst du deine Infos schnell abrufen"
+    }
+  },
+  "driver": {
+    "card": {
+      "privateer": "Privateer",
+      "rating": "Wertung",
+      "reputation": "Ruf",
+      "races": "Rennen"
+    },
+    "plot": {
+      "rating": "Wertung",
+      "reputation": "Ruf"
+    }
+  },
+  "server": {
+    "info": "Info",
+    "drivers": "Fahrer",
+    "lowReputation": "Deine Wertung / dein Ruf reichen für dieses Rennen nicht aus.",
+    "enabled": "ein",
+    "disabled": "aus",
+    "tireWear": "Reifenabnutzung",
+    "fuel": "Benzinverbrauch",
+    "mandatoryPit": "Pflichtstopp",
+    "cutRules": "Abkürzen",
+    "field": "Stärke Fahrerfeld",
+    "reputation": "Ruf",
+    "session": {
+      "practice": "Training",
+      "qualification": "Qualifikation",
+      "race": "Rennen"
+    },
+    "rules": {
+      "1": "langsamer",
+      "2": "voll",
+      "3": "keine"
+    }
+  },
+  "search": {
+    "placeholder": "Fahrername / Nutzername"
+  },
+  "result": {
+    "privateer": "Privateer",
+    "position": "Position",
+    "laptime": "Rundenzeit",
+    "rating": "Wertung nach Rennen",
+    "reputation": "Ruf nach Rennen",
+    "qualification": {
+      "sector1": "Sektor 1",
+      "sector2": "Sektor 2",
+      "sector3": "Sektor 3"
+    },
+    "information": {
+      "start": "Start Position",
+      "finish": "Ziel Position",
+      "incidents": "Vorfälle",
+      "drivers": "Fahrer"
+    },
+    "table": {
+      "lap": "Runde",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "gültig",
+      "lapTime": "Rundenzeit"
+    },
+    "incidents": {
+      "InvalidLap": "ungültige Runde",
+      "LosingControl": "Kontrolle verloren",
+      "Track": "Streckenbegrenzung",
+      "Vehicle": "Fahrzeugkollision",
+      "Disconnect": "Verbindungsabbruch",
+      "UnservedPenalty": "Strafe nicht abgesessen",
+      "WrongWay": "Falsche Fahrtrichtung"
+    },
+    "tabs": {
+      "info": "allgemein",
+      "qualification": "Qualifikation",
+      "race": "Rennen"
+    }
+  },
+  "about": {
+    "disclaimer": "R3E Ranked statistics ist eine Drittanbieter App und in keiner Weise mit Sector 3 assoziiert.",
+    "somethingWrong": "Fehler melden"
+  },
+  "donation": {
+    "greeting": "Hallo Leute,",
+    "message": "wenn euch die App gefällt und ihr mich bei der weiteren Entwicklung unterstützen wollt, könnt ihr gerne fortfahren. Jede Hilfe ist wertvoll!"
+  }
+}

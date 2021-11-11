@@ -1,0 +1,126 @@
+{
+  "drawer": {
+    "server": "Servers",
+    "user": "Utente",
+    "search": "Cerca",
+    "ranking": "Classifica",
+    "about": "About",
+    "friends": "Amici",
+    "donate": "Dona",
+    "rate": "Vota",
+    "result": "Resultato",
+    "schedule": "Programma",
+    "details": "Particolari"
+  },
+  "picker": {
+    "cancel": "Cancella",
+    "region": {
+      "all": "Tutte",
+      "europe": "Europa",
+      "america": "America",
+      "oceania": "Oceania"
+    },
+    "session": {
+      "all": "Tutte",
+      "practice": "Pratica",
+      "qualification": "Qualifica",
+      "race": "Gara"
+    }
+  },
+  "driver": {
+    "card": {
+      "privateer": "Privato",
+      "rating": "Punteggio",
+      "reputation": "Reputazione",
+      "races": "Gare"
+    },
+    "plot": {
+      "rating": "Punteggio",
+      "reputation": "Reputazione"
+    }
+  },
+  "server": {
+    "info": "Info",
+    "drivers": "Piloti",
+    "lowReputation": "Non hai abbastanza Reputazione/Punteggio per questa gara!",
+    "enabled": "Abilitato",
+    "disabled": "Disabilitato",
+    "tireWear": "Usura gomma",
+    "fuel": "Uso carburante",
+    "mandatoryPit": "Pit obbligatorio",
+    "cutRules": "Regole taglio",
+    "field": "Abilità degli avversari",
+    "reputation": "Reputazione",
+    "session": {
+      "practice": "Pratica",
+      "qualification": "Qualifica",
+      "race": "Gara"
+    },
+    "rules": {
+      "1": "Slow Down",
+      "2": "Totali",
+      "3": "Nessuna"
+    }
+  },
+  "search": {
+    "placeholder": "Nome utente o nome del giocatore"
+  },
+  "result": {
+    "privateer": "Privato",
+    "position": "Posizione",
+    "laptime": "Tempo sul giro",
+    "rating": "Punteggio dopo",
+    "reputation": "Punteggio dopo",
+    "qualification": {
+      "sector1": "Settore 1",
+      "sector2": "Settore 2",
+      "sector3": "Settore 3"
+    },
+    "information": {
+      "start": "Posizione di partenza",
+      "finish": "Posizione di arrivo",
+      "incidents": "Incidenti",
+      "drivers": "Piloti"
+    },
+    "table": {
+      "lap": "Giro",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "Valido",
+      "lapTime": "Tempo sul giro"
+    },
+    "incidents": {
+      "InvalidLap": "Giro non valido",
+      "LosingControl": "Perdita di controllo",
+      "Track": "Incidente sul tracciato",
+      "Vehicle": "Collisione con altro veicolo",
+      "Disconnect": "Disconnessione",
+      "UnservedPenalty": "Penalità non scontata",
+      "WrongWay": "Direzione sbagliata"
+    },
+    "tabs": {
+      "info": "Generale",
+      "qualification": "Qualifica",
+      "race": "Gara"
+    }
+  },
+  "about": {
+    "disclaimer": "R3E Ranked statistics è una app di terze parti e non affiliata in alcun modo con Sector3.",
+    "somethingWrong": "Hai trovato qualcosa che non va?"
+  },
+  "donation": {
+    "greeting": "Ciao ragazzi!",
+    "message": "Se vi piace l'app e vi va di supportarmi nello sviluppo, proseguite pure. Qualsiasi tipo di supporto é apprezzato!"
+  },
+  "user": {
+    "info": "Perfile",
+    "races": "Garas",
+    "tutorial": {
+      "header": "Il tuo pilota",
+      "step1": "Cerca un utente",
+      "step2": "Clicca sul pulsante in alto a destra",
+      "step3": "Ora potrai controllare il tuo pilota più rapidamente"
+    }
+  }
+}

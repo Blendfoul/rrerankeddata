@@ -1,38 +1,30 @@
-import {useCallback, useEffect, useState} from 'react';
-import {QualiResult, RaceResult} from '../types/resultData';
+import {useEffect, useState} from 'react';
+import {QualiResult, RaceResult} from '../models/data/Result';
+import {sortBy} from 'lodash';
 
-const useSessionClasses = (data: QualiResult[] | RaceResult[]) => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [values, setData] = useState<QualiResult[][] | RaceResult[][]>([]);
-  const [names, setNames] = useState<string[]>([]);
+const useSessionClasses = (quali: QualiResult[] | RaceResult[]) => {
+  const [classes, setClasses] = useState<QualiResult[][] | RaceResult[][]>([]);
   const [ids, setIds] = useState<number[]>([]);
 
-  const filterClasses = useCallback(() => {
-    const classIndex = data
-      .map(driver => driver.PerformanceIndex)
-      .filter((value, index, array) => array.indexOf(value) === index);
-
-    const classNames: string[] = data.map(driver => driver.CarClass.Name);
-    const classIds: number[] = data.map(driver => driver.CarClass.Id);
-
-    setNames([...new Set(classNames)]);
-    setIds([...new Set(classIds)]);
-
-    setData(
-      classIndex.map(id =>
-        data.filter(driver => driver.PerformanceIndex === id),
-      ),
-    );
-    setLoading(false);
-  }, [data]);
-
   useEffect(() => {
-    filterClasses();
+    const performanceIndexes = [
+      ...new Set(quali.map<number[]>(q => q.PerformanceIndex)),
+    ];
 
-    return () => undefined;
-  }, [filterClasses]);
+    const data = performanceIndexes.map<QualiResult[] | RaceResult[]>(index => {
+      const unsorted = quali.filter(q => index === q.PerformanceIndex);
+      return sortBy(unsorted, p => p.FinishPositionInClass);
+    });
 
-  return {values, names, ids, loading};
+    const values = performanceIndexes.map(
+      (q, index) => data[index][0].CarClass.Id,
+    );
+
+    setIds(values);
+    setClasses(data);
+  }, [quali]);
+
+  return {classes, ids};
 };
 
 export default useSessionClasses;

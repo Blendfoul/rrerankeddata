@@ -1,6 +1,7 @@
 {
   "name": "rrerankeddata",
-  "slug": "R3E_Advanced_Statistics"
+  "displayName": "rrerankeddata",
+  "twitch_api_key": "84wclj0wp535b91qhehlqnho4zuhmh",
+  "twitch_app_token": "7c3j7sz017es6yjunr110gdz4g3of3",
+  "youtube_api_key": "AIzaSyB1QBmyVEg_flEUFwM47hDYmeorwqDIeiM"
 }
-
-

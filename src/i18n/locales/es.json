@@ -1,0 +1,125 @@
+{
+  "drawer": {
+    "server": "Servidores",
+    "user": "Usuario",
+    "search": "Buscar",
+    "ranking": "Clasificación",
+    "about": "Acerca de",
+    "friends": "Amigos",
+    "donate": "Apoiar",
+    "rate": "Classificar",
+    "result": "Resultado",
+    "schedule": "Calendario",
+    "details": "Detalles"
+  },
+  "user": {
+    "info": "Perfil",
+    "races": "Carreras",
+    "tutorial": {
+      "header": "Su conductor",
+      "step1": "Buscar un usuario",
+      "step2": "Haga clic en el botón en la parte superior derecha de la pantalla",
+      "step3": "Ahora podrás comprobar tu conductor más rápido"
+    }
+  },
+  "picker": {
+    "cancel": "Cancelar",
+    "region": {
+      "all": "Todos",
+      "europe": "Europa",
+      "america": "Ameríca",
+      "oceania": "Oceanía"
+    },
+    "session": {
+      "all": "Todos",
+      "practice": "Práctica",
+      "qualification": "Calificación",
+      "race": "Carrera"
+    }
+  },
+  "driver": {
+    "card": {
+      "privateer": "Privado",
+      "rating": "Rating",
+      "reputation": "Reputacion",
+      "races": "Carreras"
+    },
+    "plot": {
+      "rating": "Rating",
+      "reputation": "Reputacion"
+    }
+  },
+  "server": {
+    "info": "Info",
+    "drivers": "Usuarios",
+    "lowReputation": "¡No tienes suficiente Reputación/ Calificación para esta carrera!",
+    "enabled": "Activado",
+    "disabled": "Desactivado",
+    "tireWear": "Desgaste de los neumáticos",
+    "fuel": "Consumo",
+    "mandatoryPit": "Parada obligatoria",
+    "cutRules": "Reglas de corte",
+    "field": "Resistencia de la rejilla",
+    "reputation": "Reputación",
+    "session": {
+      "practice": "Adiestramiento",
+      "qualification": "Calificación",
+      "race": "Carrera"
+    },
+    "rules": {
+      "1": "Tranquilo",
+      "2": "Completas",
+      "3": "Deshabilitado"
+    }
+  },
+  "search": {
+    "placeholder": "Nombre ou username"
+  },
+  "result": {
+    "privateer": "Privado",
+    "position": "Posición",
+    "laptime": "Hora",
+    "rating": "Calificación después",
+    "reputation": "Reputación después",
+    "qualification": {
+      "sector1": "Sector 1",
+      "sector2": "Sector 2",
+      "sector3": "Sector 3"
+    },
+    "information": {
+      "start": "Posición inicial",
+      "finish": "Posición final",
+      "incidents": "Incidentes",
+      "drivers": "Pilotos"
+    },
+    "table": {
+      "lap": "Hora",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "Valida",
+      "lapTime": "Tiempo"
+    },
+    "incidents": {
+      "InvalidLap": "Vuelta no válida",
+      "LosingControl": "Perder el control",
+      "Track": "Colisión de pista",
+      "Vehicle": "Colisión de vehículo",
+      "Disconnect": "Desconectar",
+      "UnservedPenalty": "Penalización no atendida"
+    },
+    "tabs": {
+      "info": "General",
+      "qualification": "Calificación",
+      "race": "Carrera"
+    }
+  },
+  "about": {
+    "disclaimer": "Las estadísticas clasificadas de R3E son una aplicación de terceros y no están afiliadas de ninguna manera con el Sector 3.",
+    "somethingWrong": "Encontraste algo mal?"
+  },
+  "donation": {
+    "greeting": "Hola chicos!",
+    "message": "Si te gusta la aplicación y tienes ganas de apoyarme en el desarrollo de la aplicación no dudes en seguir adelante. Todo el apoyo es muy apreciado!"
+  }
+}

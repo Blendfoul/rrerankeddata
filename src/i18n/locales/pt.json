@@ -1,0 +1,125 @@
+{
+  "drawer": {
+    "server": "Servidores",
+    "user": "Piloto",
+    "search": "Pesquisar",
+    "ranking": "Ranking",
+    "about": "Acerca",
+    "friends": "Amigos",
+    "donate": "Apoiar",
+    "rate": "Classificar",
+    "result": "Resultado",
+    "schedule": "Calendário",
+    "details": "Detalhes"
+  },
+  "user": {
+    "info": "Perfil",
+    "races": "Corridas",
+    "tutorial": {
+      "header": "O meu Piloto",
+      "step1": "Procurar um utilizador",
+      "step2": "Clicar no botão no topo direito do ecrã",
+      "step3": "Agora vai ser mais fácil seguir o progresso do teu piloto favorito"
+    }
+  },
+  "picker": {
+    "cancel": "Cancelar",
+    "region": {
+      "all": "Todos",
+      "europe": "Europa",
+      "america": "America",
+      "oceania": "Ocêania"
+    },
+    "session": {
+      "all": "Todos",
+      "practice": "Treinos",
+      "qualification": "Qualificação",
+      "race": "Corrida"
+    }
+  },
+  "driver": {
+    "card": {
+      "privateer": "Privado",
+      "rating": "Rating",
+      "reputation": "Reputação",
+      "races": "Corridas"
+    },
+    "plot": {
+      "rating": "Rating",
+      "reputation": "Reputação"
+    }
+  },
+  "server": {
+    "info": "Info",
+    "drivers": "Pilotos",
+    "lowReputation": "You do not have enough Reputation/Rating for this race!",
+    "enabled": "Ativado",
+    "disabled": "Desativado",
+    "tireWear": "Desgaste pneus",
+    "fuel": "Consumo",
+    "mandatoryPit": "Paragem obrigatória",
+    "cutRules": "Regras de corte",
+    "field": "Força da grelha",
+    "reputation": "Reputação",
+    "session": {
+      "practice": "Treinos",
+      "qualification": "Qualificação",
+      "race": "Corrida"
+    },
+    "rules": {
+      "1": "Abrandar",
+      "2": "Completas",
+      "3": "Desativadas"
+    }
+  },
+  "search": {
+    "placeholder": "Nome ou username"
+  },
+  "result": {
+    "privateer": "Privado",
+    "position": "Posição",
+    "laptime": "Tempo",
+    "rating": "Rating Depois",
+    "reputation": "Reputação Depois",
+    "qualification": {
+      "sector1": "Sector 1",
+      "sector2": "Sector 2",
+      "sector3": "Sector 3"
+    },
+    "information": {
+      "start": "Posição Inicial",
+      "finish": "Posição Final",
+      "incidents": "Incidentes",
+      "drivers": "Pilotos"
+    },
+    "table": {
+      "lap": "Volta",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "Valida",
+      "lapTime": "Tempo"
+    },
+    "incidents": {
+      "InvalidLap": "Volta Inválida",
+      "LosingControl": "Perda de controlo",
+      "Track": "Colisão com a pista",
+      "Vehicle": "Colisão com veículo",
+      "Disconnect": "Disconecção",
+      "UnservedPenalty": "Penalização não cumprida",
+      "WrongWay": "Sentido errado"
+    },
+    "tabs": {
+      "info": "Geral",
+      "qualification": "Qualificação",
+      "race": "Corrida"
+    }
+  },
+  "about": {
+    "disclaimer": "R3E Ranked statistics é uma aplicação independente em nada relacionada com a Sector 3.",
+    "somethingWrong": "Encontrou um problema"
+  },
+  "donation": {
+    "greeting": "Olá!",
+    "message": "Se gostas da aplicação e queres apoiar-me no desenvolvimento, não hesite em avançar. Todo o apoio é muito apreciado!"}
+}

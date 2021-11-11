@@ -1,36 +1,43 @@
-import React, {useContext} from 'react';
-import {LocalizationContext} from '../translations/LocalizationContext';
-import DriverList from './DriverList';
-import RaceDetailsData from './ServerDetailsData';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {ServerTabsStackList} from '../../types/NavigatorProps';
+import React from 'react';
+import {useRaceSelector} from '../../store/hooks';
+import {
+  fetchServers,
+  loadingServersSelector,
+  selectedServerSelector,
+} from '../../store/slices/Server';
+import {useRoute} from '@react-navigation/core';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {ServerTabStackList} from '../../models/navigation/Navigation';
+import {RefreshControl, ScrollView} from 'react-native';
+import Server from './Server';
+import ServerInformation from './details/ServerInformation';
+import ServerSettings from './details/ServerSettings';
+import ServerPermission from './details/ServerPermission';
+import {useDispatch, useSelector} from 'react-redux';
 
-interface DetailsProps {
-  serverName: string;
-}
+type RouteProps = NativeStackScreenProps<ServerTabStackList, 'Info'>;
 
-const MaterialTabs = createMaterialTopTabNavigator<ServerTabsStackList>();
+const ServerDetails: React.FC = () => {
+  const {params} = useRoute<RouteProps['route']>();
+  const dispatch = useDispatch();
+  const server = useRaceSelector(selectedServerSelector(params.id));
+  const loading = useSelector(loadingServersSelector);
 
-const ServerDetails: React.FC<DetailsProps> = ({serverName}) => {
-  const {translations} = useContext(LocalizationContext);
+  const updateServer = async () => await dispatch(fetchServers());
 
   return (
-    <MaterialTabs.Navigator>
-      <MaterialTabs.Screen
-        name={'data'}
-        options={{
-          title: translations.raceDetails.general,
-        }}
-        component={RaceDetailsData}
-        initialParams={{serverName}}
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={loading} onRefresh={updateServer} />
+      }>
+      <ServerPermission
+        minRating={server.Server.Settings.MinRating}
+        minReputation={server.Server.Settings.MinReputation}
       />
-      <MaterialTabs.Screen
-        name={'drivers'}
-        component={DriverList}
-        initialParams={{serverName}}
-        options={{title: translations.raceDetails.drivers}}
-      />
-    </MaterialTabs.Navigator>
+      <Server data={server} />
+      <ServerInformation data={server} />
+      <ServerSettings data={server} />
+    </ScrollView>
   );
 };
 

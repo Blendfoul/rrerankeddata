@@ -1,0 +1,126 @@
+{
+  "drawer": {
+    "server": "Serveurs",
+    "user": "Utilisateur",
+    "search": "Rechercher",
+    "ranking": "Classement",
+    "about": "Environ",
+    "friends": "Amis",
+    "donate": "Donner",
+    "rate": "Taux",
+    "result": "Résultat",
+    "schedule": "Horaire",
+    "details": "Détails"
+  },
+  "user": {
+    "info": "Profil",
+    "races": "Courses",
+    "tutorial": {
+      "header": "Votre chauffeur",
+      "step1": "Rechercher un utilisateur",
+      "step2": "Cliquez sur le bouton en haut à droite de l’écran",
+      "step3": "Maintenant, vous serez en mesure de vérifier votre pilote plus rapidement"
+    }
+  },
+  "picker": {
+    "cancel": "Annuler",
+    "region": {
+      "all": "Tout",
+      "europe": "Europe",
+      "america": "America",
+      "oceania": "Oceania"
+    },
+    "session": {
+      "all": "Tout",
+      "practice": "Pratique",
+      "qualification": "Qualification",
+      "race": "Course"
+    }
+  },
+  "driver": {
+    "card": {
+      "privateer": "Corsaire",
+      "rating": "Notation",
+      "reputation": "Réputation",
+      "races": "Courses"
+    },
+    "plot": {
+      "rating": "Notation",
+      "reputation": "Réputation"
+    }
+  },
+  "server": {
+    "info": "Info",
+    "drivers": "Chauffers",
+    "lowReputation": "Vous n’avez pas assez de réputation/notation pour cette course !",
+    "enabled": "Activé",
+    "disabled": "Handicapé",
+    "tireWear": "Usure des pneus",
+    "fuel": "Consommation de carburant",
+    "mandatoryPit": "Fosse obligatoire",
+    "cutRules": "Règles de coupe",
+    "field": "Intensité du champ",
+    "reputation": "Réputation",
+    "session": {
+      "practice": "Pratique",
+      "qualification": "Qualification",
+      "race": "Course"
+    },
+    "rules": {
+      "1": "Plus lentement",
+      "2": "Plein",
+      "3": "Aucun"
+    }
+  },
+  "search": {
+    "placeholder": "Nom d’utilisateur ou nom"
+  },
+  "result": {
+    "privateer": "Corsaire",
+    "position": "Position",
+    "laptime": "Temps au tour",
+    "rating": "Évaluation après",
+    "reputation": "Réputation après",
+    "qualification": {
+      "sector1": "Secteur 1",
+      "sector2": "Secteur 2",
+      "sector3": "Secteur 3"
+    },
+    "information": {
+      "start": "Position de départ",
+      "finish": "Position de finition",
+      "incidents": "Incidents",
+      "drivers": "Pilotes"
+    },
+    "table": {
+      "lap": "Lap",
+      "sector1": "S1",
+      "sector2": "S2",
+      "sector3": "S3",
+      "valid": "Valid",
+      "lapTime": "Temps au tour"
+    },
+    "tabs": {
+      "info": "Généralités",
+      "qualification": "Qualification",
+      "race": "Course"
+    },
+    "incidents": {
+      "InvalidLap": "Tour non valide",
+      "LosingControl": "Perdre le contrôle",
+      "Track": "Collision sur chenilles",
+      "Vehicle": "Collision de véhicule",
+      "Disconnect": "Déconnecter",
+      "UnservedPenalty": "Peine non purgée",
+      "WrongWay": "Mauvaise façon"
+    }
+  },
+  "about": {
+    "disclaimer": "R3E Ranked Statistics est une application de 3ème partie et n’est de toute façon pas affiliée au secteur 3.",
+    "somethingWrong": "Vous avez trouvé quelque chose qui ne va pas?"
+  },
+  "donation": {
+    "greeting": "Bonjour les gars!",
+    "message": "Si vous aimez l’application et que vous avez envie de me soutenir dans le développement de l’application, n’hésitez pas à aller de l’avant. Tout le soutien est grandement apprécié!"
+  }
+}
