@@ -1,9 +1,10 @@
 import {useSelector} from 'react-redux';
 import {useCallback, useEffect, useState} from 'react';
 import {Rating} from '../models/data/Ranked';
-import axios, {AxiosRequestConfig} from 'axios';
+import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {sortBy} from 'lodash';
 import {ratingsComplete} from '../store/slices/Ratings';
+import {User} from '../models/data/User';
 
 const useDrivers = (driversId: number[]) => {
   const ratings = useSelector(ratingsComplete);
@@ -18,7 +19,7 @@ const useDrivers = (driversId: number[]) => {
         );
 
         if (!driver) {
-          const response = await axios(
+          const response: AxiosResponse<User> = await axios(
             `https://game.raceroom.com/utils/user-info/${id}`,
             {
               cancelToken: source.token,
@@ -49,7 +50,7 @@ const useDrivers = (driversId: number[]) => {
     calculate();
 
     return () => source.cancel();
-  }, [calculate]);
+  }, [calculate, driversId]);
 
   return {drivers};
 };
