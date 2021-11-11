@@ -1,6 +1,7 @@
 import {
   createAsyncThunk,
   createDraftSafeSelector,
+  createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -52,6 +53,12 @@ const ServerSlice = createSlice({
 });
 
 const selectServers = (state: RootState) => state.server;
+
+export const loadingServersSelector = createSelector<
+  RootState,
+  ServerState,
+  boolean
+>(selectServers, state => state.isLoading);
 
 export const selectedServerSelector = (serverId: string) => {
   return createDraftSafeSelector<RootState, ServerState, RankedServer>(
