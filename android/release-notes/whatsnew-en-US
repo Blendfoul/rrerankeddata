@@ -1,5 +1,7 @@
-Version 2.0.0-release-candidate-2
+Version 2.0.0
 
-- Disabled add driver button while loading
-- Changed incorrect icon on profile selected through the ranking page
-- background color of server card should be displayed correctly
+- New State management Solution
+- Refreshed UI
+- Bug fixes
+- New Romanian translation
+- New Polish translation
