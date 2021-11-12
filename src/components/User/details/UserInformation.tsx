@@ -20,15 +20,17 @@ const UserInformation: React.FC<Props> = ({user}) => {
         style={styles.img}
         source={{
           uri:
-            user.header ||
+            user?.header ||
             'https://prod.r3eassets.com/static/img/banners/r3e.jpg',
         }}>
         <Image source={{uri: user.avatar}} style={styles.hero} />
       </CustomCardCover>
       <Card.Title
-        title={user.name}
-        subtitle={user.team || t('driver.card.privateer')}
-        right={props => <Country country={user.country.code} {...props} />}
+        title={user?.name}
+        subtitle={user?.team || t('driver.card.privateer')}
+        right={props => (
+          <Country country={user?.country?.code || 'pt'} {...props} />
+        )}
       />
     </Card>
   );
