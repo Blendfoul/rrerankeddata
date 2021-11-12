@@ -10,7 +10,7 @@ type Props = {
 };
 
 const UserTwitchStreamer: React.FC<Props> = ({user}) => {
-  const handleArray = user.team.split('/');
+  const handleArray = user?.team?.split('/') || '';
   const handle = handleArray[handleArray.length - 1].trim();
   const {data} = useStreamData(handle);
 
