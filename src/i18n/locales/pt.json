@@ -39,6 +39,7 @@
   },
   "driver": {
     "card": {
+      "position": "Posição",
       "privateer": "Privado",
       "rating": "Rating",
       "reputation": "Reputação",

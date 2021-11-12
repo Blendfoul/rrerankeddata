@@ -22,6 +22,11 @@
       "step3": "Teraz możesz szybciej sprawdzić swój profil"
     }
   },
+  "banner": {
+    "raceRoomLive": "Raceroom está em direto na Twitch!",
+    "confirm": "Vamos ver!",
+    "close": "Fechar"
+  },
   "picker": {
     "cancel": "Anuluj",
     "region": {

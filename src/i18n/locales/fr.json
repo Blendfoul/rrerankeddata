@@ -22,6 +22,11 @@
       "step3": "Maintenant, vous serez en mesure de vérifier votre pilote plus rapidement"
     }
   },
+  "banner": {
+    "raceRoomLive": "Raceroom est en direct sur twitch!",
+    "confirm": "Allons-y!",
+    "close": "Proche"
+  },
   "picker": {
     "cancel": "Annuler",
     "region": {

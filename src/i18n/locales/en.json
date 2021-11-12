@@ -12,6 +12,11 @@
     "schedule": "Schedule",
     "details": "Details"
   },
+  "banner": {
+    "raceRoomLive": "RaceRoom is Live on Twitch!",
+    "confirm": "Take me!",
+    "close": "Close"
+  },
   "user": {
     "info": "Profile",
     "races": "Races",
@@ -39,6 +44,7 @@
   },
   "driver": {
     "card": {
+      "position": "Position",
       "privateer": "Privateer",
       "rating": "Rating",
       "reputation": "Reputation",

@@ -49,6 +49,11 @@
       "reputation": "Ruf"
     }
   },
+  "banner": {
+    "raceRoomLive": "Raceroom ist live auf Twitch!",
+    "confirm": "Lass uns gehen!",
+    "close": "schließen"
+  },
   "server": {
     "info": "Info",
     "drivers": "Fahrer",
