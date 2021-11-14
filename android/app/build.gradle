@@ -134,8 +134,8 @@ android {
         applicationId "com.rrerankeddata"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 65
-        versionName "2.0.2"
+        versionCode 66
+        versionName "2.0.3"
         missingDimensionStrategy ('store', 'play')
     }
     splits {
@@ -205,8 +205,11 @@ dependencies {
         exclude group:'com.facebook.flipper'
     }
 
-      debugImplementation 'com.facebook.flipper:flipper-leakcanary2-plugin:0.119.0'
-      debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
+    debugImplementation("com.facebook.flipper:flipper-leakcanary2-plugin:${FLIPPER_VERSION}"){
+        exclude group:'com.facebook.flipper'
+    }
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";

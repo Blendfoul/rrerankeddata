@@ -13,6 +13,8 @@ import SessionScreen from '../screens/SessionScreen';
 import DefaultUserScreen from '../screens/DefaultUserScreen';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import {useTranslation} from 'react-i18next';
+import {useDispatch, useSelector} from 'react-redux';
+import {defaultUserActions, idSelector} from '../store/slices/DefaultUser';
 
 const Stack = createNativeStackNavigator<UserStackList>();
 
@@ -21,6 +23,13 @@ type RouteProps = DrawerNavigationProp<DrawerStackList, DrawerRoutes.USER>;
 const UserStack: React.FC = () => {
   const navigation = useNavigation<RouteProps>();
   const {t} = useTranslation();
+  const dispatch = useDispatch();
+  const id = useSelector(idSelector);
+
+  const removeDefaultUser = () => {
+    dispatch(defaultUserActions.setUserId(-1));
+  };
+
   return (
     <Stack.Navigator>
       <Stack.Group>
@@ -35,6 +44,14 @@ const UserStack: React.FC = () => {
                 onPress={() => navigation.openDrawer()}
               />
             ),
+            headerRight: props =>
+              id !== -1 && (
+                <IconButton
+                  {...props}
+                  icon={'account-remove-outline'}
+                  onPress={removeDefaultUser}
+                />
+              ),
           }}
         />
         <Stack.Screen

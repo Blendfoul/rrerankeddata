@@ -13,13 +13,12 @@ import {
   useIAP,
   requestPurchase,
   Purchase,
-  consumePurchaseAndroid,
   Product,
 } from 'react-native-iap';
 import {useTranslation} from 'react-i18next';
 
 const productIds = Platform.select({
-  ios: ['rrerankeddata'],
+  ios: ['donation_0', 'donation_1', 'donation_2', 'donation_3'],
   android: ['donation_0', 'donation_1', 'donation_2', 'donation_3'],
   default: ['rrerankeddata'],
 });
@@ -52,7 +51,6 @@ const DonateScreen: React.FC = () => {
         if (receipt) {
           try {
             const ackResult = await finishTransaction(purchase);
-            await consumePurchaseAndroid(purchase.purchaseToken as string);
             console.log('ackResult', ackResult);
           } catch (ackErr) {
             console.warn('ackErr', ackErr);

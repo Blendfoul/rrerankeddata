@@ -10,15 +10,16 @@ const useSearch = (name: string) => {
   const [loading, setLoading] = useState<boolean>(false);
   const ratings = useSelector(ratingsComplete);
   const token = axios.CancelToken.source();
+
   const fetchUsers = async () => {
     try {
-      setLoading(true);
       const response: AxiosResponse<SearchUser[]> = await axios(
         `https://game.raceroom.com/search?query=${name}`,
         {
           cancelToken: token.token,
         },
       );
+      setLoading(true);
 
       if (response.data.length !== 0) {
         setUsers(response.data);

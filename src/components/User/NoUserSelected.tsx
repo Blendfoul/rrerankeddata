@@ -1,14 +1,21 @@
 import React from 'react';
-import {Card, List, useTheme} from 'react-native-paper';
+import {Card, List, useTheme, Button} from 'react-native-paper';
 import {FlatList, ListRenderItem, SafeAreaView, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTranslation} from 'react-i18next';
+import {useNavigation} from '@react-navigation/core';
+import {DrawerNavigationProp} from '@react-navigation/drawer';
+import {
+  DrawerRoutes,
+  DrawerStackList,
+} from '../../models/navigation/Navigation';
 
 type Props = {};
 
 const NoUserSelected: React.FC<Props> = () => {
   const {colors} = useTheme();
   const {t} = useTranslation();
+  const {navigate} = useNavigation<DrawerNavigationProp<DrawerStackList>>();
 
   const items = [
     t('user.tutorial.step1'),
@@ -23,6 +30,13 @@ const NoUserSelected: React.FC<Props> = () => {
       left={props => <List.Icon icon={'circle-small'} {...props} />}
     />
   );
+
+  const navigateToSearch = () => {
+    navigate({
+      name: DrawerRoutes.SEARCH,
+      params: undefined,
+    });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -40,6 +54,15 @@ const NoUserSelected: React.FC<Props> = () => {
           </List.Section>
         </Card.Content>
       </Card>
+      <Button
+        style={styles.button}
+        color={'red'}
+        contentStyle={styles.buttonContent}
+        mode={'contained'}
+        icon={'account-search'}
+        onPress={navigateToSearch}>
+        {t('drawer.search')}
+      </Button>
     </SafeAreaView>
   );
 };
@@ -55,6 +78,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
+  },
+  button: {
+    margin: 10,
+  },
+  buttonContent: {
+    paddingVertical: 5,
+    flexDirection: 'row-reverse',
   },
 });
 
