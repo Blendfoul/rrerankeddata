@@ -7,10 +7,10 @@ export const fetchSession = createAsyncThunk<RaceResult, string>(
   'result/fetch-result',
   async result => {
     const response = await axios(
-      `https://game.raceroom.com/multiplayer/results/${result}`,
+      `https://r3e-advanced-statistics.netlify.app/.netlify/functions/api/result/${result}`,
     );
 
-    return response.data.GetMpRaceResultResult;
+    return response.data;
   },
 );
 

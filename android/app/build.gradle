@@ -134,8 +134,8 @@ android {
         applicationId "com.rrerankeddata"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 66
-        versionName "2.0.3"
+        versionCode 67
+        versionName "2.0.4"
         missingDimensionStrategy ('store', 'play')
     }
     splits {
