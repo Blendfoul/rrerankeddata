@@ -1,6 +1,6 @@
 import React, {useMemo, useState} from 'react';
 import {Drawer} from 'react-native-paper';
-import {FlatList, ListRenderItem, SafeAreaView} from 'react-native';
+import {FlatList, ListRenderItem, Platform, SafeAreaView} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {DrawerRoutes} from '../../models/navigation/Navigation';
 import {DrawerContentComponentProps} from '@react-navigation/drawer';
@@ -66,6 +66,10 @@ const DrawerComponent: React.FC<DrawerContentComponentProps> = ({
 
   const renderItem: ListRenderItem<MenuItem> = ({item}) => {
     if (item.route === DrawerRoutes.FRIENDS && userId === -1) {
+      return null;
+    }
+
+    if (item.route === DrawerRoutes.DONATE && Platform.OS === 'ios') {
       return null;
     }
 

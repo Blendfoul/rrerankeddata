@@ -21,6 +21,7 @@ import useServerColor from '../../hooks/useServerColor';
 
 type Props = {
   data: RankedServer;
+  option?: boolean;
 };
 
 type NavigationProps = NativeStackNavigationProp<
@@ -28,7 +29,7 @@ type NavigationProps = NativeStackNavigationProp<
   ServerRoutes.HOME
 >;
 
-const Server: React.FC<Props> = ({data}) => {
+const Server: React.FC<Props> = ({data, option = false}) => {
   const {navigate} = useNavigation<NavigationProps>();
   const {Server: server} = data;
   const {trackInfo, layout} = useTrack(server.Settings.TrackLayoutId[0]);
@@ -73,7 +74,7 @@ const Server: React.FC<Props> = ({data}) => {
         </View>
       </CustomCardCover>
       <Card.Title
-        title={name}
+        title={option ? trackInfo.Name : name}
         right={() => (
           <ContentImage
             itemId={layout.Id}

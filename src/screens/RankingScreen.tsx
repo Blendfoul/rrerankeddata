@@ -42,6 +42,7 @@ const RankingScreen: React.FC<Props> = () => {
       <FlatList
         data={ratings}
         renderItem={renderItem}
+        maxToRenderPerBatch={10}
         keyExtractor={item => `rank-${item.UserId}`}
       />
     </DataTable>

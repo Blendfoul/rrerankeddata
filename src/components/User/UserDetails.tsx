@@ -5,13 +5,16 @@ import {UserTabStackList} from '../../models/navigation/Navigation';
 import LoadingComponent from '../shared/LoadingComponent';
 import UserInformation from './details/UserInformation';
 import UserStatistics from './details/UserStatistics';
-import {useDispatch, useSelector} from 'react-redux';
-import {userDataSelector} from '../../store/slices/User';
-import {dataSelector} from '../../store/slices/DefaultUser';
+import {batch, useDispatch, useSelector} from 'react-redux';
+import {fetchRaces, fetchUser, userDataSelector} from '../../store/slices/User';
+import {
+  dataSelector,
+  fetchDefaultRaces,
+  fetchDefaultUser,
+} from '../../store/slices/DefaultUser';
 import UserTwitchStreamer from './details/UserTwitchStreamer';
 import {RefreshControl, ScrollView} from 'react-native';
 import UserPlot from './details/UserPlot';
-import {fetchServers} from '../../store/slices/Server';
 
 type Props = MaterialTopTabScreenProps<UserTabStackList, 'Info'>;
 
@@ -22,17 +25,32 @@ const UserDetails: React.FC = () => {
   );
   const dispatch = useDispatch();
 
+  const getUserData = () => {
+    const userType = params.type === 'User';
+
+    batch(async () => {
+      await dispatch(
+        userType ? fetchUser(params.id) : fetchDefaultUser(params.id),
+      );
+      await dispatch(
+        userType ? fetchRaces(params.id) : fetchDefaultRaces(params.id),
+      );
+    });
+  };
+
   if (isLoading) {
+    return <LoadingComponent />;
+  }
+
+  if (!user) {
+    getUserData();
     return <LoadingComponent />;
   }
 
   return (
     <ScrollView
       refreshControl={
-        <RefreshControl
-          refreshing={isLoading}
-          onRefresh={() => dispatch(fetchServers())}
-        />
+        <RefreshControl refreshing={isLoading} onRefresh={getUserData} />
       }>
       <UserInformation user={user} />
       <UserStatistics user={user} />

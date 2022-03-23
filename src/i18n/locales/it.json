@@ -62,6 +62,11 @@
       "3": "Nessuna"
     }
   },
+  "banner": {
+    "raceRoomLive": "RaceRoom è Live su Twitch!",
+    "confirm": "Vai!",
+    "close": "Chiudi"
+  },
   "search": {
     "placeholder": "Nome utente o nome del giocatore"
   },
@@ -114,8 +119,8 @@
     "message": "Se vi piace l'app e vi va di supportarmi nello sviluppo, proseguite pure. Qualsiasi tipo di supporto é apprezzato!"
   },
   "user": {
-    "info": "Perfile",
-    "races": "Garas",
+    "info": "Profilo",
+    "races": "Gare",
     "tutorial": {
       "header": "Il tuo pilota",
       "step1": "Cerca un utente",

@@ -39,6 +39,11 @@
       "reputation": "Reputație"
     }
   },
+  "banner": {
+    "raceRoomLive": "RaceRoom e Live pe Twitch!",
+    "confirm": "Alege-mă!",
+    "close": "Închide"
+  },
   "server": {
     "info": "Info",
     "drivers": "Șoferi",

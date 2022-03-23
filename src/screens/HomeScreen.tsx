@@ -5,6 +5,7 @@ import {fetchServers, selectRegionSelector} from '../store/slices/Server';
 import {useDispatch, useSelector} from 'react-redux';
 import PickersComponent from '../components/home/PickersComponent';
 import {RankedServer} from '../models/data/Ranked';
+import RaceRoomLiveOnTwitch from '../components/home/RaceRoomLiveOnTwitch';
 
 const HomeScreen: React.FC = () => {
   const {server, isLoading} = useSelector(selectRegionSelector);
@@ -20,14 +21,29 @@ const HomeScreen: React.FC = () => {
     <Server data={item} />
   );
 
+  const getItemLayout = (
+    data: RankedServer[] | null | undefined,
+    index: number,
+  ) => ({
+    length: 70,
+    offset: 70 * index,
+    index,
+  });
+
   return (
     <FlatList
       data={server}
-      ListHeaderComponent={<PickersComponent />}
+      ListHeaderComponent={
+        <>
+          <PickersComponent />
+          <RaceRoomLiveOnTwitch />
+        </>
+      }
       stickyHeaderIndices={[0]}
       renderItem={renderItem}
-      keyExtractor={(item, index) => `${item.Server.ServerIp}-${index}`}
+      keyExtractor={item => item.Server.Settings.ServerName}
       refreshing={isLoading}
+      getItemLayout={getItemLayout}
       refreshControl={
         <RefreshControl refreshing={isLoading} onRefresh={getServers} />
       }

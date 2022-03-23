@@ -21,6 +21,22 @@ import LoadingAppComponent from './src/components/shared/LoadingAppComponent';
 import {withIAPContext} from 'react-native-iap';
 import UpdateContainer from './src/components/UpdateContainer';
 
+const paperDefault: typeof DefaultTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: DefaultTheme.colors.text,
+  },
+};
+
+const paperDark: typeof DarkTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    primary: DarkTheme.colors.text,
+  },
+};
+
 const App: React.FC = () => {
   const navRef = createNavigationContainerRef<ServerStackList>();
   const colorScheme = useColorScheme();
@@ -40,7 +56,7 @@ const App: React.FC = () => {
   return (
     <StoreProvider store={store}>
       <PersistGate loading={<LoadingAppComponent />} persistor={persists}>
-        <Provider theme={colorScheme === 'light' ? DefaultTheme : DarkTheme}>
+        <Provider theme={colorScheme === 'light' ? paperDefault : paperDark}>
           <UpdateContainer>
             <NavigationContainer
               ref={navRef}

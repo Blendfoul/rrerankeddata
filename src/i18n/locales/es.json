@@ -22,6 +22,11 @@
       "step3": "Ahora podrás comprobar tu conductor más rápido"
     }
   },
+  "banner": {
+    "raceRoomLive": "RaceRoom está disponible en Twitch!",
+    "confirm": "Vamos!",
+    "close": "Cerrar"
+  },
   "picker": {
     "cancel": "Cancelar",
     "region": {

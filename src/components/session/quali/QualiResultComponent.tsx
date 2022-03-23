@@ -12,6 +12,7 @@ type Props = {
 const QualiResultComponent: React.FC<Props> = ({data}) => {
   const {t} = useTranslation();
   const {sectors, lapTime} = useSectorTimes(data.Laps);
+
   return (
     <Card style={styles.root}>
       <Card.Title

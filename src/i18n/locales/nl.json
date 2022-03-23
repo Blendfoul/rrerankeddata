@@ -108,6 +108,11 @@
       "WrongWay": "Verkeerde richting"
     }
   },
+  "banner": {
+    "raceRoomLive": "Raceroom is live op Twitch!",
+    "confirm": "Laat zien",
+    "close": "Sluit"
+  },
   "about": {
     "disclaimer": "R3E-klassementsstatistieken is een app van een derde partij en is op geen enkele manier verbonden aan Sector 3.",
     "somethingWrong": "Er is iets mis gegaan"

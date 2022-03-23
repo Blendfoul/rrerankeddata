@@ -34,7 +34,7 @@ const ServerDetails: React.FC = () => {
         minRating={server.Server.Settings.MinRating}
         minReputation={server.Server.Settings.MinReputation}
       />
-      <Server data={server} />
+      <Server data={server} option />
       <ServerInformation data={server} />
       <ServerSettings data={server} />
     </ScrollView>

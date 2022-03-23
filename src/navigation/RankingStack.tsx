@@ -30,58 +30,60 @@ const RankingStack: React.FC<Props> = () => {
   const dispatch = useDispatch();
 
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name={RankingRoutes.RANKING}
-        component={RankingScreen}
-        options={{
-          title: t('drawer.ranking'),
-          headerLeft: props => (
-            <IconButton
-              {...props}
-              icon={'menu'}
-              onPress={() => navigation.openDrawer()}
-            />
-          ),
-        }}
-      />
-      <Stack.Group>
+    <>
+      <Stack.Navigator>
         <Stack.Screen
-          name={RankingRoutes.USER}
-          component={UserScreen}
+          name={RankingRoutes.RANKING}
+          component={RankingScreen}
           options={{
-            headerRight: props => (
+            title: t('drawer.ranking'),
+            headerLeft: props => (
               <IconButton
                 {...props}
-                disabled={isLoading}
-                icon={
-                  id === searchId
-                    ? 'account-check-outline'
-                    : 'account-plus-outline'
-                }
-                onPress={() => {
-                  dispatch(defaultUserActions.setUserId(searchId));
-                }}
+                icon={'menu'}
+                onPress={() => navigation.openDrawer()}
               />
             ),
           }}
         />
-        <Stack.Screen
-          name={RankingRoutes.RESULT}
-          component={SessionScreen}
-          options={{
-            title: t('drawer.result'),
-          }}
-        />
-        <Stack.Screen
-          name={RankingRoutes.DETAILS}
-          component={SessionDetailsScreen}
-          options={{
-            title: t('drawer.details'),
-          }}
-        />
-      </Stack.Group>
-    </Stack.Navigator>
+        <Stack.Group>
+          <Stack.Screen
+            name={RankingRoutes.USER}
+            component={UserScreen}
+            options={{
+              headerRight: props => (
+                <IconButton
+                  {...props}
+                  disabled={isLoading}
+                  icon={
+                    id === searchId
+                      ? 'account-check-outline'
+                      : 'account-plus-outline'
+                  }
+                  onPress={() => {
+                    dispatch(defaultUserActions.setUserId(searchId));
+                  }}
+                />
+              ),
+            }}
+          />
+          <Stack.Screen
+            name={RankingRoutes.RESULT}
+            component={SessionScreen}
+            options={{
+              title: t('drawer.result'),
+            }}
+          />
+          <Stack.Screen
+            name={RankingRoutes.DETAILS}
+            component={SessionDetailsScreen}
+            options={{
+              title: t('drawer.details'),
+            }}
+          />
+        </Stack.Group>
+      </Stack.Navigator>
+    </>
   );
 };
 

@@ -77,4 +77,10 @@ export const driverSelector = (driverId: number) => {
   );
 };
 
+export const ratingPositionSelector = (id: number) =>
+  createSelector<RootState, RatingState, number>(
+    ratSelector,
+    state => state.ratings.findIndex(item => item.UserId === id) + 1,
+  );
+
 export default ratingsSlice.reducer;

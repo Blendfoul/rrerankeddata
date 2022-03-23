@@ -13,7 +13,7 @@ export const fetchDefaultUser = createAsyncThunk<User, number>(
   'default-user/driver-info',
   async driverId => {
     const response: AxiosResponse<User> = await axios(
-      `https://game.raceroom.com/utils/user-info/${driverId}`,
+      `https://r3e-advanced-statistics.netlify.app/.netlify/functions/api/user/${driverId}`,
     );
 
     return response.data;
@@ -24,11 +24,10 @@ export const fetchDefaultRaces = createAsyncThunk<RaceHistory, number>(
   'default-user/driver-races',
   async driverId => {
     const response = await axios(
-      `https://game.raceroom.com/users/${driverId}/career?json`,
+      `https://r3e-advanced-statistics.netlify.app/.netlify/functions/api/career/${driverId}`,
     );
 
-    const {TotalEntries, Entries} =
-      response.data.context.c.raceList.GetUserMpRatingProgressResult;
+    const {TotalEntries, Entries} = response.data;
 
     return {
       TotalEntries,

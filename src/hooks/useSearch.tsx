@@ -3,22 +3,23 @@ import {SearchUser} from '../models/data/User';
 import {Rating} from '../models/data/Ranked';
 import {useSelector} from 'react-redux';
 import {useEffect, useState} from 'react';
-import {ratingSelector} from '../store/slices/Ratings';
+import {ratingsComplete} from '../store/slices/Ratings';
 
 const useSearch = (name: string) => {
   const [users, setUsers] = useState<SearchUser[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const ratings = useSelector(ratingSelector);
+  const ratings = useSelector(ratingsComplete);
   const token = axios.CancelToken.source();
+
   const fetchUsers = async () => {
     try {
-      setLoading(true);
       const response: AxiosResponse<SearchUser[]> = await axios(
         `https://game.raceroom.com/search?query=${name}`,
         {
           cancelToken: token.token,
         },
       );
+      setLoading(true);
 
       if (response.data.length !== 0) {
         setUsers(response.data);
