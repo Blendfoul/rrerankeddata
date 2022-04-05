@@ -9,6 +9,13 @@ const useSof = (driversId: number[]) => {
   const calculate = useCallback(async () => {
     const ratings1: Rating[] = await Promise.all(
       driversId.map(async id => {
+        if (id === -1) {
+          return {
+            Rating: 1500,
+            Reputation: 70,
+          } as Rating;
+        }
+
         try {
           const response = await axios(
             `https://game.raceroom.com/multiplayer-rating/user/${id}.json`,

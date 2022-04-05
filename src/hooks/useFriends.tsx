@@ -8,6 +8,10 @@ const useFriends = (userId: number) => {
   const source = axios.CancelToken.source();
 
   const getFriends = useCallback(async () => {
+    if (userId === -1) {
+      return;
+    }
+
     try {
       const response = await axios(
         `https://game.raceroom.com/users/${userId}/contacts?json`,

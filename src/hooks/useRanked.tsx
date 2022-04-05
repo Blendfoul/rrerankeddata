@@ -7,6 +7,10 @@ const useRanked = (id: number) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const fetchRating = useCallback(async () => {
+    if (id === -1) {
+      return;
+    }
+
     try {
       setLoading(true);
       const response = await axios(
