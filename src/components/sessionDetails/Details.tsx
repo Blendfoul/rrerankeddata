@@ -5,6 +5,8 @@ import {useTranslation} from 'react-i18next';
 import {FlatList, ListRenderItem, StyleSheet, View} from 'react-native';
 import {Caption, Card, Paragraph} from 'react-native-paper';
 import CustomCardCover from '../shared/CustomCardCover';
+import Country from '../shared/Country';
+import useRanked from '../../hooks/useRanked';
 
 type Props = {
   data: RaceResult;
@@ -13,6 +15,7 @@ type Props = {
 const Details: React.FC<Props> = ({data}) => {
   const {lapTime} = useSectorTimes(data.Laps);
   const {t} = useTranslation();
+  const driver = useRanked(data.UserId);
 
   const renderIncidents: ListRenderItem<Incident> = ({item}) => {
     return (
@@ -34,6 +37,9 @@ const Details: React.FC<Props> = ({data}) => {
       <Card.Title
         title={data.FullName}
         subtitle={data.Team || t('driver.card.privateer')}
+        right={props => (
+          <Country country={driver.rating?.Country || 'pt'} {...props} />
+        )}
       />
       <Card.Content style={styles.content}>
         <View style={styles.container}>
