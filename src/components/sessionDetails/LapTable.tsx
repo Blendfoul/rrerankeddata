@@ -1,20 +1,20 @@
 import React from 'react';
-import {Lap} from '../../models/data/Result';
-import {DataTable} from 'react-native-paper';
-import {useTranslation} from 'react-i18next';
-import {FlatList, ListRenderItem} from 'react-native';
+import { Lap } from '../../models/data/Result';
+import { DataTable } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
+import { FlatList, ListRenderItem } from 'react-native';
 
 type Props = {
   data: Lap[];
 };
 
-const LapTable: React.FC<Props> = ({data}) => {
-  const {t} = useTranslation();
+const LapTable: React.FC<Props> = ({ data }) => {
+  const { t } = useTranslation();
 
-  const renderItem: ListRenderItem<Lap> = ({item, index}) => {
+  const renderItem: ListRenderItem<Lap> = ({ item, index }) => {
     return (
       <DataTable.Row>
-        <DataTable.Cell style={{flex: 0.5}}>{index + 1}</DataTable.Cell>
+        <DataTable.Cell style={{ flex: 0.5 }}>{index + 1}</DataTable.Cell>
         <DataTable.Cell>{item.SectorTimes[0] / 1000}s</DataTable.Cell>
         <DataTable.Cell>
           {(item.SectorTimes[1] - item.SectorTimes[0]) / 1000}s
@@ -32,7 +32,7 @@ const LapTable: React.FC<Props> = ({data}) => {
   return (
     <DataTable>
       <DataTable.Header>
-        <DataTable.Title style={{flex: 0.5}}>
+        <DataTable.Title style={{ flex: 0.5 }}>
           {t('result.table.lap')}
         </DataTable.Title>
         <DataTable.Title>{t('result.table.sector1')}</DataTable.Title>

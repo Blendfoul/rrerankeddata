@@ -1,16 +1,16 @@
 import React from 'react';
-import {RankedServer} from '../../../models/data/Ranked';
-import {Caption, Card, Paragraph} from 'react-native-paper';
-import {StyleSheet, View} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import { RankedServer } from '../../../models/data/Ranked';
+import { Caption, Card, Paragraph } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   data: RankedServer;
 };
 
-const ServerSettings: React.FC<Props> = ({data}) => {
-  const {t} = useTranslation();
-  const {FuelUsage, TireWear, MandatoryPitStop, CutRules} =
+const ServerSettings: React.FC<Props> = ({ data }) => {
+  const { t } = useTranslation();
+  const { FuelUsage, TireWear, MandatoryPitStop, CutRules } =
     data.Server.Settings;
 
   return (

@@ -1,17 +1,17 @@
 import React from 'react';
-import {QualiResult} from '../../../models/data/Result';
-import {Avatar, Caption, Card, Paragraph} from 'react-native-paper';
-import {StyleSheet, View} from 'react-native';
+import { QualiResult } from '../../../models/data/Result';
+import { Avatar, Caption, Card, Paragraph } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
 import useSectorTimes from '../../../hooks/useSectorTimes';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   data: QualiResult;
 };
 
-const QualiResultComponent: React.FC<Props> = ({data}) => {
-  const {t} = useTranslation();
-  const {sectors, lapTime} = useSectorTimes(data.Laps);
+const QualiResultComponent: React.FC<Props> = ({ data }) => {
+  const { t } = useTranslation();
+  const { sectors, lapTime } = useSectorTimes(data.Laps);
 
   return (
     <Card style={styles.root}>

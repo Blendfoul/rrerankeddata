@@ -1,17 +1,17 @@
 import React from 'react';
-import {Card} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/core';
-import {Image, StyleSheet} from 'react-native';
-import {SearchUser, User} from '../../models/data/User';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {UserRoutes, UserStackList} from '../../models/navigation/Navigation';
-import axios, {AxiosResponse} from 'axios';
+import { Card } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/core';
+import { Image, StyleSheet } from 'react-native';
+import { SearchUser, User } from '../../models/data/User';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { UserRoutes, UserStackList } from '../../models/navigation/Navigation';
+import axios, { AxiosResponse } from 'axios';
 
 type Props = {
   item: SearchUser;
 };
 
-const SearchCard: React.FC<Props> = ({item}) => {
+const SearchCard: React.FC<Props> = ({ item }) => {
   const navigation = useNavigation<NativeStackNavigationProp<UserStackList>>();
 
   const selectUser = async () => {
@@ -30,7 +30,7 @@ const SearchCard: React.FC<Props> = ({item}) => {
   return (
     <Card style={styles.root} onPress={selectUser}>
       <Card.Content style={styles.heroContainer}>
-        <Image source={{uri: item.image}} style={styles.hero} />
+        <Image source={{ uri: item.image }} style={styles.hero} />
       </Card.Content>
       <Card.Title
         title={item.name}

@@ -1,9 +1,9 @@
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import ContentImage from './ContentImage';
 import CarClass from './CarClass';
 import CustomCardCover from './CustomCardCover';
 import React from 'react';
-import {Track} from '../../models/data/General';
+import { Track } from '../../models/data/General';
 
 const styles = StyleSheet.create({
   root: {
@@ -31,7 +31,7 @@ type Props = {
   classes: number[];
 };
 
-const ResultCover: React.FC<Props> = ({trackInfo, classes}) => {
+const ResultCover: React.FC<Props> = ({ trackInfo, classes }) => {
   return (
     <CustomCardCover
       style={styles.cover}
@@ -40,8 +40,11 @@ const ResultCover: React.FC<Props> = ({trackInfo, classes}) => {
         uri: `https://game.raceroom.com/store/image_redirect?id=${trackInfo.Id}&amp;size=big`,
       }}>
       <View
-        style={[styles.imgContainer, {justifyContent: 'flex-start', flex: 1}]}>
-        <View style={[styles.imgContainer, {flex: 0}]}>
+        style={[
+          styles.imgContainer,
+          { justifyContent: 'flex-start', flex: 1 },
+        ]}>
+        <View style={[styles.imgContainer, { flex: 0 }]}>
           <ContentImage
             source={{
               uri: `https://prod.r3eassets.com/assets/content/track/${trackInfo.Name.toLowerCase()
@@ -52,7 +55,7 @@ const ResultCover: React.FC<Props> = ({trackInfo, classes}) => {
             style={styles.img}
           />
         </View>
-        <View style={[styles.imgContainer, {flex: 1}]}>
+        <View style={[styles.imgContainer, { flex: 1 }]}>
           <CarClass
             classId={classes}
             contentContainerStyle={{

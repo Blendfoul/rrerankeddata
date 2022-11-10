@@ -4,9 +4,9 @@ import {
   createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
-import {Rating} from '../../models/data/Ranked';
+import { Rating } from '../../models/data/Ranked';
 import axios from 'axios';
-import {RootState} from '../Store';
+import { RootState } from '../Store';
 
 export const fetchRatings = createAsyncThunk<Rating[]>(
   'general/ratings',

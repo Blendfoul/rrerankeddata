@@ -1,10 +1,10 @@
-import {useSelector} from 'react-redux';
-import {useCallback, useEffect, useState} from 'react';
-import {Rating} from '../models/data/Ranked';
-import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
-import {sortBy} from 'lodash';
-import {ratingsComplete} from '../store/slices/Ratings';
-import {User} from '../models/data/User';
+import { useSelector } from 'react-redux';
+import { useCallback, useEffect, useState } from 'react';
+import { Rating } from '../models/data/Ranked';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { sortBy } from 'lodash';
+import { ratingsComplete } from '../store/slices/Ratings';
+import { User } from '../models/data/User';
 
 const useDrivers = (driversId: number[]) => {
   const ratings = useSelector(ratingsComplete);
@@ -52,7 +52,7 @@ const useDrivers = (driversId: number[]) => {
     return () => source.cancel();
   }, [calculate, driversId]);
 
-  return {drivers};
+  return { drivers };
 };
 
 export default useDrivers;

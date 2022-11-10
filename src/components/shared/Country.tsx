@@ -1,13 +1,13 @@
 import React from 'react';
-import {SvgUri} from 'react-native-svg';
-import {View} from 'react-native';
+import { SvgUri } from 'react-native-svg';
+import { View } from 'react-native';
 
 type Props = {
   country: string;
   size: number;
 };
 
-const Country: React.FC<Props> = ({country, size}) => {
+const Country: React.FC<Props> = ({ country, size }) => {
   return (
     <View
       style={{

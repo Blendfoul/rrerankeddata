@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {DataTable, Paragraph} from 'react-native-paper';
-import {FlatList, ListRenderItem} from 'react-native';
-import {useSelector} from 'react-redux';
-import {ratingSelector, ratingsLength} from '../store/slices/Ratings';
-import {Rating} from '../models/data/Ranked';
+import React, { useState } from 'react';
+import { DataTable, Paragraph } from 'react-native-paper';
+import { FlatList, ListRenderItem } from 'react-native';
+import { useSelector } from 'react-redux';
+import { ratingSelector, ratingsLength } from '../store/slices/Ratings';
+import { Rating } from '../models/data/Ranked';
 import DriverCard from '../components/shared/DriverCard';
 
 type Props = {};
@@ -17,7 +17,7 @@ const RankingScreen: React.FC<Props> = () => {
   const ratings = useSelector(ratingSelector(from, to));
   const length = useSelector(ratingsLength);
 
-  const renderItem: ListRenderItem<Rating> = ({item}) => (
+  const renderItem: ListRenderItem<Rating> = ({ item }) => (
     <DriverCard driver={item} />
   );
 

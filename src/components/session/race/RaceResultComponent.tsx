@@ -1,23 +1,32 @@
 import React from 'react';
-import {RaceResult} from '../../../models/data/Result';
-import {Avatar, Caption, Card, IconButton, Paragraph} from 'react-native-paper';
-import {StyleSheet, View} from 'react-native';
+import { RaceResult } from '../../../models/data/Result';
+import {
+  Avatar,
+  Caption,
+  Card,
+  IconButton,
+  Paragraph,
+} from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
 import useSectorTimes from '../../../hooks/useSectorTimes';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useTranslation} from 'react-i18next';
-import {useNavigation} from '@react-navigation/core';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {UserRoutes, UserStackList} from '../../../models/navigation/Navigation';
+import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/core';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import {
+  UserRoutes,
+  UserStackList,
+} from '../../../models/navigation/Navigation';
 
 type Props = {
   data: RaceResult;
 };
 
-const RaceResultComponent: React.FC<Props> = ({data}) => {
-  const {lapTime} = useSectorTimes(data.Laps);
+const RaceResultComponent: React.FC<Props> = ({ data }) => {
+  const { lapTime } = useSectorTimes(data.Laps);
   const navigation =
     useNavigation<NativeStackNavigationProp<UserStackList, 'Result'>>();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const navigateToDetails = () => {
     console.warn('Pressed' + data.UserId);

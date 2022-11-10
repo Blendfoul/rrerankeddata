@@ -1,7 +1,7 @@
 import 'react-native';
 import React from 'react';
 import TextContainer from '../../src/components/utils/TextContainer';
-import {render, RenderAPI} from '@testing-library/react-native';
+import { render, RenderAPI } from '@testing-library/react-native';
 
 describe('Text Container', () => {
   let testInstance: RenderAPI;
@@ -13,12 +13,12 @@ describe('Text Container', () => {
   });
 
   it('Renders title', () => {
-    const {getAllByTestId} = testInstance;
+    const { getAllByTestId } = testInstance;
     expect(getAllByTestId('title').length).toBe(1);
   });
 
   it('Renders text', () => {
-    const {getAllByTestId} = testInstance;
+    const { getAllByTestId } = testInstance;
     expect(getAllByTestId('text').length).toBe(1);
   });
 });

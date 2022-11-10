@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react';
-import {QualiResult, RaceResult} from '../models/data/Result';
-import {sortBy} from 'lodash';
+import { useEffect, useState } from 'react';
+import { QualiResult, RaceResult } from '../models/data/Result';
+import { sortBy } from 'lodash';
 
 const useSessionClasses = (quali: QualiResult[] | RaceResult[]) => {
   const [classes, setClasses] = useState<QualiResult[][] | RaceResult[][]>([]);
@@ -24,7 +24,7 @@ const useSessionClasses = (quali: QualiResult[] | RaceResult[]) => {
     setClasses(data);
   }, [quali]);
 
-  return {classes, ids};
+  return { classes, ids };
 };
 
 export default useSessionClasses;

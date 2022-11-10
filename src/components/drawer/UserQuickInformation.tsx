@@ -1,15 +1,15 @@
 import React from 'react';
 import useRanked from '../../hooks/useRanked';
-import {useSelector} from 'react-redux';
-import {idSelector} from '../../store/slices/DefaultUser';
-import {Avatar, Caption, Card, Paragraph} from 'react-native-paper';
-import {StyleSheet, View} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { idSelector } from '../../store/slices/DefaultUser';
+import { Avatar, Caption, Card, Paragraph } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const UserQuickInformation: React.FC = () => {
   const userId = useSelector(idSelector);
-  const {rating} = useRanked(userId);
-  const {t} = useTranslation();
+  const { rating } = useRanked(userId);
+  const { t } = useTranslation();
 
   if (userId === -1) {
     return null;

@@ -1,20 +1,20 @@
 import React from 'react';
-import {Caption, Card, Paragraph} from 'react-native-paper';
-import {User} from '../../../models/data/User';
+import { Caption, Card, Paragraph } from 'react-native-paper';
+import { User } from '../../../models/data/User';
 import useRanked from '../../../hooks/useRanked';
-import {StyleSheet, View} from 'react-native';
-import {useTranslation} from 'react-i18next';
-import {useSelector} from 'react-redux';
-import {ratingPositionSelector} from '../../../store/slices/Ratings';
+import { StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { ratingPositionSelector } from '../../../store/slices/Ratings';
 
 type Props = {
   user: User;
 };
 
-const UserStatistics: React.FC<Props> = ({user}) => {
-  const {rating} = useRanked(user.id);
+const UserStatistics: React.FC<Props> = ({ user }) => {
+  const { rating } = useRanked(user.id);
   const position = useSelector(ratingPositionSelector(user.id));
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Card style={styles.root}>

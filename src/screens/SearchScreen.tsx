@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Searchbar} from 'react-native-paper';
+import React, { useState } from 'react';
+import { Searchbar } from 'react-native-paper';
 import {
   FlatList,
   ListRenderItem,
@@ -8,15 +8,15 @@ import {
 } from 'react-native';
 import SearchCard from '../components/shared/SearchCard';
 import useSearch from '../hooks/useSearch';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const SearchScreen: React.FC = () => {
   const [value, setValue] = useState<string>('');
-  const {users, loading} = useSearch(value);
-  const {t} = useTranslation();
+  const { users, loading } = useSearch(value);
+  const { t } = useTranslation();
   const searchForUser = (text: string) => setValue(text);
 
-  const renderItem: ListRenderItem<any> = ({item}) => (
+  const renderItem: ListRenderItem<any> = ({ item }) => (
     <SearchCard item={item} />
   );
 

@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {Banner} from 'react-native-paper';
-import {useTranslation} from 'react-i18next';
+import React, { useEffect, useState } from 'react';
+import { Banner } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useSelector} from 'react-redux';
-import {idSelector} from '../../../store/slices/DefaultUser';
+import { useSelector } from 'react-redux';
+import { idSelector } from '../../../store/slices/DefaultUser';
 import useRanked from '../../../hooks/useRanked';
 
 type Props = {
@@ -11,11 +11,11 @@ type Props = {
   minReputation: number;
 };
 
-const ServerPermission: React.FC<Props> = ({minRating, minReputation}) => {
-  const {t} = useTranslation();
+const ServerPermission: React.FC<Props> = ({ minRating, minReputation }) => {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState<boolean>(false);
   const id = useSelector(idSelector);
-  const {rating, loading} = useRanked(id);
+  const { rating, loading } = useRanked(id);
 
   useEffect(() => {
     if (loading) {

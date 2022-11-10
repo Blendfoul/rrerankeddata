@@ -6,7 +6,7 @@ import {
   StyleProp,
   ImageBackground,
 } from 'react-native';
-import {withTheme} from 'react-native-paper';
+import { withTheme } from 'react-native-paper';
 
 type Props = React.ComponentPropsWithRef<typeof ImageBackground> & {
   /**
@@ -32,7 +32,7 @@ const CardCover: React.FC<Props> = ({
   children,
   ...rest
 }) => {
-  const {roundness} = theme;
+  const { roundness } = theme;
 
   let coverStyle;
 
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
 
 export default withTheme(CardCover);
 
-export {CardCover};
+export { CardCover };

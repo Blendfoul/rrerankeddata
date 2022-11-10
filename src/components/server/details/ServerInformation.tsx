@@ -1,18 +1,18 @@
 import React from 'react';
-import {RankedServer} from '../../../models/data/Ranked';
-import {Caption, Card, Paragraph} from 'react-native-paper';
-import {StyleSheet, View} from 'react-native';
+import { RankedServer } from '../../../models/data/Ranked';
+import { Caption, Card, Paragraph } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
 import useSof from '../../../hooks/useSof';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   data: RankedServer;
 };
 
-const ServerInformation: React.FC<Props> = ({data}) => {
-  const {t} = useTranslation();
-  const {sof, rep} = useSof(data.Server.Players);
-  const {PracticeDuration, QualifyDuration, Race1Duration} =
+const ServerInformation: React.FC<Props> = ({ data }) => {
+  const { t } = useTranslation();
+  const { sof, rep } = useSof(data.Server.Players);
+  const { PracticeDuration, QualifyDuration, Race1Duration } =
     data.Server.Settings;
 
   return (
@@ -24,7 +24,7 @@ const ServerInformation: React.FC<Props> = ({data}) => {
         </View>
         <View style={styles.container}>
           <Paragraph>{t('server.reputation')}</Paragraph>
-          <Caption style={{flex: 1}}>{rep}</Caption>
+          <Caption style={{ flex: 1 }}>{rep}</Caption>
         </View>
       </Card.Content>
       <Card.Content style={styles.content}>

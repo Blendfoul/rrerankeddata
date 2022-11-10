@@ -8,8 +8,8 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import {Button, Caption, Paragraph} from 'react-native-paper';
-import {useTranslation} from 'react-i18next';
+import { Button, Caption, Paragraph } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
 
 interface Contribution {
   name: string;
@@ -17,7 +17,7 @@ interface Contribution {
 }
 
 const AboutScreen: React.FC = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const thank: Contribution[] = [
     {
@@ -46,7 +46,7 @@ const AboutScreen: React.FC = () => {
     Linking.openURL('mailto:rrestatsranked@gmail.com');
   };
 
-  const renderItem: ListRenderItem<Contribution> = ({item}) => {
+  const renderItem: ListRenderItem<Contribution> = ({ item }) => {
     return (
       <View style={styles.container}>
         <Paragraph>{item.name}</Paragraph>
@@ -66,7 +66,7 @@ const AboutScreen: React.FC = () => {
         resizeMode={'contain'}
         style={styles.img}
       />
-      <Paragraph style={{textAlign: 'center'}}>
+      <Paragraph style={{ textAlign: 'center' }}>
         {t('about.disclaimer')}
       </Paragraph>
       <FlatList

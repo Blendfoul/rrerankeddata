@@ -1,10 +1,10 @@
-import {useEffect, useState} from 'react';
-import {useRaceSelector} from '../store/hooks';
-import {dataSelector} from '../store/slices/General';
-import {Layout, Track} from '../models/data/General';
+import { useEffect, useState } from 'react';
+import { useRaceSelector } from '../store/hooks';
+import { dataSelector } from '../store/slices/General';
+import { Layout, Track } from '../models/data/General';
 
 const useTrack = (trackId: number) => {
-  const {tracks} = useRaceSelector(dataSelector);
+  const { tracks } = useRaceSelector(dataSelector);
   const [layout, setLayout] = useState<Layout>({
     Track: 0,
     MaxNumberOfVehicles: 0,
@@ -22,7 +22,7 @@ const useTrack = (trackId: number) => {
 
     for (const track in tracks) {
       if (tracks.hasOwnProperty(track)) {
-        const {layouts} = tracks[track] as Track;
+        const { layouts } = tracks[track] as Track;
         trackData = layouts.find((value: Layout) => value.Id === trackId);
         if (trackData !== undefined) {
           setTrack(tracks[track]);
@@ -34,7 +34,7 @@ const useTrack = (trackId: number) => {
     setLayout(trackData as Layout);
   }, []);
 
-  return {layout, trackInfo};
+  return { layout, trackInfo };
 };
 
 export default useTrack;

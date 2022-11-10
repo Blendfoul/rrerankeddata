@@ -1,7 +1,11 @@
-import {createAsyncThunk, createSelector, createSlice} from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+} from '@reduxjs/toolkit';
 import axios from 'axios';
-import {QualiResult, RaceResult, Result} from '../../models/data/Result';
-import {RootState} from '../Store';
+import { QualiResult, RaceResult, Result } from '../../models/data/Result';
+import { RootState } from '../Store';
 
 export const fetchSession = createAsyncThunk<RaceResult, string>(
   'result/fetch-result',

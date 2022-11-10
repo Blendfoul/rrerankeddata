@@ -1,9 +1,9 @@
 import React from 'react';
-import {Incident, RaceResult} from '../../models/data/Result';
+import { Incident, RaceResult } from '../../models/data/Result';
 import useSectorTimes from '../../hooks/useSectorTimes';
-import {useTranslation} from 'react-i18next';
-import {FlatList, ListRenderItem, StyleSheet, View} from 'react-native';
-import {Caption, Card, Paragraph} from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
+import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
+import { Caption, Card, Paragraph } from 'react-native-paper';
 import CustomCardCover from '../shared/CustomCardCover';
 import Country from '../shared/Country';
 import useRanked from '../../hooks/useRanked';
@@ -12,12 +12,12 @@ type Props = {
   data: RaceResult;
 };
 
-const Details: React.FC<Props> = ({data}) => {
-  const {lapTime} = useSectorTimes(data.Laps);
-  const {t} = useTranslation();
+const Details: React.FC<Props> = ({ data }) => {
+  const { lapTime } = useSectorTimes(data.Laps);
+  const { t } = useTranslation();
   const driver = useRanked(data.UserId);
 
-  const renderIncidents: ListRenderItem<Incident> = ({item}) => {
+  const renderIncidents: ListRenderItem<Incident> = ({ item }) => {
     return (
       <View style={styles.incidentContainer}>
         <Paragraph>{t(`result.incidents.${item.Type}`)}</Paragraph>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  title: {alignSelf: 'center'},
+  title: { alignSelf: 'center' },
   content: {
     flexDirection: 'row',
   },

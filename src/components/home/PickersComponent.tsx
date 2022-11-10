@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import RegionPicker from './RegionPicker';
 import OrderPicker from './OrderPicker';
 import SessionPicker from './SessionPicker';
-import {useTheme} from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 const PickersComponent: React.FC = () => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
 
   const styles = StyleSheet.create({
     container: {

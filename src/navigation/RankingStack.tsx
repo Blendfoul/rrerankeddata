@@ -1,28 +1,28 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RankingScreen from '../screens/RankingScreen';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import {
   DrawerStackList,
   RankingRoutes,
   RankingStackList,
 } from '../models/navigation/Navigation';
-import {IconButton} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/core';
-import {DrawerNavigationProp} from '@react-navigation/drawer';
+import { IconButton } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/core';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 import SessionScreen from '../screens/SessionScreen';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
 import UserScreen from '../screens/UserScreen';
-import {useDispatch, useSelector} from 'react-redux';
-import {userIdSelector, userLoadingSelector} from '../store/slices/User';
-import {defaultUserActions, idSelector} from '../store/slices/DefaultUser';
+import { useDispatch, useSelector } from 'react-redux';
+import { userIdSelector, userLoadingSelector } from '../store/slices/User';
+import { defaultUserActions, idSelector } from '../store/slices/DefaultUser';
 
 type Props = {};
 
 const Stack = createNativeStackNavigator<RankingStackList>();
 
 const RankingStack: React.FC<Props> = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const navigation = useNavigation<DrawerNavigationProp<DrawerStackList>>();
   const isLoading = useSelector(userLoadingSelector);
   const searchId = useSelector(userIdSelector);

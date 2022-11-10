@@ -1,5 +1,5 @@
-import {useCallback, useEffect, useState} from 'react';
-import {Rating} from '../models/data/Ranked';
+import { useCallback, useEffect, useState } from 'react';
+import { Rating } from '../models/data/Ranked';
 import axios from 'axios';
 
 const useRanked = (id: number) => {
@@ -28,7 +28,7 @@ const useRanked = (id: number) => {
     fetchRating();
   }, [id]);
 
-  return {rating, loading};
+  return { rating, loading };
 };
 
 export default useRanked;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   DrawerStackList,
   SearchRoutes,
@@ -7,15 +7,15 @@ import {
 } from '../models/navigation/Navigation';
 import SearchScreen from '../screens/SearchScreen';
 import UserScreen from '../screens/UserScreen';
-import {IconButton} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/core';
-import {DrawerNavigationProp} from '@react-navigation/drawer';
-import {defaultUserActions, idSelector} from '../store/slices/DefaultUser';
+import { IconButton } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/core';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { defaultUserActions, idSelector } from '../store/slices/DefaultUser';
 import SessionScreen from '../screens/SessionScreen';
-import {useDispatch, useSelector} from 'react-redux';
-import {userIdSelector, userLoadingSelector} from '../store/slices/User';
+import { useDispatch, useSelector } from 'react-redux';
+import { userIdSelector, userLoadingSelector } from '../store/slices/User';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const Stack = createNativeStackNavigator<SearchStackList>();
 
@@ -26,7 +26,7 @@ const SearchStack: React.FC = () => {
   const dispatch = useDispatch();
   const searchId = useSelector(userIdSelector);
   const id = useSelector(idSelector);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const isLoading = useSelector(userLoadingSelector);
 
   return (

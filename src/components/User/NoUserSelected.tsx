@@ -1,10 +1,15 @@
 import React from 'react';
-import {Card, List, useTheme, Button} from 'react-native-paper';
-import {FlatList, ListRenderItem, SafeAreaView, StyleSheet} from 'react-native';
+import { Card, List, useTheme, Button } from 'react-native-paper';
+import {
+  FlatList,
+  ListRenderItem,
+  SafeAreaView,
+  StyleSheet,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useTranslation} from 'react-i18next';
-import {useNavigation} from '@react-navigation/core';
-import {DrawerNavigationProp} from '@react-navigation/drawer';
+import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/core';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 import {
   DrawerRoutes,
   DrawerStackList,
@@ -13,9 +18,9 @@ import {
 type Props = {};
 
 const NoUserSelected: React.FC<Props> = () => {
-  const {colors} = useTheme();
-  const {t} = useTranslation();
-  const {navigate} = useNavigation<DrawerNavigationProp<DrawerStackList>>();
+  const { colors } = useTheme();
+  const { t } = useTranslation();
+  const { navigate } = useNavigation<DrawerNavigationProp<DrawerStackList>>();
 
   const items = [
     t('user.tutorial.step1'),
@@ -23,7 +28,7 @@ const NoUserSelected: React.FC<Props> = () => {
     t('user.tutorial.step3'),
   ];
 
-  const renderItem: ListRenderItem<string> = ({item}) => (
+  const renderItem: ListRenderItem<string> = ({ item }) => (
     <List.Item
       title={item}
       titleNumberOfLines={2}
@@ -45,7 +50,7 @@ const NoUserSelected: React.FC<Props> = () => {
           <Icon name={'account-plus-outline'} size={30} color={colors.text} />
           <List.Section
             title={t('user.tutorial.header')}
-            style={{width: '100%', flexDirection: 'column', flexShrink: 1}}>
+            style={{ width: '100%', flexDirection: 'column', flexShrink: 1 }}>
             <FlatList
               data={items}
               renderItem={renderItem}

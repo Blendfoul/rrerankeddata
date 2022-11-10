@@ -1,5 +1,5 @@
-import {useCallback, useEffect, useState} from 'react';
-import {Rating} from '../models/data/Ranked';
+import { useCallback, useEffect, useState } from 'react';
+import { Rating } from '../models/data/Ranked';
 import axios from 'axios';
 
 const useSof = (driversId: number[]) => {
@@ -55,7 +55,7 @@ const useSof = (driversId: number[]) => {
     calculate();
   }, [calculate]);
 
-  return {sof, rep};
+  return { sof, rep };
 };
 
 export default useSof;

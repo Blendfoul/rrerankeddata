@@ -1,5 +1,5 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   DrawerRoutes,
   DrawerStackList,
@@ -8,17 +8,17 @@ import {
 } from '../models/navigation/Navigation';
 import HomeScreen from '../screens/HomeScreen';
 import ServerScreen from '../screens/ServerScreen';
-import {IconButton} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/core';
-import {DrawerNavigationProp} from '@react-navigation/drawer';
+import { IconButton } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/core';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 import CalendarComponent from '../components/calendar/CalendarComponent';
 import UserScreen from '../screens/UserScreen';
-import {defaultUserActions, idSelector} from '../store/slices/DefaultUser';
-import {useDispatch, useSelector} from 'react-redux';
-import {userIdSelector, userLoadingSelector} from '../store/slices/User';
+import { defaultUserActions, idSelector } from '../store/slices/DefaultUser';
+import { useDispatch, useSelector } from 'react-redux';
+import { userIdSelector, userLoadingSelector } from '../store/slices/User';
 import SessionScreen from '../screens/SessionScreen';
 import SessionDetailsScreen from '../screens/SessionDetailsScreen';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const Stack = createNativeStackNavigator<ServerStackList>();
 
@@ -29,7 +29,7 @@ const ServerStack: React.FC = () => {
   const dispatch = useDispatch();
   const searchId = useSelector(userIdSelector);
   const id = useSelector(idSelector);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const isLoading = useSelector(userLoadingSelector);
 
   return (
@@ -98,7 +98,7 @@ const ServerStack: React.FC = () => {
         }}
       />
 
-      <Stack.Group screenOptions={{presentation: 'modal'}}>
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen
           name={DrawerRoutes.SCHEDULE}
           component={CalendarComponent}

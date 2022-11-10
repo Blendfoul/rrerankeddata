@@ -1,6 +1,6 @@
-import {useCallback, useEffect, useState} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
-import {Rating} from '../models/data/Ranked';
+import { Rating } from '../models/data/Ranked';
 
 const useFriends = (userId: number) => {
   const [friends, setFriends] = useState<Rating[]>([]);
@@ -15,7 +15,7 @@ const useFriends = (userId: number) => {
     try {
       const response = await axios(
         `https://game.raceroom.com/users/${userId}/contacts?json`,
-        {cancelToken: source.token},
+        { cancelToken: source.token },
       );
 
       const profile = response.data.context.c;
@@ -50,7 +50,7 @@ const useFriends = (userId: number) => {
     return () => source.cancel();
   }, [userId]);
 
-  return {friends, loading};
+  return { friends, loading };
 };
 
 export default useFriends;

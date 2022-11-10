@@ -1,7 +1,7 @@
-import {useCallback, useEffect, useState} from 'react';
-import axios, {AxiosResponse} from 'axios';
-import {twitch_api_key, twitch_app_token} from '../../app.json';
-import {TwitchProfile, TwitchResponse} from '../models/data/Twitch';
+import { useCallback, useEffect, useState } from 'react';
+import axios, { AxiosResponse } from 'axios';
+import { twitch_api_key, twitch_app_token } from '../../app.json';
+import { TwitchProfile, TwitchResponse } from '../models/data/Twitch';
 
 const useStreamData = (handle: string) => {
   const [data, setData] = useState<TwitchProfile>();
@@ -18,7 +18,7 @@ const useStreamData = (handle: string) => {
         },
       );
 
-      const {data} = searchForId.data;
+      const { data } = searchForId.data;
 
       setData(
         data.find(user => user.broadcaster_login === handle.toLowerCase()),
@@ -30,7 +30,7 @@ const useStreamData = (handle: string) => {
     fetchData();
   }, []);
 
-  return {data};
+  return { data };
 };
 
 export default useStreamData;

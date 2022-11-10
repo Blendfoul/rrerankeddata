@@ -1,8 +1,8 @@
 import React from 'react';
-import {Result} from '../../../models/data/User';
-import {Caption, Card, Paragraph} from 'react-native-paper';
-import {StyleSheet, View} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import { Result } from '../../../models/data/User';
+import { Caption, Card, Paragraph } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ContentImage from '../../shared/ContentImage';
 import FastImage from 'react-native-fast-image';
@@ -11,8 +11,8 @@ type Props = {
   data: Result;
 };
 
-const ResultInformation: React.FC<Props> = ({data}) => {
-  const {t} = useTranslation();
+const ResultInformation: React.FC<Props> = ({ data }) => {
+  const { t } = useTranslation();
 
   return (
     <Card style={styles.root}>

@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import SpInAppUpdates, {
   IAUUpdateKind,
   StartUpdateOptions,
 } from 'sp-react-native-in-app-updates';
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 
-const UpdateContainer: React.FC = ({children}) => {
+const UpdateContainer: React.FC = ({ children }) => {
   const inAppUpdates = new SpInAppUpdates(false);
 
   useEffect(() => {

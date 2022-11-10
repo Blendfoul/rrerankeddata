@@ -1,11 +1,11 @@
 import React from 'react';
-import {Result} from '../../models/data/User';
-import {Card, Paragraph, useTheme} from 'react-native-paper';
+import { Result } from '../../models/data/User';
+import { Card, Paragraph, useTheme } from 'react-native-paper';
 import useTrack from '../../hooks/useTrack';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useNavigation} from '@react-navigation/core';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/core';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
   ServerRoutes,
   ServerStackList,
@@ -19,11 +19,11 @@ type Props = {
 
 type NavProps = NativeStackNavigationProp<ServerStackList, 'User'>;
 
-const RaceResult: React.FC<Props> = ({data, type}) => {
-  const {trackInfo} = useTrack(data.TrackLayoutId.Id);
+const RaceResult: React.FC<Props> = ({ data, type }) => {
+  const { trackInfo } = useTrack(data.TrackLayoutId.Id);
   const classes = data.CarClasses.map(c => c.Id);
   const navigation = useNavigation<NavProps>();
-  const {colors} = useTheme();
+  const { colors } = useTheme();
 
   const navigateToResult = () => {
     navigation.navigate({

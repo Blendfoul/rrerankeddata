@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, SafeAreaView, StyleSheet} from 'react-native';
+import { ActivityIndicator, SafeAreaView, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 const styles = StyleSheet.create({

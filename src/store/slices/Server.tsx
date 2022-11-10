@@ -5,9 +5,9 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {RootState} from '../Store';
-import {RankedServer} from '../../models/data/Ranked';
-import {sortBy} from 'lodash';
+import { RootState } from '../Store';
+import { RankedServer } from '../../models/data/Ranked';
+import { sortBy } from 'lodash';
 
 export const fetchServers = createAsyncThunk<RankedServer[]>(
   'server/servers',
@@ -16,7 +16,7 @@ export const fetchServers = createAsyncThunk<RankedServer[]>(
       'https://game.raceroom.com/multiplayer-rating/servers/',
     );
 
-    const {result} = response.data;
+    const { result } = response.data;
 
     return result;
   },
@@ -78,7 +78,7 @@ export const selectRegionSelector = createDraftSafeSelector<
   ServerState
 >(
   (state: RootState) => state,
-  ({general: {region, session, order}, server}) => {
+  ({ general: { region, session, order }, server }) => {
     let servers =
       region.length > 0
         ? server.server.filter((server: RankedServer) =>

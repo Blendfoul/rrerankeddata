@@ -37,7 +37,7 @@ type Driver = {
 export type CarClass = {
   Id: number;
   Name: string;
-  Cars: {Id: number}[];
+  Cars: { Id: number }[];
 };
 
 export type Manufacturer = {

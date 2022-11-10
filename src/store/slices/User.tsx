@@ -5,9 +5,9 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {RootState} from '../Store';
-import {RaceHistory, Result, User} from '../../models/data/User';
-import {reverse} from 'lodash';
+import { RootState } from '../Store';
+import { RaceHistory, Result, User } from '../../models/data/User';
+import { reverse } from 'lodash';
 
 export const fetchUser = createAsyncThunk<User, number>(
   'user/driver-info',
@@ -27,7 +27,7 @@ export const fetchRaces = createAsyncThunk<RaceHistory, number>(
       `https://r3e-advanced-statistics.netlify.app/.netlify/functions/api/career/${driverId}`,
     );
 
-    const {TotalEntries, Entries} = response.data;
+    const { TotalEntries, Entries } = response.data;
 
     return {
       TotalEntries,
@@ -107,7 +107,7 @@ export const userIdSelector = createDraftSafeSelector(
 
 export const userDataSelector = createDraftSafeSelector(
   userSelector,
-  state => ({user: state.user, isLoading: state.isLoading}),
+  state => ({ user: state.user, isLoading: state.isLoading }),
 );
 
 type RatingData = {
@@ -138,7 +138,7 @@ export const userRatingSelector = createSelector<
 
 export const userRacesSelector = createDraftSafeSelector(
   userSelector,
-  state => ({races: state.races, isLoading: state.isLoadingRaces}),
+  state => ({ races: state.races, isLoading: state.isLoadingRaces }),
 );
 
 export const resultSelector = (hash: string) => {
@@ -148,6 +148,6 @@ export const resultSelector = (hash: string) => {
   );
 };
 
-export const {actions} = UserSlice;
+export const { actions } = UserSlice;
 
 export default UserSlice.reducer;

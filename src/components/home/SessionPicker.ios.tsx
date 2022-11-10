@@ -1,14 +1,14 @@
 import React from 'react';
-import {IconButton, useTheme} from 'react-native-paper';
-import {ActionSheetIOS, Platform} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {generalActions} from '../../store/slices/General';
-import {useTranslation} from 'react-i18next';
+import { IconButton, useTheme } from 'react-native-paper';
+import { ActionSheetIOS, Platform } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { generalActions } from '../../store/slices/General';
+import { useTranslation } from 'react-i18next';
 
 const RegionPicker: React.FC = () => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   const dispatch = useDispatch();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const options = [
     t('picker.cancel'),
     t('picker.session.all'),

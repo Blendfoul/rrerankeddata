@@ -1,5 +1,5 @@
-import {useCallback, useEffect, useState} from 'react';
-import {Lap} from '../models/data/Result';
+import { useCallback, useEffect, useState } from 'react';
+import { Lap } from '../models/data/Result';
 
 const useSectorTimes = (data: Lap[]) => {
   const [lapTime, setLapTime] = useState<string>('');
@@ -43,7 +43,7 @@ const useSectorTimes = (data: Lap[]) => {
     getValues();
   }, [getValues]);
 
-  return {lapTime, sectors, avgTime};
+  return { lapTime, sectors, avgTime };
 };
 
 export default useSectorTimes;

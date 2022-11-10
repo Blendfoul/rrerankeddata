@@ -1,15 +1,15 @@
 import React from 'react';
-import {Avatar, Caption, Card, Paragraph, useTheme} from 'react-native-paper';
-import {StyleSheet, View} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { Avatar, Caption, Card, Paragraph, useTheme } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
   ServerRoutes,
   ServerStackList,
 } from '../../models/navigation/Navigation';
-import {Rating} from '../../models/data/Ranked';
+import { Rating } from '../../models/data/Ranked';
 import Country from './Country';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import useStreamData from '../../hooks/useStreamData';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -19,13 +19,13 @@ type Props = {
 
 type NavigationProps = NativeStackNavigationProp<ServerStackList, 'Server'>;
 
-const DriverCard: React.FC<Props> = ({driver}) => {
+const DriverCard: React.FC<Props> = ({ driver }) => {
   const navigation = useNavigation<NavigationProps>();
-  const {t} = useTranslation();
-  const {colors} = useTheme();
+  const { t } = useTranslation();
+  const { colors } = useTheme();
   const handleArray = driver.Team.split('/');
   const handle = handleArray[handleArray.length - 1].trim();
-  const {data} = useStreamData(handle);
+  const { data } = useStreamData(handle);
 
   const navigateToDriver = () => {
     navigation.navigate({
@@ -50,7 +50,7 @@ const DriverCard: React.FC<Props> = ({driver}) => {
           />
         )}
         right={props => (
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             {data ? (
               <Icon
                 name={'twitch'}
@@ -58,7 +58,7 @@ const DriverCard: React.FC<Props> = ({driver}) => {
                 {...props}
               />
             ) : null}
-            <View style={{paddingHorizontal: 5}} />
+            <View style={{ paddingHorizontal: 5 }} />
             <Country country={driver.Country} {...props} />
           </View>
         )}

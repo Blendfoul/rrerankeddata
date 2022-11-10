@@ -6,13 +6,13 @@ import {
   useTheme,
 } from 'react-native-paper';
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {useTranslation} from 'react-i18next';
-import {generalActions, sessionSelector} from '../../store/slices/General';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { generalActions, sessionSelector } from '../../store/slices/General';
 
 const SessionPicker: React.FC = () => {
-  const {t} = useTranslation();
-  const {colors} = useTheme();
+  const { t } = useTranslation();
+  const { colors } = useTheme();
   const dispatch = useDispatch();
   const [visible, setVisible] = React.useState(false);
   const showDialog = () => setVisible(true);

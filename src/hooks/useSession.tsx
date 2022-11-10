@@ -1,9 +1,9 @@
-import {useEffect, useState} from 'react';
-import {useTranslation} from 'react-i18next';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const useSession = (sessionId: number) => {
   const [session, setSession] = useState<string>('');
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     switch (sessionId) {
@@ -28,7 +28,7 @@ const useSession = (sessionId: number) => {
     }
   }, [sessionId]);
 
-  return {session};
+  return { session };
 };
 
 export default useSession;

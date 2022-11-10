@@ -1,5 +1,5 @@
-import {Rating} from '../data/Ranked';
-import {QualiResult, RaceResult} from '../data/Result';
+import { Rating } from '../data/Ranked';
+import { QualiResult, RaceResult } from '../data/Result';
 
 export type DrawerStackList = {
   ServerDrawer: undefined;

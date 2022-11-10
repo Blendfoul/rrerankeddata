@@ -6,13 +6,13 @@ import {
   Portal,
   RadioButton,
 } from 'react-native-paper';
-import {useDispatch, useSelector} from 'react-redux';
-import {useTranslation} from 'react-i18next';
-import {generalActions, regionSelector} from '../../store/slices/General';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { generalActions, regionSelector } from '../../store/slices/General';
 
 const RegionPicker: React.FC = () => {
-  const {t} = useTranslation();
-  const {colors} = useTheme();
+  const { t } = useTranslation();
+  const { colors } = useTheme();
   const region = useSelector(regionSelector);
   const dispatch = useDispatch();
   const [visible, setVisible] = React.useState(false);

@@ -1,26 +1,30 @@
 import React from 'react';
-import {useRoute} from '@react-navigation/core';
-import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
-import {UserTabStackList} from '../../models/navigation/Navigation';
+import { useRoute } from '@react-navigation/core';
+import { MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
+import { UserTabStackList } from '../../models/navigation/Navigation';
 import LoadingComponent from '../shared/LoadingComponent';
 import UserInformation from './details/UserInformation';
 import UserStatistics from './details/UserStatistics';
-import {batch, useDispatch, useSelector} from 'react-redux';
-import {fetchRaces, fetchUser, userDataSelector} from '../../store/slices/User';
+import { batch, useDispatch, useSelector } from 'react-redux';
+import {
+  fetchRaces,
+  fetchUser,
+  userDataSelector,
+} from '../../store/slices/User';
 import {
   dataSelector,
   fetchDefaultRaces,
   fetchDefaultUser,
 } from '../../store/slices/DefaultUser';
 import UserTwitchStreamer from './details/UserTwitchStreamer';
-import {RefreshControl, ScrollView} from 'react-native';
+import { RefreshControl, ScrollView } from 'react-native';
 import UserPlot from './details/UserPlot';
 
 type Props = MaterialTopTabScreenProps<UserTabStackList, 'Info'>;
 
 const UserDetails: React.FC = () => {
-  const {params} = useRoute<Props['route']>();
-  const {isLoading, user} = useSelector(
+  const { params } = useRoute<Props['route']>();
+  const { isLoading, user } = useSelector(
     params.type === 'User' ? userDataSelector : dataSelector,
   );
   const dispatch = useDispatch();

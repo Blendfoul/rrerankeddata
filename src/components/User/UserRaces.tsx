@@ -1,13 +1,13 @@
-import React, {useEffect} from 'react';
-import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
-import {UserTabStackList} from '../../models/navigation/Navigation';
-import {useRoute} from '@react-navigation/core';
-import {useDispatch, useSelector} from 'react-redux';
-import {fetchRaces, userRacesSelector} from '../../store/slices/User';
-import {FlatList, ListRenderItem, RefreshControl} from 'react-native';
+import React, { useEffect } from 'react';
+import { MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
+import { UserTabStackList } from '../../models/navigation/Navigation';
+import { useRoute } from '@react-navigation/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchRaces, userRacesSelector } from '../../store/slices/User';
+import { FlatList, ListRenderItem, RefreshControl } from 'react-native';
 import RaceResult from './RaceResult';
 import LoadingComponent from '../shared/LoadingComponent';
-import {Result} from '../../models/data/User';
+import { Result } from '../../models/data/User';
 import {
   defaultUserRacesSelector,
   fetchDefaultRaces,
@@ -18,8 +18,8 @@ type Props = MaterialTopTabScreenProps<UserTabStackList, 'Races'>;
 type RaceProps = {};
 
 const UserRaces: React.FC<RaceProps> = () => {
-  const {params} = useRoute<Props['route']>();
-  const {races, isLoading} = useSelector(
+  const { params } = useRoute<Props['route']>();
+  const { races, isLoading } = useSelector(
     params.type === 'User' ? userRacesSelector : defaultUserRacesSelector,
   );
 
@@ -34,7 +34,7 @@ const UserRaces: React.FC<RaceProps> = () => {
     return <LoadingComponent />;
   }
 
-  const renderItem: ListRenderItem<Result> = ({item}) => (
+  const renderItem: ListRenderItem<Result> = ({ item }) => (
     <RaceResult data={item} type={params.type} />
   );
 

@@ -1,4 +1,4 @@
-import {combineReducers, configureStore, Middleware} from '@reduxjs/toolkit';
+import { combineReducers, configureStore, Middleware } from '@reduxjs/toolkit';
 import ServerReducer from './slices/Server';
 import RatingsReducer from './slices/Ratings';
 import GeneralReducer from './slices/General';
@@ -7,8 +7,8 @@ import thunk from 'redux-thunk';
 import DefaultUserReducer from './slices/DefaultUser';
 import ResultReducer from './slices/Session';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {persistStore, persistReducer} from 'redux-persist';
-import {PersistConfig} from 'redux-persist/es/types';
+import { persistStore, persistReducer } from 'redux-persist';
+import { PersistConfig } from 'redux-persist/es/types';
 import {
   FLUSH,
   PAUSE,

@@ -1,5 +1,5 @@
-import {useCallback, useEffect, useState} from 'react';
-import {ServerDataSettings} from '../models/data/Ranked';
+import { useCallback, useEffect, useState } from 'react';
+import { ServerDataSettings } from '../models/data/Ranked';
 
 interface RaceType {
   value: string;
@@ -65,7 +65,7 @@ const useRaceType = (data: ServerDataSettings) => {
     computeType();
   }, []);
 
-  return {name, raceType};
+  return { name, raceType };
 };
 
 export default useRaceType;

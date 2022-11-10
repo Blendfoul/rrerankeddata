@@ -1,30 +1,30 @@
 import React from 'react';
-import {useRoute} from '@react-navigation/core';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {SessionTabStackList} from '../../models/navigation/Navigation';
-import {useSelector} from 'react-redux';
-import {resultSelector} from '../../store/slices/User';
-import {Caption, Card, Paragraph} from 'react-native-paper';
+import { useRoute } from '@react-navigation/core';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { SessionTabStackList } from '../../models/navigation/Navigation';
+import { useSelector } from 'react-redux';
+import { resultSelector } from '../../store/slices/User';
+import { Caption, Card, Paragraph } from 'react-native-paper';
 import useTrack from '../../hooks/useTrack';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import ResultCover from '../shared/ResultCover';
 import ContentImage from '../shared/ContentImage';
 import FastImage from 'react-native-fast-image';
 import ResultInformation from './information/ResultInformation';
-import {useTranslation} from 'react-i18next';
-import {defaultUserResultSelector} from '../../store/slices/DefaultUser';
+import { useTranslation } from 'react-i18next';
+import { defaultUserResultSelector } from '../../store/slices/DefaultUser';
 
 type Props = NativeStackScreenProps<SessionTabStackList, 'Info'>['route'];
 
 const SessionInformation: React.FC = () => {
-  const {t} = useTranslation();
-  const {params} = useRoute<Props>();
+  const { t } = useTranslation();
+  const { params } = useRoute<Props>();
   const data = useSelector(
     params.type === 'Default'
       ? defaultUserResultSelector(params.hash)
       : resultSelector(params.hash),
   );
-  const {trackInfo} = useTrack(data.TrackLayoutId.Id);
+  const { trackInfo } = useTrack(data.TrackLayoutId.Id);
   const classes = data.CarClasses.map(c => c.Id);
   const timeFinish = new Date(data.RaceFinishTime * 1000);
 

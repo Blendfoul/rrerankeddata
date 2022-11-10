@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {useWindowDimensions} from 'react-native';
+import React, { useEffect } from 'react';
+import { useWindowDimensions } from 'react-native';
 import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
@@ -10,11 +10,11 @@ import {
   ServerTabRoutes,
   ServerTabStackList,
 } from '../models/navigation/Navigation';
-import {useNavigation, useRoute} from '@react-navigation/core';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import { useNavigation, useRoute } from '@react-navigation/core';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import ServerDetails from '../components/server/ServerDetails';
 import DriverDetails from '../components/server/DriverDetails';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 type RouteProps = NativeStackScreenProps<ServerStackList, ServerRoutes.SERVER>;
 
@@ -26,10 +26,10 @@ type NavigationProps = NativeStackNavigationProp<
 const TabStack = createMaterialTopTabNavigator<ServerTabStackList>();
 
 const ServerScreen: React.FC = () => {
-  const {setOptions} = useNavigation<NavigationProps>();
-  const {params} = useRoute<RouteProps['route']>();
-  const {width} = useWindowDimensions();
-  const {t} = useTranslation();
+  const { setOptions } = useNavigation<NavigationProps>();
+  const { params } = useRoute<RouteProps['route']>();
+  const { width } = useWindowDimensions();
+  const { t } = useTranslation();
 
   useEffect(() => {
     setOptions({
@@ -38,7 +38,7 @@ const ServerScreen: React.FC = () => {
   }, []);
 
   return (
-    <TabStack.Navigator initialLayout={{width}}>
+    <TabStack.Navigator initialLayout={{ width }}>
       <TabStack.Screen
         name={ServerTabRoutes.INFO}
         component={ServerDetails}

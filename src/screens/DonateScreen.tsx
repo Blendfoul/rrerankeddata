@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
   FlatList,
   ListRenderItem,
@@ -7,7 +7,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import {Button, Paragraph, Subheading} from 'react-native-paper';
+import { Button, Paragraph, Subheading } from 'react-native-paper';
 import {
   initConnection,
   useIAP,
@@ -15,7 +15,7 @@ import {
   Purchase,
   Product,
 } from 'react-native-iap';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const productIds = Platform.select({
   ios: ['donation_0', 'donation_1', 'donation_2', 'donation_3'],
@@ -24,9 +24,14 @@ const productIds = Platform.select({
 });
 
 const DonateScreen: React.FC = () => {
-  const {t} = useTranslation();
-  const {connected, products, getProducts, currentPurchase, finishTransaction} =
-    useIAP();
+  const { t } = useTranslation();
+  const {
+    connected,
+    products,
+    getProducts,
+    currentPurchase,
+    finishTransaction,
+  } = useIAP();
 
   useEffect(() => {
     const getData = async () => {
@@ -65,7 +70,7 @@ const DonateScreen: React.FC = () => {
     checkCurrentPurchase(currentPurchase);
   }, [checkCurrentPurchase, currentPurchase]);
 
-  const renderProducts: ListRenderItem<Product> = ({item}) => {
+  const renderProducts: ListRenderItem<Product> = ({ item }) => {
     return (
       <Button
         style={styles.button}

@@ -1,14 +1,14 @@
 import React from 'react';
-import {Caption, Card, useTheme} from 'react-native-paper';
-import {StyleSheet, View} from 'react-native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { Caption, Card, useTheme } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
   ServerRoutes,
   ServerStackList,
 } from '../../models/navigation/Navigation';
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import useTrack from '../../hooks/useTrack';
-import {RankedServer} from '../../models/data/Ranked';
+import { RankedServer } from '../../models/data/Ranked';
 import CountDown from 'react-native-countdown-component';
 import useSession from '../../hooks/useSession';
 import CarClass from '../shared/CarClass';
@@ -29,14 +29,14 @@ type NavigationProps = NativeStackNavigationProp<
   ServerRoutes.HOME
 >;
 
-const Server: React.FC<Props> = ({data, option = false}) => {
-  const {navigate} = useNavigation<NavigationProps>();
-  const {Server: server} = data;
-  const {trackInfo, layout} = useTrack(server.Settings.TrackLayoutId[0]);
-  const {session} = useSession(server.CurrentSession);
-  const {name, raceType} = useRaceType(data.Server.Settings);
-  const {colors} = useTheme();
-  const {color} = useServerColor(data.Server.Settings, data.Server.Players);
+const Server: React.FC<Props> = ({ data, option = false }) => {
+  const { navigate } = useNavigation<NavigationProps>();
+  const { Server: server } = data;
+  const { trackInfo, layout } = useTrack(server.Settings.TrackLayoutId[0]);
+  const { session } = useSession(server.CurrentSession);
+  const { name, raceType } = useRaceType(data.Server.Settings);
+  const { colors } = useTheme();
+  const { color } = useServerColor(data.Server.Settings, data.Server.Players);
 
   const countdown = {
     backgroundColor: colors.text === '#fff' ? '#000' : '#fff',
@@ -55,7 +55,7 @@ const Server: React.FC<Props> = ({data, option = false}) => {
     <Card
       style={[
         styles.root,
-        color !== undefined ? {backgroundColor: color} : undefined,
+        color !== undefined ? { backgroundColor: color } : undefined,
       ]}
       onPress={navigateToServer}>
       <CustomCardCover
@@ -117,7 +117,7 @@ const Server: React.FC<Props> = ({data, option = false}) => {
             until={server.TimeLeft / 1000}
             timeToShow={['H', 'M', 'S']}
             digitStyle={countdown}
-            timeLabels={{m: undefined, s: undefined}}
+            timeLabels={{ m: undefined, s: undefined }}
             size={10}
           />
         </View>

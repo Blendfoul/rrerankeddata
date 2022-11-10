@@ -4,8 +4,8 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {RootState} from '../Store';
-import {R3eData} from '../../models/data/General';
+import { RootState } from '../Store';
+import { R3eData } from '../../models/data/General';
 
 export const fetchR3eData = createAsyncThunk<R3eData>(
   'general/r3e-data',

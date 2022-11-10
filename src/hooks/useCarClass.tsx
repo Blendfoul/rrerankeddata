@@ -1,11 +1,11 @@
-import {useCallback, useEffect, useState} from 'react';
-import {useRaceSelector} from '../store/hooks';
-import {dataSelector} from '../store/slices/General';
-import {Livery} from '../models/data/General';
+import { useCallback, useEffect, useState } from 'react';
+import { useRaceSelector } from '../store/hooks';
+import { dataSelector } from '../store/slices/General';
+import { Livery } from '../models/data/General';
 
 const useCarClass = (classId?: number[], liveries?: number[]) => {
   const [carClasses, setClasses] = useState<number[]>([]);
-  const {cars} = useRaceSelector(dataSelector);
+  const { cars } = useRaceSelector(dataSelector);
 
   const wellKnownClasses = (value: number) => {
     switch (value) {
@@ -35,7 +35,7 @@ const useCarClass = (classId?: number[], liveries?: number[]) => {
             if (cars.hasOwnProperty(key)) {
               //@ts-ignore
               const data: Livery = cars[key].liveries.find(
-                (val: {Id: number}) => value === val.Id,
+                (val: { Id: number }) => value === val.Id,
               );
               if (data !== undefined) {
                 classAvailable.add(wellKnownClasses(data.Class));
@@ -53,7 +53,7 @@ const useCarClass = (classId?: number[], liveries?: number[]) => {
     handleClasses();
   }, [handleClasses]);
 
-  return {classes: carClasses};
+  return { classes: carClasses };
 };
 
 export default useCarClass;

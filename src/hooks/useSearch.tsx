@@ -1,9 +1,9 @@
-import axios, {AxiosResponse} from 'axios';
-import {SearchUser} from '../models/data/User';
-import {Rating} from '../models/data/Ranked';
-import {useSelector} from 'react-redux';
-import {useEffect, useState} from 'react';
-import {ratingsComplete} from '../store/slices/Ratings';
+import axios, { AxiosResponse } from 'axios';
+import { SearchUser } from '../models/data/User';
+import { Rating } from '../models/data/Ranked';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { ratingsComplete } from '../store/slices/Ratings';
 
 const useSearch = (name: string) => {
   const [users, setUsers] = useState<SearchUser[]>([]);
@@ -35,7 +35,7 @@ const useSearch = (name: string) => {
             {
               name: data.Fullname,
               image: `https://game.raceroom.com/game/user_avatar/${data.UserId}`,
-              meta_data: {slug: data.Username},
+              meta_data: { slug: data.Username },
               type: 'user',
             },
           ]);
@@ -53,7 +53,7 @@ const useSearch = (name: string) => {
     return () => token.cancel();
   }, [name]);
 
-  return {users, loading};
+  return { users, loading };
 };
 
 export default useSearch;

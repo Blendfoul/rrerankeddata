@@ -1,16 +1,19 @@
-import React, {useEffect} from 'react';
-import {useNavigation} from '@react-navigation/core';
-import {UserTabRoutes, UserTabStackList} from '../models/navigation/Navigation';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import React, { useEffect } from 'react';
+import { useNavigation } from '@react-navigation/core';
+import {
+  UserTabRoutes,
+  UserTabStackList,
+} from '../models/navigation/Navigation';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import UserDetails from '../components/User/UserDetails';
 import UserRaces from '../components/User/UserRaces';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   userNameSelector,
   idSelector,
   fetchDefaultUser,
 } from '../store/slices/DefaultUser';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import NoUserSelected from '../components/User/NoUserSelected';
 
 const TabStack = createMaterialTopTabNavigator<UserTabStackList>();
@@ -18,9 +21,9 @@ const TabStack = createMaterialTopTabNavigator<UserTabStackList>();
 const DefaultUserScreen: React.FC = () => {
   const user = useSelector(idSelector);
   const navigation = useNavigation();
-  const {name} = useSelector(userNameSelector);
+  const { name } = useSelector(userNameSelector);
   const dispatch = useDispatch();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(fetchDefaultUser(user));

@@ -1,15 +1,15 @@
-import React, {useMemo, useState} from 'react';
-import {Drawer} from 'react-native-paper';
-import {FlatList, ListRenderItem, Platform, SafeAreaView} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
-import {DrawerRoutes} from '../../models/navigation/Navigation';
-import {DrawerContentComponentProps} from '@react-navigation/drawer';
+import React, { useMemo, useState } from 'react';
+import { Drawer } from 'react-native-paper';
+import { FlatList, ListRenderItem, Platform, SafeAreaView } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+import { DrawerRoutes } from '../../models/navigation/Navigation';
+import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import UserQuickInformation from './UserQuickInformation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useSelector} from 'react-redux';
-import {idSelector} from '../../store/slices/DefaultUser';
+import { useSelector } from 'react-redux';
+import { idSelector } from '../../store/slices/DefaultUser';
 import AppReviewProvider from '../shared/AppReviewProvider';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 type MenuItem = {
   label: string;
@@ -20,15 +20,19 @@ type MenuItem = {
 const DrawerComponent: React.FC<DrawerContentComponentProps> = ({
   navigation,
 }) => {
-  const {navigate} = useNavigation();
+  const { navigate } = useNavigation();
   const userId = useSelector(idSelector);
   const [requested, setRequested] = useState<boolean>(false);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const routes = useMemo(
     () => [
-      {label: t('drawer.server'), route: DrawerRoutes.SERVER, icon: 'steering'},
-      {label: t('drawer.user'), route: DrawerRoutes.USER, icon: 'account'},
+      {
+        label: t('drawer.server'),
+        route: DrawerRoutes.SERVER,
+        icon: 'steering',
+      },
+      { label: t('drawer.user'), route: DrawerRoutes.USER, icon: 'account' },
       {
         label: t('drawer.friends'),
         route: DrawerRoutes.FRIENDS,
@@ -64,7 +68,7 @@ const DrawerComponent: React.FC<DrawerContentComponentProps> = ({
     });
   };
 
-  const renderItem: ListRenderItem<MenuItem> = ({item}) => {
+  const renderItem: ListRenderItem<MenuItem> = ({ item }) => {
     if (item.route === DrawerRoutes.FRIENDS && userId === -1) {
       return null;
     }

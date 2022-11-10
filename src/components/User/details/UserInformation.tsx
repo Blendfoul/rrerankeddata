@@ -1,17 +1,17 @@
 import React from 'react';
-import {Card} from 'react-native-paper';
+import { Card } from 'react-native-paper';
 import CustomCardCover from '../../shared/CustomCardCover';
 import Country from '../../shared/Country';
-import {User} from '../../../models/data/User';
-import {Image, StyleSheet} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import { User } from '../../../models/data/User';
+import { Image, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   user: User;
 };
 
-const UserInformation: React.FC<Props> = ({user}) => {
-  const {t} = useTranslation();
+const UserInformation: React.FC<Props> = ({ user }) => {
+  const { t } = useTranslation();
 
   return (
     <Card style={styles.root}>
@@ -23,7 +23,7 @@ const UserInformation: React.FC<Props> = ({user}) => {
             user?.header ||
             'https://prod.r3eassets.com/static/img/banners/r3e.jpg',
         }}>
-        <Image source={{uri: user.avatar}} style={styles.hero} />
+        <Image source={{ uri: user.avatar }} style={styles.hero} />
       </CustomCardCover>
       <Card.Title
         title={user?.name}

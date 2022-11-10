@@ -1,6 +1,6 @@
 import React from 'react';
 import useCarClass from '../../hooks/useCarClass';
-import {FlatList, Image, ListRenderItem, StyleSheet} from 'react-native';
+import { FlatList, Image, ListRenderItem, StyleSheet } from 'react-native';
 
 type Props = {
   data?: number[];
@@ -14,10 +14,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const CarClass: React.FC<Props> = ({data, classId, ...props}) => {
-  const {classes} = useCarClass(classId, data);
+const CarClass: React.FC<Props> = ({ data, classId, ...props }) => {
+  const { classes } = useCarClass(classId, data);
 
-  const renderItem: ListRenderItem<number> = ({item}) => (
+  const renderItem: ListRenderItem<number> = ({ item }) => (
     <Image
       source={{
         uri: `https://game.raceroom.com/store/image_redirect?id=${item}`,

@@ -4,7 +4,7 @@ import FastImage, {
   ResizeMode,
   Source,
 } from 'react-native-fast-image';
-import {StyleProp} from 'react-native';
+import { StyleProp } from 'react-native';
 
 interface Props {
   itemId?: number;
@@ -13,7 +13,7 @@ interface Props {
   style?: StyleProp<ImageStyle>;
 }
 
-const ContentImage: React.FC<Props> = ({itemId, source, ...props}) => (
+const ContentImage: React.FC<Props> = ({ itemId, source, ...props }) => (
   <FastImage
     {...props}
     source={

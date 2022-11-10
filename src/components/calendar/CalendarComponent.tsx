@@ -1,9 +1,9 @@
 import React from 'react';
-import {ScrollView, useWindowDimensions} from 'react-native';
+import { ScrollView, useWindowDimensions } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 const CalendarComponent: React.FC = () => {
-  const {height} = useWindowDimensions();
+  const { height } = useWindowDimensions();
 
   return (
     <ScrollView horizontal>
