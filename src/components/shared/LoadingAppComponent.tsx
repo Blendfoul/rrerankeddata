@@ -1,6 +1,7 @@
 import React from 'react';
-import { ActivityIndicator, SafeAreaView, StyleSheet } from 'react-native';
-import FastImage from 'react-native-fast-image';
+import { ActivityIndicator, Image, SafeAreaView, StyleSheet } from 'react-native';
+
+import image from '../../assets/splash_icon.png';
 
 const styles = StyleSheet.create({
   root: {
@@ -18,9 +19,9 @@ const styles = StyleSheet.create({
 const LoadingComponent: React.FC = () => {
   return (
     <SafeAreaView style={styles.root}>
-      <FastImage
-        source={require('../../assets/splash_icon.png')}
-        resizeMode={FastImage.resizeMode.contain}
+      <Image
+        source={image}
+        resizeMode="contain"
         style={styles.img}
       />
       <ActivityIndicator size={'large'} />

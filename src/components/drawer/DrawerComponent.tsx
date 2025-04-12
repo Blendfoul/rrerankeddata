@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/core';
 import { DrawerRoutes } from '../../models/navigation/Navigation';
 import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import UserQuickInformation from './UserQuickInformation';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from '@react-native-vector-icons/materialcommunityicons';
 import { useSelector } from 'react-redux';
 import { idSelector } from '../../store/slices/DefaultUser';
 import AppReviewProvider from '../shared/AppReviewProvider';

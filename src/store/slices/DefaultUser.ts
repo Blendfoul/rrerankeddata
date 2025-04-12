@@ -4,7 +4,6 @@ import {
   createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
-import axios, { AxiosResponse } from 'axios';
 import { RaceHistory, Result, User } from '../../models/data/User';
 import { reverse } from 'lodash';
 import { RootState } from '../Store';
@@ -12,22 +11,32 @@ import { RootState } from '../Store';
 export const fetchDefaultUser = createAsyncThunk<User, number>(
   'default-user/driver-info',
   async driverId => {
-    const response: AxiosResponse<User> = await axios(
+    const response = await fetch(
       `https://r3e-advanced-statistics.netlify.app/.netlify/functions/api/user/${driverId}`,
     );
 
-    return response.data;
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json() as User;
+
+    return data;
   },
 );
 
 export const fetchDefaultRaces = createAsyncThunk<RaceHistory, number>(
   'default-user/driver-races',
   async driverId => {
-    const response = await axios(
+    const response = await fetch(
       `https://r3e-advanced-statistics.netlify.app/.netlify/functions/api/career/${driverId}`,
     );
 
-    const { TotalEntries, Entries } = response.data;
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const { TotalEntries, Entries } = await response.json() as RaceHistory;
 
     return {
       TotalEntries,
@@ -44,11 +53,26 @@ type UserState = {
   races: RaceHistory;
 };
 
-const initialState = {
+const initialState: UserState = {
   userId: -1,
   isLoading: true,
   isLoadingRaces: true,
-} as UserState;
+  races: {
+    TotalEntries: 0,
+    Entries: [],
+  },
+  user: {
+    country: {
+      code: '',
+      name: '',
+    },
+    avatar: '',
+    name: '',
+    team: '',
+    header: '',
+    id: -1,
+  },
+};
 
 const DefaultUserSlice = createSlice({
   name: 'default-user',
@@ -112,9 +136,9 @@ type RatingData = {
   isLoading: boolean;
 };
 
-export const ratingSelector = createSelector<RootState, UserState, RatingData>(
+export const ratingSelector = createSelector(
   userSelector,
-  state => {
+  (state: UserState) => {
     console.log(state);
 
     return {
@@ -137,7 +161,7 @@ export const defaultUserRacesSelector = createDraftSafeSelector(
 );
 
 export const defaultUserResultSelector = (hash: string) => {
-  return createSelector<RootState, UserState, Result>(userSelector, state =>
+  return createSelector(userSelector, state =>
     state.races.Entries.find((race: Result) => race.RaceHash === hash),
   );
 };

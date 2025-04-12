@@ -1,6 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, SafeAreaView, StyleSheet } from 'react-native';
-import FastImage from 'react-native-fast-image';
+import { ActivityIndicator, Image, SafeAreaView, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   root: {
@@ -17,11 +16,11 @@ const styles = StyleSheet.create({
 const LoadingComponent: React.FC = () => {
   return (
     <SafeAreaView style={styles.root}>
-      <FastImage
+      <Image
         source={{
           uri: 'https://prod.r3eassets.com/assets/content/carlivery/haribo-racing-team-88-6401-image-big.webp',
         }}
-        resizeMode={FastImage.resizeMode.contain}
+        resizeMode="contain"
         style={styles.img}
       />
       <ActivityIndicator size={'large'} />

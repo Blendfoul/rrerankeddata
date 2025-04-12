@@ -9,7 +9,6 @@ import useTrack from '../../hooks/useTrack';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import ResultCover from '../shared/ResultCover';
 import ContentImage from '../shared/ContentImage';
-import FastImage from 'react-native-fast-image';
 import ResultInformation from './information/ResultInformation';
 import { useTranslation } from 'react-i18next';
 import { defaultUserResultSelector } from '../../store/slices/DefaultUser';
@@ -38,7 +37,7 @@ const SessionInformation: React.FC = () => {
           right={() => (
             <ContentImage
               itemId={data.TrackLayoutId.Id}
-              resizeMode={FastImage.resizeMode.contain}
+              resizeMode="contain"
               style={styles.img}
             />
           )}

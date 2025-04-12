@@ -5,7 +5,6 @@ import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ContentImage from '../../shared/ContentImage';
-import FastImage from 'react-native-fast-image';
 
 type Props = {
   data: Result;
@@ -79,7 +78,7 @@ const ResultInformation: React.FC<Props> = ({ data }) => {
       <Card.Content style={styles.imgContainer}>
         <ContentImage
           itemId={data.LiveryId.Id}
-          resizeMode={FastImage.resizeMode.contain}
+          resizeMode="contain"
           style={styles.img}
         />
       </Card.Content>

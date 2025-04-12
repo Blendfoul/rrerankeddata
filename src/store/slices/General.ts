@@ -3,18 +3,23 @@ import {
   createDraftSafeSelector,
   createSlice,
 } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { RootState } from '../Store';
 import { R3eData } from '../../models/data/General';
 
 export const fetchR3eData = createAsyncThunk<R3eData>(
   'general/r3e-data',
   async () => {
-    const response = await axios(
+    const response = await fetch(
       'https://raw.githubusercontent.com/sector3studios/r3e-spectator-overlay/master/r3e-data.json',
     );
 
-    return response.data;
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+
+    const data = await response.json();
+
+    return data as R3eData;
   },
 );
 
@@ -26,7 +31,7 @@ type GeneralState = {
   isLoading: boolean;
 };
 
-const initialState = {
+const initialState: Partial<GeneralState> = {
   r3eData: {
     cars: {},
     classes: {},
@@ -40,7 +45,7 @@ const initialState = {
   session: -1,
   order: false,
   isLoading: false,
-} as Partial<GeneralState>;
+};
 
 const GeneralSlice = createSlice({
   name: 'general',
@@ -86,22 +91,22 @@ const generalSelector = (state: RootState) => state.general;
 
 export const dataSelector = createDraftSafeSelector(
   generalSelector,
-  state => state.r3eData as R3eData,
+  (state?: Partial<GeneralState>) => state?.r3eData as R3eData,
 );
 
 export const orderSelector = createDraftSafeSelector(
   generalSelector,
-  state => state.order,
+  (state?: Partial<GeneralState>) => state?.order,
 );
 
 export const regionSelector = createDraftSafeSelector(
   generalSelector,
-  state => state.region,
+  (state?: Partial<GeneralState>) => state?.region,
 );
 
 export const sessionSelector = createDraftSafeSelector(
   generalSelector,
-  state => state.session,
+  (state?: Partial<GeneralState>) => state?.session,
 );
 
 export default GeneralSlice.reducer;

@@ -1,29 +1,24 @@
 import React from 'react';
-import FastImage, {
-  ImageStyle,
-  ResizeMode,
-  Source,
-} from 'react-native-fast-image';
-import { StyleProp } from 'react-native';
+
+import { Image, ImageSourcePropType, ImageResizeMode, StyleProp, ImageStyle } from 'react-native';
 
 interface Props {
   itemId?: number;
-  source?: Source | number;
-  resizeMode?: ResizeMode;
+  source?: ImageSourcePropType;
+  resizeMode?: ImageResizeMode;
   style?: StyleProp<ImageStyle>;
 }
 
-const ContentImage: React.FC<Props> = ({ itemId, source, ...props }) => (
-  <FastImage
-    {...props}
-    source={
-      !source
-        ? {
-            uri: `https://game.raceroom.com/store/image_redirect?id=${itemId}`,
-          }
-        : source
-    }
-  />
-);
+const ContentImage: React.FC<Props> = ({ itemId, source, ...props }) => {
+  const parsedSource: ImageSourcePropType = !source ? {
+    uri: `https://game.raceroom.com/store/image_redirect?id=${itemId}`,
+  } : source;
+
+  return (
+    <Image
+      {...props}
+      source={parsedSource} />
+  );
+};
 
 export default ContentImage;

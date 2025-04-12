@@ -1,6 +1,6 @@
 import React from 'react';
 import { Caption, Card, useTheme } from 'react-native-paper';
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
   ServerRoutes,
@@ -13,10 +13,9 @@ import CountDown from 'react-native-countdown-component';
 import useSession from '../../hooks/useSession';
 import CarClass from '../shared/CarClass';
 import ContentImage from '../shared/ContentImage';
-import FastImage from 'react-native-fast-image';
 import CustomCardCover from '../shared/CustomCardCover';
 import useRaceType from '../../hooks/useRaceType';
-import AntIcon from 'react-native-vector-icons/AntDesign';
+import AntIcon from '@react-native-vector-icons/antdesign';
 import useServerColor from '../../hooks/useServerColor';
 
 type Props = {
@@ -39,7 +38,7 @@ const Server: React.FC<Props> = ({ data, option = false }) => {
   const { color } = useServerColor(data.Server.Settings, data.Server.Players);
 
   const countdown = {
-    backgroundColor: colors.text === '#fff' ? '#000' : '#fff',
+    backgroundColor: colors.primary === '#fff' ? '#000' : '#fff',
   };
 
   const navigateToServer = () => {
@@ -66,9 +65,9 @@ const Server: React.FC<Props> = ({ data, option = false }) => {
         style={styles.cover}>
         <View style={styles.imgContainer}>
           <CarClass data={server.Settings.LiveryId} />
-          <FastImage
+          <Image
             source={raceType.image}
-            resizeMode={FastImage.resizeMode.contain}
+            resizeMode="contain"
             style={styles.img}
           />
         </View>
@@ -78,7 +77,7 @@ const Server: React.FC<Props> = ({ data, option = false }) => {
         right={() => (
           <ContentImage
             itemId={layout.Id}
-            resizeMode={FastImage.resizeMode.contain}
+            resizeMode="contain"
             style={styles.layout}
           />
         )}
@@ -90,7 +89,7 @@ const Server: React.FC<Props> = ({ data, option = false }) => {
                 .replaceAll(' ', '-')
                 .replace('ü', 'u')}-${trackInfo.Id}-logo-original.webp`,
             }}
-            resizeMode={FastImage.resizeMode.contain}
+            resizeMode="contain"
             style={{
               height: props.size,
               width: props.size,
