@@ -1,15 +1,17 @@
 import React, { useMemo, useState } from 'react';
-import { Drawer } from 'react-native-paper';
-import { FlatList, ListRenderItem, Platform, SafeAreaView } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-import { DrawerRoutes } from '../../models/navigation/Navigation';
-import { DrawerContentComponentProps } from '@react-navigation/drawer';
-import UserQuickInformation from './UserQuickInformation';
+
 import Icon from '@react-native-vector-icons/materialcommunityicons';
+import { useNavigation } from '@react-navigation/core';
+import { DrawerContentComponentProps } from '@react-navigation/drawer';
+import { useTranslation } from 'react-i18next';
+import { FlatList, ListRenderItem, Platform, SafeAreaView } from 'react-native';
+import { Drawer } from 'react-native-paper';
 import { useSelector } from 'react-redux';
+
+import UserQuickInformation from './UserQuickInformation';
+import { DrawerRoutes } from '../../models/navigation/Navigation';
 import { idSelector } from '../../store/slices/DefaultUser';
 import AppReviewProvider from '../shared/AppReviewProvider';
-import { useTranslation } from 'react-i18next';
 
 type MenuItem = {
   label: string;
@@ -17,9 +19,7 @@ type MenuItem = {
   icon: string;
 };
 
-const DrawerComponent: React.FC<DrawerContentComponentProps> = ({
-  navigation,
-}) => {
+const DrawerComponent = ({ navigation }: DrawerContentComponentProps) => {
   const { navigate } = useNavigation();
   const userId = useSelector(idSelector);
   const [requested, setRequested] = useState<boolean>(false);
@@ -82,7 +82,7 @@ const DrawerComponent: React.FC<DrawerContentComponentProps> = ({
         active={navigation.getState().key === item.route}
         label={item.label}
         onPress={navigateToStack.bind(this, item.route)}
-        right={props => <Icon name={item.icon} {...props} size={20} />}
+        right={(props) => <Icon name={item.icon} {...props} size={20} />}
       />
     );
   };
@@ -92,15 +92,11 @@ const DrawerComponent: React.FC<DrawerContentComponentProps> = ({
       <SafeAreaView>
         <UserQuickInformation />
         <Drawer.Section>
-          <FlatList
-            data={routes}
-            renderItem={renderItem}
-            keyExtractor={item => item.label}
-          />
+          <FlatList data={routes} renderItem={renderItem} keyExtractor={(item) => item.label} />
           <Drawer.Item
             label={t('drawer.rate')}
             onPress={() => setRequested(true)}
-            right={props => <Icon name={'star'} {...props} size={20} />}
+            right={(props) => <Icon name={'star'} {...props} size={20} />}
           />
         </Drawer.Section>
       </SafeAreaView>

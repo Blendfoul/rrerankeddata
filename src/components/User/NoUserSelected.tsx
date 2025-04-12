@@ -1,19 +1,13 @@
 import React from 'react';
-import { Card, List, useTheme, Button } from 'react-native-paper';
-import {
-  FlatList,
-  ListRenderItem,
-  SafeAreaView,
-  StyleSheet,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigation } from '@react-navigation/core';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
-import {
-  DrawerRoutes,
-  DrawerStackList,
-} from '../../models/navigation/Navigation';
+import { useTranslation } from 'react-i18next';
+import { FlatList, ListRenderItem, SafeAreaView, StyleSheet } from 'react-native';
+import { Card, List, useTheme, Button } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { DrawerRoutes, DrawerStackList } from '../../models/navigation/Navigation';
 
 type Props = {};
 
@@ -22,17 +16,13 @@ const NoUserSelected: React.FC<Props> = () => {
   const { t } = useTranslation();
   const { navigate } = useNavigation<DrawerNavigationProp<DrawerStackList>>();
 
-  const items = [
-    t('user.tutorial.step1'),
-    t('user.tutorial.step2'),
-    t('user.tutorial.step3'),
-  ];
+  const items = [t('user.tutorial.step1'), t('user.tutorial.step2'), t('user.tutorial.step3')];
 
   const renderItem: ListRenderItem<string> = ({ item }) => (
     <List.Item
       title={item}
       titleNumberOfLines={2}
-      left={props => <List.Icon icon={'circle-small'} {...props} />}
+      left={(props) => <List.Icon icon={'circle-small'} {...props} />}
     />
   );
 
@@ -51,11 +41,7 @@ const NoUserSelected: React.FC<Props> = () => {
           <List.Section
             title={t('user.tutorial.header')}
             style={{ width: '100%', flexDirection: 'column', flexShrink: 1 }}>
-            <FlatList
-              data={items}
-              renderItem={renderItem}
-              keyExtractor={item => item}
-            />
+            <FlatList data={items} renderItem={renderItem} keyExtractor={(item) => item} />
           </List.Section>
         </Card.Content>
       </Card>

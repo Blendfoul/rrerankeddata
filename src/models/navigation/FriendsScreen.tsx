@@ -1,10 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { idSelector } from '../../store/slices/DefaultUser';
-import LoadingComponent from '../../components/shared/LoadingComponent';
+
 import { FlatList } from 'react-native';
+import { useSelector } from 'react-redux';
+
 import DriverCard from '../../components/shared/DriverCard';
+import LoadingComponent from '../../components/shared/LoadingComponent';
 import useFriends from '../../hooks/useFriends';
+import { idSelector } from '../../store/slices/DefaultUser';
 
 const FriendsScreen: React.FC = () => {
   const id = useSelector(idSelector);

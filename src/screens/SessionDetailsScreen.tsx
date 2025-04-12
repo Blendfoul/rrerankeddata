@@ -1,10 +1,12 @@
 import React from 'react';
+
 import { useRoute } from '@react-navigation/core';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { UserStackList } from '../models/navigation/Navigation';
+import { ScrollView } from 'react-native';
+
 import Details from '../components/sessionDetails/Details';
 import LapTable from '../components/sessionDetails/LapTable';
-import { ScrollView } from 'react-native';
+import { UserStackList } from '../models/navigation/Navigation';
 
 type Props = NativeStackScreenProps<UserStackList, 'Details'>['route'];
 

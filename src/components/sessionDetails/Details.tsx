@@ -1,12 +1,14 @@
 import React from 'react';
-import { Incident, RaceResult } from '../../models/data/Result';
-import useSectorTimes from '../../hooks/useSectorTimes';
+
 import { useTranslation } from 'react-i18next';
 import { FlatList, ListRenderItem, StyleSheet, View } from 'react-native';
 import { Caption, Card, Paragraph } from 'react-native-paper';
-import CustomCardCover from '../shared/CustomCardCover';
-import Country from '../shared/Country';
+
 import useRanked from '../../hooks/useRanked';
+import useSectorTimes from '../../hooks/useSectorTimes';
+import { Incident, RaceResult } from '../../models/data/Result';
+import Country from '../shared/Country';
+import CustomCardCover from '../shared/CustomCardCover';
 
 type Props = {
   data: RaceResult;
@@ -37,9 +39,7 @@ const Details: React.FC<Props> = ({ data }) => {
       <Card.Title
         title={data.FullName}
         subtitle={data.Team || t('driver.card.privateer')}
-        right={props => (
-          <Country country={driver.rating?.Country || 'pt'} {...props} />
-        )}
+        right={(props) => <Country country={driver.rating?.Country || 'pt'} {...props} />}
       />
       <Card.Content style={styles.content}>
         <View style={styles.container}>
@@ -56,11 +56,9 @@ const Details: React.FC<Props> = ({ data }) => {
           data={data.Incidents}
           renderItem={renderIncidents}
           numColumns={2}
-          keyExtractor={item => item.Type}
+          keyExtractor={(item) => item.Type}
           ListHeaderComponent={() => (
-            <Paragraph style={styles.title}>
-              {t('result.information.incidents')}
-            </Paragraph>
+            <Paragraph style={styles.title}>{t('result.information.incidents')}</Paragraph>
           )}
         />
       </Card.Content>

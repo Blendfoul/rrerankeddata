@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
+
 import { useNavigation, useRoute } from '@react-navigation/core';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+
+import UserDetails from '../components/User/UserDetails';
+import UserRaces from '../components/User/UserRaces';
 import {
   ServerStackList,
   UserRoutes,
   UserTabRoutes,
   UserTabStackList,
 } from '../models/navigation/Navigation';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import UserDetails from '../components/User/UserDetails';
-import UserRaces from '../components/User/UserRaces';
-import { useDispatch, useSelector } from 'react-redux';
 import { actions, userNameSelector } from '../store/slices/User';
 import { userDataSelector, fetchUser } from '../store/slices/User';
-import { useTranslation } from 'react-i18next';
 
 type RouteProps = NativeStackScreenProps<ServerStackList, UserRoutes.USER>;
 

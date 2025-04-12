@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
-import { MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
-import { UserTabStackList } from '../../models/navigation/Navigation';
+
 import { useRoute } from '@react-navigation/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchRaces, userRacesSelector } from '../../store/slices/User';
+import { MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
 import { FlatList, ListRenderItem, RefreshControl } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+
 import RaceResult from './RaceResult';
-import LoadingComponent from '../shared/LoadingComponent';
 import { Result } from '../../models/data/User';
-import {
-  defaultUserRacesSelector,
-  fetchDefaultRaces,
-} from '../../store/slices/DefaultUser';
+import { UserTabStackList } from '../../models/navigation/Navigation';
+import { defaultUserRacesSelector, fetchDefaultRaces } from '../../store/slices/DefaultUser';
+import { fetchRaces, userRacesSelector } from '../../store/slices/User';
+import LoadingComponent from '../shared/LoadingComponent';
 
 type Props = MaterialTopTabScreenProps<UserTabStackList, 'Races'>;
 
@@ -41,15 +40,12 @@ const UserRaces: React.FC<RaceProps> = () => {
   return (
     <FlatList
       refreshControl={
-        <RefreshControl
-          refreshing={isLoading}
-          onRefresh={() => dispatch(fetchRaces(params.id))}
-        />
+        <RefreshControl refreshing={isLoading} onRefresh={() => dispatch(fetchRaces(params.id))} />
       }
       refreshing={isLoading}
       data={races.Entries}
       renderItem={renderItem}
-      keyExtractor={item => `${item.RaceHash}`}
+      keyExtractor={(item) => `${item.RaceHash}`}
     />
   );
 };

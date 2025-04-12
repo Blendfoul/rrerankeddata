@@ -1,22 +1,16 @@
 import { combineReducers, configureStore, Middleware } from '@reduxjs/toolkit';
-import ServerReducer from './slices/Server';
-import RatingsReducer from './slices/Ratings';
-import GeneralReducer from './slices/General';
-import UserReducer from './slices/User';
-import thunk from 'redux-thunk';
-import DefaultUserReducer from './slices/DefaultUser';
-import ResultReducer from './slices/Session';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { MMKV, Mode } from 'react-native-mmkv';
 import { persistStore, persistReducer } from 'redux-persist';
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist/es/constants';
 import { PersistConfig } from 'redux-persist/es/types';
-import {
-  FLUSH,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
-} from 'redux-persist/es/constants';
+import { thunk } from 'redux-thunk';
+
+import DefaultUserReducer from './slices/DefaultUser';
+import GeneralReducer from './slices/General';
+import RatingsReducer from './slices/Ratings';
+import ServerReducer from './slices/Server';
+import ResultReducer from './slices/Session';
+import UserReducer from './slices/User';
 
 const middlewares: Middleware[] = [
   /* other middlewares */
@@ -33,10 +27,19 @@ export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
 
+const mmkv = new MMKV({
+  id: 'r3e',
+  mode: Mode.MULTI_PROCESS,
+});
+
 const persistConfig: PersistConfig<any> = {
   key: 'root',
   version: 1,
-  storage: AsyncStorage,
+  storage: {
+    getItem: (key) => mmkv.getString(key) || null,
+    setItem: (key, value) => mmkv.set(key, value),
+    removeItem: (key) => mmkv.delete(key),
+  },
   blacklist: ['result', 'user', 'ratings', 'server'],
   timeout: 0,
 };
@@ -54,7 +57,7 @@ const reducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: reducer,
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

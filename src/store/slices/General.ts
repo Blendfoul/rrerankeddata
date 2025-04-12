@@ -1,35 +1,21 @@
-import {
-  createAsyncThunk,
-  createDraftSafeSelector,
-  createSlice,
-} from '@reduxjs/toolkit';
-import { RootState } from '../Store';
+import { createAsyncThunk, createDraftSafeSelector, createSlice } from '@reduxjs/toolkit';
+
 import { R3eData } from '../../models/data/General';
+import { RootState } from '../Store';
 
-export const fetchR3eData = createAsyncThunk<R3eData>(
-  'general/r3e-data',
-  async () => {
-    const response = await fetch(
-      'https://raw.githubusercontent.com/sector3studios/r3e-spectator-overlay/master/r3e-data.json',
-    );
+export const fetchR3eData = createAsyncThunk<R3eData>('general/r3e-data', async () => {
+  const response = await fetch(
+    'https://raw.githubusercontent.com/sector3studios/r3e-spectator-overlay/master/r3e-data.json',
+  );
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch data');
-    }
+  if (!response.ok) {
+    throw new Error('Failed to fetch data');
+  }
 
-    const data = await response.json();
+  const data = await response.json();
 
-    return data as R3eData;
-  },
-);
-
-type GeneralState = {
-  r3eData: R3eData;
-  region: string;
-  session: number;
-  order: boolean;
-  isLoading: boolean;
-};
+  return data as R3eData;
+});
 
 const initialState: Partial<GeneralState> = {
   r3eData: {
@@ -70,8 +56,8 @@ const GeneralSlice = createSlice({
       };
     },
   },
-  extraReducers: builder => {
-    builder.addCase(fetchR3eData.pending, state => {
+  extraReducers: (builder) => {
+    builder.addCase(fetchR3eData.pending, (state) => {
       return {
         ...state,
         isLoading: true,

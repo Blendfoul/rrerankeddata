@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+
 import { Lap } from '../models/data/Result';
 
 const useSectorTimes = (data: Lap[]) => {
@@ -7,7 +8,7 @@ const useSectorTimes = (data: Lap[]) => {
   const [sectors, setSectors] = useState<number[]>([]);
 
   const getValues = useCallback(() => {
-    const filtered = data.filter(d => d.Valid);
+    const filtered = data.filter((d) => d.Valid);
 
     if (filtered.length) {
       const lap = filtered.reduce((acc, loc) => {
@@ -20,21 +21,12 @@ const useSectorTimes = (data: Lap[]) => {
 
       setSectors(lap.SectorTimes);
 
-      const times =
-        data.map(lap => lap.Time).reduce((a, b) => a + b) / data.length;
+      const times = data.map((lap) => lap.Time).reduce((a, b) => a + b) / data.length;
 
-      setAvgTime(
-        `${Math.floor((times / 1000 / 60) << 0)}:${(
-          (times / 1000) %
-          60
-        ).toFixed(3)}s`,
-      );
+      setAvgTime(`${Math.floor((times / 1000 / 60) << 0)}:${((times / 1000) % 60).toFixed(3)}s`);
 
       setLapTime(
-        `${Math.floor((lap.Time / 1000 / 60) << 0)}:${(
-          (lap.Time / 1000) %
-          60
-        ).toFixed(3)}s`,
+        `${Math.floor((lap.Time / 1000 / 60) << 0)}:${((lap.Time / 1000) % 60).toFixed(3)}s`,
       );
     }
   }, [data]);

@@ -1,17 +1,16 @@
 import React from 'react';
-import { Avatar, Caption, Card, Paragraph, useTheme } from 'react-native-paper';
-import { StyleSheet, View } from 'react-native';
+
 import { useNavigation } from '@react-navigation/core';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import {
-  ServerRoutes,
-  ServerStackList,
-} from '../../models/navigation/Navigation';
-import { Rating } from '../../models/data/Ranked';
-import Country from './Country';
 import { useTranslation } from 'react-i18next';
-import useStreamData from '../../hooks/useStreamData';
+import { StyleSheet, View } from 'react-native';
+import { Avatar, Caption, Card, Paragraph, useTheme } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import Country from './Country';
+import useStreamData from '../../hooks/useStreamData';
+import { Rating } from '../../models/data/Ranked';
+import { ServerRoutes, ServerStackList } from '../../models/navigation/Navigation';
 
 type Props = {
   driver: Rating;
@@ -41,7 +40,7 @@ const DriverCard: React.FC<Props> = ({ driver }) => {
       <Card.Title
         title={driver.Fullname}
         subtitle={driver?.Team || t('driver.card.privateer')}
-        left={props => (
+        left={(props) => (
           <Avatar.Image
             source={{
               uri: `https://game.raceroom.com/game/user_avatar/${driver.UserId}`,
@@ -49,14 +48,10 @@ const DriverCard: React.FC<Props> = ({ driver }) => {
             {...props}
           />
         )}
-        right={props => (
+        right={(props) => (
           <View style={{ flexDirection: 'row' }}>
             {data ? (
-              <Icon
-                name={'twitch'}
-                color={data?.is_live ? '#AA70FF' : colors.text}
-                {...props}
-              />
+              <Icon name={'twitch'} color={data?.is_live ? '#AA70FF' : colors.text} {...props} />
             ) : null}
             <View style={{ paddingHorizontal: 5 }} />
             <Country country={driver.Country} {...props} />

@@ -1,21 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
-import {
-  FlatList,
-  ListRenderItem,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  View,
-} from 'react-native';
-import { Button, Paragraph, Subheading } from 'react-native-paper';
-import {
-  initConnection,
-  useIAP,
-  requestPurchase,
-  Purchase,
-  Product,
-} from 'react-native-iap';
+
 import { useTranslation } from 'react-i18next';
+import { FlatList, ListRenderItem, Platform, ScrollView, StyleSheet, View } from 'react-native';
+import { initConnection, useIAP, requestPurchase, Purchase, Product } from 'react-native-iap';
+import { Button, Paragraph, Subheading } from 'react-native-paper';
 
 const productIds = Platform.select({
   ios: ['donation_0', 'donation_1', 'donation_2', 'donation_3'],
@@ -25,13 +13,7 @@ const productIds = Platform.select({
 
 const DonateScreen: React.FC = () => {
   const { t } = useTranslation();
-  const {
-    connected,
-    products,
-    getProducts,
-    currentPurchase,
-    finishTransaction,
-  } = useIAP();
+  const { connected, products, getProducts, currentPurchase, finishTransaction } = useIAP();
 
   useEffect(() => {
     const getData = async () => {
@@ -93,7 +75,7 @@ const DonateScreen: React.FC = () => {
         scrollEnabled={false}
         data={products}
         renderItem={renderProducts}
-        keyExtractor={item => `donate-${item.productId}`}
+        keyExtractor={(item) => `donate-${item.productId}`}
       />
     </ScrollView>
   );

@@ -1,15 +1,13 @@
 import React, { PropsWithChildren, useEffect } from 'react';
-import SpInAppUpdates, {
-  IAUUpdateKind,
-  StartUpdateOptions,
-} from 'sp-react-native-in-app-updates';
+
 import { Platform } from 'react-native';
+import SpInAppUpdates, { IAUUpdateKind, StartUpdateOptions } from 'sp-react-native-in-app-updates';
 
 const UpdateContainer: React.FC<PropsWithChildren> = ({ children }) => {
   const inAppUpdates = new SpInAppUpdates(false);
 
   useEffect(() => {
-    inAppUpdates.checkNeedsUpdate().then(result => {
+    inAppUpdates.checkNeedsUpdate().then((result) => {
       if (result.shouldUpdate) {
         let updateOptions: StartUpdateOptions = {};
         if (Platform.OS === 'android') {

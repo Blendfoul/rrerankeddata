@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { ServerDataSettings } from '../models/data/Ranked';
+
 import { useSelector } from 'react-redux';
+
 import useRanked from './useRanked';
+import { ServerDataSettings } from '../models/data/Ranked';
 import { idSelector } from '../store/slices/DefaultUser';
 
 const useServerColor = (settings: ServerDataSettings, drivers: number[]) => {
@@ -20,7 +22,7 @@ const useServerColor = (settings: ServerDataSettings, drivers: number[]) => {
     ) {
       setColor('#BA74EF');
     } else {
-      const inRace = drivers.find(us => us === user);
+      const inRace = drivers.find((us) => us === user);
       if (inRace) {
         setColor('grey');
       }

@@ -1,6 +1,8 @@
 import React from 'react';
-import useCarClass from '../../hooks/useCarClass';
+
 import { FlatList, Image, ListRenderItem, StyleSheet } from 'react-native';
+
+import useCarClass from '../../hooks/useCarClass';
 
 type Props = {
   data?: number[];
@@ -27,9 +29,7 @@ const CarClass: React.FC<Props> = ({ data, classId, ...props }) => {
     />
   );
 
-  return (
-    <FlatList {...props} horizontal data={classes} renderItem={renderItem} />
-  );
+  return <FlatList {...props} horizontal data={classes} renderItem={renderItem} />;
 };
 
 export default CarClass;

@@ -1,10 +1,12 @@
 import React from 'react';
-import { Caption, Card, Paragraph } from 'react-native-paper';
-import { User } from '../../../models/data/User';
-import useRanked from '../../../hooks/useRanked';
-import { StyleSheet, View } from 'react-native';
+
 import { useTranslation } from 'react-i18next';
+import { StyleSheet, View } from 'react-native';
+import { Caption, Card, Paragraph } from 'react-native-paper';
 import { useSelector } from 'react-redux';
+
+import useRanked from '../../../hooks/useRanked';
+import { User } from '../../../models/data/User';
 import { ratingPositionSelector } from '../../../store/slices/Ratings';
 
 type Props = {

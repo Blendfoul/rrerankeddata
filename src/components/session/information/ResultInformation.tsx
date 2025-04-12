@@ -1,9 +1,11 @@
 import React from 'react';
-import { Result } from '../../../models/data/User';
-import { Caption, Card, Paragraph } from 'react-native-paper';
-import { StyleSheet, View } from 'react-native';
+
 import { useTranslation } from 'react-i18next';
+import { StyleSheet, View } from 'react-native';
+import { Caption, Card, Paragraph } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { Result } from '../../../models/data/User';
 import ContentImage from '../../shared/ContentImage';
 
 type Props = {
@@ -31,11 +33,7 @@ const ResultInformation: React.FC<Props> = ({ data }) => {
                     : 'chevron-double-down'
                 }
                 size={25}
-                color={
-                  data.StartPositionInClass > data.FinishPositionInClass
-                    ? 'green'
-                    : 'red'
-                }
+                color={data.StartPositionInClass > data.FinishPositionInClass ? 'green' : 'red'}
               />
             ) : null}
           </View>
@@ -48,11 +46,7 @@ const ResultInformation: React.FC<Props> = ({ data }) => {
           <View style={styles.content}>
             <Paragraph>{t('result.rating')}</Paragraph>
             <Icon
-              name={
-                data.RatingChange >= 0
-                  ? 'chevron-double-up'
-                  : 'chevron-double-down'
-              }
+              name={data.RatingChange >= 0 ? 'chevron-double-up' : 'chevron-double-down'}
               size={25}
               color={data.RatingChange >= 0 ? 'green' : 'red'}
             />
@@ -63,11 +57,7 @@ const ResultInformation: React.FC<Props> = ({ data }) => {
           <View style={styles.content}>
             <Paragraph>{t('result.reputation')}</Paragraph>
             <Icon
-              name={
-                data.ReputationChange >= 0
-                  ? 'chevron-double-up'
-                  : 'chevron-double-down'
-              }
+              name={data.ReputationChange >= 0 ? 'chevron-double-up' : 'chevron-double-down'}
               size={25}
               color={data.ReputationChange >= 0 ? 'green' : 'red'}
             />
@@ -76,11 +66,7 @@ const ResultInformation: React.FC<Props> = ({ data }) => {
         </View>
       </Card.Content>
       <Card.Content style={styles.imgContainer}>
-        <ContentImage
-          itemId={data.LiveryId.Id}
-          resizeMode="contain"
-          style={styles.img}
-        />
+        <ContentImage itemId={data.LiveryId.Id} resizeMode="contain" style={styles.img} />
       </Card.Content>
     </Card>
   );

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Banner } from 'react-native-paper';
+
 import { useTranslation } from 'react-i18next';
+import { Banner } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
-import { idSelector } from '../../../store/slices/DefaultUser';
+
 import useRanked from '../../../hooks/useRanked';
+import { idSelector } from '../../../store/slices/DefaultUser';
 
 type Props = {
   minRating: number;
@@ -23,8 +25,7 @@ const ServerPermission: React.FC<Props> = ({ minRating, minReputation }) => {
     }
 
     setVisible(
-      (rating?.Rating as number) < minRating ||
-        (rating?.Reputation as number) < minReputation,
+      (rating?.Rating as number) < minRating || (rating?.Reputation as number) < minReputation,
     );
   }, [minRating, minReputation, loading]);
 
@@ -32,7 +33,7 @@ const ServerPermission: React.FC<Props> = ({ minRating, minReputation }) => {
     <Banner
       visible={visible}
       actions={[]}
-      icon={size => <Icon name={'alert-circle-outline'} {...size} />}>
+      icon={(size) => <Icon name={'alert-circle-outline'} {...size} />}>
       {t('server.lowReputation')}
     </Banner>
   );

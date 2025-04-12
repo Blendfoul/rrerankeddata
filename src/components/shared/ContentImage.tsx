@@ -10,15 +10,13 @@ interface Props {
 }
 
 const ContentImage: React.FC<Props> = ({ itemId, source, ...props }) => {
-  const parsedSource: ImageSourcePropType = !source ? {
-    uri: `https://game.raceroom.com/store/image_redirect?id=${itemId}`,
-  } : source;
+  const parsedSource: ImageSourcePropType = !source
+    ? {
+        uri: `https://game.raceroom.com/store/image_redirect?id=${itemId}`,
+      }
+    : source;
 
-  return (
-    <Image
-      {...props}
-      source={parsedSource} />
-  );
+  return <Image {...props} source={parsedSource} />;
 };
 
 export default ContentImage;

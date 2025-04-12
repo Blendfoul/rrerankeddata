@@ -1,56 +1,64 @@
-import { useCallback, useEffect, useState } from 'react';
-import axios from 'axios';
+import { use, useCallback, useEffect, useState } from 'react';
+
 import { Rating } from '../models/data/Ranked';
 
 const useFriends = (userId: number) => {
-  const [friends, setFriends] = useState<Rating[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const source = axios.CancelToken.source();
+  const source = new AbortController();
 
-  const getFriends = useCallback(async () => {
+  const getFriends = useCallback(async (AbortController: AbortController) => {
     if (userId === -1) {
       return;
     }
 
     try {
-      const response = await axios(
-        `https://game.raceroom.com/users/${userId}/contacts?json`,
-        { cancelToken: source.token },
-      );
+      const response = await fetch(`https://game.raceroom.com/users/${userId}/contacts?json`, {
+        signal: AbortController.signal,
+      });
 
-      const profile = response.data.context.c;
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
 
-      const ids = profile.contacts.active.map(driver => driver.user_id);
+      const data = await response.json();
+
+      const profile = data.context.c;
+
+      const ids = profile.contacts.active.map((driver) => driver.user_id);
 
       const friendsData: Rating[] = await Promise.all(
         ids.map(async (id: number) => {
           try {
-            const response1 = await axios(
+            const response1 = await fetch(
               `https://game.raceroom.com/multiplayer-rating/user/${id}.json`,
               {
-                cancelToken: source.token,
+                signal: AbortController.signal,
               },
             );
 
-            return response1.data;
+            if (!response1.ok) {
+              throw new Error('Failed to fetch data');
+            }
+
+            const data1 = (await response1.json()) as Rating;
+
+            return data1;
           } catch (e) {}
         }),
       );
 
-      setFriends(friendsData.filter(f => f !== undefined));
-    } catch (e) {
-    } finally {
-      setLoading(false);
-    }
+      return friendsData.filter((f) => f !== undefined);
+    } catch {}
   }, []);
 
-  useEffect(() => {
-    getFriends();
+  const friends = use(getFriends(source));
 
-    return () => source.cancel();
+  useEffect(() => {
+    return () => {
+      source.abort();
+    };
   }, [userId]);
 
-  return { friends, loading };
+  return { friends, loading: false };
 };
 
 export default useFriends;

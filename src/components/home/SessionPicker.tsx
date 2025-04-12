@@ -1,13 +1,9 @@
-import {
-  Dialog,
-  IconButton,
-  Portal,
-  RadioButton,
-  useTheme,
-} from 'react-native-paper';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { useTranslation } from 'react-i18next';
+import { Dialog, IconButton, Portal, RadioButton, useTheme } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { generalActions, sessionSelector } from '../../store/slices/General';
 
 const SessionPicker: React.FC = () => {
@@ -21,30 +17,19 @@ const SessionPicker: React.FC = () => {
 
   return (
     <>
-      <IconButton
-        icon={'clock-outline'}
-        color={colors.text}
-        size={25}
-        onPress={showDialog}
-      />
+      <IconButton icon={'clock-outline'} color={colors.text} size={25} onPress={showDialog} />
       <Portal>
         <Dialog visible={visible} onDismiss={hideDialog}>
           <Dialog.Content>
             <RadioButton.Group
-              onValueChange={value => {
+              onValueChange={(value) => {
                 dispatch(generalActions.setSession(+value));
                 hideDialog();
               }}
               value={session.toString()}>
               <RadioButton.Item label={t('picker.session.all')} value={'-1'} />
-              <RadioButton.Item
-                label={t('picker.session.practice')}
-                value={'0'}
-              />
-              <RadioButton.Item
-                label={t('picker.session.qualification')}
-                value="256"
-              />
+              <RadioButton.Item label={t('picker.session.practice')} value={'0'} />
+              <RadioButton.Item label={t('picker.session.qualification')} value="256" />
               <RadioButton.Item label={t('picker.session.race')} value="768" />
             </RadioButton.Group>
           </Dialog.Content>

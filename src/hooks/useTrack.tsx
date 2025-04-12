@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+
+import { Layout, Track } from '../models/data/General';
 import { useRaceSelector } from '../store/hooks';
 import { dataSelector } from '../store/slices/General';
-import { Layout, Track } from '../models/data/General';
 
 const useTrack = (trackId: number) => {
   const { tracks } = useRaceSelector(dataSelector);

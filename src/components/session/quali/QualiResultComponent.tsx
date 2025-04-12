@@ -1,9 +1,11 @@
 import React from 'react';
-import { QualiResult } from '../../../models/data/Result';
-import { Avatar, Caption, Card, Paragraph } from 'react-native-paper';
-import { StyleSheet, View } from 'react-native';
-import useSectorTimes from '../../../hooks/useSectorTimes';
+
 import { useTranslation } from 'react-i18next';
+import { StyleSheet, View } from 'react-native';
+import { Avatar, Caption, Card, Paragraph } from 'react-native-paper';
+
+import useSectorTimes from '../../../hooks/useSectorTimes';
+import { QualiResult } from '../../../models/data/Result';
 
 type Props = {
   data: QualiResult;
@@ -18,7 +20,7 @@ const QualiResultComponent: React.FC<Props> = ({ data }) => {
       <Card.Title
         title={data.FullName}
         subtitle={data.Team || t('result.privateer')}
-        left={props => (
+        left={(props) => (
           <Avatar.Image
             source={{
               uri: `https://game.raceroom.com/game/user_avatar/${data.UserId}`,

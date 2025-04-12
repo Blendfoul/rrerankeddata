@@ -1,11 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { FlatList, ListRenderItem, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
+
+import QualiResultComponent from './quali/QualiResultComponent';
+import useSessionClasses from '../../hooks/useSessionClasses';
 import { QualiResult } from '../../models/data/Result';
 import { qualiSelector } from '../../store/slices/Session';
-import QualiResultComponent from './quali/QualiResultComponent';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import useSessionClasses from '../../hooks/useSessionClasses';
 import ContentImage from '../shared/ContentImage';
 
 const Tab = createMaterialTopTabNavigator();
@@ -15,11 +17,7 @@ const QualiComponent: React.FC = () => {
   const { classes, ids } = useSessionClasses(data);
 
   const renderTabItem = (item: QualiResult[]) => (
-    <FlatList
-      data={item}
-      renderItem={renderItem}
-      keyExtractor={item => `quali-${item.UserId}`}
-    />
+    <FlatList data={item} renderItem={renderItem} keyExtractor={(item) => `quali-${item.UserId}`} />
   );
 
   const renderItem: ListRenderItem<QualiResult> = ({ item }) => (
@@ -37,7 +35,7 @@ const QualiComponent: React.FC = () => {
           name={`${index}`}
           component={() => renderTabItem(item)}
           options={{
-            tabBarIcon: props => (
+            tabBarIcon: (props) => (
               <ContentImage
                 itemId={ids[index]}
                 {...props}

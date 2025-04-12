@@ -1,59 +1,62 @@
-import axios, { AxiosResponse } from 'axios';
-import { SearchUser } from '../models/data/User';
-import { Rating } from '../models/data/Ranked';
+import { useCallback, useEffect, useState, use } from 'react';
+
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+
+import { Rating } from '../models/data/Ranked';
+import { SearchUser } from '../models/data/User';
 import { ratingsComplete } from '../store/slices/Ratings';
 
 const useSearch = (name: string) => {
-  const [users, setUsers] = useState<SearchUser[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
   const ratings = useSelector(ratingsComplete);
-  const token = axios.CancelToken.source();
+  const abortSignal = new AbortController();
 
-  const fetchUsers = async () => {
-    try {
-      const response: AxiosResponse<SearchUser[]> = await axios(
-        `https://game.raceroom.com/search?query=${name}`,
-        {
-          cancelToken: token.token,
-        },
-      );
-      setLoading(true);
+  const fetchUsers = useCallback(
+    async (abortSignal: AbortController) => {
+      try {
+        const response = await fetch(`https://game.raceroom.com/search?query=${name}`, {
+          signal: abortSignal.signal,
+        });
 
-      if (response.data.length !== 0) {
-        setUsers(response.data);
-      } else {
-        const data = ratings.find(
-          (driver: Rating) =>
-            driver.Username.toLowerCase() === name.toLowerCase() ||
-            driver.Fullname.toLowerCase() === name.toLowerCase(),
-        );
-
-        if (data !== undefined) {
-          setUsers([
-            {
-              name: data.Fullname,
-              image: `https://game.raceroom.com/game/user_avatar/${data.UserId}`,
-              meta_data: { slug: data.Username },
-              type: 'user',
-            },
-          ]);
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
         }
-      }
-    } catch (e) {
-    } finally {
-      setLoading(false);
-    }
-  };
+
+        const data = (await response.json()) as SearchUser[];
+
+        if (data.length !== 0) {
+          return data;
+        } else {
+          const data = ratings.find(
+            (driver: Rating) =>
+              driver.Username.toLowerCase() === name.toLowerCase() ||
+              driver.Fullname.toLowerCase() === name.toLowerCase(),
+          );
+
+          if (data !== undefined) {
+            return [
+              {
+                name: data.Fullname,
+                image: `https://game.raceroom.com/game/user_avatar/${data.UserId}`,
+                meta_data: { slug: data.Username },
+                type: 'user',
+              },
+            ];
+          }
+        }
+      } catch {}
+    },
+    [name, ratings],
+  );
+
+  const data = use(fetchUsers(abortSignal));
 
   useEffect(() => {
-    fetchUsers();
-
-    return () => token.cancel();
+    return () => {
+      abortSignal.abort();
+    };
   }, [name]);
 
-  return { users, loading };
+  return { users: data, loading: false };
 };
 
 export default useSearch;

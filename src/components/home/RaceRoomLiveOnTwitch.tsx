@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Banner } from 'react-native-paper';
-import useStreamData from '../../hooks/useStreamData';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import { useTranslation } from 'react-i18next';
 import { Linking } from 'react-native';
+import { Banner } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import useStreamData from '../../hooks/useStreamData';
 
 const RaceRoomLiveOnTwitch: React.FC = () => {
   const { data } = useStreamData('raceroomracingexperience');
@@ -32,7 +34,7 @@ const RaceRoomLiveOnTwitch: React.FC = () => {
           onPress: () => setVisible(false),
         },
       ]}
-      icon={size => <Icon name={'twitch'} {...size} />}>
+      icon={(size) => <Icon name={'twitch'} {...size} />}>
       {`${t('banner.raceRoomLive')}\n${data?.title}`}
     </Banner>
   );

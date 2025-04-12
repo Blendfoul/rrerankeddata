@@ -1,32 +1,28 @@
 import React from 'react';
-import { Caption, Card, useTheme } from 'react-native-paper';
-import { Image, StyleSheet, View } from 'react-native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import {
-  ServerRoutes,
-  ServerStackList,
-} from '../../models/navigation/Navigation';
+
+import AntIcon from '@react-native-vector-icons/antdesign';
 import { useNavigation } from '@react-navigation/core';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Image, StyleSheet, View } from 'react-native';
+import CountDown from 'react-native-countdown-component';
+import { Caption, Card, useTheme } from 'react-native-paper';
+
+import useRaceType from '../../hooks/useRaceType';
+import useServerColor from '../../hooks/useServerColor';
+import useSession from '../../hooks/useSession';
 import useTrack from '../../hooks/useTrack';
 import { RankedServer } from '../../models/data/Ranked';
-import CountDown from 'react-native-countdown-component';
-import useSession from '../../hooks/useSession';
+import { ServerRoutes, ServerStackList } from '../../models/navigation/Navigation';
 import CarClass from '../shared/CarClass';
 import ContentImage from '../shared/ContentImage';
 import CustomCardCover from '../shared/CustomCardCover';
-import useRaceType from '../../hooks/useRaceType';
-import AntIcon from '@react-native-vector-icons/antdesign';
-import useServerColor from '../../hooks/useServerColor';
 
 type Props = {
   data: RankedServer;
   option?: boolean;
 };
 
-type NavigationProps = NativeStackNavigationProp<
-  ServerStackList,
-  ServerRoutes.HOME
->;
+type NavigationProps = NativeStackNavigationProp<ServerStackList, ServerRoutes.HOME>;
 
 const Server: React.FC<Props> = ({ data, option = false }) => {
   const { navigate } = useNavigation<NavigationProps>();
@@ -52,10 +48,7 @@ const Server: React.FC<Props> = ({ data, option = false }) => {
 
   return (
     <Card
-      style={[
-        styles.root,
-        color !== undefined ? { backgroundColor: color } : undefined,
-      ]}
+      style={[styles.root, color !== undefined ? { backgroundColor: color } : undefined]}
       onPress={navigateToServer}>
       <CustomCardCover
         resizeMode={'cover'}
@@ -65,24 +58,14 @@ const Server: React.FC<Props> = ({ data, option = false }) => {
         style={styles.cover}>
         <View style={styles.imgContainer}>
           <CarClass data={server.Settings.LiveryId} />
-          <Image
-            source={raceType.image}
-            resizeMode="contain"
-            style={styles.img}
-          />
+          <Image source={raceType.image} resizeMode="contain" style={styles.img} />
         </View>
       </CustomCardCover>
       <Card.Title
         title={option ? trackInfo.Name : name}
-        right={() => (
-          <ContentImage
-            itemId={layout.Id}
-            resizeMode="contain"
-            style={styles.layout}
-          />
-        )}
+        right={() => <ContentImage itemId={layout.Id} resizeMode="contain" style={styles.layout} />}
         subtitle={layout.Name}
-        left={props => (
+        left={(props) => (
           <ContentImage
             source={{
               uri: `https://prod.r3eassets.com/assets/content/track/${trackInfo.Name.toLowerCase()
@@ -100,12 +83,7 @@ const Server: React.FC<Props> = ({ data, option = false }) => {
       />
       <Card.Content style={styles.container}>
         <View style={styles.captionContainer}>
-          <AntIcon
-            name={'car'}
-            size={25}
-            style={styles.padRight}
-            color={colors.placeholder}
-          />
+          <AntIcon name={'car'} size={25} style={styles.padRight} color={colors.placeholder} />
           <Caption>{server.PlayersOnServer}</Caption>
         </View>
         <View style={styles.captionContainer}>

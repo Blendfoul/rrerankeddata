@@ -1,10 +1,12 @@
 import React from 'react';
-import useRanked from '../../hooks/useRanked';
-import { useSelector } from 'react-redux';
-import { idSelector } from '../../store/slices/DefaultUser';
-import { Avatar, Caption, Card, Paragraph } from 'react-native-paper';
-import { StyleSheet, View } from 'react-native';
+
 import { useTranslation } from 'react-i18next';
+import { StyleSheet, View } from 'react-native';
+import { Avatar, Caption, Card, Paragraph } from 'react-native-paper';
+import { useSelector } from 'react-redux';
+
+import useRanked from '../../hooks/useRanked';
+import { idSelector } from '../../store/slices/DefaultUser';
 
 const UserQuickInformation: React.FC = () => {
   const userId = useSelector(idSelector);
@@ -20,7 +22,7 @@ const UserQuickInformation: React.FC = () => {
       <Card.Title
         title={rating?.Fullname}
         subtitle={rating?.Team || 'Privateer'}
-        left={props => (
+        left={(props) => (
           <Avatar.Image
             source={{
               uri: `https://game.raceroom.com/game/user_avatar/${rating?.UserId}`,

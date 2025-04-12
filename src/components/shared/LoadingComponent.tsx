@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ActivityIndicator, Image, SafeAreaView, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({

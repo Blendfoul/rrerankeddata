@@ -1,34 +1,45 @@
-import { useCallback, useEffect, useState } from 'react';
+import { use, useCallback, useEffect } from 'react';
+
 import { Rating } from '../models/data/Ranked';
-import axios from 'axios';
 
 const useRanked = (id: number) => {
-  const [rating, setRating] = useState<Rating>();
-  const [loading, setLoading] = useState<boolean>(true);
+  const abortSignal = new AbortController();
 
-  const fetchRating = useCallback(async () => {
-    if (id === -1) {
-      return;
-    }
+  const fetchRating = useCallback(
+    async (AbortController: AbortController) => {
+      if (id === -1) {
+        return;
+      }
 
-    try {
-      setLoading(true);
-      const response = await axios(
-        `https://game.raceroom.com/multiplayer-rating/user/${id}.json`,
-      );
+      try {
+        const response = await fetch(
+          `https://game.raceroom.com/multiplayer-rating/user/${id}.json`,
+          {
+            signal: abortSignal.signal,
+          },
+        );
 
-      setRating(response.data);
-    } catch (e) {
-    } finally {
-      setLoading(false);
-    }
-  }, [id]);
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const data = (await response.json()) as Rating;
+
+        return data;
+      } catch {}
+    },
+    [id],
+  );
 
   useEffect(() => {
-    fetchRating();
+    return () => {
+      abortSignal.abort();
+    };
   }, [id]);
 
-  return { rating, loading };
+  const rating = use(fetchRating(abortSignal));
+
+  return { rating };
 };
 
 export default useRanked;

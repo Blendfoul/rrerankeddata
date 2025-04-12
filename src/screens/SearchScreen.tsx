@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+import { FlatList, ListRenderItem, RefreshControl, StyleSheet } from 'react-native';
 import { Searchbar } from 'react-native-paper';
-import {
-  FlatList,
-  ListRenderItem,
-  RefreshControl,
-  StyleSheet,
-} from 'react-native';
+
 import SearchCard from '../components/shared/SearchCard';
 import useSearch from '../hooks/useSearch';
-import { useTranslation } from 'react-i18next';
 
 const SearchScreen: React.FC = () => {
   const [value, setValue] = useState<string>('');
@@ -16,9 +13,7 @@ const SearchScreen: React.FC = () => {
   const { t } = useTranslation();
   const searchForUser = (text: string) => setValue(text);
 
-  const renderItem: ListRenderItem<any> = ({ item }) => (
-    <SearchCard item={item} />
-  );
+  const renderItem: ListRenderItem<any> = ({ item }) => <SearchCard item={item} />;
 
   return (
     <>
@@ -36,7 +31,7 @@ const SearchScreen: React.FC = () => {
         renderItem={renderItem}
         numColumns={2}
         contentContainerStyle={styles.container}
-        keyExtractor={item => item.name}
+        keyExtractor={(item) => item.name}
       />
     </>
   );

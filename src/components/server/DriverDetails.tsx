@@ -1,23 +1,20 @@
 import React from 'react';
+
+import { useRoute } from '@react-navigation/core';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { FlatList, ListRenderItem, RefreshControl, SafeAreaView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+
+import useDrivers from '../../hooks/useDrivers';
+import { Rating } from '../../models/data/Ranked';
+import { ServerTabStackList } from '../../models/navigation/Navigation';
 import { useRaceSelector } from '../../store/hooks';
 import {
   fetchServers,
   loadingServersSelector,
   selectedServerSelector,
 } from '../../store/slices/Server';
-import { useRoute } from '@react-navigation/core';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ServerTabStackList } from '../../models/navigation/Navigation';
-import {
-  FlatList,
-  ListRenderItem,
-  RefreshControl,
-  SafeAreaView,
-} from 'react-native';
 import DriverCard from '../shared/DriverCard';
-import useDrivers from '../../hooks/useDrivers';
-import { Rating } from '../../models/data/Ranked';
-import { useDispatch, useSelector } from 'react-redux';
 
 type RouteProps = NativeStackScreenProps<ServerTabStackList, 'Drivers'>;
 
@@ -30,20 +27,16 @@ const DriverDetails: React.FC = () => {
 
   const updateServer = async () => await dispatch(fetchServers());
 
-  const renderItem: ListRenderItem<Rating> = ({ item }) => (
-    <DriverCard driver={item} />
-  );
+  const renderItem: ListRenderItem<Rating> = ({ item }) => <DriverCard driver={item} />;
 
   return (
     <SafeAreaView>
       <FlatList
         refreshing={loading}
-        refreshControl={
-          <RefreshControl refreshing={loading} onRefresh={updateServer} />
-        }
+        refreshControl={<RefreshControl refreshing={loading} onRefresh={updateServer} />}
         data={drivers}
         renderItem={renderItem}
-        keyExtractor={item => `driver-${item.UserId}`}
+        keyExtractor={(item) => `driver-${item.UserId}`}
       />
     </SafeAreaView>
   );

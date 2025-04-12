@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Image, ScrollView, useWindowDimensions } from 'react-native';
 
 const CalendarComponent: React.FC = () => {

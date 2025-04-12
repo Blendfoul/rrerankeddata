@@ -1,10 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { raceSelector } from '../../store/slices/Session';
-import { FlatList, ListRenderItem, StyleSheet } from 'react-native';
-import { RaceResult } from '../../models/data/Result';
-import useSessionClasses from '../../hooks/useSessionClasses';
+
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { FlatList, ListRenderItem, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
+
+import useSessionClasses from '../../hooks/useSessionClasses';
+import { RaceResult } from '../../models/data/Result';
+import { raceSelector } from '../../store/slices/Session';
 import ContentImage from '../shared/ContentImage';
 import RaceResultComponent from './race/RaceResultComponent';
 
@@ -15,16 +17,10 @@ const RaceComponent: React.FC = () => {
   const { classes, ids } = useSessionClasses(data);
 
   const renderTabItem = (item: RaceResult[]) => (
-    <FlatList
-      data={item}
-      renderItem={renderItem}
-      keyExtractor={item => `race-${item.UserId}`}
-    />
+    <FlatList data={item} renderItem={renderItem} keyExtractor={(item) => `race-${item.UserId}`} />
   );
 
-  const renderItem: ListRenderItem<RaceResult> = ({ item }) => (
-    <RaceResultComponent data={item} />
-  );
+  const renderItem: ListRenderItem<RaceResult> = ({ item }) => <RaceResultComponent data={item} />;
 
   if (!classes.length) {
     return null;
@@ -37,7 +33,7 @@ const RaceComponent: React.FC = () => {
           name={`${index}`}
           component={() => renderTabItem(item)}
           options={{
-            tabBarIcon: props => (
+            tabBarIcon: (props) => (
               <ContentImage
                 itemId={ids[index]}
                 {...props}

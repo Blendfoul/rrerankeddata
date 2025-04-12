@@ -1,16 +1,13 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, PropsWithChildren, SetStateAction, useEffect, useState } from 'react';
+
 import InAppReview from 'react-native-in-app-review';
 
-type Props = {
+type Props = PropsWithChildren<{
   requested: boolean;
   setRequested: Dispatch<SetStateAction<boolean>>;
-};
+}>;
 
-const AppReviewProvider: React.FC<Props> = ({
-  children,
-  requested,
-  setRequested,
-}) => {
+const AppReviewProvider: React.FC<Props> = ({ children, requested, setRequested }) => {
   const [isAvailable, setAvailable] = useState<boolean>(false);
 
   useEffect(() => {

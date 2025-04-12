@@ -12,7 +12,6 @@ export type DrawerStackList = {
   SearchDrawer: undefined;
   RankingDrawer: undefined;
   AboutDrawer: undefined;
-  Schedule: undefined;
   DonateDrawer: undefined;
 };
 
@@ -100,7 +99,6 @@ export enum DrawerRoutes {
   ABOUT = 'AboutDrawer',
   DONATE = 'DonateDrawer',
   FRIENDS = 'FriendsDrawer',
-  SCHEDULE = 'Schedule',
 }
 
 export enum ServerRoutes {
@@ -109,6 +107,7 @@ export enum ServerRoutes {
   USER = 'User',
   RESULT = 'Result',
   DETAILS = 'Details',
+  SCHEDULE = 'Schedule',
 }
 
 export enum SearchRoutes {

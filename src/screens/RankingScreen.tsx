@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { DataTable, Paragraph } from 'react-native-paper';
+
 import { FlatList, ListRenderItem } from 'react-native';
+import { DataTable, Paragraph } from 'react-native-paper';
 import { useSelector } from 'react-redux';
-import { ratingSelector, ratingsLength } from '../store/slices/Ratings';
-import { Rating } from '../models/data/Ranked';
+
 import DriverCard from '../components/shared/DriverCard';
+import { Rating } from '../models/data/Ranked';
+import { ratingSelector, ratingsLength } from '../store/slices/Ratings';
 
 type Props = {};
 
@@ -17,9 +19,7 @@ const RankingScreen: React.FC<Props> = () => {
   const ratings = useSelector(ratingSelector(from, to));
   const length = useSelector(ratingsLength);
 
-  const renderItem: ListRenderItem<Rating> = ({ item }) => (
-    <DriverCard driver={item} />
-  );
+  const renderItem: ListRenderItem<Rating> = ({ item }) => <DriverCard driver={item} />;
 
   const pageChange = (value: number) => {
     setFrom(itemsPerPage * value);
@@ -43,7 +43,7 @@ const RankingScreen: React.FC<Props> = () => {
         data={ratings}
         renderItem={renderItem}
         maxToRenderPerBatch={10}
-        keyExtractor={item => `rank-${item.UserId}`}
+        keyExtractor={(item) => `rank-${item.UserId}`}
       />
     </DataTable>
   );

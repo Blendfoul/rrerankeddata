@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+
 import { ServerDataSettings } from '../models/data/Ranked';
 
 interface RaceType {

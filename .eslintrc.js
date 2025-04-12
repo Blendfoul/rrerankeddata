@@ -1,12 +1,12 @@
+/**
+ * @type {import('eslint').Linter.Config}
+ * @see https://eslint.org/docs/user-guide/configuring
+ */
 module.exports = {
   root: true,
-  extends: [
-    '@react-native-community', 
-    'plugin:prettier/recommended'
-  ],
+  extends: ['@react-native', 'plugin:prettier/recommended'],
   plugins: ['import'],
   rules: {
-    'react-hooks/exhaustive-deps': [0],
     'import/order': [
       'error',
       {

@@ -4,13 +4,14 @@ import {
   createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
-import { RaceHistory, Result, User } from '../../models/data/User';
 import { reverse } from 'lodash';
+
+import { RaceHistory, Result, User } from '../../models/data/User';
 import { RootState } from '../Store';
 
 export const fetchDefaultUser = createAsyncThunk<User, number>(
   'default-user/driver-info',
-  async driverId => {
+  async (driverId) => {
     const response = await fetch(
       `https://r3e-advanced-statistics.netlify.app/.netlify/functions/api/user/${driverId}`,
     );
@@ -19,7 +20,7 @@ export const fetchDefaultUser = createAsyncThunk<User, number>(
       throw new Error('Network response was not ok');
     }
 
-    const data = await response.json() as User;
+    const data = (await response.json()) as User;
 
     return data;
   },
@@ -27,7 +28,7 @@ export const fetchDefaultUser = createAsyncThunk<User, number>(
 
 export const fetchDefaultRaces = createAsyncThunk<RaceHistory, number>(
   'default-user/driver-races',
-  async driverId => {
+  async (driverId) => {
     const response = await fetch(
       `https://r3e-advanced-statistics.netlify.app/.netlify/functions/api/career/${driverId}`,
     );
@@ -36,7 +37,7 @@ export const fetchDefaultRaces = createAsyncThunk<RaceHistory, number>(
       throw new Error('Network response was not ok');
     }
 
-    const { TotalEntries, Entries } = await response.json() as RaceHistory;
+    const { TotalEntries, Entries } = (await response.json()) as RaceHistory;
 
     return {
       TotalEntries,
@@ -83,8 +84,8 @@ const DefaultUserSlice = createSlice({
       userId: action.payload,
     }),
   },
-  extraReducers: builder => {
-    builder.addCase(fetchDefaultUser.pending, state => ({
+  extraReducers: (builder) => {
+    builder.addCase(fetchDefaultUser.pending, (state) => ({
       ...state,
       isLoading: true,
     }));
@@ -95,7 +96,7 @@ const DefaultUserSlice = createSlice({
         user: action.payload,
       };
     });
-    builder.addCase(fetchDefaultRaces.pending, state => ({
+    builder.addCase(fetchDefaultRaces.pending, (state) => ({
       ...state,
       isLoadingRaces: true,
     }));
@@ -111,57 +112,36 @@ const DefaultUserSlice = createSlice({
 
 const userSelector = (state: RootState) => state.defaultUser as UserState;
 
-export const userNameSelector = createDraftSafeSelector(
-  userSelector,
-  state => ({
-    name: state?.user?.name,
-  }),
-);
+export const userNameSelector = createDraftSafeSelector(userSelector, (state) => ({
+  name: state?.user?.name,
+}));
 
-export const idSelector = createDraftSafeSelector(
-  userSelector,
-  state => state.userId as number,
-);
+export const idSelector = createDraftSafeSelector(userSelector, (state) => state.userId as number);
 
-export const dataSelector = createDraftSafeSelector(userSelector, state => ({
+export const dataSelector = createDraftSafeSelector(userSelector, (state) => ({
   user: state.user,
   isLoading: state.isLoading,
 }));
 
-type RatingData = {
-  data: {
-    rating: number[];
-    reputation: number[];
+export const ratingSelector = createSelector(userSelector, (state: UserState) => {
+  console.log(state);
+
+  return {
+    data: {
+      rating: state?.races?.Entries.map((race: Result) => race.RatingAfter).reverse(),
+      reputation: state?.races?.Entries.map((race: Result) => race.ReputationAfter).reverse(),
+    },
+    isLoading: state.isLoadingRaces,
   };
-  isLoading: boolean;
-};
+});
 
-export const ratingSelector = createSelector(
-  userSelector,
-  (state: UserState) => {
-    console.log(state);
-
-    return {
-      data: {
-        rating: state?.races?.Entries.map(
-          (race: Result) => race.RatingAfter,
-        ).reverse(),
-        reputation: state?.races?.Entries.map(
-          (race: Result) => race.ReputationAfter,
-        ).reverse(),
-      },
-      isLoading: state.isLoadingRaces,
-    };
-  },
-);
-
-export const defaultUserRacesSelector = createDraftSafeSelector(
-  userSelector,
-  state => ({ races: state.races, isLoading: state.isLoadingRaces }),
-);
+export const defaultUserRacesSelector = createDraftSafeSelector(userSelector, (state) => ({
+  races: state.races,
+  isLoading: state.isLoadingRaces,
+}));
 
 export const defaultUserResultSelector = (hash: string) => {
-  return createSelector(userSelector, state =>
+  return createSelector(userSelector, (state) =>
     state.races.Entries.find((race: Result) => race.RaceHash === hash),
   );
 };

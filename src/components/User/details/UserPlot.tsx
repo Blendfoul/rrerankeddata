@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Card, useTheme } from 'react-native-paper';
+
+import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
+import { Card, useTheme } from 'react-native-paper';
 import { useSelector } from 'react-redux';
+
 import { ratingSelector } from '../../../store/slices/DefaultUser';
 import { userRatingSelector } from '../../../store/slices/User';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
   type: 'User' | 'Default';
@@ -14,9 +16,7 @@ type Props = {
 const UserPlot: React.FC<Props> = ({ type }) => {
   const { colors } = useTheme();
   const [width, setWidth] = useState<number>(0);
-  const { data, isLoading } = useSelector(
-    type === 'User' ? userRatingSelector : ratingSelector,
-  );
+  const { data, isLoading } = useSelector(type === 'User' ? userRatingSelector : ratingSelector);
   const { t } = useTranslation();
 
   if (isLoading) {
@@ -29,9 +29,7 @@ const UserPlot: React.FC<Props> = ({ type }) => {
 
   return (
     <>
-      <Card
-        style={styles.root}
-        onLayout={event => setWidth(event.nativeEvent.layout.width)}>
+      <Card style={styles.root} onLayout={(event) => setWidth(event.nativeEvent.layout.width)}>
         <LineChart
           data={{
             labels: [],

@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
+
+import { Livery } from '../models/data/General';
 import { useRaceSelector } from '../store/hooks';
 import { dataSelector } from '../store/slices/General';
-import { Livery } from '../models/data/General';
 
 const useCarClass = (classId?: number[], liveries?: number[]) => {
   const [carClasses, setClasses] = useState<number[]>([]);
@@ -23,14 +24,14 @@ const useCarClass = (classId?: number[], liveries?: number[]) => {
 
   const handleClasses = useCallback(() => {
     if (classId !== undefined) {
-      const values = classId.map(id => wellKnownClasses(id));
+      const values = classId.map((id) => wellKnownClasses(id));
       const classAvailable = new Set(values);
       setClasses([...classAvailable] as number[]);
     } else {
       const liveryArray = liveries;
       const classAvailable = new Set();
       if (liveryArray !== undefined) {
-        liveryArray.forEach(value => {
+        liveryArray.forEach((value) => {
           for (const key in cars) {
             if (cars.hasOwnProperty(key)) {
               //@ts-ignore

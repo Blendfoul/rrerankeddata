@@ -1,15 +1,15 @@
 import 'react-native';
 import React from 'react';
-import TextContainer from '../../src/components/utils/TextContainer';
+
 import { render, RenderAPI } from '@testing-library/react-native';
+
+import TextContainer from '../../src/components/utils/TextContainer';
 
 describe('Text Container', () => {
   let testInstance: RenderAPI;
 
   beforeEach(() => {
-    testInstance = render(
-      <TextContainer title={'Placeholder Title'} text={'Placeholder Text'} />,
-    );
+    testInstance = render(<TextContainer title={'Placeholder Title'} text={'Placeholder Text'} />);
   });
 
   it('Renders title', () => {

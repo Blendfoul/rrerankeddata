@@ -1,9 +1,11 @@
 import React from 'react';
-import { RankedServer } from '../../../models/data/Ranked';
-import { Caption, Card, Paragraph } from 'react-native-paper';
-import { StyleSheet, View } from 'react-native';
-import useSof from '../../../hooks/useSof';
+
 import { useTranslation } from 'react-i18next';
+import { StyleSheet, View } from 'react-native';
+import { Caption, Card, Paragraph } from 'react-native-paper';
+
+import useSof from '../../../hooks/useSof';
+import { RankedServer } from '../../../models/data/Ranked';
 
 type Props = {
   data: RankedServer;
@@ -12,8 +14,7 @@ type Props = {
 const ServerInformation: React.FC<Props> = ({ data }) => {
   const { t } = useTranslation();
   const { sof, rep } = useSof(data.Server.Players);
-  const { PracticeDuration, QualifyDuration, Race1Duration } =
-    data.Server.Settings;
+  const { PracticeDuration, QualifyDuration, Race1Duration } = data.Server.Settings;
 
   return (
     <Card style={styles.root}>

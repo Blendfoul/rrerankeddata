@@ -1,20 +1,15 @@
 import React, { useEffect } from 'react';
+
 import { useNavigation } from '@react-navigation/core';
-import {
-  UserTabRoutes,
-  UserTabStackList,
-} from '../models/navigation/Navigation';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+
+import NoUserSelected from '../components/User/NoUserSelected';
 import UserDetails from '../components/User/UserDetails';
 import UserRaces from '../components/User/UserRaces';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  userNameSelector,
-  idSelector,
-  fetchDefaultUser,
-} from '../store/slices/DefaultUser';
-import { useTranslation } from 'react-i18next';
-import NoUserSelected from '../components/User/NoUserSelected';
+import { UserTabRoutes, UserTabStackList } from '../models/navigation/Navigation';
+import { userNameSelector, idSelector, fetchDefaultUser } from '../store/slices/DefaultUser';
 
 const TabStack = createMaterialTopTabNavigator<UserTabStackList>();
 

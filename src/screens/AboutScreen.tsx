@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { useTranslation } from 'react-i18next';
 import {
   FlatList,
   Image,
@@ -9,7 +11,6 @@ import {
   View,
 } from 'react-native';
 import { Button, Caption, Paragraph } from 'react-native-paper';
-import { useTranslation } from 'react-i18next';
 
 interface Contribution {
   name: string;
@@ -50,7 +51,7 @@ const AboutScreen: React.FC = () => {
     return (
       <View style={styles.container}>
         <Paragraph>{item.name}</Paragraph>
-        {item.data.map(item => (
+        {item.data.map((item) => (
           <Caption key={item}>{item}</Caption>
         ))}
       </View>
@@ -66,16 +67,14 @@ const AboutScreen: React.FC = () => {
         resizeMode={'contain'}
         style={styles.img}
       />
-      <Paragraph style={{ textAlign: 'center' }}>
-        {t('about.disclaimer')}
-      </Paragraph>
+      <Paragraph style={{ textAlign: 'center' }}>{t('about.disclaimer')}</Paragraph>
       <FlatList
         data={thank}
         scrollEnabled={false}
         renderItem={renderItem}
         contentContainerStyle={styles.root}
         ListHeaderComponent={<Paragraph>Contributors</Paragraph>}
-        keyExtractor={item => item.name}
+        keyExtractor={(item) => item.name}
       />
       <Button
         mode={'contained'}

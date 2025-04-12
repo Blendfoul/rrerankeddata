@@ -1,12 +1,7 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  View,
-  ViewStyle,
-  StyleProp,
-  ImageBackground,
-} from 'react-native';
-import { withTheme } from 'react-native-paper';
+
+import { StyleSheet, View, ViewStyle, StyleProp, ImageBackground } from 'react-native';
+import { withTheme, MD3Theme } from 'react-native-paper';
 
 type Props = React.ComponentPropsWithRef<typeof ImageBackground> & {
   /**
@@ -21,17 +16,10 @@ type Props = React.ComponentPropsWithRef<typeof ImageBackground> & {
   /**
    * @optional
    */
-  theme: ReactNativePaper.Theme;
+  theme: MD3Theme;
 };
 
-const CardCover: React.FC<Props> = ({
-  index,
-  total,
-  style,
-  theme,
-  children,
-  ...rest
-}) => {
+const CardCover: React.FC<Props> = ({ index, total, style, theme, children, ...rest }) => {
   const { roundness } = theme;
 
   let coverStyle;

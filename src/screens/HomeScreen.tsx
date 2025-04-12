@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
+
 import { FlatList, ListRenderItem, RefreshControl } from 'react-native';
-import Server from '../components/server/Server';
-import { fetchServers, selectRegionSelector } from '../store/slices/Server';
 import { useDispatch, useSelector } from 'react-redux';
+
 import PickersComponent from '../components/home/PickersComponent';
-import { RankedServer } from '../models/data/Ranked';
 import RaceRoomLiveOnTwitch from '../components/home/RaceRoomLiveOnTwitch';
+import Server from '../components/server/Server';
+import { RankedServer } from '../models/data/Ranked';
+import { fetchServers, selectRegionSelector } from '../store/slices/Server';
 
 const HomeScreen: React.FC = () => {
   const { server, isLoading } = useSelector(selectRegionSelector);
@@ -17,14 +19,9 @@ const HomeScreen: React.FC = () => {
     getServers();
   }, []);
 
-  const renderItem: ListRenderItem<RankedServer> = ({ item }) => (
-    <Server data={item} />
-  );
+  const renderItem: ListRenderItem<RankedServer> = ({ item }) => <Server data={item} />;
 
-  const getItemLayout = (
-    data: RankedServer[] | null | undefined,
-    index: number,
-  ) => ({
+  const getItemLayout = (data: RankedServer[] | null | undefined, index: number) => ({
     length: 70,
     offset: 70 * index,
     index,
@@ -41,12 +38,10 @@ const HomeScreen: React.FC = () => {
       }
       stickyHeaderIndices={[0]}
       renderItem={renderItem}
-      keyExtractor={item => item.Server.Settings.ServerName}
+      keyExtractor={(item) => item.Server.Settings.ServerName}
       refreshing={isLoading}
       getItemLayout={getItemLayout}
-      refreshControl={
-        <RefreshControl refreshing={isLoading} onRefresh={getServers} />
-      }
+      refreshControl={<RefreshControl refreshing={isLoading} onRefresh={getServers} />}
     />
   );
 };

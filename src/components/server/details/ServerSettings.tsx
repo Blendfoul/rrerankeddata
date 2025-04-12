@@ -1,8 +1,10 @@
 import React from 'react';
-import { RankedServer } from '../../../models/data/Ranked';
-import { Caption, Card, Paragraph } from 'react-native-paper';
-import { StyleSheet, View } from 'react-native';
+
 import { useTranslation } from 'react-i18next';
+import { StyleSheet, View } from 'react-native';
+import { Caption, Card, Paragraph } from 'react-native-paper';
+
+import { RankedServer } from '../../../models/data/Ranked';
 
 type Props = {
   data: RankedServer;
@@ -10,8 +12,7 @@ type Props = {
 
 const ServerSettings: React.FC<Props> = ({ data }) => {
   const { t } = useTranslation();
-  const { FuelUsage, TireWear, MandatoryPitStop, CutRules } =
-    data.Server.Settings;
+  const { FuelUsage, TireWear, MandatoryPitStop, CutRules } = data.Server.Settings;
 
   return (
     <Card style={styles.root}>
@@ -28,9 +29,7 @@ const ServerSettings: React.FC<Props> = ({ data }) => {
       <Card.Content style={styles.content}>
         <View style={styles.container}>
           <Paragraph>{t('server.mandatoryPit')}</Paragraph>
-          <Caption>
-            {MandatoryPitStop ? t('server.enabled') : t('server.disabled')}
-          </Caption>
+          <Caption>{MandatoryPitStop ? t('server.enabled') : t('server.disabled')}</Caption>
         </View>
         <View style={styles.container}>
           <Paragraph>{t('server.cutRules')}</Paragraph>

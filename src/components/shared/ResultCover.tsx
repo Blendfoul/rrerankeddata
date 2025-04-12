@@ -1,8 +1,10 @@
-import { StyleSheet, View } from 'react-native';
-import ContentImage from './ContentImage';
-import CarClass from './CarClass';
-import CustomCardCover from './CustomCardCover';
 import React from 'react';
+
+import { StyleSheet, View } from 'react-native';
+
+import CarClass from './CarClass';
+import ContentImage from './ContentImage';
+import CustomCardCover from './CustomCardCover';
 import { Track } from '../../models/data/General';
 
 const styles = StyleSheet.create({
@@ -39,11 +41,7 @@ const ResultCover: React.FC<Props> = ({ trackInfo, classes }) => {
       source={{
         uri: `https://game.raceroom.com/store/image_redirect?id=${trackInfo.Id}&amp;size=big`,
       }}>
-      <View
-        style={[
-          styles.imgContainer,
-          { justifyContent: 'flex-start', flex: 1 },
-        ]}>
+      <View style={[styles.imgContainer, { justifyContent: 'flex-start', flex: 1 }]}>
         <View style={[styles.imgContainer, { flex: 0 }]}>
           <ContentImage
             source={{

@@ -4,23 +4,24 @@ import {
   createSelector,
   createSlice,
 } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { RootState } from '../Store';
+import sortBy from 'lodash.sortby';
+
 import { RankedServer } from '../../models/data/Ranked';
-import { sortBy } from 'lodash';
+import { RootState } from '../Store';
 
-export const fetchServers = createAsyncThunk<RankedServer[]>(
-  'server/servers',
-  async () => {
-    const response = await axios(
-      'https://game.raceroom.com/multiplayer-rating/servers/',
-    );
+export const fetchServers = createAsyncThunk<RankedServer[]>('server/servers', async () => {
+  const response = await fetch('https://game.raceroom.com/multiplayer-rating/servers/');
 
-    const { result } = response.data;
+  if (!response.ok) {
+    throw new Error('Failed to fetch data');
+  }
 
-    return result;
-  },
-);
+  const data = (await response.json()) as { result: RankedServer[] };
+
+  const { result } = data;
+
+  return result;
+});
 
 type ServerState = {
   server: RankedServer[];
@@ -36,8 +37,8 @@ const ServerSlice = createSlice({
   name: 'server',
   initialState,
   reducers: {},
-  extraReducers: builder => {
-    builder.addCase(fetchServers.pending, state => {
+  extraReducers: (builder) => {
+    builder.addCase(fetchServers.pending, (state) => {
       return {
         ...state,
         isLoading: true,
@@ -52,31 +53,19 @@ const ServerSlice = createSlice({
   },
 });
 
-const selectServers = (state: RootState) => state.server;
+const selectServers = (state: RootState) => state.server as ServerState;
 
-export const loadingServersSelector = createSelector<
-  RootState,
-  ServerState,
-  boolean
->(selectServers, state => state.isLoading);
+export const loadingServersSelector = createSelector(selectServers, (state) => state.isLoading);
 
 export const selectedServerSelector = (serverId: string) => {
-  return createDraftSafeSelector<RootState, ServerState, RankedServer>(
-    selectServers,
-    state => {
-      return state.server.find(
-        (server: RankedServer) =>
-          server.Server.Settings.ServerName === serverId,
-      ) as RankedServer;
-    },
-  );
+  return createDraftSafeSelector(selectServers, (state) => {
+    return state.server.find(
+      (server: RankedServer) => server.Server.Settings.ServerName === serverId,
+    ) as RankedServer;
+  });
 };
 
-export const selectRegionSelector = createDraftSafeSelector<
-  RootState,
-  RootState,
-  ServerState
->(
+export const selectRegionSelector = createDraftSafeSelector(
   (state: RootState) => state,
   ({ general: { region, session, order }, server }) => {
     let servers =
@@ -88,9 +77,7 @@ export const selectRegionSelector = createDraftSafeSelector<
 
     servers =
       session !== -1
-        ? servers.filter(
-            (a: RankedServer) => a.Server.CurrentSession === session,
-          )
+        ? servers.filter((a: RankedServer) => a.Server.CurrentSession === session)
         : servers;
 
     servers = sortBy(servers, (o: RankedServer) => o.Server.PlayersOnServer);

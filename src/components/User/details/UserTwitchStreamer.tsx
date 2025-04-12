@@ -1,8 +1,10 @@
 import React from 'react';
-import { User } from '../../../models/data/User';
-import useStreamData from '../../../hooks/useStreamData';
-import { Card } from 'react-native-paper';
+
 import { Linking, StyleSheet } from 'react-native';
+import { Card } from 'react-native-paper';
+
+import useStreamData from '../../../hooks/useStreamData';
+import { User } from '../../../models/data/User';
 import CustomCardCover from '../../shared/CustomCardCover';
 
 type Props = {
@@ -24,10 +26,7 @@ const UserTwitchStreamer: React.FC<Props> = ({ user }) => {
 
   return (
     <Card style={styles.root} onPress={linkToStreamer}>
-      <CustomCardCover
-        source={{ uri: data.thumbnail_url }}
-        resizeMode={'cover'}
-      />
+      <CustomCardCover source={{ uri: data.thumbnail_url }} resizeMode={'cover'} />
       <Card.Title
         title={data.title}
         titleStyle={styles.title}

@@ -1,6 +1,7 @@
 import React from 'react';
-import { SvgUri } from 'react-native-svg';
+
 import { View } from 'react-native';
+import { SvgUri } from 'react-native-svg';
 
 type Props = {
   country: string;

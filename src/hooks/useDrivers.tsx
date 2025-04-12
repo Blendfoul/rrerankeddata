@@ -1,38 +1,39 @@
-import { useSelector } from 'react-redux';
-import { useCallback, useEffect, useState } from 'react';
-import { Rating } from '../models/data/Ranked';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { use, useCallback, useEffect, useState } from 'react';
+
 import { sortBy } from 'lodash';
-import { ratingsComplete } from '../store/slices/Ratings';
+import { useSelector } from 'react-redux';
+
+import { Rating } from '../models/data/Ranked';
 import { User } from '../models/data/User';
+import { ratingsComplete } from '../store/slices/Ratings';
 
 const useDrivers = (driversId: number[]) => {
   const ratings = useSelector(ratingsComplete);
-  const [drivers, setDrivers] = useState<Rating[]>([]);
-  const source = axios.CancelToken.source();
+  const source = new AbortController();
 
-  const calculate = useCallback(async () => {
+  const calculate = useCallback(async (AbortController: AbortController) => {
     const ratings1: Rating[] = await Promise.all(
-      driversId.map(async id => {
-        const driver: Rating | undefined = ratings.find(
-          (data: Rating) => data.UserId === id,
-        );
+      driversId.map(async (id) => {
+        const driver: Rating | undefined = ratings.find((data: Rating) => data.UserId === id);
 
         if (!driver) {
-          const response: AxiosResponse<User> = await axios(
-            `https://game.raceroom.com/utils/user-info/${id}`,
-            {
-              cancelToken: source.token,
-            } as AxiosRequestConfig,
-          );
+          const response = await fetch(`https://game.raceroom.com/utils/user-info/${id}`, {
+            signal: AbortController.signal,
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to fetch data');
+          }
+
+          const data = (await response.json()) as User;
 
           return {
-            Fullname: response.data.name,
-            Username: response.data.username,
-            UserId: response.data.id,
+            Fullname: data.name,
+            Username: data.username,
+            UserId: data.id,
             Rating: 1500,
             Reputation: 70,
-            Country: response.data.country.code.toUpperCase(),
+            Country: data.country.code.toUpperCase(),
             Team: '',
             ActivityPoints: 0,
             RacesCompleted: 0,
@@ -43,14 +44,16 @@ const useDrivers = (driversId: number[]) => {
       }),
     );
 
-    setDrivers(sortBy(ratings1, a => a.Rating).reverse());
+    return sortBy(ratings1, (a) => a.Rating).reverse();
   }, []);
 
   useEffect(() => {
-    calculate();
+    return () => {
+      source.abort();
+    };
+  }, [driversId]);
 
-    return () => source.cancel();
-  }, [calculate, driversId]);
+  const drivers = use(calculate(source));
 
   return { drivers };
 };

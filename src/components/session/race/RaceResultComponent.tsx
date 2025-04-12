@@ -1,22 +1,15 @@
 import React from 'react';
-import { RaceResult } from '../../../models/data/Result';
-import {
-  Avatar,
-  Caption,
-  Card,
-  IconButton,
-  Paragraph,
-} from 'react-native-paper';
-import { StyleSheet, View } from 'react-native';
-import useSectorTimes from '../../../hooks/useSectorTimes';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigation } from '@react-navigation/core';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import {
-  UserRoutes,
-  UserStackList,
-} from '../../../models/navigation/Navigation';
+import { useTranslation } from 'react-i18next';
+import { StyleSheet, View } from 'react-native';
+import { Avatar, Caption, Card, IconButton, Paragraph } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import useSectorTimes from '../../../hooks/useSectorTimes';
+import { RaceResult } from '../../../models/data/Result';
+import { UserRoutes, UserStackList } from '../../../models/navigation/Navigation';
 
 type Props = {
   data: RaceResult;
@@ -24,8 +17,7 @@ type Props = {
 
 const RaceResultComponent: React.FC<Props> = ({ data }) => {
   const { lapTime } = useSectorTimes(data.Laps);
-  const navigation =
-    useNavigation<NativeStackNavigationProp<UserStackList, 'Result'>>();
+  const navigation = useNavigation<NativeStackNavigationProp<UserStackList, 'Result'>>();
   const { t } = useTranslation();
 
   const navigateToDetails = () => {
@@ -43,10 +35,8 @@ const RaceResultComponent: React.FC<Props> = ({ data }) => {
       <Card.Title
         title={data.FullName}
         subtitle={data.Team || t('result.privateer')}
-        right={props => (
-          <IconButton icon={'plus'} onPress={navigateToDetails} {...props} />
-        )}
-        left={props => (
+        right={(props) => <IconButton icon={'plus'} onPress={navigateToDetails} {...props} />}
+        left={(props) => (
           <Avatar.Image
             source={{
               uri: `https://game.raceroom.com/game/user_avatar/${data.UserId}`,
@@ -70,11 +60,7 @@ const RaceResultComponent: React.FC<Props> = ({ data }) => {
           <View style={styles.content}>
             <Paragraph>{t('result.rating')}</Paragraph>
             <Icon
-              name={
-                data.RatingChange >= 0
-                  ? 'chevron-double-up'
-                  : 'chevron-double-down'
-              }
+              name={data.RatingChange >= 0 ? 'chevron-double-up' : 'chevron-double-down'}
               size={25}
               color={data.RatingChange >= 0 ? 'green' : 'red'}
             />
@@ -85,11 +71,7 @@ const RaceResultComponent: React.FC<Props> = ({ data }) => {
           <View style={styles.content}>
             <Paragraph>{t('result.reputation')}</Paragraph>
             <Icon
-              name={
-                data.ReputationChange >= 0
-                  ? 'chevron-double-up'
-                  : 'chevron-double-down'
-              }
+              name={data.ReputationChange >= 0 ? 'chevron-double-up' : 'chevron-double-down'}
               size={25}
               color={data.ReputationChange >= 0 ? 'green' : 'red'}
             />

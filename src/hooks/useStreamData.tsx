@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
+
 import { twitch_api_key, twitch_app_token } from '../../app.json';
 import { TwitchProfile, TwitchResponse } from '../models/data/Twitch';
 
@@ -8,7 +8,7 @@ const useStreamData = (handle: string) => {
 
   const fetchData = useCallback(async () => {
     try {
-      const searchForId: AxiosResponse<TwitchResponse> = await axios(
+      const response = await fetch(
         `https://api.twitch.tv/helix/search/channels?query=${handle.toLowerCase()}`,
         {
           headers: {
@@ -18,11 +18,15 @@ const useStreamData = (handle: string) => {
         },
       );
 
-      const { data } = searchForId.data;
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
 
-      setData(
-        data.find(user => user.broadcaster_login === handle.toLowerCase()),
-      );
+      const searchForIdData = (await response.json()) as TwitchResponse;
+
+      const { data } = searchForIdData;
+
+      setData(data.find((user) => user.broadcaster_login === handle.toLowerCase()));
     } catch (e) {}
   }, []);
 
